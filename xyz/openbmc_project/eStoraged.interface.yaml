@@ -1,0 +1,112 @@
+description: >
+    D-bus interface to manage an encrypted storage device.
+
+methods:
+    - name: Format
+      description: >
+        Encrypt the eMMC, format the device, and create filesystem.
+      parameters:
+        - name: Password
+          type: array[byte]
+          description: >
+            Array of bytes to use as the LUKS password
+      errors:
+        - self.Error.EncryptionError
+        - self.Error.FilesystemError
+
+    - name: Erase
+      description: >
+        Erase the contents of the eMMC, either crypto erase or a full wipe
+      parameters:
+        - name: EncryptionPassword
+          type: array[byte]
+          description: >
+            Array of bytes to use as the LUKS password
+        - name: DevicePassword
+          type: array[byte]
+          description: >
+            Password for the eMMC device
+        - name: FullDiskErase
+          type: boolean
+          description: >
+            If true, do a full wipe, per Google's requirements for a secure
+            erase. Otherwise, only do a crypto erase.
+      errors:
+        - self.Error.EncryptionError
+        - self.Error.EraseError
+
+    - name: Lock
+      description: >
+        Lock the device and remove sensitive data (e.g. volume key) from memory
+      parameters:
+        - name: EncryptionPassword
+          type: array[byte]
+          description: >
+            Array of bytes to use as the LUKS password
+      errors:
+        - self.Error.EncryptionError
+
+    - name: Unlock
+      description: >
+        Activate the device and mount the filesystem.
+      parameters:
+        - name: EncryptionPassword
+          type: array[byte]
+          description: >
+            Array of bytes to use as the LUKS password.
+        - name: DevicePassword
+          type: array[byte]
+          description: >
+            Password for the eMMC device.
+      errors:
+        - self.Error.EncryptionError
+
+    - name: ChangePassword
+      description: >
+        Change the passwords that unlock the storage device.
+      parameters:
+        - name: OldEncryptionPassword
+          type: array[byte]
+          description: >
+            Array of bytes for the old LUKS password.
+        - name: OldDevicePassword
+          type: array[byte]
+          description: >
+            Old device password for the eMMC.
+        - name: NewEncryptionPassword
+          type: array[byte]
+          description: >
+            Array of bytes to use as the LUKS password.
+        - name: NewDevicePassword
+          type: array[byte]
+          description: >
+            New device password for the eMMC.
+      errors:
+        - self.Error.EncryptionError
+
+properties:
+    - name: Locked
+      type: boolean
+      default: True
+      description: >
+        Indicates whether the eMMC is locked.
+    - name: Status
+      type: enum[self.State]
+      default: Success
+      description: >
+        Current state of eStoraged.
+
+enumerations:
+    - name: State
+      description: >
+        Indicates success, error, or in progress.
+      values:
+        - name: Success
+          description: >
+            No error has been encountered.
+        - name: Error
+          description: >
+            The service has encountered an error.
+        - name: InProgress
+          description: >
+            A method is in progress.

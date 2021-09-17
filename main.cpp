@@ -1,11 +1,8 @@
-
 #include "estoraged.hpp"
 
-#include <phosphor-logging/log.hpp>
+#include <systemd/sd-journal.h>
 #include <sdbusplus/bus.hpp>
-
-using ::phosphor::logging::level;
-using ::phosphor::logging::log;
+#include <string>
 
 int main()
 {
@@ -23,8 +20,12 @@ int main()
     // Create an eStoraged object
     openbmc::eStoraged es_object{b, path};
 
-    log<level::INFO>("eStoraged has started");
+    std::string message("BMC eStorageD is up");
+    std::string redfishMsgId("BMC.estorageD.is.up");
 
+    sd_journal_send("MESSAGE=%s", message.c_str(),
+                                "REDFISH_MESSAGE_ID=%s", redfishMsgId.c_str(),
+                                NULL);
     while (true)
     {
         b.wait();

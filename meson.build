@@ -9,15 +9,21 @@ project(
 
 cpp = meson.get_compiler('cpp')
 
+sdbusplus = dependency('sdbusplus',required : false)
+if not sdbusplus.found()
+  sdbusplus_proj = subproject('sdbusplus', required: true)
+  sdbusplus = sdbusplus_proj.get_variable('sdbusplus_dep')
+  sdbusplus = sdbusplus.as_system('system')
+endif
+
 eStoraged_root = meson.current_source_dir()
 eStoraged_headers = include_directories('.')
 subdir('xyz/openbmc_project/eStoraged')
 
 libestoraged_deps = [
-  dependency('sdbusplus'),
-  dependency('phosphor-logging'),
   eStoraged_dbus,
 ]
+libestoraged_deps += sdbusplus
 
 libestoraged_lib = static_library(
   'estoraged',

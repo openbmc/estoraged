@@ -1,4 +1,4 @@
-sdbuspp_prog = find_program('sdbus++')
+sdbuspp_prog = find_program('sdbusplus')
 
 domain = 'xyz.openbmc_project.eStoraged'
 if_yaml_file = files('../eStoraged.interface.yaml')

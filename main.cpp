@@ -1,7 +1,6 @@
 
 #include "estoraged.hpp"
 
-#include <phosphor-logging/log.hpp>
 #include <sdbusplus/bus.hpp>
 
 using ::phosphor::logging::level;
@@ -23,7 +22,7 @@ int main()
     // Create an eStoraged object
     openbmc::eStoraged es_object{b, path};
 
-    log<level::INFO>("eStoraged has started");
+    cout << "eStoraged has started" <<endl;
 
     while (true)
     {

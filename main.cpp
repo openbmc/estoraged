@@ -54,12 +54,11 @@ int main(int argc, char** argv)
     // Create an eStoraged object
     openbmc::eStoraged es_object{b, path, physicalBlockDev, containerBlockDev};
 
-    std::string message("BMC eStorageD is up");
-    std::string redfishMsgId("BMC.estorageD.is.up");
-
-    sd_journal_send("MESSAGE=%s", message.c_str(),
-                                "REDFISH_MESSAGE_ID=%s", redfishMsgId.c_str(),
-                                NULL);
+    // Redfish MessageIds are in the form
+    // RegistryName.MajorVersion.MinorVersion.MessageKey
+    sd_journal_send("MESSAGE=%s", "eStorageD has started",
+                                "REDFISH_MESSAGE_ID=%s","eStorageD.1.0.Started",
+                                "REDFISH_MESSAGE_ARGS=%s,%s",physicalBlockDev, containerBlockDev, NULL);
     while (true)
     {
         b.wait();

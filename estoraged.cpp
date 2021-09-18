@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <systemd/sd-journal.h>
 
 namespace openbmc
 {
@@ -17,6 +18,10 @@ void eStoraged::erase(std::vector<uint8_t> encryptionPassword,
                       std::vector<uint8_t> devicePassword,
                       bool fullDiskErase)
 {
+  sd_journal_send("MESSAGE=starting Erase"
+                  "REDFISH_MESSAGE_ID=%s","eStorageD.1.0.StartErase",
+                   NULL);
+
   std::cout << "Erasing encrypted eMMC" << std::endl;
 }
 

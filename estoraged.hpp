@@ -14,8 +14,8 @@ using eStoraged_inherit = sdbusplus::server::object_t<sdbusplus::xyz::openbmc_pr
 class eStoraged : eStoraged_inherit
 {
   public:
-    eStoraged(sdbusplus::bus::bus& bus, const char* path) :
-      eStoraged_inherit(bus, path)
+    eStoraged(sdbusplus::bus::bus& bus, const char* path, std::string physPath, std::string containerPath) :
+      eStoraged_inherit(bus, path), m_phyPath(physPath), m_containerPath(containerPath)
     {}
 
     void format(
@@ -38,6 +38,9 @@ class eStoraged : eStoraged_inherit
         std::vector<uint8_t> oldDevicePassword,
         std::vector<uint8_t> newEncryptionPassword,
         std::vector<uint8_t> newDevicePassword) override;
+  private:
+    std::string m_phyPath;
+    std::string m_containerPath;
 };
 
 

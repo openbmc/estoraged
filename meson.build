@@ -44,5 +44,26 @@ executable(
   implicit_indluce_directories: false,
   dependencies: libestoraged,
   install: true,
-  install_dir: get_option('bindir')
+  install_dir: get_option('libexecdir')
 )
+
+conf_data = configuration_data()
+conf_data.set('libexecdir', get_option('prefix') / get_option('libexecdir'))
+conf_data.set('datadir', get_option('prefix') / get_option('datadir'))
+
+systemd_dep = dependency('systemd')
+if systemd_dep.found()
+  unit_dir = systemd_dep.get_variable(pkgconfig: 'systemdsystemunitdir')
+  rule_dir = dependency('udev').get_variable(pkgconfig: 'udev_dir') / 'rules.d'
+
+  install_data(
+    '70-estoraged.rules',
+    install_dir: rule_dir)
+
+  configure_file(
+    input: 'estoraged@.service.in',
+    output: 'estoraged@.service',
+    configuration: conf_data,
+    install: true,
+    install_dir: unit_dir)
+endif

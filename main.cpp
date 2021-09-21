@@ -2,6 +2,8 @@
 
 #include <systemd/sd-journal.h>
 #include <sdbusplus/bus.hpp>
+
+#include <filesystem>
 #include <string>
 #include <iostream>
 
@@ -24,7 +26,7 @@ int main(int argc, char** argv)
     std::string physicalBlockDev = "/dev/mmcblk0";
     std::string containerBlockDev = "/dev/mapper/emmc0";
     int opt;
-    while ((opt = getopt(argc, argv, "p:h:")) != -1)
+    while ((opt = getopt(argc, argv, "b:c:")) != -1)
     {
         switch (opt)
         {
@@ -40,25 +42,34 @@ int main(int argc, char** argv)
         }
     }
 
+    /* Get the filename of the device (without "/dev/"). */
+    auto deviceName =
+        std::filesystem::path(physicalBlockDev).filename().string();
+
     /* DBus path location to place the object(s) */
-    constexpr auto path = "/xyz/openbmc_project/encrypted_storage";
+    std::string path("/xyz/openbmc_project/encrypted_storage/");
+    path.append(deviceName);
 
     // Create a new bus and affix an object manager for the subtree path we
     // intend to place objects at..
     auto b = sdbusplus::bus::new_default();
-    sdbusplus::server::manager_t m{b, path};
+    sdbusplus::server::manager_t m{b, path.c_str()};
 
     // Reserve the dbus service name
-    b.request_name("xyz.openbmc_project.eStoraged");
+    std::string busName("xyz.openbmc_project.eStoraged.");
+    busName.append(deviceName);
+    b.request_name(busName.c_str());
 
     // Create an eStoraged object
-    openbmc::eStoraged es_object{b, path, physicalBlockDev, containerBlockDev};
+    openbmc::eStoraged es_object{b, path.c_str(), physicalBlockDev,
+      containerBlockDev};
 
     // Redfish MessageIds are in the form
     // RegistryName.MajorVersion.MinorVersion.MessageKey
     sd_journal_send("MESSAGE=%s", "eStorageD has started",
-                                "REDFISH_MESSAGE_ID=%s","eStorageD.1.0.Started",
-                                "REDFISH_MESSAGE_ARGS=%s,%s",physicalBlockDev, containerBlockDev, NULL);
+                    "REDFISH_MESSAGE_ID=%s","eStorageD.1.0.Started",
+                    "REDFISH_MESSAGE_ARGS=%s,%s",
+                    physicalBlockDev, containerBlockDev, NULL);
     while (true)
     {
         b.wait();

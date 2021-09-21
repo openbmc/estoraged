@@ -1,0 +1,2 @@
+# Launch systemd service when an eMMC is detected
+SUBSYSTEM=="block",ENV{DEVPATH}=="/block/mmcblk[0-9]",ENV{DEVTYPE}=="disk",TAG+="systemd",ENV{SYSTEMD_WANTS}="estoraged@$env{DEVNAME}"

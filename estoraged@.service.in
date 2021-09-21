@@ -1,0 +1,7 @@
+[Unit]
+Description=Encrypted storage daemon for %I
+
+[Service]
+Type=simple
+Restart=always
+ExecStart=@libexecdir@/eStoraged -b %I

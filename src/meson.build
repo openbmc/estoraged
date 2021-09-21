@@ -23,5 +23,5 @@ executable(
   implicit_include_directories: false,
   dependencies: libeStoraged,
   install: true,
-  install_dir: get_option('bindir')
+  install_dir: get_option('libexecdir')
 )

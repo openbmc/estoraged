@@ -9,11 +9,14 @@ project(
 
 cpp = meson.get_compiler('cpp')
 
-sdbusplus = dependency('sdbusplus',required : false)
-if not sdbusplus.found()
+sdbusplus_dep = dependency('sdbusplus',required : false)
+if sdbusplus_dep.found() and sdbusplus_dep.type_name() != 'internal'
+  sdbusplus_prog = find_program('sdbus++', native: true)
+else
   sdbusplus_proj = subproject('sdbusplus', required: true)
-  sdbusplus = sdbusplus_proj.get_variable('sdbusplus_dep')
-  sdbusplus = sdbusplus.as_system('system')
+  sdbusplus_dep = sdbusplus_proj.get_variable('sdbusplus_dep')
+  sdbusplus_dep = sdbusplus_dep.as_system('system')
+  sdbusplus_prog = sdbusplus_proj.get_variable('sdbusplusplus_prog')
 endif
 
 eStoraged_root = meson.current_source_dir()
@@ -23,7 +26,7 @@ subdir('xyz/openbmc_project/eStoraged')
 libestoraged_deps = [
   eStoraged_dbus,
 ]
-libestoraged_deps += sdbusplus
+libestoraged_deps += sdbusplus_dep
 
 libestoraged_lib = static_library(
   'estoraged',

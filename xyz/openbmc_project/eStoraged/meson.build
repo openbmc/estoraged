@@ -1,4 +1,4 @@
-sdbuspp_prog = find_program('sdbus++')
+#sdbuspp_prog = find_program('sdbus++')
 
 domain = 'xyz.openbmc_project.eStoraged'
 if_yaml_file = files('../eStoraged.interface.yaml')
@@ -8,14 +8,14 @@ if_cpp = custom_target(
   output: 'server.cpp',
   input: if_yaml_file,
   capture: true,
-  command: [sdbuspp_prog, '-r', eStoraged_root, 'interface', 'server-cpp', domain])
+  command: [sdbusplus_prog, '-r', eStoraged_root, 'interface', 'server-cpp', domain])
 
 if_hpp = custom_target(
   'server.hpp',
   output: 'server.hpp',
   input: if_yaml_file,
   capture: true,
-  command: [sdbuspp_prog, '-r', eStoraged_root, 'interface', 'server-header', domain],
+  command: [sdbusplus_prog, '-r', eStoraged_root, 'interface', 'server-header', domain],
   install: true,
   install_dir: get_option('includedir') / 'xyz/openbmc_project/eStoraged')
 
@@ -26,20 +26,28 @@ error_cpp = custom_target(
   output: 'error.cpp',
   input: error_yaml_file,
   capture: true,
-  command: [sdbuspp_prog, '-r', eStoraged_root, 'error', 'exception-cpp', domain])
+  command: [sdbusplus_prog, '-r', eStoraged_root, 'error', 'exception-cpp', domain])
 
 error_hpp = custom_target(
   'error.hpp',
   output: 'error.hpp',
   input: error_yaml_file,
   capture: true,
-  command: [sdbuspp_prog, '-r', eStoraged_root, 'error', 'exception-header', domain],
+  command: [sdbusplus_prog, '-r', eStoraged_root, 'error', 'exception-header', domain],
   install: true,
   install_dir: get_option('includedir') / 'xyz/openbmc_project/eStoraged')
 
+phosphor_dbus_interfaces_dep = dependency(
+    'phosphor-dbus-interfaces',
+    fallback: [
+        'phosphor-dbus-interfaces',
+        'phosphor_dbus_interfaces_dep'
+    ],
+)
+
 eStoraged_dbus_deps = [
-  dependency('phosphor-dbus-interfaces'),
-  dependency('sdbusplus'),
+    sdbusplus_dep,
+    phosphor_dbus_interfaces_dep,
 ]
 
 eStoraged_dbus_lib = library(

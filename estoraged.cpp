@@ -16,13 +16,14 @@ void eStoraged::format(std::vector<uint8_t> encryptionPassword,
 
 void eStoraged::erase(std::vector<uint8_t> encryptionPassword,
                       std::vector<uint8_t> devicePassword,
-                      bool fullDiskErase)
+                      EraseMethod inErase)
 {
   sd_journal_send("MESSAGE=starting Erase"
                   "REDFISH_MESSAGE_ID=%s","eStorageD.1.0.StartErase",
                    NULL);
 
   std::cout << "Erasing encrypted eMMC" << std::endl;
+
 }
 
 void eStoraged::lock(std::vector<uint8_t> devicePassword)

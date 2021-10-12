@@ -25,7 +25,7 @@ class eStoraged : eStoraged_inherit
     void erase(
         std::vector<uint8_t> encryptionPassword,
         std::vector<uint8_t> devicePassword,
-        bool fullDiskErase) override;
+        EraseMethod inEraseMethod) override;
 
     void lock(std::vector<uint8_t> devicePassword) override;
 

@@ -4,3 +4,6 @@
 
 # build directory
 build*/*
+build*/
+subprojects/*
+!subprojects/*.wrap

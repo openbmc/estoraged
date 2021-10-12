@@ -6,6 +6,7 @@
 #include <filesystem>
 #include <string>
 #include <iostream>
+#include <unistd.h>
 
 
 static void usage(std::string_view name)

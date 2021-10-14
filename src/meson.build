@@ -8,6 +8,8 @@ libeStoraged_lib = static_library(
   'eStoraged-lib',
   'estoraged.cpp',
   'logging.cpp',
+   'erase/verifyGeometry.cpp',
+  'erase/findSize.cpp',
   include_directories : eStoraged_headers,
   implicit_include_directories: false,
   dependencies: libeStoraged_deps,

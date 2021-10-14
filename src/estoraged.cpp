@@ -23,6 +23,16 @@ void eStoraged::erase(std::vector<uint8_t>, EraseMethod)
     estoragedLogging("MESSAGE=starting Erase"
                      "REDFISH_MESSAGE_ID=%s",
                      "OpenBMC.0.1.DriveErase", NULL);
+  switch(inErase){
+    case EraseMethod::VerifyGeometry:
+      {
+        verifyGeometry myVerifyGeometry(m_phyPath);
+        myVerifyGeometry.GeometryOkay(findSizeOfBlockDevice);
+        break;
+      }
+    default :
+      std::cout << "enum not found" << std::endl;
+   }
 }
 
 void eStoraged::lock(std::vector<uint8_t>)

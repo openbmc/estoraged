@@ -1,10 +1,15 @@
 
 #include "estoraged.hpp"
 
+#include "verifyDriveGeometry.hpp"
+
 #include <phosphor-logging/lg2.hpp>
+#include <xyz/openbmc_project/eStoraged/error.hpp>
 
 #include <iostream>
 #include <vector>
+
+using sdbusplus::xyz::openbmc_project::eStoraged::Error::EraseError;
 
 namespace estoraged
 {
@@ -16,11 +21,23 @@ void eStoraged::format(std::vector<uint8_t>)
     lg2::info("Starting format", "REDFISH_MESSAGE_ID", msg);
 }
 
-void eStoraged::erase(std::vector<uint8_t>, EraseMethod)
+void eStoraged::erase(std::vector<uint8_t>, EraseMethod inEraseMethod)
 {
     std::cerr << "Erasing encrypted eMMC" << std::endl;
     std::string msg = "OpenBMC.0.1.DriveErase";
     lg2::info("Starting erase", "REDFISH_MESSAGE_ID", msg);
+    switch (inEraseMethod)
+    {
+        case EraseMethod::VerifyGeometry:
+        {
+            VerifyDriveGeometry myVerifyGeometry(devPath);
+            uint64_t size = myVerifyGeometry.findSizeOfBlockDevice();
+            myVerifyGeometry.geometryOkay(size);
+            break;
+        }
+        default:
+            throw EraseError();
+    }
 }
 
 void eStoraged::lock(std::vector<uint8_t>)

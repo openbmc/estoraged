@@ -15,3 +15,5 @@ foreach t : tests
                      ],
                      include_directories: eStoraged_headers))
 endforeach
+
+subdir('erase')

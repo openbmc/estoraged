@@ -1,4 +1,6 @@
 
+subdir('erase/')
+
 libeStoraged_deps = [
   dependency('sdbusplus'),
   eStoraged_dbus,
@@ -8,6 +10,7 @@ libeStoraged_lib = static_library(
   'eStoraged-lib',
   'estoraged.cpp',
   'logging.cpp',
+  erase_src,
   include_directories : eStoraged_headers,
   implicit_include_directories: false,
   dependencies: libeStoraged_deps,

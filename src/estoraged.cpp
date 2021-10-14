@@ -2,6 +2,7 @@
 #include "estoraged.hpp"
 
 #include "logging.hpp"
+#include "verifyDriveGeometry.hpp"
 
 #include <iostream>
 #include <vector>
@@ -17,12 +18,23 @@ void eStoraged::format(std::vector<uint8_t>)
         "OpenBMC.0.1.DriveFormat", NULL);
 }
 
-void eStoraged::erase(std::vector<uint8_t>, EraseMethod)
+void eStoraged::erase(std::vector<uint8_t>, EraseMethod inEraseMethod)
 {
     std::cerr << "Erasing encrypted eMMC" << std::endl;
     log("MESSAGE=Starting erase"
         "REDFISH_MESSAGE_ID=%s",
         "OpenBMC.0.1.DriveErase", NULL);
+    switch (inEraseMethod)
+    {
+        case EraseMethod::VerifyGeometry:
+        {
+            VerifyDriveGeometry myVerifyGeometry(devPath);
+            myVerifyGeometry.geometryOkay(findSizeOfBlockDevice);
+            break;
+        }
+        default:
+            std::cout << "enum not found" << std::endl;
+    }
 }
 
 void eStoraged::lock(std::vector<uint8_t>)

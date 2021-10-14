@@ -20,7 +20,8 @@ else
 endif
 
 eStoraged_root = meson.current_source_dir()
-eStoraged_headers = include_directories('.')
+eStoraged_headers = include_directories('erase', '.')
+
 subdir('xyz/openbmc_project/eStoraged')
 
 libestoraged_deps = [
@@ -31,6 +32,8 @@ libestoraged_deps += sdbusplus_dep
 libestoraged_lib = static_library(
   'estoraged',
   'estoraged.cpp',
+  'erase/verifyGeometry.cpp',
+  'erase/findSize.cpp',
   include_directories : eStoraged_headers,
   implicit_include_directories: false,
   dependencies: libestoraged_deps,
@@ -53,6 +56,8 @@ executable(
 conf_data = configuration_data()
 conf_data.set('libexecdir', get_option('prefix') / get_option('libexecdir'))
 conf_data.set('datadir', get_option('prefix') / get_option('datadir'))
+conf_data.set('ERASE_MAX_GEOMETRY', get_option('erase_max_geometry'))
+conf_data.set('ERASE_MIN_GEOMETRY', get_option('erase_min_geometry'))
 
 systemd_dep = dependency('systemd')
 if systemd_dep.found()
@@ -70,3 +75,8 @@ if systemd_dep.found()
     install: true,
     install_dir: unit_dir)
 endif
+
+configure_file(
+  input: 'estoraged_conf.hpp.in',
+  output: 'estoraged_conf.hpp',
+  configuration: conf_data)

@@ -1,6 +1,7 @@
 
 #include "estoraged.hpp"
 
+#include "erase/verifyGeometry.hpp"
 #include <iostream>
 #include <vector>
 #include <systemd/sd-journal.h>
@@ -21,6 +22,16 @@ void eStoraged::erase(std::vector<uint8_t> encryptionPassword,
   sd_journal_send("MESSAGE=starting Erase"
                   "REDFISH_MESSAGE_ID=%s","eStorageD.1.0.StartErase",
                    NULL);
+  switch(inErase){
+    case EraseMethod::VerifyGeometry:
+      {
+        verifyGeometry myVerifyGeometry(m_phyPath);
+        myVerifyGeometry.GeometryOkay(findSizeOfBlockDevice);
+        break;
+      }
+    default :
+      std::cout << "enum not found" << std::endl;
+   }
 
   std::cout << "Erasing encrypted eMMC" << std::endl;
 

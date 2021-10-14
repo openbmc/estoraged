@@ -2,6 +2,7 @@
 #include "estoraged.hpp"
 
 #include "cryptsetupInterface.hpp"
+#include "verifyDriveGeometry.hpp"
 
 #include <libcryptsetup.h>
 #include <openssl/rand.h>
@@ -14,6 +15,8 @@
 #include <iostream>
 #include <string_view>
 #include <vector>
+
+using sdbusplus::xyz::openbmc_project::eStoraged::Error::EraseError;
 
 namespace estoraged
 {
@@ -42,11 +45,49 @@ void eStoraged::format(std::vector<uint8_t> password)
     mountFilesystem();
 }
 
-void eStoraged::erase(std::vector<uint8_t>, EraseMethod)
+void eStoraged::erase(std::vector<uint8_t>, EraseMethod inEraseMethod)
 {
     std::cerr << "Erasing encrypted eMMC" << std::endl;
-    std::string msg = "OpenBMC.0.1.DriveErase";
-    lg2::info("Starting erase", "REDFISH_MESSAGE_ID", msg);
+    lg2::info("Starting erase", "REDFISH_MESSAGE_ID",
+              std::string("OpenBMC.0.1.DriveErase"));
+    switch (inEraseMethod)
+    {
+        case EraseMethod::CryptoErase:
+        {
+            break;
+        }
+        case EraseMethod::VerifyGeometry:
+        {
+            VerifyDriveGeometry myVerifyGeometry(devPath);
+            uint64_t size = myVerifyGeometry.findSizeOfBlockDevice();
+            myVerifyGeometry.geometryOkay(size);
+            break;
+        }
+        case EraseMethod::LogicalOverWrite:
+        {
+            break;
+        }
+        case EraseMethod::LogicalVerify:
+        {
+            break;
+        }
+        case EraseMethod::VendorSanitize:
+        {
+            break;
+        }
+        case EraseMethod::ZeroOverWrite:
+        {
+            break;
+        }
+        case EraseMethod::ZeroVerify:
+        {
+            break;
+        }
+        case EraseMethod::SecuredLocked:
+        {
+            break;
+        }
+    }
 }
 
 void eStoraged::lock(std::vector<uint8_t>)
@@ -79,8 +120,8 @@ void eStoraged::unlock(std::vector<uint8_t> password)
 void eStoraged::changePassword(std::vector<uint8_t>, std::vector<uint8_t>)
 {
     std::cerr << "Changing password for encrypted eMMC" << std::endl;
-    std::string msg = "OpenBMC.0.1.DrivePasswordChanged";
-    lg2::info("Starting change password", "REDFISH_MESSAGE_ID", msg);
+    lg2::info("Starting change password", "REDFISH_MESSAGE_ID",
+              std::string("OpenBMC.0.1.DrivePasswordChanged"));
 }
 
 bool eStoraged::isLocked() const

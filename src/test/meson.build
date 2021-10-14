@@ -2,6 +2,7 @@ gtest = dependency('gtest', main: true, disabler: true, required: build_tests)
 gmock = dependency('gmock', disabler: true, required: build_tests)
 
 tests = [
+  'erase/verifyGeometry_test',
   'estoraged_test',
 ]
 

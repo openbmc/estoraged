@@ -28,3 +28,8 @@ executable(
   install: true,
   install_dir: get_option('bindir')
 )
+
+if not get_option('tests').disabled()
+  subdir('test')
+endif
+

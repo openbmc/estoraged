@@ -33,3 +33,9 @@ executable(
   link_with: libeStoraged_lib,
   install_dir: get_option('bindir')
 )
+
+
+if not get_option('tests').disabled()
+  subdir('test')
+endif
+

@@ -53,6 +53,10 @@ executable(
   install_dir: get_option('libexecdir')
 )
 
+if not get_option('tests').disabled()
+  subdir('test')
+endif
+
 conf_data = configuration_data()
 conf_data.set('libexecdir', get_option('prefix') / get_option('libexecdir'))
 conf_data.set('datadir', get_option('prefix') / get_option('datadir'))

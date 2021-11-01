@@ -1,0 +1,6 @@
+### Meson ###
+# subproject directories
+/subprojects/*
+
+# build directory
+build*/*

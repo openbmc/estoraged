@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6ec7d281_2d4f03e4",
+        "filename": ".gitignore",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-02T23:51:56Z",
+      "side": 1,
+      "message": "I removed the line regarding the wraps.",
+      "parentUuid": "f1bce9fb_77ab815d",
+      "revId": "c6565b83eab7c1f00c32ba5c236d5a2b529c4502",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "968f0d9d_8e0fea42",
         "filename": ".gitignore",
         "patchSetId": 2
@@ -30,6 +48,47 @@
       "writtenOn": "2021-11-02T22:52:57Z",
       "side": 1,
       "message": "Arguably all of the meson stuff gets handled by `build/*`, making this redundant.",
+      "revId": "c6565b83eab7c1f00c32ba5c236d5a2b529c4502",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "97a910f0_22a45749",
+        "filename": ".gitignore",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-02T23:51:56Z",
+      "side": 1,
+      "message": "Yeah, the meson stuff does become redundant with build/* in this file, unless we\u0027re trying to handle case where the build directory is called something different. I had copied the contents of this file from here: https://gerrit.openbmc-project.xyz/c/openbmc/docs/+/41099/4/template_app/.gitignore\n\nBut now I\u0027ve deleted mostly all the meson stuff in this file.\n\nBy the way, I changed build/* to build*/*, e.g. in case the build directory is called builddir. Take a look at what I have now.",
+      "parentUuid": "968f0d9d_8e0fea42",
+      "revId": "c6565b83eab7c1f00c32ba5c236d5a2b529c4502",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f04db1e_ea1f0ddf",
+        "filename": "MAINTAINERS",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-02T23:51:56Z",
+      "side": 1,
+      "message": "Is this out-of-date? Should I put your discord username instead?",
+      "range": {
+        "startLine": 46,
+        "startChar": 40,
+        "endLine": 46,
+        "endChar": 51
+      },
       "revId": "c6565b83eab7c1f00c32ba5c236d5a2b529c4502",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
@@ -50,6 +109,24 @@
       "revId": "c6565b83eab7c1f00c32ba5c236d5a2b529c4502",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e65f1c03_eda2dd34",
+        "filename": "OWNERS",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-02T23:51:56Z",
+      "side": 1,
+      "message": "I added the additional metadata.",
+      "parentUuid": "47306e27_dd659a08",
+      "revId": "c6565b83eab7c1f00c32ba5c236d5a2b529c4502",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }

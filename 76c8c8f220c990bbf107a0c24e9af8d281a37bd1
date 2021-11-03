@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "bfff90ab_95d295d5",
+        "filename": "estoraged.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000885
+      },
+      "writtenOn": "2021-11-03T19:58:19Z",
+      "side": 1,
+      "message": "print to std::err instead to be capture by the journal.",
+      "range": {
+        "startLine": 13,
+        "startChar": 1,
+        "endLine": 13,
+        "endChar": 56
+      },
+      "revId": "76c8c8f220c990bbf107a0c24e9af8d281a37bd1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e44d5b15_f5c418e0",
         "filename": "main.cpp",
         "patchSetId": 1
@@ -18,6 +41,46 @@
         "startChar": 27,
         "endLine": 13,
         "endChar": 66
+      },
+      "revId": "76c8c8f220c990bbf107a0c24e9af8d281a37bd1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32e74609_e8ddb515",
+        "filename": "meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000885
+      },
+      "writtenOn": "2021-11-03T19:58:19Z",
+      "side": 1,
+      "message": "Add `src/` `include/` structure to make it easier to manage the files.",
+      "revId": "76c8c8f220c990bbf107a0c24e9af8d281a37bd1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b315a120_4b137e20",
+        "filename": "meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000885
+      },
+      "writtenOn": "2021-11-03T19:58:19Z",
+      "side": 1,
+      "message": "c++20 and meson \u003e\u003d0.57.0",
+      "range": {
+        "startLine": 2,
+        "startChar": 4,
+        "endLine": 7,
+        "endChar": 6
       },
       "revId": "76c8c8f220c990bbf107a0c24e9af8d281a37bd1",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",

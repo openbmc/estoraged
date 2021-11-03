@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e44d5b15_f5c418e0",
+        "filename": "main.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-03T18:32:44Z",
+      "side": 1,
+      "message": "The object path and bus name will need to change, per the design doc review.",
+      "range": {
+        "startLine": 13,
+        "startChar": 27,
+        "endLine": 13,
+        "endChar": 66
+      },
+      "revId": "76c8c8f220c990bbf107a0c24e9af8d281a37bd1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "970d2187_0fee4dba",
+        "filename": "xyz/openbmc_project/eStoraged.interface.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-03T18:32:44Z",
+      "side": 1,
+      "message": "I\u0027m not sure whether we want to say eMMC in the description fields, since eStoraged could potentially be used for other types of devices later.",
+      "range": {
+        "startLine": 2,
+        "startChar": 42,
+        "endLine": 2,
+        "endChar": 47
+      },
+      "revId": "76c8c8f220c990bbf107a0c24e9af8d281a37bd1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d87f70e4_237349aa",
+        "filename": "xyz/openbmc_project/eStoraged.interface.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-03T18:32:44Z",
+      "side": 1,
+      "message": "Maybe just call this password",
+      "range": {
+        "startLine": 9,
+        "startChar": 16,
+        "endLine": 9,
+        "endChar": 34
+      },
+      "revId": "76c8c8f220c990bbf107a0c24e9af8d281a37bd1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "252abfc7_d611379d",
+        "filename": "xyz/openbmc_project/eStoraged.interface.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-03T18:32:44Z",
+      "side": 1,
+      "message": "Per the design doc review, the DevicePassword parameter should be removed from all the D-Bus methods here. eStoraged will use a one-way hash to generate the device password.",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 40
+      },
+      "revId": "76c8c8f220c990bbf107a0c24e9af8d281a37bd1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a1f5bed_a1594f54",
+        "filename": "xyz/openbmc_project/eStoraged.interface.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-03T18:32:44Z",
+      "side": 1,
+      "message": "This parameter will need to become something more generic, e.g. eraseType",
+      "range": {
+        "startLine": 33,
+        "startChar": 9,
+        "endLine": 37,
+        "endChar": 53
+      },
+      "revId": "76c8c8f220c990bbf107a0c24e9af8d281a37bd1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e4132a6_e8a62aed",
+        "filename": "xyz/openbmc_project/eStoraged.interface.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-03T18:32:44Z",
+      "side": 1,
+      "message": "This will still require a password parameter, so that we can generate the device password.",
+      "range": {
+        "startLine": 46,
+        "startChar": 9,
+        "endLine": 49,
+        "endChar": 40
+      },
+      "revId": "76c8c8f220c990bbf107a0c24e9af8d281a37bd1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

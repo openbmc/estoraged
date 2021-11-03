@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "744ff29e_70cf43d1",
+        "filename": "meson_options.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-03T23:16:16Z",
+      "side": 1,
+      "message": "The recipe will override this information",
+      "range": {
+        "startLine": 2,
+        "startChar": 93,
+        "endLine": 2,
+        "endChar": 95
+      },
+      "revId": "fecd16c8af6769ca724e4f1391b17080f6fd6fd1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

@@ -304,6 +304,23 @@
     },
     {
       "key": {
+        "uuid": "5261611e_02e39237",
+        "filename": "xyz/openbmc_project/eStoraged.errors.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000885
+      },
+      "writtenOn": "2021-11-04T16:47:36Z",
+      "side": 1,
+      "message": "this should be going to `phosphor-dbus-interface` unless there was a discussion in upstream about this already.",
+      "revId": "76c8c8f220c990bbf107a0c24e9af8d281a37bd1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "970d2187_0fee4dba",
         "filename": "xyz/openbmc_project/eStoraged.interface.yaml",
         "patchSetId": 1

@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "414f3dba_73100839",
+        "filename": "estoraged.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-04T02:34:39Z",
+      "side": 1,
+      "message": "- cerr is only captured in syslog when the process is started by systemd\n- when a process is started by systemd both stdout, and stderr are captured in syslog\n\nThe end state of logging is to explicitly write to syslog (using sd_journal_send) in a way that is redfish event log compatible. imho\n\ncerr does make sense for stubs so I will change it and add comments inditing this is stub.\nThanks for the feedback, let me know if you see anything else.",
+      "parentUuid": "bfff90ab_95d295d5",
+      "range": {
+        "startLine": 13,
+        "startChar": 1,
+        "endLine": 13,
+        "endChar": 56
+      },
+      "revId": "76c8c8f220c990bbf107a0c24e9af8d281a37bd1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e44d5b15_f5c418e0",
         "filename": "main.cpp",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2021-11-03T18:32:44Z",
       "side": 1,
       "message": "The object path and bus name will need to change, per the design doc review.",
+      "range": {
+        "startLine": 13,
+        "startChar": 27,
+        "endLine": 13,
+        "endChar": 66
+      },
+      "revId": "76c8c8f220c990bbf107a0c24e9af8d281a37bd1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a32937a7_b92508ed",
+        "filename": "main.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-04T02:34:39Z",
+      "side": 1,
+      "message": "I agree, we need update the code to match the design doc. \n\nDoes it have to be this commit? This commit is blocking a couple of big changes, and it might be faster if this could be fixed in parallel. On the other hand it is related to the dbus interface, so we could do it in this change. I see the pros and cons.\n\nTo avoid forgetting about this issue I created. \nhttps://github.com/openbmc/estoraged/issues/1",
+      "parentUuid": "e44d5b15_f5c418e0",
       "range": {
         "startLine": 13,
         "startChar": 27,
@@ -112,6 +160,30 @@
     },
     {
       "key": {
+        "uuid": "d867d82c_b380a9ac",
+        "filename": "meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-04T02:34:39Z",
+      "side": 1,
+      "message": "werror\u003dtrue is a good idea (done)\n\nWhere does the meson version requirement come from?\n\n@wedig, do you have any specific reson to perfer 17, because I (like willy) prefer 20 going forward.",
+      "parentUuid": "e3e08d16_b8b6c9c7",
+      "range": {
+        "startLine": 2,
+        "startChar": 4,
+        "endLine": 7,
+        "endChar": 6
+      },
+      "revId": "76c8c8f220c990bbf107a0c24e9af8d281a37bd1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "970d2187_0fee4dba",
         "filename": "xyz/openbmc_project/eStoraged.interface.yaml",
         "patchSetId": 1
@@ -132,6 +204,30 @@
       "revId": "76c8c8f220c990bbf107a0c24e9af8d281a37bd1",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "58a55ba3_6c098fdd",
+        "filename": "xyz/openbmc_project/eStoraged.interface.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-04T02:34:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "970d2187_0fee4dba",
+      "range": {
+        "startLine": 2,
+        "startChar": 42,
+        "endLine": 2,
+        "endChar": 47
+      },
+      "revId": "76c8c8f220c990bbf107a0c24e9af8d281a37bd1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -158,6 +254,30 @@
     },
     {
       "key": {
+        "uuid": "892e5029_24591eba",
+        "filename": "xyz/openbmc_project/eStoraged.interface.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-04T02:34:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d87f70e4_237349aa",
+      "range": {
+        "startLine": 9,
+        "startChar": 16,
+        "endLine": 9,
+        "endChar": 34
+      },
+      "revId": "76c8c8f220c990bbf107a0c24e9af8d281a37bd1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "252abfc7_d611379d",
         "filename": "xyz/openbmc_project/eStoraged.interface.yaml",
         "patchSetId": 1
@@ -173,6 +293,53 @@
         "startLine": 13,
         "startChar": 0,
         "endLine": 16,
+        "endChar": 40
+      },
+      "revId": "76c8c8f220c990bbf107a0c24e9af8d281a37bd1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0aea5b43_ebe87dee",
+        "filename": "xyz/openbmc_project/eStoraged.interface.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-04T02:34:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "252abfc7_d611379d",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 40
+      },
+      "revId": "76c8c8f220c990bbf107a0c24e9af8d281a37bd1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3025fe39_09b42d5a",
+        "filename": "xyz/openbmc_project/eStoraged.interface.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-04T02:34:39Z",
+      "side": 1,
+      "message": "if we are generating the devicePassword, we probably don\u0027t need it on the interface?",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 32,
         "endChar": 40
       },
       "revId": "76c8c8f220c990bbf107a0c24e9af8d281a37bd1",
@@ -204,6 +371,30 @@
     },
     {
       "key": {
+        "uuid": "64a988c7_9f78e7e4",
+        "filename": "xyz/openbmc_project/eStoraged.interface.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-04T02:34:39Z",
+      "side": 1,
+      "message": "I agree. I would like you feedback on this the pending change below.\n\nhttps://gerrit.openbmc-project.xyz/c/openbmc/estoraged/+/48606/1/xyz/openbmc_project/eStoraged.interface.yaml",
+      "parentUuid": "5a1f5bed_a1594f54",
+      "range": {
+        "startLine": 33,
+        "startChar": 9,
+        "endLine": 37,
+        "endChar": 53
+      },
+      "revId": "76c8c8f220c990bbf107a0c24e9af8d281a37bd1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7e4132a6_e8a62aed",
         "filename": "xyz/openbmc_project/eStoraged.interface.yaml",
         "patchSetId": 1
@@ -220,6 +411,99 @@
         "startChar": 9,
         "endLine": 49,
         "endChar": 40
+      },
+      "revId": "76c8c8f220c990bbf107a0c24e9af8d281a37bd1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd3fb794_eb21f4f5",
+        "filename": "xyz/openbmc_project/eStoraged.interface.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-04T02:34:39Z",
+      "side": 1,
+      "message": "I think I understand, change DevicePassword to a general password similar to format?",
+      "parentUuid": "7e4132a6_e8a62aed",
+      "range": {
+        "startLine": 46,
+        "startChar": 9,
+        "endLine": 49,
+        "endChar": 40
+      },
+      "revId": "76c8c8f220c990bbf107a0c24e9af8d281a37bd1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a8307d2_0cc5b691",
+        "filename": "xyz/openbmc_project/eStoraged.interface.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-04T02:34:39Z",
+      "side": 1,
+      "message": "should we also delete?",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 41
+      },
+      "revId": "76c8c8f220c990bbf107a0c24e9af8d281a37bd1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a8a9fa96_84397197",
+        "filename": "xyz/openbmc_project/eStoraged.interface.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-04T02:34:39Z",
+      "side": 1,
+      "message": "delete?",
+      "range": {
+        "startLine": 76,
+        "startChar": 8,
+        "endLine": 79,
+        "endChar": 45
+      },
+      "revId": "76c8c8f220c990bbf107a0c24e9af8d281a37bd1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c0ab7e8_5dd4cde6",
+        "filename": "xyz/openbmc_project/eStoraged.interface.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-04T02:34:39Z",
+      "side": 1,
+      "message": "delete?",
+      "range": {
+        "startLine": 84,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 45
       },
       "revId": "76c8c8f220c990bbf107a0c24e9af8d281a37bd1",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",

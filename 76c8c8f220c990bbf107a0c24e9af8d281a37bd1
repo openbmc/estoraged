@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "b1958ffb_60195949",
+        "filename": "main.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-04T16:37:22Z",
+      "side": 1,
+      "message": "This seems like a trivial change that can be made now.",
+      "parentUuid": "a32937a7_b92508ed",
+      "range": {
+        "startLine": 13,
+        "startChar": 27,
+        "endLine": 13,
+        "endChar": 66
+      },
+      "revId": "76c8c8f220c990bbf107a0c24e9af8d281a37bd1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "32e74609_e8ddb515",
         "filename": "meson.build",
         "patchSetId": 1
@@ -244,6 +268,30 @@
       "side": 1,
       "message": "add\n```\n    \u0027warning_level\u003d3\u0027,\n    \u0027werror\u003dtrue\u0027,\n```",
       "parentUuid": "72544836_5f97cc54",
+      "range": {
+        "startLine": 2,
+        "startChar": 4,
+        "endLine": 7,
+        "endChar": 6
+      },
+      "revId": "76c8c8f220c990bbf107a0c24e9af8d281a37bd1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c6fb7cf7_79ea7b8e",
+        "filename": "meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-04T16:37:22Z",
+      "side": 1,
+      "message": "I didn\u0027t have any reason to prefer c++17. I just copied it from somewhere else that probably should\u0027ve been using c++20, as well.",
+      "parentUuid": "36cd21e0_6d7f53ed",
       "range": {
         "startLine": 2,
         "startChar": 4,
@@ -514,6 +562,30 @@
     },
     {
       "key": {
+        "uuid": "e64b4c0d_3975924f",
+        "filename": "xyz/openbmc_project/eStoraged.interface.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-04T16:37:22Z",
+      "side": 1,
+      "message": "yes",
+      "parentUuid": "dd3fb794_eb21f4f5",
+      "range": {
+        "startLine": 46,
+        "startChar": 9,
+        "endLine": 49,
+        "endChar": 40
+      },
+      "revId": "76c8c8f220c990bbf107a0c24e9af8d281a37bd1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3a8307d2_0cc5b691",
         "filename": "xyz/openbmc_project/eStoraged.interface.yaml",
         "patchSetId": 1
@@ -525,6 +597,30 @@
       "writtenOn": "2021-11-04T02:34:39Z",
       "side": 1,
       "message": "should we also delete?",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 41
+      },
+      "revId": "76c8c8f220c990bbf107a0c24e9af8d281a37bd1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a4e7bb82_ef098955",
+        "filename": "xyz/openbmc_project/eStoraged.interface.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-04T16:37:22Z",
+      "side": 1,
+      "message": "Yes, DevicePassword should be removed everywhere in this file.",
+      "parentUuid": "3a8307d2_0cc5b691",
       "range": {
         "startLine": 61,
         "startChar": 0,

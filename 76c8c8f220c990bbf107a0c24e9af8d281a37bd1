@@ -184,6 +184,30 @@
     },
     {
       "key": {
+        "uuid": "ec67cbb1_f6142c39",
+        "filename": "meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000885
+      },
+      "writtenOn": "2021-11-04T04:53:52Z",
+      "side": 1,
+      "message": "i don\u0027t actually know where the requirement is from, but we are using it for all Google projects. https://github.com/openbmc/google-misc/blob/master/meson.build\n\nAlso, there is no reason why new project shouldn\u0027t be using C++20. We are also moving all Google projects to C++20",
+      "parentUuid": "d867d82c_b380a9ac",
+      "range": {
+        "startLine": 2,
+        "startChar": 4,
+        "endLine": 7,
+        "endChar": 6
+      },
+      "revId": "76c8c8f220c990bbf107a0c24e9af8d281a37bd1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "970d2187_0fee4dba",
         "filename": "xyz/openbmc_project/eStoraged.interface.yaml",
         "patchSetId": 1

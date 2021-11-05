@@ -1,3 +1,5 @@
+#pragma once
+
 #include <string>
 
 /** @class Erase
@@ -16,6 +18,7 @@ class Erase
      *  @return size of a block device using the devPath
      */
     uint64_t findSizeOfBlockDevice();
+    virtual ~Erase() = default;
 
   protected:
     /* The linux path for the block device */

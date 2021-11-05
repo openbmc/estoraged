@@ -6,6 +6,7 @@ tests = [
   'erase/pattern_test',
   'erase/zero_test',
   'erase/crypto_test',
+  'erase/sanitize_test',
   'estoraged_test',
 ]
 

@@ -4,6 +4,7 @@
 #include "cryptErase.hpp"
 #include "cryptsetupInterface.hpp"
 #include "pattern.hpp"
+#include "sanitize.hpp"
 #include "verifyDriveGeometry.hpp"
 #include "zero.hpp"
 
@@ -86,6 +87,12 @@ void EStoraged::erase(EraseMethod inEraseMethod)
         }
         case EraseMethod::VendorSanitize:
         {
+            Sanitize mySanitize(devPath);
+            // uint64_t size = mySanitize.findSizeOfBlockDevice();
+            // std::byte _ExtCsd[512] = {};
+            // std::span<std::byte> extCsd(_ExtCsd);
+            // mySanitize.readExtCsd(extCsd);
+            mySanitize.doSanitize();
             break;
         }
         case EraseMethod::ZeroOverWrite:

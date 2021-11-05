@@ -5,6 +5,7 @@ tests = [
   'erase/verifyGeometry_test',
   'erase/pattern_test',
   'erase/zero_test',
+  'erase/sanitize_test',
   'estoraged_test',
 ]
 

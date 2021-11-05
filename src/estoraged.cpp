@@ -4,6 +4,7 @@
 #include "cryptErase.hpp"
 #include "cryptsetupInterface.hpp"
 #include "pattern.hpp"
+#include "sanitize.hpp"
 #include "verifyDriveGeometry.hpp"
 #include "zero.hpp"
 
@@ -86,6 +87,8 @@ void EStoraged::erase(EraseMethod inEraseMethod)
         }
         case EraseMethod::VendorSanitize:
         {
+            Sanitize mySanitize(devPath);
+            mySanitize.doSanitize();
             break;
         }
         case EraseMethod::ZeroOverWrite:

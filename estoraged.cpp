@@ -2,9 +2,11 @@
 #include "estoraged.hpp"
 
 #include "erase/verifyGeometry.hpp"
+#include "erase/sanitize.hpp"
 #include <iostream>
 #include <vector>
 #include <systemd/sd-journal.h>
+#include <chrono>
 
 namespace openbmc
 {
@@ -27,6 +29,12 @@ void eStoraged::erase(std::vector<uint8_t> encryptionPassword,
       {
         verifyGeometry myVerifyGeometry(m_phyPath);
         myVerifyGeometry.GeometryOkay(findSizeOfBlockDevice);
+        break;
+      }
+     case EraseMethod::VendorSanitizie:
+      {
+        std::chrono::minutes delay(20);
+        sanitize mySanitize(m_phyPath, delay, ioctl);
         break;
       }
     default :

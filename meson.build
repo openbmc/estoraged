@@ -3,7 +3,7 @@ project(
     'cpp',
     version: '1.0',
     default_options: [
-        'cpp_std=c++17',
+        'cpp_std=c++20',
     ],
 )
 
@@ -34,6 +34,7 @@ libestoraged_lib = static_library(
   'estoraged.cpp',
   'erase/verifyGeometry.cpp',
   'erase/findSize.cpp',
+  'erase/sanitize.cpp',
   include_directories : eStoraged_headers,
   implicit_include_directories: false,
   dependencies: libestoraged_deps,

@@ -15,11 +15,12 @@ if not gtest.found() or not gmock.found()
   endif
 endif
 
-gtests = [
+tests = [
   'verifyGeometry',
+  'sanitize',
   ]
 
-foreach t : gtests
+foreach t : tests
   test(t, executable(t.underscorify(), t + '_test.cpp',
                      build_by_default: false,
                      include_directories : eStoraged_headers,

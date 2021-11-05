@@ -17,6 +17,7 @@ endif
 
 gtests = [
   'verifyGeometry',
+  'sanitize',
   ]
 
 foreach t : gtests

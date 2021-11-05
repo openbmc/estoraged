@@ -2,6 +2,7 @@
 #include "estoraged.hpp"
 
 #include "cryptsetupInterface.hpp"
+#include "sanitize.hpp"
 #include "verifyDriveGeometry.hpp"
 
 #include <libcryptsetup.h>
@@ -73,6 +74,8 @@ void eStoraged::erase(std::vector<uint8_t>, EraseMethod inEraseMethod)
         }
         case EraseMethod::VendorSanitize:
         {
+            SanitizeImp mySanitize(devPath);
+            mySanitize.doSanitize();
             break;
         }
         case EraseMethod::ZeroOverWrite:

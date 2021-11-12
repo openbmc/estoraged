@@ -15,3 +15,4 @@ eStoraged_dbus_headers = include_directories('.')
 subdir('include')
 subdir('xyz/openbmc_project/eStoraged')
 subdir('src')
+

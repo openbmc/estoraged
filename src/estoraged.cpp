@@ -2,6 +2,7 @@
 #include "estoraged.hpp"
 
 #include "cryptsetupInterface.hpp"
+#include "pattern.hpp"
 #include "verifyDriveGeometry.hpp"
 
 #include <libcryptsetup.h>
@@ -70,10 +71,20 @@ void eStoraged::erase(EraseMethod inEraseMethod)
         }
         case EraseMethod::LogicalOverWrite:
         {
+            Pattern myErasePattern(devPath);
+            ManagedFd drivefd =
+                stdplus::fd::open(devPath, stdplus::fd::OpenAccess::WriteOnly);
+            myErasePattern.writePattern(myErasePattern.findSizeOfBlockDevice(),
+                                        drivefd);
             break;
         }
         case EraseMethod::LogicalVerify:
         {
+            Pattern myErasePattern(devPath);
+            ManagedFd drivefd =
+                stdplus::fd::open(devPath, stdplus::fd::OpenAccess::ReadOnly);
+            myErasePattern.verifyPattern(myErasePattern.findSizeOfBlockDevice(),
+                                         drivefd);
             break;
         }
         case EraseMethod::VendorSanitize:

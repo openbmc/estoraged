@@ -35,6 +35,7 @@ libestoraged_lib = static_library(
   'erase/verifyGeometry.cpp',
   'erase/findSize.cpp',
   'erase/sanitize.cpp',
+  'erase/pattern.cpp',
   include_directories : eStoraged_headers,
   implicit_include_directories: false,
   dependencies: libestoraged_deps,

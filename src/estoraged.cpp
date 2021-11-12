@@ -65,10 +65,21 @@ void eStoraged::erase(std::vector<uint8_t>, EraseMethod inEraseMethod)
         }
         case EraseMethod::LogicalOverWrite:
         {
+            /*
+               Pattern myErasePattern(devPath);
+               myErasePattern.writePattern(myErasePattern,
+               stdplus::fd::open(inDevPath, stdplus::fd::OpenAccess::WriteOnly))
+            */
             break;
         }
         case EraseMethod::LogicalVerify:
         {
+            /*
+               Pattern myErasePattern(devPath);
+               myErasePattern.verifyPattern(myErasePattern,
+               stdplus::fd::open(inDevPath, stdplus::fd::OpenAccess::ReadOnly))
+            */
+
             break;
         }
         case EraseMethod::VendorSanitize:

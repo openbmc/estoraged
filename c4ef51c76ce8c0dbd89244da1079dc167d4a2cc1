@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2bf81c27_e67593b7",
+        "filename": "include/estoraged.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000885
+      },
+      "writtenOn": "2021-11-13T01:41:23Z",
+      "side": 1,
+      "message": "no underscore with variable name.",
+      "range": {
+        "startLine": 12,
+        "startChar": 6,
+        "endLine": 12,
+        "endChar": 23
+      },
+      "revId": "c4ef51c76ce8c0dbd89244da1079dc167d4a2cc1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dbe4487d_3aad3510",
+        "filename": "include/estoraged.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000885
+      },
+      "writtenOn": "2021-11-13T01:41:23Z",
+      "side": 1,
+      "message": "const sdbusplus::bus::bus\u0026?",
+      "range": {
+        "startLine": 17,
+        "startChar": 14,
+        "endLine": 17,
+        "endChar": 38
+      },
+      "revId": "c4ef51c76ce8c0dbd89244da1079dc167d4a2cc1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "709c4eac_5c769ca5",
+        "filename": "meson.build",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000885
+      },
+      "writtenOn": "2021-11-13T01:41:23Z",
+      "side": 1,
+      "message": "add a meson.build in the include folder.\n\nand have\n\n```\neStoraged_headers \u003d include_directories(\u0027.\u0027)\n```\n\ninstead.",
+      "revId": "c4ef51c76ce8c0dbd89244da1079dc167d4a2cc1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ba9c0068_7a7e4c0d",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000885
+      },
+      "writtenOn": "2021-11-13T01:41:23Z",
+      "side": 1,
+      "message": "I am not sure if we want a namespace called openbmc?\n\nMaybe just `estoraged` instead?",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 17
+      },
+      "revId": "c4ef51c76ce8c0dbd89244da1079dc167d4a2cc1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "85af02bb_df90d7d9",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000885
+      },
+      "writtenOn": "2021-11-13T01:41:23Z",
+      "side": 1,
+      "message": "um, is this just to make sure that meson doesn\u0027t complain?\n\nI would just remove it here and the function.\n\n```\nvoid eStoraged::format(std::vector\u003cuint8_t\u003e)\n```",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 17
+      },
+      "revId": "c4ef51c76ce8c0dbd89244da1079dc167d4a2cc1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "028a6879_71e2935a",
+        "filename": "src/main.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000885
+      },
+      "writtenOn": "2021-11-13T01:41:23Z",
+      "side": 1,
+      "message": "can we have the final name here?",
+      "range": {
+        "startLine": 19,
+        "startChar": 20,
+        "endLine": 19,
+        "endChar": 59
+      },
+      "revId": "c4ef51c76ce8c0dbd89244da1079dc167d4a2cc1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

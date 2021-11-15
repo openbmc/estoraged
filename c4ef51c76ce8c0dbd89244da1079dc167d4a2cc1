@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "62b40b29_b3da3b08",
+        "filename": "include/estoraged.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-15T18:35:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2bf81c27_e67593b7",
+      "range": {
+        "startLine": 12,
+        "startChar": 6,
+        "endLine": 12,
+        "endChar": 23
+      },
+      "revId": "c4ef51c76ce8c0dbd89244da1079dc167d4a2cc1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dbe4487d_3aad3510",
         "filename": "include/estoraged.hpp",
         "patchSetId": 4
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "49124094_5d9505a3",
+        "filename": "include/estoraged.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-15T18:35:44Z",
+      "side": 1,
+      "message": "I tried, but I don\u0027t think I can do that, since the base class doesn\u0027t use const.",
+      "parentUuid": "dbe4487d_3aad3510",
+      "range": {
+        "startLine": 17,
+        "startChar": 14,
+        "endLine": 17,
+        "endChar": 38
+      },
+      "revId": "c4ef51c76ce8c0dbd89244da1079dc167d4a2cc1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "709c4eac_5c769ca5",
         "filename": "meson.build",
         "patchSetId": 4
@@ -62,6 +110,24 @@
       "revId": "c4ef51c76ce8c0dbd89244da1079dc167d4a2cc1",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "25db1bf4_b9391630",
+        "filename": "meson.build",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-15T18:35:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "709c4eac_5c769ca5",
+      "revId": "c4ef51c76ce8c0dbd89244da1079dc167d4a2cc1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -85,6 +151,30 @@
       "revId": "c4ef51c76ce8c0dbd89244da1079dc167d4a2cc1",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d38ed07f_5d3c4183",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-15T18:35:44Z",
+      "side": 1,
+      "message": "I changed this to estoraged.",
+      "parentUuid": "ba9c0068_7a7e4c0d",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 17
+      },
+      "revId": "c4ef51c76ce8c0dbd89244da1079dc167d4a2cc1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -135,6 +225,30 @@
     },
     {
       "key": {
+        "uuid": "f1344a54_6fdc2921",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-15T18:35:44Z",
+      "side": 1,
+      "message": "Yeah, I was just trying to silence the \u0027unused variable\u0027 error. At the time, I forgot that you can just remove the parameter name to accomplish the same thing. I made this change throughout this file.",
+      "parentUuid": "fbfa53a0_a06d9f68",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 17
+      },
+      "revId": "c4ef51c76ce8c0dbd89244da1079dc167d4a2cc1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "028a6879_71e2935a",
         "filename": "src/main.cpp",
         "patchSetId": 4
@@ -155,6 +269,30 @@
       "revId": "c4ef51c76ce8c0dbd89244da1079dc167d4a2cc1",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e65e2131_0a91fdc8",
+        "filename": "src/main.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-15T18:35:44Z",
+      "side": 1,
+      "message": "I wasn\u0027t sure whether to do this now or later, but since you asked about the full bus name, I squashed another commit into this one. It adds a few arguments to this main file, which I use to complete the bus name.",
+      "parentUuid": "028a6879_71e2935a",
+      "range": {
+        "startLine": 19,
+        "startChar": 20,
+        "endLine": 19,
+        "endChar": 59
+      },
+      "revId": "c4ef51c76ce8c0dbd89244da1079dc167d4a2cc1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }

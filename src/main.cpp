@@ -1,5 +1,6 @@
 
 #include "estoraged.hpp"
+#include "logging.hpp"
 
 #include <unistd.h>
 
@@ -70,7 +71,7 @@ int main(int argc, char** argv)
     estoraged::eStoraged es_object{b, path.c_str(), physicalBlockDev,
                                    containerBlockDev};
 
-    std::cerr << "eStoraged has started" << std::endl;
+    estoragedLogging("eStoraged has started\n");
 
     while (true)
     {

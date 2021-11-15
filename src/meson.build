@@ -8,6 +8,7 @@ libestoraged_deps = [
 libestoraged_lib = static_library(
   'estoraged',
   'estoraged.cpp',
+  'logging.cpp',
   include_directories : eStoraged_headers,
   implicit_include_directories: false,
   dependencies: libestoraged_deps,
@@ -21,6 +22,7 @@ libestoraged = declare_dependency(
 executable(
   'eStoraged',
   'main.cpp',
+  'logging.cpp',
   implicit_include_directories: false,
   dependencies: libestoraged,
   install: true,

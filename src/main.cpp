@@ -1,5 +1,6 @@
 
 #include "estoraged.hpp"
+#include "logging.hpp"
 
 #include <unistd.h>
 
@@ -60,7 +61,7 @@ int main(int argc, char** argv)
      * intend to place objects at.
      */
     auto b = sdbusplus::bus::new_default();
-    sdbusplus::server::manager_t m{b, path.c_str()};
+    sdbusplus::server::manager_t m(b, path.c_str());
 
     /* Reserve the dbus service name. */
     std::string busName = "xyz.openbmc_project.eStoraged.{}" + deviceName;
@@ -70,7 +71,7 @@ int main(int argc, char** argv)
     estoraged::eStoraged es_object{b, path.c_str(), physicalBlockDev,
                                    containerBlockDev};
 
-    std::cerr << "eStoraged has started" << std::endl;
+    estoragedLogging("eStoraged has started\n");
 
     while (true)
     {

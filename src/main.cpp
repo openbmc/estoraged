@@ -3,6 +3,7 @@
 
 #include <unistd.h>
 
+#include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/bus.hpp>
 
 #include <filesystem>
@@ -69,8 +70,9 @@ int main(int argc, char** argv)
     /* Create an eStoraged object. */
     estoraged::eStoraged esObject{b, path.c_str(), physicalBlockDev,
                                   containerBlockDev};
-
-    std::cerr << "eStoraged has started" << std::endl;
+    std::string msg = "OpenBMC.1.0.ServiceStarted";
+    lg2::info("Storage management service is running", "REDFISH_MESSAGE_ID",
+              msg);
 
     while (true)
     {

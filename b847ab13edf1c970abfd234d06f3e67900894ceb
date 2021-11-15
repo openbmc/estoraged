@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b8d9f78d_03c4f1ab",
+        "filename": "include/estoraged.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000885
+      },
+      "writtenOn": "2021-11-15T19:15:13Z",
+      "side": 1,
+      "message": "Documentation of the functions.",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 0
+      },
+      "revId": "b847ab13edf1c970abfd234d06f3e67900894ceb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b0ad7a65_ac8c1f48",
+        "filename": "src/main.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000885
+      },
+      "writtenOn": "2021-11-15T19:15:13Z",
+      "side": 1,
+      "message": "this is probably not always true. Make this configurable?",
+      "range": {
+        "startLine": 28,
+        "startChar": 3,
+        "endLine": 28,
+        "endChar": 50
+      },
+      "revId": "b847ab13edf1c970abfd234d06f3e67900894ceb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "77b8b31a_b6c1592c",
+        "filename": "src/main.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1000885
+      },
+      "writtenOn": "2021-11-15T19:15:13Z",
+      "side": 1,
+      "message": "```\ncontainerBlockDev \u003d \"luks-\" + deviceName;\n```\n\nis fine.",
+      "range": {
+        "startLine": 53,
+        "startChar": 8,
+        "endLine": 54,
+        "endChar": 45
+      },
+      "revId": "b847ab13edf1c970abfd234d06f3e67900894ceb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d606da7d_ebcd56bc",
+        "filename": "src/main.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1000885
+      },
+      "writtenOn": "2021-11-15T19:15:13Z",
+      "side": 1,
+      "message": "same here.\n\nIf we want to use `fmt/format.h`, you can do.\n\n```\n std::string path \u003d fmt::format(\"/xyz/openbmc_project/storage/{}\", deviceName);\n```",
+      "range": {
+        "startLine": 58,
+        "startChar": 4,
+        "endLine": 59,
+        "endChar": 28
+      },
+      "revId": "b847ab13edf1c970abfd234d06f3e67900894ceb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "68ac6b8b_0984df9b",
+        "filename": "src/main.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1000885
+      },
+      "writtenOn": "2021-11-15T19:15:13Z",
+      "side": 1,
+      "message": "same here/.",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 31
+      },
+      "revId": "b847ab13edf1c970abfd234d06f3e67900894ceb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

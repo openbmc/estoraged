@@ -1,5 +1,6 @@
 
 #include "estoraged.hpp"
+#include "logging.hpp"
 
 #include <unistd.h>
 
@@ -70,7 +71,9 @@ int main(int argc, char** argv)
     estoraged::eStoraged esObject{b, path.c_str(), physicalBlockDev,
                                   containerBlockDev};
 
-    std::cerr << "eStoraged has started" << std::endl;
+    log("MESSAGE=Storage management service is running"
+        "REDFISH_MESSAGE_ID=%s",
+        "OpenBMC.1.0.ServiceStarted", NULL);
 
     while (true)
     {

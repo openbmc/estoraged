@@ -1,6 +1,10 @@
 
 libeStoraged_deps = [
   dependency('sdbusplus'),
+  dependency('phosphor-logging',
+    fallback: ['phosphor-logging',
+               'phosphor_logging_dep'],
+    ),
   eStoraged_dbus,
 ]
 

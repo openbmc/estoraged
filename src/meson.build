@@ -4,12 +4,17 @@ libeStoraged_deps = [
   eStoraged_dbus,
 ]
 
+phosphor_logging_dep = dependency(
+    'phosphor-logging',
+    fallback: ['phosphor-logging', 'phosphor_logging_dep'],
+)
+
 libeStoraged_lib = static_library(
   'eStoraged-lib',
   'estoraged.cpp',
   include_directories : eStoraged_headers,
   implicit_include_directories: false,
-  dependencies: libeStoraged_deps,
+  dependencies: [libeStoraged_deps, phosphor_logging_dep],
 )
 
 libeStoraged = declare_dependency(

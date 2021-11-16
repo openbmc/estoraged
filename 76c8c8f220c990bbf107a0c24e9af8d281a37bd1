@@ -682,6 +682,30 @@
     },
     {
       "key": {
+        "uuid": "6523e5cb_89899fb6",
+        "filename": "xyz/openbmc_project/eStoraged.interface.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-16T22:57:53Z",
+      "side": 1,
+      "message": "Resolved.",
+      "parentUuid": "64a988c7_9f78e7e4",
+      "range": {
+        "startLine": 33,
+        "startChar": 9,
+        "endLine": 37,
+        "endChar": 53
+      },
+      "revId": "76c8c8f220c990bbf107a0c24e9af8d281a37bd1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7e4132a6_e8a62aed",
         "filename": "xyz/openbmc_project/eStoraged.interface.yaml",
         "patchSetId": 1

@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "430db970_efcd588a",
+        "filename": "xyz/openbmc_project/eStoraged.interface.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-16T22:57:53Z",
+      "side": 1,
+      "message": "Resolved",
+      "parentUuid": "df56d0d3_4e6c34d1",
+      "range": {
+        "startLine": 9,
+        "startChar": 16,
+        "endLine": 9,
+        "endChar": 24
+      },
+      "revId": "ccfe3f00b5da14d8f93bb3e47e8e4a0ceb42703c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f692502e_18e0f683",
         "filename": "xyz/openbmc_project/eStoraged.interface.yaml",
         "patchSetId": 3
@@ -92,6 +116,30 @@
       "revId": "ccfe3f00b5da14d8f93bb3e47e8e4a0ceb42703c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9bd66629_8a3a0edd",
+        "filename": "xyz/openbmc_project/eStoraged.interface.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-16T22:57:53Z",
+      "side": 1,
+      "message": "Resolved",
+      "parentUuid": "f692502e_18e0f683",
+      "range": {
+        "startLine": 21,
+        "startChar": 16,
+        "endLine": 21,
+        "endChar": 34
+      },
+      "revId": "ccfe3f00b5da14d8f93bb3e47e8e4a0ceb42703c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }

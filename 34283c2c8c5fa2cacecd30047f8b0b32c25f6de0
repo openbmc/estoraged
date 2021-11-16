@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6f835ced_d5473934",
+        "filename": "include/logging.hpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000885
+      },
+      "writtenOn": "2021-11-16T21:40:30Z",
+      "side": 1,
+      "message": "just log() is fine?",
+      "range": {
+        "startLine": 2,
+        "startChar": 5,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "34283c2c8c5fa2cacecd30047f8b0b32c25f6de0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

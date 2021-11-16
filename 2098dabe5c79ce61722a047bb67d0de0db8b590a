@@ -1,0 +1,11 @@
+Ok-To-Test+1: OpenBMC CI <openbmcbump-ci@yahoo.com>
+Verified+1: OpenBMC CI <openbmcbump-ci@yahoo.com>
+Code-Review+1: Willy Tu <wltu@google.com>
+Code-Review+1: John Broadbent <jebr@google.com>
+Code-Review+2: Brandon Kim <brandonkim@google.com>
+Code-Review+1: Hao Jiang <jianghao@google.com>
+Submitted-by: John Wedig <johnwedig@google.com>
+Submitted-at: Tue, 16 Nov 2021 22:58:06 +0000
+Reviewed-on: https://gerrit.openbmc-project.xyz/c/openbmc/estoraged/+/48587
+Project: openbmc/estoraged
+Branch: refs/heads/master

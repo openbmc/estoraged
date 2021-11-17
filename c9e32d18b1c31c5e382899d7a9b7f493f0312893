@@ -69,6 +69,52 @@
       "revId": "c9e32d18b1c31c5e382899d7a9b7f493f0312893",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "de33614a_528debe0",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-11-17T23:04:40Z",
+      "side": 1,
+      "message": "we should probably unify our upper / lower cases on these actions",
+      "range": {
+        "startLine": 39,
+        "startChar": 26,
+        "endLine": 39,
+        "endChar": 32
+      },
+      "revId": "c9e32d18b1c31c5e382899d7a9b7f493f0312893",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2163c8d8_699274e4",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-11-17T23:04:40Z",
+      "side": 1,
+      "message": "nit: starting to change password",
+      "range": {
+        "startLine": 47,
+        "startChar": 26,
+        "endLine": 47,
+        "endChar": 34
+      },
+      "revId": "c9e32d18b1c31c5e382899d7a9b7f493f0312893",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }

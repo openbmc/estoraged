@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3af3d531_3ef61114",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-17T01:46:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c2280751_232de3b9",
+      "range": {
+        "startLine": 47,
+        "startChar": 39,
+        "endLine": 47,
+        "endChar": 46
+      },
+      "revId": "7b6a9d75168a65c91f028b1eaca7befcc162b48a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8799580a_9829160c",
         "filename": "src/estoraged.cpp",
         "patchSetId": 4
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "da252455_98f7cc38",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-17T01:46:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8799580a_9829160c",
+      "range": {
+        "startLine": 49,
+        "startChar": 41,
+        "endLine": 49,
+        "endChar": 42
+      },
+      "revId": "7b6a9d75168a65c91f028b1eaca7befcc162b48a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ba7ab35_7a704ebd",
         "filename": "src/logging.cpp",
         "patchSetId": 4
@@ -59,6 +107,30 @@
       "writtenOn": "2021-11-16T21:43:37Z",
       "side": 1,
       "message": "Rather than have all the callers add the redfish tags, would it make sense for this wrapper to add it internally?\n\nSo, the function signature might look something like this:\n\nvoid estoragedLogging(const char* redfishMessageId, const char* message, ...);",
+      "range": {
+        "startLine": 3,
+        "startChar": 22,
+        "endLine": 3,
+        "endChar": 43
+      },
+      "revId": "7b6a9d75168a65c91f028b1eaca7befcc162b48a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e53f0db_98459bb8",
+        "filename": "src/logging.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-17T01:46:23Z",
+      "side": 1,
+      "message": "It would be easy to add logic to estoragedLogging, but I was hopping to keep it a very simple wrapper only used to redirect output, (should that ever be needed). \nIf you want I can add it.",
+      "parentUuid": "8ba7ab35_7a704ebd",
       "range": {
         "startLine": 3,
         "startChar": 22,
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "3207b30f_d0956e3f",
+        "filename": "src/main.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-17T01:46:23Z",
+      "side": 1,
+      "message": "I did not, but it would be easy to change.",
+      "parentUuid": "add516f3_5ff1116e",
+      "range": {
+        "startLine": 74,
+        "startChar": 21,
+        "endLine": 74,
+        "endChar": 46
+      },
+      "revId": "7b6a9d75168a65c91f028b1eaca7befcc162b48a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6eb332eb_15f90161",
         "filename": "src/meson.build",
         "patchSetId": 4
@@ -114,6 +210,30 @@
       "revId": "7b6a9d75168a65c91f028b1eaca7befcc162b48a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0893f4be_e95b245a",
+        "filename": "src/meson.build",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-17T01:46:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6eb332eb_15f90161",
+      "range": {
+        "startLine": 24,
+        "startChar": 2,
+        "endLine": 24,
+        "endChar": 16
+      },
+      "revId": "7b6a9d75168a65c91f028b1eaca7befcc162b48a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }

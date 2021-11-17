@@ -142,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "c1d01b25_578ddefa",
+        "filename": "src/erase/findSize.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-17T21:22:28Z",
+      "side": 1,
+      "message": "Does this function only get used in the context of erasing? Could it be part of the erase class?",
+      "parentUuid": "a1513c6f_89513c17",
+      "range": {
+        "startLine": 7,
+        "startChar": 11,
+        "endLine": 7,
+        "endChar": 32
+      },
+      "revId": "899938a9a32dce13e9e2614f22c0a7baaa199e10",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2143d0c0_a358b4bc",
         "filename": "src/erase/verifyGeometry.cpp",
         "patchSetId": 6
@@ -182,6 +206,29 @@
         "startChar": 4,
         "endLine": 8,
         "endChar": 32
+      },
+      "revId": "899938a9a32dce13e9e2614f22c0a7baaa199e10",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "696889fb_7c44eecd",
+        "filename": "src/erase/verifyGeometry.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-17T21:22:28Z",
+      "side": 1,
+      "message": "Is this necessary? I thought the purpose of verifyGeometry was simply to check that the logical size is at least a certain percentage of the physical size.",
+      "range": {
+        "startLine": 15,
+        "startChar": 4,
+        "endLine": 15,
+        "endChar": 35
       },
       "revId": "899938a9a32dce13e9e2614f22c0a7baaa199e10",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
@@ -233,6 +280,30 @@
       "revId": "899938a9a32dce13e9e2614f22c0a7baaa199e10",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c57b3b6a_098920c5",
+        "filename": "src/meson.build",
+        "patchSetId": 6
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-17T21:22:28Z",
+      "side": 1,
+      "message": "You should set up a static_library in the new build file under erase/.",
+      "parentUuid": "63b5aead_931a5634",
+      "range": {
+        "startLine": 11,
+        "startChar": 2,
+        "endLine": 12,
+        "endChar": 23
+      },
+      "revId": "899938a9a32dce13e9e2614f22c0a7baaa199e10",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }

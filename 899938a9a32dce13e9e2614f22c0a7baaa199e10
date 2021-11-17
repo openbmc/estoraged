@@ -71,6 +71,30 @@
     },
     {
       "key": {
+        "uuid": "cc819999_1b5faf4a",
+        "filename": "include/meson.build",
+        "patchSetId": 6
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-17T20:57:59Z",
+      "side": 1,
+      "message": "\u003e What if there are multiple storage devices of different sizes?\nRecipes can override build options. Currently the plan is to have multiple instances of estoraged for the mutli eMMC case. So this is could be dealt with in the recipe.\n\n\u003e The minimum geometry could maybe be in the form of a percentage, if we want that to be a build option applicable to all the devices. \n\nI suppose I would have to have expected size, percent above, percent below. \nWith out the expected size I would be unable to detrimen if the current size is in range.\n\n\u003e But maybe the device size could be an argument to eStoraged?\nMaybe, we could also provide it in configuration files (set up by the recipe) that estoraged reads in this step. There are several fine approaches. \n\nMy understanding is the size of the drives can not be shared in this publicly.",
+      "parentUuid": "49a139f6_8bb416f9",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 69
+      },
+      "revId": "899938a9a32dce13e9e2614f22c0a7baaa199e10",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8f9c6269_2e515a47",
         "filename": "src/erase/findSize.cpp",
         "patchSetId": 6
@@ -82,6 +106,30 @@
       "writtenOn": "2021-11-17T18:36:29Z",
       "side": 1,
       "message": "Is there a reason for not making this function a member of the VerifyGeometry class?",
+      "range": {
+        "startLine": 7,
+        "startChar": 11,
+        "endLine": 7,
+        "endChar": 32
+      },
+      "revId": "899938a9a32dce13e9e2614f22c0a7baaa199e10",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1513c6f_89513c17",
+        "filename": "src/erase/findSize.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-17T20:57:59Z",
+      "side": 1,
+      "message": "- It use is not limited to VerifyGeomenty. (Other methods also need to know the size of the device.)\n- It does not need any of the verifyGeometry state to find the size\n- I pass this in as an std::fuction, which can be done for a member function, but that can be unclear. (minor)",
+      "parentUuid": "8f9c6269_2e515a47",
       "range": {
         "startLine": 7,
         "startChar": 11,
@@ -117,6 +165,30 @@
     },
     {
       "key": {
+        "uuid": "cb35fe5b_5dd1fade",
+        "filename": "src/erase/verifyGeometry.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-17T20:57:59Z",
+      "side": 1,
+      "message": "There is a separate change here:\nhttps://gerrit.openbmc-project.xyz/c/openbmc/estoraged/+/48608/3\n\nIt is the first unit test of the project, so it has more changes then normal changes.",
+      "parentUuid": "2143d0c0_a358b4bc",
+      "range": {
+        "startLine": 8,
+        "startChar": 4,
+        "endLine": 8,
+        "endChar": 32
+      },
+      "revId": "899938a9a32dce13e9e2614f22c0a7baaa199e10",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d84c5453_e7d0e9bf",
         "filename": "src/meson.build",
         "patchSetId": 6
@@ -137,6 +209,30 @@
       "revId": "899938a9a32dce13e9e2614f22c0a7baaa199e10",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63b5aead_931a5634",
+        "filename": "src/meson.build",
+        "patchSetId": 6
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-17T20:57:59Z",
+      "side": 1,
+      "message": "done?",
+      "parentUuid": "d84c5453_e7d0e9bf",
+      "range": {
+        "startLine": 11,
+        "startChar": 2,
+        "endLine": 12,
+        "endChar": 23
+      },
+      "revId": "899938a9a32dce13e9e2614f22c0a7baaa199e10",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }

@@ -328,6 +328,30 @@
       "revId": "899938a9a32dce13e9e2614f22c0a7baaa199e10",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46e18087_e7c26401",
+        "filename": "src/meson.build",
+        "patchSetId": 6
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-17T21:54:42Z",
+      "side": 1,
+      "message": "It\u0027s convention for the build structure to follow the directory structure. So, you would have a library and declare_dependency in the build file under erase/",
+      "parentUuid": "6ac7b1fd_668698a4",
+      "range": {
+        "startLine": 11,
+        "startChar": 2,
+        "endLine": 12,
+        "endChar": 23
+      },
+      "revId": "899938a9a32dce13e9e2614f22c0a7baaa199e10",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }

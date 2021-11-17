@@ -45,6 +45,98 @@
       "revId": "899938a9a32dce13e9e2614f22c0a7baaa199e10",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "49a139f6_8bb416f9",
+        "filename": "include/meson.build",
+        "patchSetId": 6
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-17T18:36:29Z",
+      "side": 1,
+      "message": "What if there are multiple storage devices of different sizes?\n\nThe minimum geometry could maybe be in the form of a percentage, if we want that to be a build option applicable to all the devices. But maybe the device size could be an argument to eStoraged?",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 69
+      },
+      "revId": "899938a9a32dce13e9e2614f22c0a7baaa199e10",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f9c6269_2e515a47",
+        "filename": "src/erase/findSize.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-17T18:36:29Z",
+      "side": 1,
+      "message": "Is there a reason for not making this function a member of the VerifyGeometry class?",
+      "range": {
+        "startLine": 7,
+        "startChar": 11,
+        "endLine": 7,
+        "endChar": 32
+      },
+      "revId": "899938a9a32dce13e9e2614f22c0a7baaa199e10",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2143d0c0_a358b4bc",
+        "filename": "src/erase/verifyGeometry.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-17T18:36:29Z",
+      "side": 1,
+      "message": "Can you add unit tests for verifyGeometry?",
+      "range": {
+        "startLine": 8,
+        "startChar": 4,
+        "endLine": 8,
+        "endChar": 32
+      },
+      "revId": "899938a9a32dce13e9e2614f22c0a7baaa199e10",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d84c5453_e7d0e9bf",
+        "filename": "src/meson.build",
+        "patchSetId": 6
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-17T18:36:29Z",
+      "side": 1,
+      "message": "There should be a build file in the erase directory.",
+      "range": {
+        "startLine": 11,
+        "startChar": 2,
+        "endLine": 12,
+        "endChar": 23
+      },
+      "revId": "899938a9a32dce13e9e2614f22c0a7baaa199e10",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }

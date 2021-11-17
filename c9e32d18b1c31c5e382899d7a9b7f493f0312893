@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dc4dae89_bcbbb85c",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-17T16:47:40Z",
+      "side": 1,
+      "message": "Does there need to be a space or line break between the MESSAGE\u003d and REDFISH_MESSAGE_ID\u003d?",
+      "range": {
+        "startLine": 15,
+        "startChar": 8,
+        "endLine": 16,
+        "endChar": 31
+      },
+      "revId": "c9e32d18b1c31c5e382899d7a9b7f493f0312893",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

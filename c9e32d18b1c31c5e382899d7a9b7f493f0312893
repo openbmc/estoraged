@@ -118,6 +118,29 @@
     },
     {
       "key": {
+        "uuid": "b5b8c4a5_b21cf28b",
+        "filename": "src/logging.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-18T00:27:58Z",
+      "side": 1,
+      "message": "I\u0027m finding that this function is causing segfaults in my unit tests. I think you need to use a va_list:\n\nva_list args;\nva_start(args, fmt);\nsd_journal_send(fmt, args, NULL);\nva_end(args);",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 30
+      },
+      "revId": "c9e32d18b1c31c5e382899d7a9b7f493f0312893",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9ab4c48f_baa61f55",
         "filename": "src/logging.cpp",
         "patchSetId": 8

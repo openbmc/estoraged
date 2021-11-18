@@ -1,11 +1,15 @@
 #pragma once
 
+#include <libcryptsetup.h>
+
 #include <sdbusplus/bus.hpp>
 #include <sdbusplus/exception.hpp>
 #include <sdbusplus/server/object.hpp>
 #include <xyz/openbmc_project/eStoraged/server.hpp>
 
+#include <filesystem>
 #include <string>
+#include <string_view>
 #include <vector>
 
 namespace estoraged
@@ -22,7 +26,8 @@ class eStoraged : eStoragedInherit
     eStoraged(sdbusplus::bus::bus& bus, const char* path,
               const std::string& devPath, const std::string& containerName) :
         eStoragedInherit(bus, path),
-        devPath(devPath), containerName(containerName)
+        devPath(devPath), containerName(containerName),
+        mountPoint("/mnt/" + containerName + "_fs")
     {}
 
     /** @brief Format the LUKS encrypted device and create empty filesystem.
@@ -58,12 +63,119 @@ class eStoraged : eStoragedInherit
     void changePassword(std::vector<uint8_t> oldPassword,
                         std::vector<uint8_t> newPassword) override;
 
+    /** @brief Check if the LUKS device is currently locked. */
+    bool isLocked() const;
+
+    /** @brief Get the mount point for the filesystem on the LUKS device. */
+    std::string_view getMountPoint() const;
+
   private:
-    /* Full path of the device file, e.g. /dev/mmcblk0 */
+    /** @brief Full path of the device file, e.g. /dev/mmcblk0. */
     std::string devPath;
 
-    /* Name of the LUKS container. */
+    /** @brief Name of the LUKS container. */
     std::string containerName;
+
+    /** @brief Mount point for the filesystem. */
+    std::string mountPoint;
+
+    /** @brief Format LUKS encrypted device.
+     *  @param[in] password - password to set for the LUKS device.
+     */
+    void formatLuksDev(std::vector<uint8_t> password);
+
+    /** @brief Unlock the device.
+     *  @param[in] password - password to activate the LUKS device.
+     */
+    void activateLuksDev(std::vector<uint8_t> password);
+
+    /** @brief Create the filesystem on the LUKS device.
+     *  @details The LUKS device should already be activated, i.e. unlocked.
+     */
+    void createFilesystem();
+
+    /** @brief Deactivate the LUKS device.
+     *  @details The filesystem is assumed to be unmounted already.
+     */
+    void deactivateLuksDev();
+
+    /** @brief Mount the filesystem.
+     *  @details The filesystem should already exist and the LUKS device should
+     *  be unlocked already.
+     */
+    void mountFilesystem();
+
+    /** @brief Unmount the filesystem. */
+    void unmountFilesystem();
+
+    /** @brief Wrapper around crypt_format.
+     *  @details Used for mocking purposes.
+     */
+    virtual int cryptFormat(struct crypt_device* cd, const char* type,
+                            const char* cipher, const char* cipherMode,
+                            const char* uuid, const char* volumeKey,
+                            size_t volumeKeySize, void* params);
+
+    /** @brief Wrapper around crypt_keyslot_add_by_volume_key.
+     *  @details Used for mocking purposes.
+     */
+    virtual int cryptKeyslotAddByVolumeKey(struct crypt_device* cd, int keyslot,
+                                           const char* volumeKey,
+                                           size_t volumeKeySize,
+                                           const char* passphrase,
+                                           size_t passphraseSize);
+
+    /** @brief Wrapper around crypt_load.
+     *  @details Used for mocking purposes.
+     */
+    virtual int cryptLoad(struct crypt_device* cd, const char* requestedType,
+                          void* params);
+
+    /** @brief Wrapper around crypt_activate_by_passphrase.
+     *  @details Used for mocking purposes.
+     */
+    virtual int cryptActivateByPassphrase(struct crypt_device* cd,
+                                          const char* name, int keyslot,
+                                          const char* passphrase,
+                                          size_t passphraseSize,
+                                          uint32_t flags);
+
+    /** @brief Runs the mkfs command to create the filesystem.
+     *  @details Used for mocking purposes.
+     */
+    virtual int runMkfs();
+
+    /** @brief Wrapper around mount().
+     *  @details Used for mocking purposes.
+     */
+    virtual int doMount(const char* source, const char* target,
+                        const char* filesystemtype, unsigned long mountflags,
+                        const void* data);
+
+    /** @brief Wrapper around umount().
+     *  @details Used for mocking purposes.
+     */
+    virtual int doUnmount(const char* target);
+
+    /** @brief Wrapper around crypt_init_by_name.
+     *  @details Used for mocking purposes.
+     */
+    virtual int cryptInitByName(struct crypt_device** cd, const char* name);
+
+    /** @brief Wrapper around crypt_deactivate.
+     *  @details Used for mocking purposes.
+     */
+    virtual int cryptDeactivate(struct crypt_device* cd, const char* name);
+
+    /** @brief Wrapper around std::filesystem::create_directory.
+     *  @details Used for mocking purposes.
+     */
+    virtual bool createDirectory(const std::filesystem::path& p);
+
+    /** @brief Wrapper around std::filesystem::remove.
+     *  @details Used for mocking purposes.
+     */
+    virtual bool removeDirectory(const std::filesystem::path& p);
 };
 
 } // namespace estoraged

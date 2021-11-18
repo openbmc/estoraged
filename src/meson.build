@@ -6,6 +6,9 @@ libeStoraged_deps = [
                'phosphor_logging_dep'],
     ),
   eStoraged_dbus,
+  dependency('openssl'),
+  dependency('libcryptsetup'),
+  dependency('stdplus'),
 ]
 
 libeStoraged_lib = static_library(
@@ -29,3 +32,9 @@ executable(
   install: true,
   install_dir: get_option('bindir')
 )
+
+build_tests = get_option('tests')
+if not build_tests.disabled()
+  subdir('test')
+endif
+

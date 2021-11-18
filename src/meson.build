@@ -2,6 +2,8 @@
 libeStoraged_deps = [
   dependency('sdbusplus'),
   eStoraged_dbus,
+  dependency('openssl'),
+  dependency('libcryptsetup'),
 ]
 
 libeStoraged_lib = static_library(
@@ -26,3 +28,9 @@ executable(
   install: true,
   install_dir: get_option('bindir')
 )
+
+build_tests = get_option('tests')
+if not build_tests.disabled()
+  subdir('test')
+endif
+

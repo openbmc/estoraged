@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "535e2686_46c580fb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-19T00:43:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "20001aed_cd02fbd9",
+      "range": {
+        "startLine": 10,
+        "startChar": 53,
+        "endLine": 10,
+        "endChar": 64
+      },
+      "revId": "c9e32d18b1c31c5e382899d7a9b7f493f0312893",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dc4dae89_bcbbb85c",
         "filename": "src/estoraged.cpp",
         "patchSetId": 8
@@ -95,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "fe97edad_b93615f7",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-19T00:43:20Z",
+      "side": 1,
+      "message": "I changed these all the messages to start with capitals, and everything else be in lower case.",
+      "parentUuid": "de33614a_528debe0",
+      "range": {
+        "startLine": 39,
+        "startChar": 26,
+        "endLine": 39,
+        "endChar": 32
+      },
+      "revId": "c9e32d18b1c31c5e382899d7a9b7f493f0312893",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2163c8d8_699274e4",
         "filename": "src/estoraged.cpp",
         "patchSetId": 8
@@ -118,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "b3b3e470_cf2fe7c8",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-19T00:43:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2163c8d8_699274e4",
+      "range": {
+        "startLine": 47,
+        "startChar": 26,
+        "endLine": 47,
+        "endChar": 34
+      },
+      "revId": "c9e32d18b1c31c5e382899d7a9b7f493f0312893",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b5b8c4a5_b21cf28b",
         "filename": "src/logging.cpp",
         "patchSetId": 8
@@ -138,6 +210,30 @@
       "revId": "c9e32d18b1c31c5e382899d7a9b7f493f0312893",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c12dfe75_093e6664",
+        "filename": "src/logging.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-19T00:43:20Z",
+      "side": 1,
+      "message": "done, thank you",
+      "parentUuid": "b5b8c4a5_b21cf28b",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 30
+      },
+      "revId": "c9e32d18b1c31c5e382899d7a9b7f493f0312893",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -176,6 +272,30 @@
       "side": 1,
       "message": "Should we use phosphor-logging instead if we want to use this?\n\nOtherwise, we may want to go with fmt::format",
       "parentUuid": "9ab4c48f_baa61f55",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 25
+      },
+      "revId": "c9e32d18b1c31c5e382899d7a9b7f493f0312893",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "abf619e0_54a0fdb2",
+        "filename": "src/logging.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-19T00:43:20Z",
+      "side": 1,
+      "message": "IMHO sd_journal_send:\npros \n- it writes to the syslog explicitly, \n-  is thread safe\n\ncons \n- syntax is worse\n\nwe talked about this in chat, I have perfance for it, but I don\u0027t want to delay the work for only for that. If it is deal break I can change it here to either phosphor-logging or cerr, with one or two lines.",
+      "parentUuid": "370c770a_a12680ab",
       "range": {
         "startLine": 7,
         "startChar": 0,

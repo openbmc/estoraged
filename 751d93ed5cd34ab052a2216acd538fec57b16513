@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7df595e5_9545d6cd",
+        "filename": "src/logging.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2021-11-19T18:49:52Z",
+      "side": 1,
+      "message": "Yeah, Generally avoid `using namespace` otherwise it makes code more ambiguous.",
+      "parentUuid": "c2b311e1_7e22424b",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 34
+      },
+      "revId": "751d93ed5cd34ab052a2216acd538fec57b16513",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "24f235da_c3db8c42",
         "filename": "src/meson.build",
         "patchSetId": 12
@@ -36,6 +60,30 @@
       "writtenOn": "2021-11-19T18:39:01Z",
       "side": 1,
       "message": "Shouldn\u0027t phosphor-logging be explicitly added as a dependency?",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 18
+      },
+      "revId": "751d93ed5cd34ab052a2216acd538fec57b16513",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "43049a47_a501452e",
+        "filename": "src/meson.build",
+        "patchSetId": 12
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2021-11-19T18:49:52Z",
+      "side": 1,
+      "message": "Yeah, we need that added.",
+      "parentUuid": "24f235da_c3db8c42",
       "range": {
         "startLine": 2,
         "startChar": 0,

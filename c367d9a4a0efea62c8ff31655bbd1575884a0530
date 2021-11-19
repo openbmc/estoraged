@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1bb15c87_5114fcd2",
+        "filename": "include/verifyDriveGeometry.hpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2021-11-19T18:53:43Z",
+      "side": 1,
+      "message": "Just have it take the size instead of having it execute a function just to use the return value.",
+      "revId": "c367d9a4a0efea62c8ff31655bbd1575884a0530",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5072faa7_d246baff",
+        "filename": "src/erase/findSize.cpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2021-11-19T18:53:43Z",
+      "side": 1,
+      "message": "Just include the linux uapi header?",
+      "revId": "c367d9a4a0efea62c8ff31655bbd1575884a0530",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2fc61cb4_6cf3bd8f",
+        "filename": "src/erase/findSize.cpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2021-11-19T18:53:43Z",
+      "side": 1,
+      "message": "Prefer returning the value and throwing exceptions otherwise.",
+      "revId": "c367d9a4a0efea62c8ff31655bbd1575884a0530",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a2d7f69_d6a5c966",
+        "filename": "src/erase/findSize.cpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2021-11-19T18:53:43Z",
+      "side": 1,
+      "message": "Missing close later, personally I would use https://github.com/openbmc/stdplus/blob/master/src/stdplus/fd/managed.hpp",
+      "revId": "c367d9a4a0efea62c8ff31655bbd1575884a0530",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2960a2cc_5ba564ed",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2021-11-19T18:53:43Z",
+      "side": 1,
+      "message": "You should have an error class defined in the dbus interface and throw it here. Also no cout.",
+      "revId": "c367d9a4a0efea62c8ff31655bbd1575884a0530",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "211ea39b_7a65632d",
+        "filename": "src/meson.build",
+        "patchSetId": 15
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2021-11-19T18:53:43Z",
+      "side": 1,
+      "message": "nit: trailing slash",
+      "revId": "c367d9a4a0efea62c8ff31655bbd1575884a0530",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

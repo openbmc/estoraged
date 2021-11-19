@@ -143,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "226a3f74_b75ffd36",
+        "filename": "src/logging.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-19T22:49:18Z",
+      "side": 1,
+      "message": "This file is removed in later patch sets",
+      "parentUuid": "1e53f0db_98459bb8",
+      "range": {
+        "startLine": 3,
+        "startChar": 22,
+        "endLine": 3,
+        "endChar": 43
+      },
+      "revId": "7b6a9d75168a65c91f028b1eaca7befcc162b48a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "add516f3_5ff1116e",
         "filename": "src/main.cpp",
         "patchSetId": 4
@@ -187,6 +211,30 @@
       "revId": "7b6a9d75168a65c91f028b1eaca7befcc162b48a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c63d2c1b_03a8e5b2",
+        "filename": "src/main.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-19T22:49:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3207b30f_d0956e3f",
+      "range": {
+        "startLine": 74,
+        "startChar": 21,
+        "endLine": 74,
+        "endChar": 46
+      },
+      "revId": "7b6a9d75168a65c91f028b1eaca7befcc162b48a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {

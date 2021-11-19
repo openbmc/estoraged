@@ -48,6 +48,54 @@
     },
     {
       "key": {
+        "uuid": "14168fac_fb59393b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-19T04:37:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8a36ce54_15c92f00",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 4
+      },
+      "revId": "41b5ea8af126ac7918a454d8690f820039112886",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "80cb050d_c39ffdc8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-19T04:37:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0604046d_9da02f81",
+      "range": {
+        "startLine": 7,
+        "startChar": 11,
+        "endLine": 7,
+        "endChar": 25
+      },
+      "revId": "41b5ea8af126ac7918a454d8690f820039112886",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ade29744_ccec6fb9",
         "filename": "include/erase.hpp",
         "patchSetId": 12
@@ -94,6 +142,54 @@
     },
     {
       "key": {
+        "uuid": "3b879bb9_e4ecbd0b",
+        "filename": "include/erase.hpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-19T04:37:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ade29744_ccec6fb9",
+      "range": {
+        "startLine": 6,
+        "startChar": 22,
+        "endLine": 6,
+        "endChar": 56
+      },
+      "revId": "41b5ea8af126ac7918a454d8690f820039112886",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a8ea76f9_f4c9784e",
+        "filename": "include/erase.hpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-19T04:37:27Z",
+      "side": 1,
+      "message": "We wont be able to use the initialization list if I use a string view here.\nWe will have to deep copy it, right? That feel slower.\n\nI can use move to force the the fastest initialization.",
+      "parentUuid": "9d9fa383_93ecc90d",
+      "range": {
+        "startLine": 6,
+        "startChar": 15,
+        "endLine": 6,
+        "endChar": 21
+      },
+      "revId": "41b5ea8af126ac7918a454d8690f820039112886",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "481a32ab_89e6296e",
         "filename": "include/erase.hpp",
         "patchSetId": 12
@@ -114,6 +210,30 @@
       "revId": "41b5ea8af126ac7918a454d8690f820039112886",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d4d9a1a7_01bc2c63",
+        "filename": "include/erase.hpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-19T04:37:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "481a32ab_89e6296e",
+      "range": {
+        "startLine": 10,
+        "startChar": 16,
+        "endLine": 10,
+        "endChar": 25
+      },
+      "revId": "41b5ea8af126ac7918a454d8690f820039112886",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "34454dad_130d9de9",
+        "filename": "include/meson.build",
+        "patchSetId": 12
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-19T04:37:27Z",
+      "side": 1,
+      "message": "Thanks for catching this. I am glad you have such a great eye for detail.\n\nI agree, the capitalization should be consistent.\n\nDone",
+      "parentUuid": "d3b51720_c8b3782c",
+      "range": {
+        "startLine": 5,
+        "startChar": 2,
+        "endLine": 6,
+        "endChar": 3
+      },
+      "revId": "41b5ea8af126ac7918a454d8690f820039112886",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b15b99da_b4a6babb",
         "filename": "include/verifyGeometry.hpp",
         "patchSetId": 12
@@ -151,6 +295,30 @@
       "writtenOn": "2021-11-19T01:39:08Z",
       "side": 1,
       "message": "nit: string_view instead?",
+      "range": {
+        "startLine": 10,
+        "startChar": 31,
+        "endLine": 10,
+        "endChar": 37
+      },
+      "revId": "41b5ea8af126ac7918a454d8690f820039112886",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2ec7dc19_2d22efaf",
+        "filename": "include/verifyGeometry.hpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-19T04:37:27Z",
+      "side": 1,
+      "message": "done?  (I immediately use it to initialize a std::string, then a c_str)",
+      "parentUuid": "b15b99da_b4a6babb",
       "range": {
         "startLine": 10,
         "startChar": 31,
@@ -186,6 +354,30 @@
     },
     {
       "key": {
+        "uuid": "20bacdb2_3d675e1e",
+        "filename": "include/verifyGeometry.hpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-19T04:37:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "070c5ad2_0fd8bfbd",
+      "range": {
+        "startLine": 17,
+        "startChar": 8,
+        "endLine": 17,
+        "endChar": 20
+      },
+      "revId": "41b5ea8af126ac7918a454d8690f820039112886",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e30dc4b6_80fa20d1",
         "filename": "src/erase/meson.build",
         "patchSetId": 12
@@ -206,6 +398,30 @@
       "revId": "41b5ea8af126ac7918a454d8690f820039112886",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ee04e1d6_48fa0416",
+        "filename": "src/erase/meson.build",
+        "patchSetId": 12
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-19T04:37:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e30dc4b6_80fa20d1",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 13
+      },
+      "revId": "41b5ea8af126ac7918a454d8690f820039112886",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -232,6 +448,30 @@
     },
     {
       "key": {
+        "uuid": "dde8fc97_913aac2c",
+        "filename": "src/erase/meson.build",
+        "patchSetId": 12
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-19T04:37:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a4f1ff8b_5f2177ab",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 5
+      },
+      "revId": "41b5ea8af126ac7918a454d8690f820039112886",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ea49a5d7_c8051e85",
         "filename": "src/erase/verifyGeometry.cpp",
         "patchSetId": 12
@@ -243,6 +483,30 @@
       "writtenOn": "2021-11-19T01:39:08Z",
       "side": 1,
       "message": "string_view?",
+      "range": {
+        "startLine": 8,
+        "startChar": 48,
+        "endLine": 8,
+        "endChar": 60
+      },
+      "revId": "41b5ea8af126ac7918a454d8690f820039112886",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bcbdbb06_78c7d404",
+        "filename": "src/erase/verifyGeometry.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-19T04:37:27Z",
+      "side": 1,
+      "message": "?Done  (I immediately use it to initialize a std::string, then a c_str)",
+      "parentUuid": "ea49a5d7_c8051e85",
       "range": {
         "startLine": 8,
         "startChar": 48,
@@ -278,6 +542,30 @@
     },
     {
       "key": {
+        "uuid": "8d78b34a_8d16f975",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-19T04:37:27Z",
+      "side": 1,
+      "message": "Make sense, but these are generated from sdbusplus. I took a very quick look and did not a sdbusplus parameter type that would let us send const bytes.",
+      "parentUuid": "a8639d30_fbb35a8d",
+      "range": {
+        "startLine": 21,
+        "startChar": 33,
+        "endLine": 21,
+        "endChar": 43
+      },
+      "revId": "41b5ea8af126ac7918a454d8690f820039112886",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e34adf25_4d5a0e87",
         "filename": "src/meson.build",
         "patchSetId": 12
@@ -298,6 +586,30 @@
       "revId": "41b5ea8af126ac7918a454d8690f820039112886",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "354094db_f2ebdba6",
+        "filename": "src/meson.build",
+        "patchSetId": 12
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-19T04:37:27Z",
+      "side": 1,
+      "message": "That would be more consistent\nI will also move it the src/erase/meson.build if that is okay\n\nDone",
+      "parentUuid": "e34adf25_4d5a0e87",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 17
+      },
+      "revId": "41b5ea8af126ac7918a454d8690f820039112886",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }

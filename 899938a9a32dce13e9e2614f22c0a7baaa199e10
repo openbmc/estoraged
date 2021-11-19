@@ -260,6 +260,54 @@
     },
     {
       "key": {
+        "uuid": "bb53e704_f6cfc525",
+        "filename": "include/verifyGeometry.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-19T04:37:27Z",
+      "side": 1,
+      "message": "I had a to change it to VerifyDriveGeometry to avoid a name collision with the interface VerfyGeometry. \nDone",
+      "parentUuid": "cfbfd7d8_8a5bba84",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 28
+      },
+      "revId": "899938a9a32dce13e9e2614f22c0a7baaa199e10",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b6f2a160_3d9f8e94",
+        "filename": "include/verifyGeometry.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-19T04:37:27Z",
+      "side": 1,
+      "message": "yes (right now). It is part the erase process",
+      "parentUuid": "04a98046_7abd0795",
+      "range": {
+        "startLine": 12,
+        "startChar": 6,
+        "endLine": 12,
+        "endChar": 28
+      },
+      "revId": "899938a9a32dce13e9e2614f22c0a7baaa199e10",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c9ff3b81_edf1eaaa",
         "filename": "meson_options.txt",
         "patchSetId": 6
@@ -414,6 +462,30 @@
       "side": 1,
       "message": "I feel uneasy about this being just an extern function with declaration in `include/verifyGeometry.hpp` for some reason (I guess I just don\u0027t see this much?)\n\nI would also find a home for this in a class personally - makes it easier for mocking and testing later. I\u0027d also be curious on how these classes will be tested if defined this way.",
       "parentUuid": "a140c6e2_c25d68d1",
+      "range": {
+        "startLine": 7,
+        "startChar": 11,
+        "endLine": 7,
+        "endChar": 32
+      },
+      "revId": "899938a9a32dce13e9e2614f22c0a7baaa199e10",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0307337d_92dabe35",
+        "filename": "src/erase/findSize.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-19T04:37:27Z",
+      "side": 1,
+      "message": "Sounds good.\nThis function is passed into member function GeometryOkay(std::function, unint_t64)\n\nFor me to pass a member fucntion into another member function will require the use of either std::bind or a lambda, do you have a preference?",
+      "parentUuid": "0ea53dc9_f4026eda",
       "range": {
         "startLine": 7,
         "startChar": 11,

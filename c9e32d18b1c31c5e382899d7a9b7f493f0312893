@@ -305,6 +305,30 @@
       "revId": "c9e32d18b1c31c5e382899d7a9b7f493f0312893",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "21215ac5_a0a4559e",
+        "filename": "src/logging.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-11-19T01:12:47Z",
+      "side": 1,
+      "message": "Sounds good, we can move to phoshpor-logging either here or in a future commit.",
+      "parentUuid": "abf619e0_54a0fdb2",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 25
+      },
+      "revId": "c9e32d18b1c31c5e382899d7a9b7f493f0312893",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }

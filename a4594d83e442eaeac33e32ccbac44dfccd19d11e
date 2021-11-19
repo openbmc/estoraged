@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6363b6e0_e1c185b8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-11-19T01:12:47Z",
+      "side": 1,
+      "message": "minor nit: Add instead of adds in these commit headers. Imperative mood as explained in https://chris.beams.io/posts/git-commit/#imperative",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 4
+      },
+      "revId": "a4594d83e442eaeac33e32ccbac44dfccd19d11e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

@@ -1,0 +1,257 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8a36ce54_15c92f00",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-11-19T01:39:08Z",
+      "side": 1,
+      "message": "nit: Add instead of adds, as explained in the previous commit as per https://chris.beams.io/posts/git-commit/#imperative",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 4
+      },
+      "revId": "41b5ea8af126ac7918a454d8690f820039112886",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ade29744_ccec6fb9",
+        "filename": "include/erase.hpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-11-19T01:39:08Z",
+      "side": 1,
+      "message": "lower camelcase for variables https://github.com/openbmc/docs/blob/master/cpp-style-and-conventions.md#naming-conventions",
+      "range": {
+        "startLine": 6,
+        "startChar": 22,
+        "endLine": 6,
+        "endChar": 56
+      },
+      "revId": "41b5ea8af126ac7918a454d8690f820039112886",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d9fa383_93ecc90d",
+        "filename": "include/erase.hpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-11-19T01:39:08Z",
+      "side": 1,
+      "message": "We should use std::string_view instead.",
+      "range": {
+        "startLine": 6,
+        "startChar": 15,
+        "endLine": 6,
+        "endChar": 21
+      },
+      "revId": "41b5ea8af126ac7918a454d8690f820039112886",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "481a32ab_89e6296e",
+        "filename": "include/erase.hpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-11-19T01:39:08Z",
+      "side": 1,
+      "message": "Here too https://github.com/openbmc/docs/blob/master/cpp-style-and-conventions.md#naming-conventions",
+      "range": {
+        "startLine": 10,
+        "startChar": 16,
+        "endLine": 10,
+        "endChar": 25
+      },
+      "revId": "41b5ea8af126ac7918a454d8690f820039112886",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d3b51720_c8b3782c",
+        "filename": "include/meson.build",
+        "patchSetId": 12
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-11-19T01:39:08Z",
+      "side": 1,
+      "message": "really really minor nit: if we want to capitalize, we should capitalize the first line \"If\" and small case \"In\" on the second line",
+      "range": {
+        "startLine": 5,
+        "startChar": 2,
+        "endLine": 6,
+        "endChar": 3
+      },
+      "revId": "41b5ea8af126ac7918a454d8690f820039112886",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b15b99da_b4a6babb",
+        "filename": "include/verifyGeometry.hpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-11-19T01:39:08Z",
+      "side": 1,
+      "message": "nit: string_view instead?",
+      "range": {
+        "startLine": 10,
+        "startChar": 31,
+        "endLine": 10,
+        "endChar": 37
+      },
+      "revId": "41b5ea8af126ac7918a454d8690f820039112886",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e30dc4b6_80fa20d1",
+        "filename": "src/erase/meson.build",
+        "patchSetId": 12
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-11-19T01:39:08Z",
+      "side": 1,
+      "message": "nit: I think we prefer just 2 spaces for these",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 13
+      },
+      "revId": "41b5ea8af126ac7918a454d8690f820039112886",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a4f1ff8b_5f2177ab",
+        "filename": "src/erase/meson.build",
+        "patchSetId": 12
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-11-19T01:39:08Z",
+      "side": 1,
+      "message": "nit: indent",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 5
+      },
+      "revId": "41b5ea8af126ac7918a454d8690f820039112886",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ea49a5d7_c8051e85",
+        "filename": "src/erase/verifyGeometry.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-11-19T01:39:08Z",
+      "side": 1,
+      "message": "string_view?",
+      "range": {
+        "startLine": 8,
+        "startChar": 48,
+        "endLine": 8,
+        "endChar": 60
+      },
+      "revId": "41b5ea8af126ac7918a454d8690f820039112886",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a8639d30_fbb35a8d",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-11-19T01:39:08Z",
+      "side": 1,
+      "message": "Just noticed, should these be const \u0026 for all the vectors here?",
+      "range": {
+        "startLine": 21,
+        "startChar": 33,
+        "endLine": 21,
+        "endChar": 43
+      },
+      "revId": "41b5ea8af126ac7918a454d8690f820039112886",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e34adf25_4d5a0e87",
+        "filename": "src/meson.build",
+        "patchSetId": 12
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-11-19T01:39:08Z",
+      "side": 1,
+      "message": "nit: I wonder if we should name this libeToragedErase_dep since this seems to be dependencies",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 17
+      },
+      "revId": "41b5ea8af126ac7918a454d8690f820039112886",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

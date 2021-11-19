@@ -96,6 +96,29 @@
     },
     {
       "key": {
+        "uuid": "7aa94a88_76e47f03",
+        "filename": "include/erase.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-11-19T01:39:08Z",
+      "side": 1,
+      "message": "Class names should be upper camelcase https://github.com/openbmc/docs/blob/master/cpp-style-and-conventions.md#naming-conventions",
+      "range": {
+        "startLine": 3,
+        "startChar": 6,
+        "endLine": 3,
+        "endChar": 11
+      },
+      "revId": "899938a9a32dce13e9e2614f22c0a7baaa199e10",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "49a139f6_8bb416f9",
         "filename": "include/meson.build",
         "patchSetId": 6
@@ -188,6 +211,52 @@
       "revId": "899938a9a32dce13e9e2614f22c0a7baaa199e10",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "04a98046_7abd0795",
+        "filename": "include/verifyGeometry.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-11-19T01:39:08Z",
+      "side": 1,
+      "message": "is verify geometry only used during erase?",
+      "range": {
+        "startLine": 12,
+        "startChar": 6,
+        "endLine": 12,
+        "endChar": 28
+      },
+      "revId": "899938a9a32dce13e9e2614f22c0a7baaa199e10",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cfbfd7d8_8a5bba84",
+        "filename": "include/verifyGeometry.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-11-19T01:39:08Z",
+      "side": 1,
+      "message": "Class names should be UpperCamelCase.",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 28
+      },
+      "revId": "899938a9a32dce13e9e2614f22c0a7baaa199e10",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     },
     {
       "key": {
@@ -333,6 +402,30 @@
     },
     {
       "key": {
+        "uuid": "0ea53dc9_f4026eda",
+        "filename": "src/erase/findSize.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-11-19T01:39:08Z",
+      "side": 1,
+      "message": "I feel uneasy about this being just an extern function with declaration in `include/verifyGeometry.hpp` for some reason (I guess I just don\u0027t see this much?)\n\nI would also find a home for this in a class personally - makes it easier for mocking and testing later. I\u0027d also be curious on how these classes will be tested if defined this way.",
+      "parentUuid": "a140c6e2_c25d68d1",
+      "range": {
+        "startLine": 7,
+        "startChar": 11,
+        "endLine": 7,
+        "endChar": 32
+      },
+      "revId": "899938a9a32dce13e9e2614f22c0a7baaa199e10",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2143d0c0_a358b4bc",
         "filename": "src/erase/verifyGeometry.cpp",
         "patchSetId": 6
@@ -368,6 +461,30 @@
       "side": 1,
       "message": "There is a separate change here:\nhttps://gerrit.openbmc-project.xyz/c/openbmc/estoraged/+/48608/3\n\nIt is the first unit test of the project, so it has more changes then normal changes.",
       "parentUuid": "2143d0c0_a358b4bc",
+      "range": {
+        "startLine": 8,
+        "startChar": 4,
+        "endLine": 8,
+        "endChar": 32
+      },
+      "revId": "899938a9a32dce13e9e2614f22c0a7baaa199e10",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0659560f_6e6edf11",
+        "filename": "src/erase/verifyGeometry.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-11-19T01:39:08Z",
+      "side": 1,
+      "message": "Prefer to squash the 2 commits if possible so that we have a change and the accommodating unit test (so that presubmit will show us that the changes are well tested).",
+      "parentUuid": "cb35fe5b_5dd1fade",
       "range": {
         "startLine": 8,
         "startChar": 4,

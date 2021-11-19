@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6e7a2d91_b5bdd087",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-19T00:28:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ea9fb4ef_97950002",
+      "range": {
+        "startLine": 7,
+        "startChar": 5,
+        "endLine": 7,
+        "endChar": 11
+      },
+      "revId": "899938a9a32dce13e9e2614f22c0a7baaa199e10",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a35ef444_b390a866",
         "filename": "/COMMIT_MSG",
         "patchSetId": 6
@@ -45,6 +69,30 @@
       "revId": "899938a9a32dce13e9e2614f22c0a7baaa199e10",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "073830e1_c6e8949c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-19T00:28:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a35ef444_b390a866",
+      "range": {
+        "startLine": 9,
+        "startChar": 23,
+        "endLine": 9,
+        "endChar": 36
+      },
+      "revId": "899938a9a32dce13e9e2614f22c0a7baaa199e10",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -119,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "09520474_9e72459f",
+        "filename": "include/meson.build",
+        "patchSetId": 6
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-19T00:28:00Z",
+      "side": 1,
+      "message": "I agree. \nI will add a note of our intention to add a config file if the number of storage devices increases",
+      "parentUuid": "02fb55e6_59472e4f",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 69
+      },
+      "revId": "899938a9a32dce13e9e2614f22c0a7baaa199e10",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c9ff3b81_edf1eaaa",
         "filename": "meson_options.txt",
         "patchSetId": 6
@@ -139,6 +211,30 @@
       "revId": "899938a9a32dce13e9e2614f22c0a7baaa199e10",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3669a83c_23276bd0",
+        "filename": "meson_options.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-19T00:28:00Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "c9ff3b81_edf1eaaa",
+      "range": {
+        "startLine": 2,
+        "startChar": 112,
+        "endLine": 2,
+        "endChar": 158
+      },
+      "revId": "899938a9a32dce13e9e2614f22c0a7baaa199e10",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -213,6 +309,30 @@
     },
     {
       "key": {
+        "uuid": "a140c6e2_c25d68d1",
+        "filename": "src/erase/findSize.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-19T00:28:00Z",
+      "side": 1,
+      "message": "\u003e Does this function only get used in the context of erasing? \nCurrently it\u0027s only use is in erasing. However, there are sections of the code not yet implemented \n \n\u003e Could it be part of the erase class?\nIt could be part of the erase class. Should it be part of the erase class? I assume that other parts of the estoraged will need this function, or we will save the size of drive in so we don\u0027t have to check multiple times. Eventually it will be moved to the src in it\u0027s own hpp and cpp, and it will populate a value in the estoraged class. But I can\u0027t tell the future (I am barely tell the present;)",
+      "parentUuid": "c1d01b25_578ddefa",
+      "range": {
+        "startLine": 7,
+        "startChar": 11,
+        "endLine": 7,
+        "endChar": 32
+      },
+      "revId": "899938a9a32dce13e9e2614f22c0a7baaa199e10",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2143d0c0_a358b4bc",
         "filename": "src/erase/verifyGeometry.cpp",
         "patchSetId": 6
@@ -271,6 +391,30 @@
       "writtenOn": "2021-11-17T21:22:28Z",
       "side": 1,
       "message": "Is this necessary? I thought the purpose of verifyGeometry was simply to check that the logical size is at least a certain percentage of the physical size.",
+      "range": {
+        "startLine": 15,
+        "startChar": 4,
+        "endLine": 15,
+        "endChar": 35
+      },
+      "revId": "899938a9a32dce13e9e2614f22c0a7baaa199e10",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c286da4_a269700d",
+        "filename": "src/erase/verifyGeometry.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-19T00:28:00Z",
+      "side": 1,
+      "message": "Other implementations do this check. It does not require us to, but it does make sense to me.",
+      "parentUuid": "696889fb_7c44eecd",
       "range": {
         "startLine": 15,
         "startChar": 4,
@@ -399,6 +543,30 @@
       "revId": "899938a9a32dce13e9e2614f22c0a7baaa199e10",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8c176664_4425aeb8",
+        "filename": "src/meson.build",
+        "patchSetId": 6
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-19T00:28:00Z",
+      "side": 1,
+      "message": "done, thanks for your help.",
+      "parentUuid": "46e18087_e7c26401",
+      "range": {
+        "startLine": 11,
+        "startChar": 2,
+        "endLine": 12,
+        "endChar": 23
+      },
+      "revId": "899938a9a32dce13e9e2614f22c0a7baaa199e10",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }

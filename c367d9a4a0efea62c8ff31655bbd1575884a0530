@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "99a0d0f6_b2677a36",
+        "filename": "include/verifyDriveGeometry.hpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-20T02:54:23Z",
+      "side": 1,
+      "message": "That is a much better idea",
+      "parentUuid": "1bb15c87_5114fcd2",
+      "revId": "c367d9a4a0efea62c8ff31655bbd1575884a0530",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5072faa7_d246baff",
         "filename": "src/erase/findSize.cpp",
         "patchSetId": 15
@@ -33,6 +51,24 @@
       "revId": "c367d9a4a0efea62c8ff31655bbd1575884a0530",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5d6bd42c_39df0c6d",
+        "filename": "src/erase/findSize.cpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-20T02:54:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5072faa7_d246baff",
+      "revId": "c367d9a4a0efea62c8ff31655bbd1575884a0530",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "c8591f5b_15418b58",
+        "filename": "src/erase/findSize.cpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-20T02:54:23Z",
+      "side": 1,
+      "message": "sounds good, returning value, and throwing generated exceptions",
+      "parentUuid": "2fc61cb4_6cf3bd8f",
+      "revId": "c367d9a4a0efea62c8ff31655bbd1575884a0530",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2a2d7f69_d6a5c966",
         "filename": "src/erase/findSize.cpp",
         "patchSetId": 15
@@ -67,6 +121,24 @@
       "revId": "c367d9a4a0efea62c8ff31655bbd1575884a0530",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8abf5e6a_eae338b2",
+        "filename": "src/erase/findSize.cpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-20T02:54:23Z",
+      "side": 1,
+      "message": "done, \nI am am not very familiar with it, but it looks to match my use case well",
+      "parentUuid": "2a2d7f69_d6a5c966",
+      "revId": "c367d9a4a0efea62c8ff31655bbd1575884a0530",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "7e2ce39c_23bb5516",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-20T02:54:23Z",
+      "side": 1,
+      "message": "you are right.\nDone",
+      "parentUuid": "2960a2cc_5ba564ed",
+      "revId": "c367d9a4a0efea62c8ff31655bbd1575884a0530",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "211ea39b_7a65632d",
         "filename": "src/meson.build",
         "patchSetId": 15
@@ -101,6 +191,24 @@
       "revId": "c367d9a4a0efea62c8ff31655bbd1575884a0530",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c104f56e_e1579019",
+        "filename": "src/meson.build",
+        "patchSetId": 15
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-20T02:54:23Z",
+      "side": 1,
+      "message": "done\n(I changed it everywhere)",
+      "parentUuid": "211ea39b_7a65632d",
+      "revId": "c367d9a4a0efea62c8ff31655bbd1575884a0530",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }

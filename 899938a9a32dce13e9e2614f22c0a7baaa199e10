@@ -119,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "eaa60296_5b8a2863",
+        "filename": "include/erase.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-22T21:45:06Z",
+      "side": 1,
+      "message": "fixed in patchset 21",
+      "parentUuid": "7aa94a88_76e47f03",
+      "range": {
+        "startLine": 3,
+        "startChar": 6,
+        "endLine": 3,
+        "endChar": 11
+      },
+      "revId": "899938a9a32dce13e9e2614f22c0a7baaa199e10",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "49a139f6_8bb416f9",
         "filename": "include/meson.build",
         "patchSetId": 6
@@ -498,6 +522,30 @@
     },
     {
       "key": {
+        "uuid": "fd708f71_4757cbdf",
+        "filename": "src/erase/findSize.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-22T21:45:06Z",
+      "side": 1,
+      "message": "I made it a member function of erase.",
+      "parentUuid": "0307337d_92dabe35",
+      "range": {
+        "startLine": 7,
+        "startChar": 11,
+        "endLine": 7,
+        "endChar": 32
+      },
+      "revId": "899938a9a32dce13e9e2614f22c0a7baaa199e10",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2143d0c0_a358b4bc",
         "filename": "src/erase/verifyGeometry.cpp",
         "patchSetId": 6
@@ -569,6 +617,30 @@
     },
     {
       "key": {
+        "uuid": "9ad8e19b_350c2ddc",
+        "filename": "src/erase/verifyGeometry.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-22T21:45:06Z",
+      "side": 1,
+      "message": "squashed: https://gerrit.openbmc-project.xyz/c/openbmc/estoraged/+/48608/3 into this commit in patch set 20. \nsee https://gerrit.openbmc-project.xyz/c/openbmc/estoraged/+/48607/19..20 for the diff.",
+      "parentUuid": "0659560f_6e6edf11",
+      "range": {
+        "startLine": 8,
+        "startChar": 4,
+        "endLine": 8,
+        "endChar": 32
+      },
+      "revId": "899938a9a32dce13e9e2614f22c0a7baaa199e10",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "696889fb_7c44eecd",
         "filename": "src/erase/verifyGeometry.cpp",
         "patchSetId": 6
@@ -613,6 +685,30 @@
       "revId": "899938a9a32dce13e9e2614f22c0a7baaa199e10",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6bbceeb3_82fbcedc",
+        "filename": "src/erase/verifyGeometry.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-22T21:45:06Z",
+      "side": 1,
+      "message": "If this is still an issue feel free to reopen\n\nThanks.",
+      "parentUuid": "2c286da4_a269700d",
+      "range": {
+        "startLine": 15,
+        "startChar": 4,
+        "endLine": 15,
+        "endChar": 35
+      },
+      "revId": "899938a9a32dce13e9e2614f22c0a7baaa199e10",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {

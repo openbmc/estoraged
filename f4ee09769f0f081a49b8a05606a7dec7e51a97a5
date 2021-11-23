@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "588264d7_3987ef8f",
+        "filename": "include/estoraged_conf.hpp.in",
+        "patchSetId": 23
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-11-23T03:59:36Z",
+      "side": 1,
+      "message": "Interesting, I guess I\u0027ve never seen this done like this",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 0
+      },
+      "revId": "f4ee09769f0f081a49b8a05606a7dec7e51a97a5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "000f9e50_45690530",
+        "filename": "src/erase/erase.cpp",
+        "patchSetId": 23
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-11-23T03:59:36Z",
+      "side": 1,
+      "message": "Do we *need* to declare this a separate string to pass to lg2::error? or could we just have it as part of lg2::error similar to the other strings?\n\nSame with below",
+      "range": {
+        "startLine": 20,
+        "startChar": 7,
+        "endLine": 20,
+        "endChar": 58
+      },
+      "revId": "f4ee09769f0f081a49b8a05606a7dec7e51a97a5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

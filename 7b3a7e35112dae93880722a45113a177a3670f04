@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7f5078b6_494bea2f",
+        "filename": "include/erase.hpp",
+        "patchSetId": 22
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-23T00:25:18Z",
+      "side": 1,
+      "message": "Needs to start with upper-case, I think",
+      "range": {
+        "startLine": 8,
+        "startChar": 13,
+        "endLine": 8,
+        "endChar": 34
+      },
+      "revId": "7b3a7e35112dae93880722a45113a177a3670f04",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8539038b_8fb3800f",
+        "filename": "src/erase/verifyDriveGeometry.cpp",
+        "patchSetId": 22
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-23T00:25:18Z",
+      "side": 1,
+      "message": "It seems like this should be a void function, since we use exceptions to indicate an error. Returning 0 in the success case seems redundant.",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 3
+      },
+      "revId": "7b3a7e35112dae93880722a45113a177a3670f04",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "078b66b5_6d2b9981",
+        "filename": "src/meson.build",
+        "patchSetId": 22
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-23T00:25:18Z",
+      "side": 1,
+      "message": "This shouldn\u0027t be necessary.",
+      "range": {
+        "startLine": 31,
+        "startChar": 31,
+        "endLine": 31,
+        "endChar": 52
+      },
+      "revId": "7b3a7e35112dae93880722a45113a177a3670f04",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a7c756e0_cb704ef5",
+        "filename": "src/meson.build",
+        "patchSetId": 22
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-23T00:25:18Z",
+      "side": 1,
+      "message": "Shouldn\u0027t be necessary",
+      "range": {
+        "startLine": 33,
+        "startChar": 13,
+        "endLine": 33,
+        "endChar": 29
+      },
+      "revId": "7b3a7e35112dae93880722a45113a177a3670f04",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae00d4e6_fd922f88",
+        "filename": "src/test/erase/meson.build",
+        "patchSetId": 22
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-23T00:25:18Z",
+      "side": 1,
+      "message": "nit: extra spaces",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 3
+      },
+      "revId": "7b3a7e35112dae93880722a45113a177a3670f04",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc7a89e7_189aea8c",
+        "filename": "src/test/erase/meson.build",
+        "patchSetId": 22
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-23T00:25:18Z",
+      "side": 1,
+      "message": "I think you should be able to remove this and instead add libeStoragedErase_dep as a dependency.",
+      "range": {
+        "startLine": 27,
+        "startChar": 18,
+        "endLine": 27,
+        "endChar": 34
+      },
+      "revId": "7b3a7e35112dae93880722a45113a177a3670f04",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "45767b87_b4ecc008",
+        "filename": "src/test/erase/verifyGeometry_test.cpp",
+        "patchSetId": 22
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-23T00:25:18Z",
+      "side": 1,
+      "message": "These test names could be more descriptive, e.g. TooBigFail, TooSmallFail, etc.",
+      "range": {
+        "startLine": 11,
+        "startChar": 21,
+        "endLine": 11,
+        "endChar": 24
+      },
+      "revId": "7b3a7e35112dae93880722a45113a177a3670f04",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

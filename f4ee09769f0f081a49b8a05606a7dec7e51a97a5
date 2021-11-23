@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "1d02108f_99ee691c",
+        "filename": "src/erase/erase.cpp",
+        "patchSetId": 23
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2021-11-23T23:53:53Z",
+      "side": 1,
+      "message": "Yeah, it\u0027s really goofy design (one of the things I had an issue with during design review). I was looking into fixing this upstream but haven\u0027t spent much time on it.",
+      "parentUuid": "5f756493_5ef012af",
+      "range": {
+        "startLine": 20,
+        "startChar": 7,
+        "endLine": 20,
+        "endChar": 58
+      },
+      "revId": "f4ee09769f0f081a49b8a05606a7dec7e51a97a5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c820f76a_a45eaa57",
         "filename": "src/erase/meson.build",
         "patchSetId": 23

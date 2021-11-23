@@ -45,6 +45,76 @@
       "revId": "f4ee09769f0f081a49b8a05606a7dec7e51a97a5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5f756493_5ef012af",
+        "filename": "src/erase/erase.cpp",
+        "patchSetId": 23
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-23T17:16:06Z",
+      "side": 1,
+      "message": "I\u0027ve been fighting with lg2 recently, as well. You can\u0027t seem to simply pass in the literal string in quotes. But you can explicitly call the string constructor when you pass the string as a function parameter, e.g. std::string(\"asdf\")",
+      "parentUuid": "000f9e50_45690530",
+      "range": {
+        "startLine": 20,
+        "startChar": 7,
+        "endLine": 20,
+        "endChar": 58
+      },
+      "revId": "f4ee09769f0f081a49b8a05606a7dec7e51a97a5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c820f76a_a45eaa57",
+        "filename": "src/erase/meson.build",
+        "patchSetId": 23
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-23T17:16:06Z",
+      "side": 1,
+      "message": "extra spaces",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 2
+      },
+      "revId": "f4ee09769f0f081a49b8a05606a7dec7e51a97a5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9bb8e0e0_1a193eba",
+        "filename": "src/meson.build",
+        "patchSetId": 23
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-23T17:16:06Z",
+      "side": 1,
+      "message": "extra spaces",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 2
+      },
+      "revId": "f4ee09769f0f081a49b8a05606a7dec7e51a97a5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }

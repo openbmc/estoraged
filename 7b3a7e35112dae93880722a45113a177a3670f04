@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3159d2cd_864514f3",
+        "filename": "include/erase.hpp",
+        "patchSetId": 22
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-23T02:10:29Z",
+      "side": 1,
+      "message": "I was under the impression that function (including member fuctions) should start with lower case.\nSee:\nhttps://github.com/openbmc/docs/blob/master/cpp-style-and-conventions.md#functions\nand\nhttps://gerrit.openbmc-project.xyz/c/openbmc/estoraged/+/48607/12/include/verifyGeometry.hpp#17",
+      "parentUuid": "7f5078b6_494bea2f",
+      "range": {
+        "startLine": 8,
+        "startChar": 13,
+        "endLine": 8,
+        "endChar": 34
+      },
+      "revId": "7b3a7e35112dae93880722a45113a177a3670f04",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8539038b_8fb3800f",
         "filename": "src/erase/verifyDriveGeometry.cpp",
         "patchSetId": 22
@@ -45,6 +69,30 @@
       "revId": "7b3a7e35112dae93880722a45113a177a3670f04",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6486177_8fdaba89",
+        "filename": "src/erase/verifyDriveGeometry.cpp",
+        "patchSetId": 22
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-23T02:10:29Z",
+      "side": 1,
+      "message": "Sounds good.\nDone",
+      "parentUuid": "8539038b_8fb3800f",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 3
+      },
+      "revId": "7b3a7e35112dae93880722a45113a177a3670f04",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "aeaa7989_ebe447a3",
+        "filename": "src/erase/verifyDriveGeometry.cpp",
+        "patchSetId": 22
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-23T02:10:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3de32503_c708dc4f",
+      "range": {
+        "startLine": 19,
+        "startChar": 42,
+        "endLine": 19,
+        "endChar": 44
+      },
+      "revId": "7b3a7e35112dae93880722a45113a177a3670f04",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "12453dee_04b38ff3",
         "filename": "src/erase/verifyDriveGeometry.cpp",
         "patchSetId": 22
@@ -91,6 +163,30 @@
       "revId": "7b3a7e35112dae93880722a45113a177a3670f04",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4072593f_8d533de6",
+        "filename": "src/erase/verifyDriveGeometry.cpp",
+        "patchSetId": 22
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-23T02:10:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "12453dee_04b38ff3",
+      "range": {
+        "startLine": 28,
+        "startChar": 52,
+        "endLine": 28,
+        "endChar": 54
+      },
+      "revId": "7b3a7e35112dae93880722a45113a177a3670f04",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "17df47c0_7765bf60",
+        "filename": "src/meson.build",
+        "patchSetId": 22
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-23T02:10:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "078b66b5_6d2b9981",
+      "range": {
+        "startLine": 31,
+        "startChar": 31,
+        "endLine": 31,
+        "endChar": 52
+      },
+      "revId": "7b3a7e35112dae93880722a45113a177a3670f04",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a7c756e0_cb704ef5",
         "filename": "src/meson.build",
         "patchSetId": 22
@@ -137,6 +257,30 @@
       "revId": "7b3a7e35112dae93880722a45113a177a3670f04",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0923b3b7_f55ccc11",
+        "filename": "src/meson.build",
+        "patchSetId": 22
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-23T02:10:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a7c756e0_cb704ef5",
+      "range": {
+        "startLine": 33,
+        "startChar": 13,
+        "endLine": 33,
+        "endChar": 29
+      },
+      "revId": "7b3a7e35112dae93880722a45113a177a3670f04",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {

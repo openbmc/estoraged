@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "205f537d_2480ffa3",
+        "filename": "include/estoraged.hpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1000885
+      },
+      "writtenOn": "2021-11-23T22:07:27Z",
+      "side": 1,
+      "message": "isLock\n\ncamelCase for function names",
+      "range": {
+        "startLine": 67,
+        "startChar": 9,
+        "endLine": 67,
+        "endChar": 18
+      },
+      "revId": "b21bbd894877df98f613fdf4ff5d675c750fd4f2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "80c8800b_addd93cd",
+        "filename": "include/estoraged.hpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1000885
+      },
+      "writtenOn": "2021-11-23T22:07:27Z",
+      "side": 1,
+      "message": "rm void.\n\nI personally don\u0027t like it in C++ code (but maybe that\u0027s just me).",
+      "range": {
+        "startLine": 70,
+        "startChar": 35,
+        "endLine": 70,
+        "endChar": 39
+      },
+      "revId": "b21bbd894877df98f613fdf4ff5d675c750fd4f2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "20d31978_88cbf2b6",
+        "filename": "include/estoraged.hpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1000885
+      },
+      "writtenOn": "2021-11-23T22:07:27Z",
+      "side": 1,
+      "message": "wait, I didn\u0027t even know that you can/show make private virtual function. Can we even override this?",
+      "range": {
+        "startLine": 107,
+        "startChar": 3,
+        "endLine": 113,
+        "endChar": 66
+      },
+      "revId": "b21bbd894877df98f613fdf4ff5d675c750fd4f2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "628efe18_3effe055",
+        "filename": "include/estoraged.hpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1000885
+      },
+      "writtenOn": "2021-11-23T22:07:27Z",
+      "side": 1,
+      "message": "const std::string\u0026",
+      "range": {
+        "startLine": 142,
+        "startChar": 27,
+        "endLine": 142,
+        "endChar": 46
+      },
+      "revId": "b21bbd894877df98f613fdf4ff5d675c750fd4f2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "121cf9d6_a4f30c5b",
+        "filename": "src/test/meson.build",
+        "patchSetId": 5
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000885
+      },
+      "writtenOn": "2021-11-23T22:07:27Z",
+      "side": 1,
+      "message": "replace each tap with 2 spaces.",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 46
+      },
+      "revId": "b21bbd894877df98f613fdf4ff5d675c750fd4f2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

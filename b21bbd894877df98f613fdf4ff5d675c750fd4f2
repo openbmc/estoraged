@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "460710bf_16bc6fbc",
+        "filename": "include/estoraged.hpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-23T22:34:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "205f537d_2480ffa3",
+      "range": {
+        "startLine": 67,
+        "startChar": 9,
+        "endLine": 67,
+        "endChar": 18
+      },
+      "revId": "b21bbd894877df98f613fdf4ff5d675c750fd4f2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "80c8800b_addd93cd",
         "filename": "include/estoraged.hpp",
         "patchSetId": 5
@@ -45,6 +69,30 @@
       "revId": "b21bbd894877df98f613fdf4ff5d675c750fd4f2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3579a1a8_901ce70a",
+        "filename": "include/estoraged.hpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-23T22:34:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "80c8800b_addd93cd",
+      "range": {
+        "startLine": 70,
+        "startChar": 35,
+        "endLine": 70,
+        "endChar": 39
+      },
+      "revId": "b21bbd894877df98f613fdf4ff5d675c750fd4f2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "87388ca9_1de1ed03",
+        "filename": "include/estoraged.hpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-23T22:34:31Z",
+      "side": 1,
+      "message": "gmock is in fact capable of overriding virtual private functions. So I figured this was fine. Here\u0027s an example in the googletest documentation: http://google.github.io/googletest/gmock_cook_book.html#mocking-private-or-protected-methods",
+      "parentUuid": "20d31978_88cbf2b6",
+      "range": {
+        "startLine": 107,
+        "startChar": 3,
+        "endLine": 113,
+        "endChar": 66
+      },
+      "revId": "b21bbd894877df98f613fdf4ff5d675c750fd4f2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "628efe18_3effe055",
         "filename": "include/estoraged.hpp",
         "patchSetId": 5
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "ca16f7a6_220153a9",
+        "filename": "include/estoraged.hpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-23T22:34:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "628efe18_3effe055",
+      "range": {
+        "startLine": 142,
+        "startChar": 27,
+        "endLine": 142,
+        "endChar": 46
+      },
+      "revId": "b21bbd894877df98f613fdf4ff5d675c750fd4f2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "121cf9d6_a4f30c5b",
         "filename": "src/test/meson.build",
         "patchSetId": 5
@@ -114,6 +210,30 @@
       "revId": "b21bbd894877df98f613fdf4ff5d675c750fd4f2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "882690d8_ac458d30",
+        "filename": "src/test/meson.build",
+        "patchSetId": 5
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-23T22:34:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "121cf9d6_a4f30c5b",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 46
+      },
+      "revId": "b21bbd894877df98f613fdf4ff5d675c750fd4f2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }

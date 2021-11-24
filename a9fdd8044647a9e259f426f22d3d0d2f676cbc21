@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c88e75f3_a51894ad",
+        "filename": "include/estoraged.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-24T01:46:48Z",
+      "side": 1,
+      "message": "I understand your member variable is being initialized by your parameter of the same name (containerName). And it will work, but this shadowing is a bad practice",
+      "range": {
+        "startLine": 29,
+        "startChar": 26,
+        "endLine": 29,
+        "endChar": 54
+      },
+      "revId": "a9fdd8044647a9e259f426f22d3d0d2f676cbc21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "290ea912_282de87e",
+        "filename": "include/estoraged.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-24T01:46:48Z",
+      "side": 1,
+      "message": "so there will be an class that inherits and overrides?",
+      "range": {
+        "startLine": 110,
+        "startChar": 4,
+        "endLine": 110,
+        "endChar": 11
+      },
+      "revId": "a9fdd8044647a9e259f426f22d3d0d2f676cbc21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aea52f60_81b2ffe4",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-24T01:46:48Z",
+      "side": 1,
+      "message": "see above",
+      "range": {
+        "startLine": 195,
+        "startChar": 17,
+        "endLine": 195,
+        "endChar": 27
+      },
+      "revId": "a9fdd8044647a9e259f426f22d3d0d2f676cbc21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "00d1dbdb_2f1dc78a",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-24T01:46:48Z",
+      "side": 1,
+      "message": "The mount point does not need to appear and reappear.",
+      "range": {
+        "startLine": 211,
+        "startChar": 0,
+        "endLine": 211,
+        "endChar": 70
+      },
+      "revId": "a9fdd8044647a9e259f426f22d3d0d2f676cbc21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd73b19f_c5ba6069",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-24T01:46:48Z",
+      "side": 1,
+      "message": "see above",
+      "range": {
+        "startLine": 221,
+        "startChar": 17,
+        "endLine": 221,
+        "endChar": 27
+      },
+      "revId": "a9fdd8044647a9e259f426f22d3d0d2f676cbc21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "398b8140_7a7b78d5",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-24T01:46:48Z",
+      "side": 1,
+      "message": "This is unexpected (for me), I would think if mount failed. EstorageD would log an error and stop.",
+      "range": {
+        "startLine": 229,
+        "startChar": 12,
+        "endLine": 229,
+        "endChar": 27
+      },
+      "revId": "a9fdd8044647a9e259f426f22d3d0d2f676cbc21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db971e16_7801bacd",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-24T01:46:48Z",
+      "side": 1,
+      "message": "see above (you don\u0027t have to do this)",
+      "range": {
+        "startLine": 256,
+        "startChar": 0,
+        "endLine": 256,
+        "endChar": 70
+      },
+      "revId": "a9fdd8044647a9e259f426f22d3d0d2f676cbc21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "187cf9cc_0960eb04",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-24T01:46:48Z",
+      "side": 1,
+      "message": "system almost never done.\n\nfor mount think about using:\n#include \u003csys/mount.h\u003e\n  int mount(const char *source, const char *target,\n                 const char *filesystemtype, unsigned long mountflags,\n                 const void *data);\n\nFor creating the ext4 ext2fs_initialize is the c way, but it look like it might take some effort. \nhttps://kernel.googlesource.com/pub/scm/linux/kernel/git/davem/silo/+/eb6151388752b52804f80ff27e90ec2dbde71339/include/ext2fs/ext2fs.h#726\n\nI would see what the +2\u0027s want, before burning cycles on it.\n\nexample:\nhttps://github.com/tytso/e2fsprogs/blob/master/misc/mke2fs.c#L3078",
+      "range": {
+        "startLine": 343,
+        "startChar": 0,
+        "endLine": 343,
+        "endChar": 35
+      },
+      "revId": "a9fdd8044647a9e259f426f22d3d0d2f676cbc21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

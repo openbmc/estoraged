@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "f0712518_8f0c5466",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-11-24T22:16:54Z",
+      "side": 1,
+      "message": "How much is \"some time\"? D-Bus timeout I believe is at 40 seconds for reference.",
+      "range": {
+        "startLine": 13,
+        "startChar": 58,
+        "endLine": 13,
+        "endChar": 68
+      },
+      "revId": "a9fdd8044647a9e259f426f22d3d0d2f676cbc21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c88e75f3_a51894ad",
         "filename": "include/estoraged.hpp",
         "patchSetId": 6
@@ -25,6 +48,53 @@
     },
     {
       "key": {
+        "uuid": "884dc39f_6d9af3fc",
+        "filename": "include/estoraged.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-11-24T22:16:54Z",
+      "side": 1,
+      "message": "I wasn\u0027t aware that this was a bad practice - would you be able to point to some references for my learning?\n\nIn this case, we\u0027re not referencing the parameter in the constructor and just using it within the member initialization list so i believe it\u0027s stylistic and I personally prefer it because it avoids having to create another variable name (that won\u0027t be used).",
+      "parentUuid": "c88e75f3_a51894ad",
+      "range": {
+        "startLine": 29,
+        "startChar": 26,
+        "endLine": 29,
+        "endChar": 54
+      },
+      "revId": "a9fdd8044647a9e259f426f22d3d0d2f676cbc21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb0c5bef_73519ba7",
+        "filename": "include/estoraged.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-11-24T22:16:54Z",
+      "side": 1,
+      "message": "nit: param doxygens",
+      "range": {
+        "startLine": 81,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 0
+      },
+      "revId": "a9fdd8044647a9e259f426f22d3d0d2f676cbc21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "290ea912_282de87e",
         "filename": "include/estoraged.hpp",
         "patchSetId": 6
@@ -41,6 +111,145 @@
         "startChar": 4,
         "endLine": 110,
         "endChar": 11
+      },
+      "revId": "a9fdd8044647a9e259f426f22d3d0d2f676cbc21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a3231662_370c8f54",
+        "filename": "include/estoraged.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-11-24T22:16:54Z",
+      "side": 1,
+      "message": "It sounds like it\u0027s just a wrapper so I would believe so.\n\nWould it make sense to have the wrappers be a separate class (for possibly easier mocking?)\n\nEdit: Saw the discussion you had with Willy regarding this - didn\u0027t know gTest allowed mocking of private virtual functions TIL. It does seem like the testing is clean written this way. I wonder if others have thoughts on whether we should have a different class just for these wrappers (which is how I usually implement).",
+      "parentUuid": "290ea912_282de87e",
+      "range": {
+        "startLine": 110,
+        "startChar": 4,
+        "endLine": 110,
+        "endChar": 11
+      },
+      "revId": "a9fdd8044647a9e259f426f22d3d0d2f676cbc21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a2ae41e_8a065948",
+        "filename": "include/estoraged.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-11-24T22:16:54Z",
+      "side": 1,
+      "message": "I guess we\u0027re now using snake case here but I\u0027m guessing it\u0027s because of libcryptsetup.h?",
+      "range": {
+        "startLine": 113,
+        "startChar": 35,
+        "endLine": 113,
+        "endChar": 50
+      },
+      "revId": "a9fdd8044647a9e259f426f22d3d0d2f676cbc21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8096c1ca_8a5b5f4c",
+        "filename": "include/estoraged.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-11-24T22:16:54Z",
+      "side": 1,
+      "message": "Technically we should have param doxygen here as well - even though I\u0027m assuming we\u0027re just going to pass them in directly since these are just wrappers.",
+      "range": {
+        "startLine": 106,
+        "startChar": 0,
+        "endLine": 160,
+        "endChar": 43
+      },
+      "revId": "a9fdd8044647a9e259f426f22d3d0d2f676cbc21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c2cc0a7b_b7c091f2",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-11-24T22:16:54Z",
+      "side": 1,
+      "message": "nit: technically don\u0027t need this since we have the comment in the header",
+      "range": {
+        "startLine": 76,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 3
+      },
+      "revId": "a9fdd8044647a9e259f426f22d3d0d2f676cbc21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fee35fa6_c479dd56",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-11-24T22:16:54Z",
+      "side": 1,
+      "message": "nit: magic number - maybe we can declare this as a constant or have /* volume_key_size */ here and explain where this came from?",
+      "range": {
+        "startLine": 106,
+        "startChar": 25,
+        "endLine": 106,
+        "endChar": 32
+      },
+      "revId": "a9fdd8044647a9e259f426f22d3d0d2f676cbc21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1382ca3_3ca38dbc",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-11-24T22:16:54Z",
+      "side": 1,
+      "message": "nit: same here?",
+      "range": {
+        "startLine": 140,
+        "startChar": 0,
+        "endLine": 141,
+        "endChar": 3
       },
       "revId": "a9fdd8044647a9e259f426f22d3d0d2f676cbc21",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
@@ -140,6 +349,30 @@
     },
     {
       "key": {
+        "uuid": "2fb8d288_b9c5afac",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-11-24T22:16:54Z",
+      "side": 1,
+      "message": "I think we should revisit this once you start using the the mount library - I also would imagine if mount failed, we can\u0027t unmount (since it didn\u0027t mount in the first place).",
+      "parentUuid": "398b8140_7a7b78d5",
+      "range": {
+        "startLine": 229,
+        "startChar": 12,
+        "endLine": 229,
+        "endChar": 27
+      },
+      "revId": "a9fdd8044647a9e259f426f22d3d0d2f676cbc21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "db971e16_7801bacd",
         "filename": "src/estoraged.cpp",
         "patchSetId": 6
@@ -198,6 +431,30 @@
       "side": 1,
       "message": "For mounting and unmounting, it certainly makes sense to use the C function. Earlier, I guess I didn\u0027t realize it would be that simple.\n\nFor creating the filesystem, I haven\u0027t looked into it extensively, but it seems like a non-trivial task. And FWIW, udisks2 uses mkfs, as well. Here is where it lists out the different commands for creating different filesystem types: https://github.com/storaged-project/udisks/blob/d7b231263d6b3b0d2def6c974fe651a0538ac5d3/src/udiskslinuxfsinfo.c#L67\n\nAlso keep in mind that the new eStoraged interface (still in review) will allow for the client to specify filesystem type, so it could be difficult to support that without using mkfs. https://gerrit.openbmc-project.xyz/c/openbmc/phosphor-dbus-interfaces/+/48636",
       "parentUuid": "187cf9cc_0960eb04",
+      "range": {
+        "startLine": 343,
+        "startChar": 0,
+        "endLine": 343,
+        "endChar": 35
+      },
+      "revId": "a9fdd8044647a9e259f426f22d3d0d2f676cbc21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ac31677_9f8102c7",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-11-24T22:16:54Z",
+      "side": 1,
+      "message": "Agreed that we should use the mounting library.\n\nRegarding filesystem, I\u0027m unfortunately not familiar enough - hopefully William can be the tiebreaker here. My 2 cents is that I don\u0027t think using system call is too common within OpenBMC (at least in the repos I\u0027ve touched) so my gut says we should try to use the libraries like the one that John Broadbent suggested - but I also see where the difficulties of supporting different types of file systems will come in.",
+      "parentUuid": "e03a7df3_b5a16bd3",
       "range": {
         "startLine": 343,
         "startChar": 0,

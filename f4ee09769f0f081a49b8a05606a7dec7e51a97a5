@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "dda62a05_a156eb03",
+        "filename": "include/estoraged_conf.hpp.in",
+        "patchSetId": 23
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-24T00:01:23Z",
+      "side": 1,
+      "message": "I took it from bmcweb \nhttps://github.com/openbmc/bmcweb/blob/master/bmcweb.socket.in#L5",
+      "parentUuid": "588264d7_3987ef8f",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 0
+      },
+      "revId": "f4ee09769f0f081a49b8a05606a7dec7e51a97a5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "000f9e50_45690530",
         "filename": "src/erase/erase.cpp",
         "patchSetId": 23
@@ -96,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "9e505fb1_8f15f551",
+        "filename": "src/erase/erase.cpp",
+        "patchSetId": 23
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-24T00:01:23Z",
+      "side": 1,
+      "message": "I change all the usages to be the way Wedig recommends it.\nCreate the string in the function parameter list.\nIt is an odd design to me",
+      "parentUuid": "1d02108f_99ee691c",
+      "range": {
+        "startLine": 20,
+        "startChar": 7,
+        "endLine": 20,
+        "endChar": 58
+      },
+      "revId": "f4ee09769f0f081a49b8a05606a7dec7e51a97a5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c820f76a_a45eaa57",
         "filename": "src/erase/meson.build",
         "patchSetId": 23
@@ -119,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "fae1ddb0_a8032dae",
+        "filename": "src/erase/meson.build",
+        "patchSetId": 23
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-24T00:01:23Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "c820f76a_a45eaa57",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 2
+      },
+      "revId": "f4ee09769f0f081a49b8a05606a7dec7e51a97a5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9bb8e0e0_1a193eba",
         "filename": "src/meson.build",
         "patchSetId": 23
@@ -139,6 +211,30 @@
       "revId": "f4ee09769f0f081a49b8a05606a7dec7e51a97a5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a05a837_5a5e7f52",
+        "filename": "src/meson.build",
+        "patchSetId": 23
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-24T00:01:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9bb8e0e0_1a193eba",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 2
+      },
+      "revId": "f4ee09769f0f081a49b8a05606a7dec7e51a97a5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }

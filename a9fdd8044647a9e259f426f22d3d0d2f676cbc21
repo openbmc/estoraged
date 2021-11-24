@@ -183,6 +183,30 @@
       "revId": "a9fdd8044647a9e259f426f22d3d0d2f676cbc21",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e03a7df3_b5a16bd3",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-24T19:20:49Z",
+      "side": 1,
+      "message": "For mounting and unmounting, it certainly makes sense to use the C function. Earlier, I guess I didn\u0027t realize it would be that simple.\n\nFor creating the filesystem, I haven\u0027t looked into it extensively, but it seems like a non-trivial task. And FWIW, udisks2 uses mkfs, as well. Here is where it lists out the different commands for creating different filesystem types: https://github.com/storaged-project/udisks/blob/d7b231263d6b3b0d2def6c974fe651a0538ac5d3/src/udiskslinuxfsinfo.c#L67\n\nAlso keep in mind that the new eStoraged interface (still in review) will allow for the client to specify filesystem type, so it could be difficult to support that without using mkfs. https://gerrit.openbmc-project.xyz/c/openbmc/phosphor-dbus-interfaces/+/48636",
+      "parentUuid": "187cf9cc_0960eb04",
+      "range": {
+        "startLine": 343,
+        "startChar": 0,
+        "endLine": 343,
+        "endChar": 35
+      },
+      "revId": "a9fdd8044647a9e259f426f22d3d0d2f676cbc21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }

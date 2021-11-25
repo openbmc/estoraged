@@ -190,6 +190,30 @@
     },
     {
       "key": {
+        "uuid": "c261a9e0_8c8d8b22",
+        "filename": "include/erase.hpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-25T04:46:14Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a8ea76f9_f4c9784e",
+      "range": {
+        "startLine": 6,
+        "startChar": 15,
+        "endLine": 6,
+        "endChar": 21
+      },
+      "revId": "41b5ea8af126ac7918a454d8690f820039112886",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "481a32ab_89e6296e",
         "filename": "include/erase.hpp",
         "patchSetId": 12
@@ -611,6 +635,30 @@
       "revId": "41b5ea8af126ac7918a454d8690f820039112886",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dbda0f29_383e083f",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-25T04:46:14Z",
+      "side": 1,
+      "message": "I have not found a way to change how sdbusplus is generating this interface.\nFeel free to reopen if this is still an issue.",
+      "parentUuid": "8d78b34a_8d16f975",
+      "range": {
+        "startLine": 21,
+        "startChar": 33,
+        "endLine": 21,
+        "endChar": 43
+      },
+      "revId": "41b5ea8af126ac7918a454d8690f820039112886",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {

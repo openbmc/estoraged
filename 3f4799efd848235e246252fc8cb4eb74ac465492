@@ -22,6 +22,30 @@
       "revId": "3f4799efd848235e246252fc8cb4eb74ac465492",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a87b6919_990a4d2f",
+        "filename": "src/erase/verifyGeometry.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-25T04:46:14Z",
+      "side": 1,
+      "message": "In the future version it throws an dbus defined error",
+      "parentUuid": "2a1f042a_57c0e38b",
+      "range": {
+        "startLine": 13,
+        "startChar": 8,
+        "endLine": 13,
+        "endChar": 21
+      },
+      "revId": "3f4799efd848235e246252fc8cb4eb74ac465492",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }

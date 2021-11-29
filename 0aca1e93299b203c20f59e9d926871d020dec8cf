@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "60bded10_c87b4cd9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 28
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-29T18:16:43Z",
+      "side": 1,
+      "message": "Has this been tested on a machine? If so, it would be a good idea to add a \"Tested:\" section to the commit message.",
+      "revId": "0aca1e93299b203c20f59e9d926871d020dec8cf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e23846b5_ca6db57f",
+        "filename": "src/erase/verifyDriveGeometry.cpp",
+        "patchSetId": 28
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-29T18:16:43Z",
+      "side": 1,
+      "message": "Is this being used?",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 19
+      },
+      "revId": "0aca1e93299b203c20f59e9d926871d020dec8cf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4a435918_2c65bc1b",
+        "filename": "src/test/erase/meson.build",
+        "patchSetId": 28
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-29T18:16:43Z",
+      "side": 1,
+      "message": "This shouldn\u0027t be needed.",
+      "range": {
+        "startLine": 27,
+        "startChar": 50,
+        "endLine": 27,
+        "endChar": 64
+      },
+      "revId": "0aca1e93299b203c20f59e9d926871d020dec8cf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

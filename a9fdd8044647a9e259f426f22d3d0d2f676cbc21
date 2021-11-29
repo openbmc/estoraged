@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "78c4748e_21b41d2e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-29T19:47:42Z",
+      "side": 1,
+      "message": "I changed the commit message to say that it took about 20 seconds.\n\nI think the default timeout is actually 25 seconds, and one time I hit the timeout while testing this.",
+      "parentUuid": "f0712518_8f0c5466",
+      "range": {
+        "startLine": 13,
+        "startChar": 58,
+        "endLine": 13,
+        "endChar": 68
+      },
+      "revId": "a9fdd8044647a9e259f426f22d3d0d2f676cbc21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c88e75f3_a51894ad",
         "filename": "include/estoraged.hpp",
         "patchSetId": 6
@@ -119,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "f1f190ea_2e569e43",
+        "filename": "include/estoraged.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-29T19:47:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb0c5bef_73519ba7",
+      "range": {
+        "startLine": 81,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 0
+      },
+      "revId": "a9fdd8044647a9e259f426f22d3d0d2f676cbc21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "290ea912_282de87e",
         "filename": "include/estoraged.hpp",
         "patchSetId": 6
@@ -190,6 +238,30 @@
     },
     {
       "key": {
+        "uuid": "8038f4c1_767f5922",
+        "filename": "include/estoraged.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-29T19:47:42Z",
+      "side": 1,
+      "message": "I\u0027m relatively new to gTest, so I\u0027m not sure how things are typically done. But it might be nice to de-clutter the estoraged class by moving the wrappers to a separate class (or even a couple different classes). For example, maybe we could have one class for the libcryptsetup wrappers and another for the filesystem-related operations, e.g. mount, unmount, createFilesytem.",
+      "parentUuid": "a3231662_370c8f54",
+      "range": {
+        "startLine": 110,
+        "startChar": 4,
+        "endLine": 110,
+        "endChar": 11
+      },
+      "revId": "a9fdd8044647a9e259f426f22d3d0d2f676cbc21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6a2ae41e_8a065948",
         "filename": "include/estoraged.hpp",
         "patchSetId": 6
@@ -210,6 +282,30 @@
       "revId": "a9fdd8044647a9e259f426f22d3d0d2f676cbc21",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e6d8aeb_77148813",
+        "filename": "include/estoraged.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-29T19:47:42Z",
+      "side": 1,
+      "message": "I had copy-pasted the arguments from libcryptsetup and forgot to change it to camelCase. I did it now.",
+      "parentUuid": "6a2ae41e_8a065948",
+      "range": {
+        "startLine": 113,
+        "startChar": 35,
+        "endLine": 113,
+        "endChar": 50
+      },
+      "revId": "a9fdd8044647a9e259f426f22d3d0d2f676cbc21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -259,6 +355,30 @@
     },
     {
       "key": {
+        "uuid": "e8973390_e144d8c3",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-29T19:47:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c2cc0a7b_b7c091f2",
+      "range": {
+        "startLine": 76,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 3
+      },
+      "revId": "a9fdd8044647a9e259f426f22d3d0d2f676cbc21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fee35fa6_c479dd56",
         "filename": "src/estoraged.cpp",
         "patchSetId": 6
@@ -282,6 +402,30 @@
     },
     {
       "key": {
+        "uuid": "ffd26838_cd33e216",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-29T19:47:42Z",
+      "side": 1,
+      "message": "This argument should really be volumeKey.size(). I changed it accordingly.",
+      "parentUuid": "fee35fa6_c479dd56",
+      "range": {
+        "startLine": 106,
+        "startChar": 25,
+        "endLine": 106,
+        "endChar": 32
+      },
+      "revId": "a9fdd8044647a9e259f426f22d3d0d2f676cbc21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c1382ca3_3ca38dbc",
         "filename": "src/estoraged.cpp",
         "patchSetId": 6
@@ -302,6 +446,30 @@
       "revId": "a9fdd8044647a9e259f426f22d3d0d2f676cbc21",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c8f188c3_9726d1e8",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-29T19:47:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c1382ca3_3ca38dbc",
+      "range": {
+        "startLine": 140,
+        "startChar": 0,
+        "endLine": 141,
+        "endChar": 3
+      },
+      "revId": "a9fdd8044647a9e259f426f22d3d0d2f676cbc21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -409,6 +577,30 @@
       "side": 1,
       "message": "I think we should revisit this once you start using the the mount library - I also would imagine if mount failed, we can\u0027t unmount (since it didn\u0027t mount in the first place).",
       "parentUuid": "398b8140_7a7b78d5",
+      "range": {
+        "startLine": 229,
+        "startChar": 12,
+        "endLine": 229,
+        "endChar": 27
+      },
+      "revId": "a9fdd8044647a9e259f426f22d3d0d2f676cbc21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f05d94b_9a0411e8",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-29T19:47:42Z",
+      "side": 1,
+      "message": "Strictly speaking, this isn\u0027t unmounting; it\u0027s just removing the directory we created several lines up.\n\nWhen I wrote this, I thought it would be a good idea to remove the directory we created, once we don\u0027t need it anymore. But I can change this if people prefer.",
+      "parentUuid": "2fb8d288_b9c5afac",
       "range": {
         "startLine": 229,
         "startChar": 12,

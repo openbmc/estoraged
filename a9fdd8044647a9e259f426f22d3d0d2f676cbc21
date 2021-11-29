@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "2f292506_0889fd59",
+        "filename": "include/estoraged.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-29T18:19:21Z",
+      "side": 1,
+      "message": "OpenBmc style guide follows the \"C++ Core Guidelines (CCG).\"\nhttps://github.com/openbmc/docs/blob/master/cpp-style-and-conventions.md#global-guidelines-and-practices\n\nand the CCG has guidance on reusing variable names. https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md#es12-do-not-reuse-names-in-nested-scopes\n\nTwo different names make sense because there are two different variables. (a parameter and member variable)\n\nIf Brandon is good with it, I am good with it.\n(resolved from my side)",
+      "parentUuid": "884dc39f_6d9af3fc",
+      "range": {
+        "startLine": 29,
+        "startChar": 26,
+        "endLine": 29,
+        "endChar": 54
+      },
+      "revId": "a9fdd8044647a9e259f426f22d3d0d2f676cbc21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cb0c5bef_73519ba7",
         "filename": "include/estoraged.hpp",
         "patchSetId": 6
@@ -130,6 +154,30 @@
       "side": 1,
       "message": "It sounds like it\u0027s just a wrapper so I would believe so.\n\nWould it make sense to have the wrappers be a separate class (for possibly easier mocking?)\n\nEdit: Saw the discussion you had with Willy regarding this - didn\u0027t know gTest allowed mocking of private virtual functions TIL. It does seem like the testing is clean written this way. I wonder if others have thoughts on whether we should have a different class just for these wrappers (which is how I usually implement).",
       "parentUuid": "290ea912_282de87e",
+      "range": {
+        "startLine": 110,
+        "startChar": 4,
+        "endLine": 110,
+        "endChar": 11
+      },
+      "revId": "a9fdd8044647a9e259f426f22d3d0d2f676cbc21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c55c8633_a2c18c34",
+        "filename": "include/estoraged.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-29T18:19:21Z",
+      "side": 1,
+      "message": "I saw the testing. Questions are answered.\n(resolved from my side)",
+      "parentUuid": "a3231662_370c8f54",
       "range": {
         "startLine": 110,
         "startChar": 4,

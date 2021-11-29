@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "81a7c043_4bc62b4d",
+        "filename": "include/erase.hpp",
+        "patchSetId": 29
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-11-29T21:54:11Z",
+      "side": 1,
+      "message": "Shouldn\u0027t all of these comments be located just above their respective functions?",
+      "range": {
+        "startLine": 11,
+        "startChar": 4,
+        "endLine": 13,
+        "endChar": 7
+      },
+      "revId": "0ceb4f20bca2542bed4e877b1abd1a2e5356ca90",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

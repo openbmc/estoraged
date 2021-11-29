@@ -402,6 +402,30 @@
     },
     {
       "key": {
+        "uuid": "48b33038_c1c8fba2",
+        "filename": "src/test/erase/meson.build",
+        "patchSetId": 22
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-11-29T17:21:41Z",
+      "side": 1,
+      "message": "I had linking error with lg2 when I tried only add libeStoraged*Erase*_dep, so I switched to libeStoraged. (the top level static lib)",
+      "parentUuid": "517e20c6_874f8c3a",
+      "range": {
+        "startLine": 27,
+        "startChar": 18,
+        "endLine": 27,
+        "endChar": 34
+      },
+      "revId": "7b3a7e35112dae93880722a45113a177a3670f04",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "45767b87_b4ecc008",
         "filename": "src/test/erase/verifyGeometry_test.cpp",
         "patchSetId": 22

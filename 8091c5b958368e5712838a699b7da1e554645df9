@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "16448e58_fcf6b8eb",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2021-11-30T10:52:32Z",
+      "side": 1,
+      "message": "You could probably pass crypt_device references into some of these to reduce crypt_init duplication.",
+      "revId": "8091c5b958368e5712838a699b7da1e554645df9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4180fee_15ec99f6",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2021-11-30T10:52:32Z",
+      "side": 1,
+      "message": "It would be nice to use some kind of wrapper for managing these references.\nhttps://github.com/openbmc/stdplus/blob/master/src/stdplus/handle/managed.hpp\n\nI noticed you missed some `crypt_free()`\u0027s below",
+      "revId": "8091c5b958368e5712838a699b7da1e554645df9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

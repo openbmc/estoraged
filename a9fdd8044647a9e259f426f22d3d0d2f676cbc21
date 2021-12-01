@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "d82f90a0_70390589",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-12-01T19:27:37Z",
+      "side": 1,
+      "message": "Hmm.. 20 seconds blocking call is not great, as the BMC may be VERY busy (firmware update for instance) and the 20 seconds may extend to 30-40 seconds. I would suggest asynchronous call here if possible - this can be tackled in an upcoming CL",
+      "parentUuid": "78c4748e_21b41d2e",
+      "range": {
+        "startLine": 13,
+        "startChar": 58,
+        "endLine": 13,
+        "endChar": 68
+      },
+      "revId": "a9fdd8044647a9e259f426f22d3d0d2f676cbc21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c88e75f3_a51894ad",
         "filename": "include/estoraged.hpp",
         "patchSetId": 6
@@ -108,6 +132,30 @@
       "side": 1,
       "message": "OpenBmc style guide follows the \"C++ Core Guidelines (CCG).\"\nhttps://github.com/openbmc/docs/blob/master/cpp-style-and-conventions.md#global-guidelines-and-practices\n\nand the CCG has guidance on reusing variable names. https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md#es12-do-not-reuse-names-in-nested-scopes\n\nTwo different names make sense because there are two different variables. (a parameter and member variable)\n\nIf Brandon is good with it, I am good with it.\n(resolved from my side)",
       "parentUuid": "884dc39f_6d9af3fc",
+      "range": {
+        "startLine": 29,
+        "startChar": 26,
+        "endLine": 29,
+        "endChar": 54
+      },
+      "revId": "a9fdd8044647a9e259f426f22d3d0d2f676cbc21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f6eceac9_400c4c2b",
+        "filename": "include/estoraged.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-12-01T19:27:37Z",
+      "side": 1,
+      "message": "I think the member initialization list is treated a little differently (especially in the case where we\u0027re just passing in the parameter for assignment and not using the parameter variable). I do think this is more stylistic and the best of both worlds is to use Google\u0027s convention of adding _ to denote member variable.\n\nAnyway, some links I found that show that this is valid (which we know) and is explicitly written in the standard (which, maybe points to this not being a discouraged practice):\n\nhttps://stackoverflow.com/questions/6185020/initializing-member-variables-using-the-same-name-for-constructor-arguments-as-f\n\nhttp://eel.is/c++draft/class.base.init#15",
+      "parentUuid": "2f292506_0889fd59",
       "range": {
         "startLine": 29,
         "startChar": 26,
@@ -250,6 +298,30 @@
       "side": 1,
       "message": "I\u0027m relatively new to gTest, so I\u0027m not sure how things are typically done. But it might be nice to de-clutter the estoraged class by moving the wrappers to a separate class (or even a couple different classes). For example, maybe we could have one class for the libcryptsetup wrappers and another for the filesystem-related operations, e.g. mount, unmount, createFilesytem.",
       "parentUuid": "a3231662_370c8f54",
+      "range": {
+        "startLine": 110,
+        "startChar": 4,
+        "endLine": 110,
+        "endChar": 11
+      },
+      "revId": "a9fdd8044647a9e259f426f22d3d0d2f676cbc21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f51c8e0e_2d34db48",
+        "filename": "include/estoraged.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-12-01T19:27:37Z",
+      "side": 1,
+      "message": "That\u0027s what I\u0027ve seen done before but fragmenting everything too much, does lead to having to pass in those wrapper interface (for mocking purposes) into each classes that need it. For these ones though, I do think I prefer having a separate wrapper class. Maybe William can comment",
+      "parentUuid": "8038f4c1_767f5922",
       "range": {
         "startLine": 110,
         "startChar": 4,
@@ -613,6 +685,30 @@
     },
     {
       "key": {
+        "uuid": "82bc79b4_ef669e32",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-12-01T19:27:37Z",
+      "side": 1,
+      "message": "I think this is fine.",
+      "parentUuid": "8f05d94b_9a0411e8",
+      "range": {
+        "startLine": 229,
+        "startChar": 12,
+        "endLine": 229,
+        "endChar": 27
+      },
+      "revId": "a9fdd8044647a9e259f426f22d3d0d2f676cbc21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "db971e16_7801bacd",
         "filename": "src/estoraged.cpp",
         "patchSetId": 6
@@ -695,6 +791,30 @@
       "side": 1,
       "message": "Agreed that we should use the mounting library.\n\nRegarding filesystem, I\u0027m unfortunately not familiar enough - hopefully William can be the tiebreaker here. My 2 cents is that I don\u0027t think using system call is too common within OpenBMC (at least in the repos I\u0027ve touched) so my gut says we should try to use the libraries like the one that John Broadbent suggested - but I also see where the difficulties of supporting different types of file systems will come in.",
       "parentUuid": "e03a7df3_b5a16bd3",
+      "range": {
+        "startLine": 343,
+        "startChar": 0,
+        "endLine": 343,
+        "endChar": 35
+      },
+      "revId": "a9fdd8044647a9e259f426f22d3d0d2f676cbc21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4a10f41d_992bb6be",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-12-01T19:27:37Z",
+      "side": 1,
+      "message": "I think William chimed in regarding filesystem (offline) that this is unfortunately what we\u0027ll have to do. Maybe we can resolve since mount is now using the correct library as pointed out by jebr@?",
+      "parentUuid": "4ac31677_9f8102c7",
       "range": {
         "startLine": 343,
         "startChar": 0,

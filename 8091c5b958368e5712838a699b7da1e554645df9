@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "7a78848a_ae58c8c9",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-12-01T19:28:18Z",
+      "side": 1,
+      "message": "Done. Take a look at what I have now.",
+      "parentUuid": "16448e58_fcf6b8eb",
+      "revId": "8091c5b958368e5712838a699b7da1e554645df9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b4180fee_15ec99f6",
         "filename": "src/estoraged.cpp",
         "patchSetId": 8
@@ -33,6 +51,24 @@
       "revId": "8091c5b958368e5712838a699b7da1e554645df9",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07091576_f6798dc9",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-12-01T19:28:18Z",
+      "side": 1,
+      "message": "Take a look at what I have now. I created a CryptHandle class that uses that wrapper you referenced.",
+      "parentUuid": "b4180fee_15ec99f6",
+      "revId": "8091c5b958368e5712838a699b7da1e554645df9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }

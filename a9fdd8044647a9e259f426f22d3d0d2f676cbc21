@@ -334,6 +334,30 @@
     },
     {
       "key": {
+        "uuid": "143d9829_791cac2f",
+        "filename": "include/estoraged.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-12-01T19:28:18Z",
+      "side": 1,
+      "message": "I went ahead and created a separate class for the cryptsetup wrappers and another class for the filesystem-related wrappers.",
+      "parentUuid": "8038f4c1_767f5922",
+      "range": {
+        "startLine": 110,
+        "startChar": 4,
+        "endLine": 110,
+        "endChar": 11
+      },
+      "revId": "a9fdd8044647a9e259f426f22d3d0d2f676cbc21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6a2ae41e_8a065948",
         "filename": "include/estoraged.hpp",
         "patchSetId": 6
@@ -401,6 +425,30 @@
       "revId": "a9fdd8044647a9e259f426f22d3d0d2f676cbc21",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e1d2a0db_6bb3c78a",
+        "filename": "include/estoraged.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-12-01T19:28:18Z",
+      "side": 1,
+      "message": "I think I added all the param doxygens that I need.",
+      "parentUuid": "8096c1ca_8a5b5f4c",
+      "range": {
+        "startLine": 106,
+        "startChar": 0,
+        "endLine": 160,
+        "endChar": 43
+      },
+      "revId": "a9fdd8044647a9e259f426f22d3d0d2f676cbc21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {

@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a86dcf5b_4ff8bbb1",
+        "filename": "include/erase.hpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-12-02T21:49:08Z",
+      "side": 1,
+      "message": "nit: prefer separate line comment rather than inline. Let\u0027s put this above the declaration",
+      "range": {
+        "startLine": 21,
+        "startChar": 25,
+        "endLine": 21,
+        "endChar": 67
+      },
+      "revId": "6ad166389964ae09651bdcfd278892bd7802a9cc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

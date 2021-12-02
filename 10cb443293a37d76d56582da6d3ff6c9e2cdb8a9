@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "21f95470_4a222c98",
+        "filename": "include/cryptsetupInterface.hpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-12-02T04:19:06Z",
+      "side": 1,
+      "message": "Usually prefer not having code in header - but these are straight passthrough functions so meh, I guess it\u0027s ok",
+      "revId": "10cb443293a37d76d56582da6d3ff6c9e2cdb8a9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fb013cae_bd2d1c9b",
+        "filename": "include/cryptsetupInterface.hpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-12-02T04:19:06Z",
+      "side": 1,
+      "message": "Hmmm, normally the interface class will be pure virtual - and therefore we shouldn\u0027t have the implementation detail in this class, declaring them as\n\n```\nvirtual \u003creturn type\u003e functionName(params) \u003d 0;\n```\n\nThen, we have the actual class Cryptsetup which inherits the interface class, and overrides the virtual functions.\n\nHere is an example: https://github.com/openbmc/phosphor-ipmi-flash/blob/a3f65698000d366b57d2916eae67518f89c1298b/tools/handler.hpp#L12",
+      "range": {
+        "startLine": 14,
+        "startChar": 6,
+        "endLine": 14,
+        "endChar": 25
+      },
+      "revId": "10cb443293a37d76d56582da6d3ff6c9e2cdb8a9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7fe95d24_723fcf5f",
+        "filename": "include/filesystemInterface.hpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-12-02T04:19:06Z",
+      "side": 1,
+      "message": "Same here as above, we\u0027ll need 1 more level of abstraction. Hopefully it\u0027s not too much rework, mostly renaming the class + providing a derived class that uses the interface.",
+      "range": {
+        "startLine": 15,
+        "startChar": 6,
+        "endLine": 15,
+        "endChar": 25
+      },
+      "revId": "10cb443293a37d76d56582da6d3ff6c9e2cdb8a9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "82181817_a1c8d4b1",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-12-02T04:19:06Z",
+      "side": 1,
+      "message": "Same nit as below: I don\u0027t think we need to explicitly set these. If we do want to, we should probably set them as nullptr instead?",
+      "range": {
+        "startLine": 30,
+        "startChar": 32,
+        "endLine": 30,
+        "endChar": 40
+      },
+      "revId": "10cb443293a37d76d56582da6d3ff6c9e2cdb8a9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "20bc24f6_5b55fdac",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-12-02T04:19:06Z",
+      "side": 1,
+      "message": "Same nit as below: I don\u0027t think we need to explicitly set these. If we do want to, we should probably set them as nullptr instead?",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 5
+      },
+      "revId": "10cb443293a37d76d56582da6d3ff6c9e2cdb8a9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b916e36b_ed877084",
+        "filename": "src/test/estoraged_test.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-12-02T04:19:06Z",
+      "side": 1,
+      "message": "nit: I don\u0027t think we need to explicitly set these. If we do want to, we should probably set them as nullptr instead?",
+      "range": {
+        "startLine": 103,
+        "startChar": 43,
+        "endLine": 103,
+        "endChar": 51
+      },
+      "revId": "10cb443293a37d76d56582da6d3ff6c9e2cdb8a9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

@@ -93,6 +93,30 @@
       "revId": "a87e4ac8170f4fc00bb7ea1a7bd7e5f91ddfba87",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1807b915_3e5bde1b",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 30
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-12-02T22:09:12Z",
+      "side": 1,
+      "message": "Ah yeah, sounds like we have a good rationale for using uint64_t - just wanted to point out https://github.com/openbmc/docs/blob/master/cpp-style-and-conventions.md#misc-guidelines where size_t should be used on size, positions, counts, etc. as much as possible.",
+      "parentUuid": "a32b577c_bb33fe0f",
+      "range": {
+        "startLine": 34,
+        "startChar": 12,
+        "endLine": 34,
+        "endChar": 20
+      },
+      "revId": "a87e4ac8170f4fc00bb7ea1a7bd7e5f91ddfba87",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }

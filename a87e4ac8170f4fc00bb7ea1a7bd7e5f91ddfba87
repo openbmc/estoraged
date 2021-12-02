@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "46eb953a_9d3070db",
+        "filename": "include/erase.hpp",
+        "patchSetId": 30
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-12-02T21:50:01Z",
+      "side": 1,
+      "message": "yeah, it looks goofy. Putting it on one line.\n\nthe \"\u003c\" is used by doxygen to denote order: see doxygen.nl/manual/docblocks.html \n(I can get rid of it if you want)",
+      "parentUuid": "4102a679_a0b96332",
+      "range": {
+        "startLine": 21,
+        "startChar": 25,
+        "endLine": 22,
+        "endChar": 28
+      },
+      "revId": "a87e4ac8170f4fc00bb7ea1a7bd7e5f91ddfba87",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dd42195a_f5c3bea9",
         "filename": "src/estoraged.cpp",
         "patchSetId": 30
@@ -36,6 +60,30 @@
       "writtenOn": "2021-12-02T21:16:31Z",
       "side": 1,
       "message": "nit: size_t instead?",
+      "range": {
+        "startLine": 34,
+        "startChar": 12,
+        "endLine": 34,
+        "endChar": 20
+      },
+      "revId": "a87e4ac8170f4fc00bb7ea1a7bd7e5f91ddfba87",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a32b577c_bb33fe0f",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 30
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-12-02T21:50:01Z",
+      "side": 1,
+      "message": "Maybe, size_t is 32 or 64 depending on the architecture. 32 bits will only represent 4.2 GB, \nour chips uses a arm cortext A9 which is 32 bits for size_t. So switching to size_t will causes unexpected failures (not in x86 docker, where size_t is 64 bits)\n\nI could change the ioctl to be the older version of get size in blocks, the get block size. Or I could convert size in bytes to size in KB. Using a 64bit int might be the cleanest, let me know what you think.",
+      "parentUuid": "dd42195a_f5c3bea9",
       "range": {
         "startLine": 34,
         "startChar": 12,

@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4acd993f_598ca0ad",
+        "filename": "include/cryptsetupInterface.hpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-12-02T18:53:56Z",
+      "side": 1,
+      "message": "Yeah, introducing another cpp file just for this seemed unnecessary.",
+      "parentUuid": "21f95470_4a222c98",
+      "revId": "10cb443293a37d76d56582da6d3ff6c9e2cdb8a9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fb013cae_bd2d1c9b",
         "filename": "include/cryptsetupInterface.hpp",
         "patchSetId": 10
@@ -39,6 +57,30 @@
       "revId": "10cb443293a37d76d56582da6d3ff6c9e2cdb8a9",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5c6b8fd1_3e88623c",
+        "filename": "include/cryptsetupInterface.hpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-12-02T18:53:56Z",
+      "side": 1,
+      "message": "Done. Take a look at what I have now.",
+      "parentUuid": "fb013cae_bd2d1c9b",
+      "range": {
+        "startLine": 14,
+        "startChar": 6,
+        "endLine": 14,
+        "endChar": 25
+      },
+      "revId": "10cb443293a37d76d56582da6d3ff6c9e2cdb8a9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "492042dd_d0c059ce",
+        "filename": "include/filesystemInterface.hpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-12-02T18:53:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7fe95d24_723fcf5f",
+      "range": {
+        "startLine": 15,
+        "startChar": 6,
+        "endLine": 15,
+        "endChar": 25
+      },
+      "revId": "10cb443293a37d76d56582da6d3ff6c9e2cdb8a9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "82181817_a1c8d4b1",
         "filename": "src/estoraged.cpp",
         "patchSetId": 10
@@ -85,6 +151,30 @@
       "revId": "10cb443293a37d76d56582da6d3ff6c9e2cdb8a9",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "58cc2aff_a3629fea",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-12-02T18:53:56Z",
+      "side": 1,
+      "message": "Done. I\u0027m not setting it anymore.\n\nAlso, I changed all the null pointer references in this CL from \"NULL\" to \"nullptr\".",
+      "parentUuid": "82181817_a1c8d4b1",
+      "range": {
+        "startLine": 30,
+        "startChar": 32,
+        "endLine": 30,
+        "endChar": 40
+      },
+      "revId": "10cb443293a37d76d56582da6d3ff6c9e2cdb8a9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -111,6 +201,30 @@
     },
     {
       "key": {
+        "uuid": "0053d56d_501a9d6b",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-12-02T18:53:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "20bc24f6_5b55fdac",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 5
+      },
+      "revId": "10cb443293a37d76d56582da6d3ff6c9e2cdb8a9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b916e36b_ed877084",
         "filename": "src/test/estoraged_test.cpp",
         "patchSetId": 10
@@ -131,6 +245,30 @@
       "revId": "10cb443293a37d76d56582da6d3ff6c9e2cdb8a9",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "425f829f_0e0af7ac",
+        "filename": "src/test/estoraged_test.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-12-02T18:53:56Z",
+      "side": 1,
+      "message": "I removed this. The only reason I was setting this to NULL was to silence this warning:\n\nsrc/test/estoraged_test.cpp:106:5: warning: Member variable \u0027eStoragedTest::mockCryptIface\u0027 is not initialized in the constructor. [uninitMemberVar]\n    eStoragedTest() :\n    ^\nsrc/test/estoraged_test.cpp:106:5: warning: Member variable \u0027eStoragedTest::mockFsIface\u0027 is not initialized in the constructor. [uninitMemberVar]\n    eStoragedTest() :\n\nThose member variables actually get initialized in the SetUp() function, not the constructor.",
+      "parentUuid": "b916e36b_ed877084",
+      "range": {
+        "startLine": 103,
+        "startChar": 43,
+        "endLine": 103,
+        "endChar": 51
+      },
+      "revId": "10cb443293a37d76d56582da6d3ff6c9e2cdb8a9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }

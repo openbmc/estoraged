@@ -16,6 +16,24 @@
       "revId": "b810c926021976665707f90d460aec0300f5ccf1",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fc851f55_889d6ccd",
+        "filename": "include/cryptsetupInterface.hpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-12-03T17:55:23Z",
+      "side": 1,
+      "message": "I created a follow-up commit to address this: https://gerrit.openbmc-project.xyz/c/openbmc/estoraged/+/49312\n\nLet me know if that\u0027s what you\u0027re going for.",
+      "parentUuid": "f8e67ff1_b1e9d3b3",
+      "revId": "b810c926021976665707f90d460aec0300f5ccf1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }

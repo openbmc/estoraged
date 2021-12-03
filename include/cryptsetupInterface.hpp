@@ -154,27 +154,31 @@ class CryptHandle
   public:
     /** @brief Constructor for CryptHandle
      *
-     *  @param[out] cd - pointer to crypt_device*, to be allocated
      *  @param[in] device - path to device file
      */
-    CryptHandle(struct crypt_device** cd, const char* device) :
-        handle(init(cd, device))
+    explicit CryptHandle(const char* device) : handle(init(device))
     {}
 
+    /** @brief Get a pointer to the crypt_device struct. */
+    struct crypt_device* get()
+    {
+        return *handle;
+    }
+
+  private:
     /** @brief Allocate and initialize the crypt_device struct
      *
-     *  @param[out] cd - pointer to crypt_device*, to be allocated
      *  @param[in] device - path to device file
      */
-    struct crypt_device* init(struct crypt_device** cd, const char* device)
+    struct crypt_device* init(const char* device)
     {
-        int retval = crypt_init(cd, device);
+        int retval = crypt_init(&cryptDev, device);
         if (retval < 0)
         {
             return nullptr;
         }
 
-        return *cd;
+        return cryptDev;
     }
 
     /** @brief Free the crypt_device struct
@@ -185,6 +189,9 @@ class CryptHandle
     {
         crypt_free(cd);
     }
+
+    /** @brief crypt_device struct that is being managed by this class. */
+    struct crypt_device* cryptDev;
 
     /** @brief Managed handle to crypt_device struct */
     stdplus::Managed<struct crypt_device*>::Handle<cryptFree> handle;

@@ -26,17 +26,16 @@ void eStoraged::format(std::vector<uint8_t> password)
     std::string msg = "OpenBMC.0.1.DriveFormat";
     lg2::info("Starting format", "REDFISH_MESSAGE_ID", msg);
 
-    struct crypt_device* cryptDev;
-    CryptHandle cryptHandle(&cryptDev, devPath.c_str());
-    if (*cryptHandle.handle == nullptr)
+    CryptHandle cryptHandle(devPath.c_str());
+    if (cryptHandle.get() == nullptr)
     {
         lg2::error("Failed to initialize crypt device", "REDFISH_MESSAGE_ID",
                    std::string("OpenBMC.0.1.FormatFail"));
         throw EncryptionError();
     }
 
-    formatLuksDev(cryptDev, password);
-    activateLuksDev(cryptDev, password);
+    formatLuksDev(cryptHandle.get(), password);
+    activateLuksDev(cryptHandle.get(), password);
 
     createFilesystem();
     mountFilesystem();
@@ -63,16 +62,15 @@ void eStoraged::unlock(std::vector<uint8_t> password)
     std::string msg = "OpenBMC.0.1.DriveUnlock";
     lg2::info("Starting unlock", "REDFISH_MESSAGE_ID", msg);
 
-    struct crypt_device* cryptDev;
-    CryptHandle cryptHandle(&cryptDev, devPath.c_str());
-    if (*cryptHandle.handle == nullptr)
+    CryptHandle cryptHandle(devPath.c_str());
+    if (cryptHandle.get() == nullptr)
     {
         lg2::error("Failed to initialize crypt device", "REDFISH_MESSAGE_ID",
                    std::string("OpenBMC.0.1.UnlockFail"));
         throw EncryptionError();
     }
 
-    activateLuksDev(cryptDev, password);
+    activateLuksDev(cryptHandle.get(), password);
     mountFilesystem();
 }
 

@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "7448bcbe_a07c5940",
+        "filename": "include/erase.hpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-12-03T04:35:42Z",
+      "side": 1,
+      "message": "I used to need a c_string to open a file, that is typically done by creating a  std::string from a string_view then use the real string to create the c_string. It felt strange passing a string_view only to immediately create a new std::string.\n \nI don\u0027t know if the std++ will let me open a file with only a std::string",
+      "parentUuid": "6f00f033_8608a195",
+      "revId": "4e3f24c3ed994459d3adbd5da10e22d3a7bb15fa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d14e0715_d91544fe",
         "filename": "include/estoraged_conf.hpp.in",
         "patchSetId": 33
@@ -30,6 +48,24 @@
       "writtenOn": "2021-12-03T00:52:55Z",
       "side": 1,
       "message": "You don\u0027t need to provide an input file if you are just doing trivial value setting.",
+      "revId": "4e3f24c3ed994459d3adbd5da10e22d3a7bb15fa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "599a5afc_985973fe",
+        "filename": "include/estoraged_conf.hpp.in",
+        "patchSetId": 33
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-12-03T04:35:42Z",
+      "side": 1,
+      "message": "The goals is too allow Expected size for the eMMC can be set in the recipe, so they are not public, and easily changed . Wedig and I also discussed reading this information from a config file, or having it passed in as arguments at start. What are your thoughts?\n \nI could verifyDriveGeometry.cpp and verifyGeometry_test.cpp as a meson config files, letting me use @ERASE_*_GEOMETRY@ in it, and making this file unnecessary?",
+      "parentUuid": "d14e0715_d91544fe",
       "revId": "4e3f24c3ed994459d3adbd5da10e22d3a7bb15fa",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "3f519dfe_aa8d64d4",
+        "filename": "include/verifyDriveGeometry.hpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-12-03T04:35:42Z",
+      "side": 1,
+      "message": "good call, I forgot to remove them\ndone",
+      "parentUuid": "932c4631_35747e6c",
+      "revId": "4e3f24c3ed994459d3adbd5da10e22d3a7bb15fa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e04a0e32_c53151cb",
         "filename": "include/verifyDriveGeometry.hpp",
         "patchSetId": 33
@@ -67,6 +121,24 @@
       "revId": "4e3f24c3ed994459d3adbd5da10e22d3a7bb15fa",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f099688d_32ef2ea3",
+        "filename": "include/verifyDriveGeometry.hpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-12-03T04:35:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e04a0e32_c53151cb",
+      "revId": "4e3f24c3ed994459d3adbd5da10e22d3a7bb15fa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "ed44fe88_c69c2bc7",
+        "filename": "src/erase/erase.cpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-12-03T04:35:42Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "237d71a2_e7d914ef",
+      "revId": "4e3f24c3ed994459d3adbd5da10e22d3a7bb15fa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a55bb27_8cd7d5e1",
         "filename": "src/erase/erase.cpp",
         "patchSetId": 33
@@ -101,6 +191,24 @@
       "revId": "4e3f24c3ed994459d3adbd5da10e22d3a7bb15fa",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31ff46e6_f7a30866",
+        "filename": "src/erase/erase.cpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-12-03T04:35:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a55bb27_8cd7d5e1",
+      "revId": "4e3f24c3ed994459d3adbd5da10e22d3a7bb15fa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "5f1ab0a1_4b453a58",
+        "filename": "src/erase/erase.cpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-12-03T04:35:42Z",
+      "side": 1,
+      "message": "neat, done",
+      "parentUuid": "8b006570_b4c45f55",
+      "revId": "4e3f24c3ed994459d3adbd5da10e22d3a7bb15fa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e14eb424_c1389abe",
         "filename": "src/estoraged.cpp",
         "patchSetId": 33
@@ -135,6 +261,24 @@
       "revId": "4e3f24c3ed994459d3adbd5da10e22d3a7bb15fa",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "173641e1_747cc059",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-12-03T04:35:42Z",
+      "side": 1,
+      "message": "makes sense",
+      "parentUuid": "e14eb424_c1389abe",
+      "revId": "4e3f24c3ed994459d3adbd5da10e22d3a7bb15fa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -170,6 +314,24 @@
       "revId": "4e3f24c3ed994459d3adbd5da10e22d3a7bb15fa",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f7ca377c_07828290",
+        "filename": "src/test/erase/meson.build",
+        "patchSetId": 33
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-12-03T04:35:42Z",
+      "side": 1,
+      "message": "I moved my testing stuff into what John Wedig meson\nThanks for looking at it",
+      "parentUuid": "1dce24ca_2e788c2a",
+      "revId": "4e3f24c3ed994459d3adbd5da10e22d3a7bb15fa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }

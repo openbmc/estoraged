@@ -1,0 +1,157 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6f00f033_8608a195",
+        "filename": "include/erase.hpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2021-12-03T00:52:55Z",
+      "side": 1,
+      "message": "We generally prefer to pass string_views if we are going to store in a string anyway. It would reduce all but the final needed copy.",
+      "revId": "4e3f24c3ed994459d3adbd5da10e22d3a7bb15fa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d14e0715_d91544fe",
+        "filename": "include/estoraged_conf.hpp.in",
+        "patchSetId": 33
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2021-12-03T00:52:55Z",
+      "side": 1,
+      "message": "You don\u0027t need to provide an input file if you are just doing trivial value setting.",
+      "revId": "4e3f24c3ed994459d3adbd5da10e22d3a7bb15fa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "932c4631_35747e6c",
+        "filename": "include/verifyDriveGeometry.hpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2021-12-03T00:52:55Z",
+      "side": 1,
+      "message": "Don\u0027t include things in the header that aren\u0027t used here. Prefer to add them to the CPP file.",
+      "revId": "4e3f24c3ed994459d3adbd5da10e22d3a7bb15fa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e04a0e32_c53151cb",
+        "filename": "include/verifyDriveGeometry.hpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2021-12-03T00:52:55Z",
+      "side": 1,
+      "message": "Pass a string_view",
+      "revId": "4e3f24c3ed994459d3adbd5da10e22d3a7bb15fa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "237d71a2_e7d914ef",
+        "filename": "src/erase/erase.cpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2021-12-03T00:52:55Z",
+      "side": 1,
+      "message": "nit: No need for a temporary string representation.",
+      "revId": "4e3f24c3ed994459d3adbd5da10e22d3a7bb15fa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a55bb27_8cd7d5e1",
+        "filename": "src/erase/erase.cpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2021-12-03T00:52:55Z",
+      "side": 1,
+      "message": "Prefer `stdplus::fd::open` as it checks the error status from fd. I know I didn\u0027t add O_NDELAY, but it shouldn\u0027t do anything since you don\u0027t read / write?",
+      "revId": "4e3f24c3ed994459d3adbd5da10e22d3a7bb15fa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b006570_b4c45f55",
+        "filename": "src/erase/erase.cpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2021-12-03T00:52:55Z",
+      "side": 1,
+      "message": "No need to check RC, fd.ioctl internally throws an exception if it is negative so this is a noop.",
+      "revId": "4e3f24c3ed994459d3adbd5da10e22d3a7bb15fa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e14eb424_c1389abe",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2021-12-03T00:52:55Z",
+      "side": 1,
+      "message": "You might consider dropping the default so that you get a compilation error if new enum definitions are added.",
+      "revId": "4e3f24c3ed994459d3adbd5da10e22d3a7bb15fa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec8f1bd6_2135e5a6",
+        "filename": "src/test/erase/meson.build",
+        "patchSetId": 33
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2021-12-03T00:52:55Z",
+      "side": 1,
+      "message": "I would copy this iteration of the gtest stuff as it fixes warnings and missing thread dependency.\n\nhttps://github.com/openbmc/phosphor-networkd/blob/master/test/meson.build#L1",
+      "revId": "4e3f24c3ed994459d3adbd5da10e22d3a7bb15fa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

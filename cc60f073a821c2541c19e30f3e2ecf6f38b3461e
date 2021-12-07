@@ -1,0 +1,366 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f9cc7dc1_6a7a4ecb",
+        "filename": "include/erase.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-12-07T19:33:31Z",
+      "side": 1,
+      "message": "Let\u0027s include this in the prior CL since these are required from the start (missed on the first review)",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 2
+      },
+      "revId": "cc60f073a821c2541c19e30f3e2ecf6f38b3461e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe8e51f0_9d614ba9",
+        "filename": "include/sanitize.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-12-07T19:33:31Z",
+      "side": 1,
+      "message": "If this is supposed to be an interface class, would prefer all methods be pure virtual",
+      "range": {
+        "startLine": 13,
+        "startChar": 6,
+        "endLine": 13,
+        "endChar": 14
+      },
+      "revId": "cc60f073a821c2541c19e30f3e2ecf6f38b3461e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aafa7ff3_e880fe9d",
+        "filename": "include/sanitize.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-12-07T19:33:31Z",
+      "side": 1,
+      "message": "Are we going to implement anything specific in the Sanitize destructor? I don\u0027t think we need this if the base class declares the destructor virtual default",
+      "range": {
+        "startLine": 18,
+        "startChar": 3,
+        "endLine": 19,
+        "endChar": 6
+      },
+      "revId": "cc60f073a821c2541c19e30f3e2ecf6f38b3461e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a621c98_92216875",
+        "filename": "include/sanitize.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-12-07T19:33:31Z",
+      "side": 1,
+      "message": "If an interface class (and thus pure virutal), we shouldn\u0027t have private class, perhaps you meant protected here?",
+      "range": {
+        "startLine": 21,
+        "startChar": 2,
+        "endLine": 24,
+        "endChar": 58
+      },
+      "revId": "cc60f073a821c2541c19e30f3e2ecf6f38b3461e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e881672_9a4bc4c4",
+        "filename": "include/sanitize.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-12-07T19:33:31Z",
+      "side": 1,
+      "message": "minor nit: prefer \"Impl\" for \"Implementation\" - I\u0027m guess this that\u0027s what this is?",
+      "range": {
+        "startLine": 27,
+        "startChar": 6,
+        "endLine": 27,
+        "endChar": 17
+      },
+      "revId": "cc60f073a821c2541c19e30f3e2ecf6f38b3461e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a027e530_9b231e1a",
+        "filename": "include/sanitize.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-12-07T19:33:31Z",
+      "side": 1,
+      "message": "Include string_view in #include above",
+      "range": {
+        "startLine": 30,
+        "startChar": 21,
+        "endLine": 30,
+        "endChar": 32
+      },
+      "revId": "cc60f073a821c2541c19e30f3e2ecf6f38b3461e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "73b4cf42_4983ccb8",
+        "filename": "include/sanitize.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-12-07T19:33:31Z",
+      "side": 1,
+      "message": "Same here",
+      "range": {
+        "startLine": 31,
+        "startChar": 5,
+        "endLine": 31,
+        "endChar": 16
+      },
+      "revId": "cc60f073a821c2541c19e30f3e2ecf6f38b3461e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a2f549d4_a4a0eb32",
+        "filename": "src/erase/sanitize.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-12-07T19:33:31Z",
+      "side": 1,
+      "message": "IWYU, need to include string, and string_view includes",
+      "revId": "cc60f073a821c2541c19e30f3e2ecf6f38b3461e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "30825412_d4148bb4",
+        "filename": "src/erase/sanitize.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-12-07T19:33:31Z",
+      "side": 1,
+      "message": "stylistic nit: prefer having the constructor declared in the header",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 2
+      },
+      "revId": "cc60f073a821c2541c19e30f3e2ecf6f38b3461e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a596a3c0_466982d1",
+        "filename": "src/erase/sanitize.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-12-07T19:33:31Z",
+      "side": 1,
+      "message": "question: is this needed? If they should always start with 0s, maybe we should set the struct members to all be set to 0 in struct declaration?",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 37
+      },
+      "revId": "cc60f073a821c2541c19e30f3e2ecf6f38b3461e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "50385c4d_7892f29d",
+        "filename": "src/erase/sanitize.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-12-07T19:33:31Z",
+      "side": 1,
+      "message": "Should this be error?",
+      "range": {
+        "startLine": 73,
+        "startChar": 9,
+        "endLine": 73,
+        "endChar": 14
+      },
+      "revId": "cc60f073a821c2541c19e30f3e2ecf6f38b3461e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f69e7ea4_4800646d",
+        "filename": "src/erase/sanitize.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-12-07T19:33:31Z",
+      "side": 1,
+      "message": "stylistic nit: prefer having the constructor declared in the header",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 2
+      },
+      "revId": "cc60f073a821c2541c19e30f3e2ecf6f38b3461e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "84fb81c3_746ac2f2",
+        "filename": "src/test/erase/meson.build",
+        "patchSetId": 8
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-12-07T19:33:31Z",
+      "side": 1,
+      "message": "Seems like we already have the test meson.build one directory up - should we just include \"sanitize\" to the existing meson instead?\n\nOtherwise, you could use subdirectory and append to tests in each subdirectories if you prefer.\n\nEdit: Looking below, seems like you added it already? I think we can delete this then right?",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 19
+      },
+      "revId": "cc60f073a821c2541c19e30f3e2ecf6f38b3461e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0b1e21d7_6ac759a8",
+        "filename": "src/test/erase/sanitize_test.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-12-07T19:33:31Z",
+      "side": 1,
+      "message": "There should be \"override\" somewhere here",
+      "range": {
+        "startLine": 27,
+        "startChar": 16,
+        "endLine": 29,
+        "endChar": 0
+      },
+      "revId": "cc60f073a821c2541c19e30f3e2ecf6f38b3461e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b6315375_d439d6c2",
+        "filename": "src/test/erase/sanitize_test.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-12-07T19:33:31Z",
+      "side": 1,
+      "message": "Should we have more test coverages?\n\nCould we be a little more descriptive in the test? or add a comment for test description.",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 23
+      },
+      "revId": "cc60f073a821c2541c19e30f3e2ecf6f38b3461e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b57973b2_5732c127",
+        "filename": "src/test/erase/sanitize_test.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-12-07T19:33:31Z",
+      "side": 1,
+      "message": "nit: constexpr std::string_view",
+      "range": {
+        "startLine": 33,
+        "startChar": 4,
+        "endLine": 33,
+        "endChar": 15
+      },
+      "revId": "cc60f073a821c2541c19e30f3e2ecf6f38b3461e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

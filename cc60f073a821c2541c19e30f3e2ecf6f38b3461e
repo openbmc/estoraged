@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "fcb8a925_cbe7b046",
+        "filename": "include/erase.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-12-08T04:13:09Z",
+      "side": 1,
+      "message": "A rebase should fix that.",
+      "parentUuid": "f9cc7dc1_6a7a4ecb",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 2
+      },
+      "revId": "cc60f073a821c2541c19e30f3e2ecf6f38b3461e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fe8e51f0_9d614ba9",
         "filename": "include/sanitize.hpp",
         "patchSetId": 8
@@ -36,6 +60,30 @@
       "writtenOn": "2021-12-07T19:33:31Z",
       "side": 1,
       "message": "If this is supposed to be an interface class, would prefer all methods be pure virtual",
+      "range": {
+        "startLine": 13,
+        "startChar": 6,
+        "endLine": 13,
+        "endChar": 14
+      },
+      "revId": "cc60f073a821c2541c19e30f3e2ecf6f38b3461e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6f4a8376_f4f227a3",
+        "filename": "include/sanitize.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-12-08T04:13:09Z",
+      "side": 1,
+      "message": "Santize provides a base class for SanitizeImpl and mockSanitize. Both inherited classes can use the same doSanitize method. But they have different wrapperIOCTL methods.\nThis allows for testing. \n\nLet me know if you have a different design in mind.",
+      "parentUuid": "fe8e51f0_9d614ba9",
       "range": {
         "startLine": 13,
         "startChar": 6,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "40a04e7f_377f3fd7",
+        "filename": "include/sanitize.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-12-08T04:13:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aafa7ff3_e880fe9d",
+      "range": {
+        "startLine": 18,
+        "startChar": 3,
+        "endLine": 19,
+        "endChar": 6
+      },
+      "revId": "cc60f073a821c2541c19e30f3e2ecf6f38b3461e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a621c98_92216875",
         "filename": "include/sanitize.hpp",
         "patchSetId": 8
@@ -91,6 +163,30 @@
       "revId": "cc60f073a821c2541c19e30f3e2ecf6f38b3461e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1da3edeb_af96599b",
+        "filename": "include/sanitize.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-12-08T04:13:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a621c98_92216875",
+      "range": {
+        "startLine": 21,
+        "startChar": 2,
+        "endLine": 24,
+        "endChar": 58
+      },
+      "revId": "cc60f073a821c2541c19e30f3e2ecf6f38b3461e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "9c5152cf_e2516367",
+        "filename": "include/sanitize.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-12-08T04:13:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e881672_9a4bc4c4",
+      "range": {
+        "startLine": 27,
+        "startChar": 6,
+        "endLine": 27,
+        "endChar": 17
+      },
+      "revId": "cc60f073a821c2541c19e30f3e2ecf6f38b3461e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a027e530_9b231e1a",
         "filename": "include/sanitize.hpp",
         "patchSetId": 8
@@ -137,6 +257,30 @@
       "revId": "cc60f073a821c2541c19e30f3e2ecf6f38b3461e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e936df54_404beea3",
+        "filename": "include/sanitize.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-12-08T04:13:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a027e530_9b231e1a",
+      "range": {
+        "startLine": 30,
+        "startChar": 21,
+        "endLine": 30,
+        "endChar": 32
+      },
+      "revId": "cc60f073a821c2541c19e30f3e2ecf6f38b3461e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "5e85ef54_0579af70",
+        "filename": "include/sanitize.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-12-08T04:13:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "73b4cf42_4983ccb8",
+      "range": {
+        "startLine": 31,
+        "startChar": 5,
+        "endLine": 31,
+        "endChar": 16
+      },
+      "revId": "cc60f073a821c2541c19e30f3e2ecf6f38b3461e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a2f549d4_a4a0eb32",
         "filename": "src/erase/sanitize.cpp",
         "patchSetId": 8
@@ -177,6 +345,24 @@
       "revId": "cc60f073a821c2541c19e30f3e2ecf6f38b3461e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a4641d6a_d29942e5",
+        "filename": "src/erase/sanitize.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-12-08T04:13:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a2f549d4_a4a0eb32",
+      "revId": "cc60f073a821c2541c19e30f3e2ecf6f38b3461e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -203,6 +389,30 @@
     },
     {
       "key": {
+        "uuid": "4e56d9d1_8b6b0b23",
+        "filename": "src/erase/sanitize.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-12-08T04:13:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "30825412_d4148bb4",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 2
+      },
+      "revId": "cc60f073a821c2541c19e30f3e2ecf6f38b3461e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a596a3c0_466982d1",
         "filename": "src/erase/sanitize.cpp",
         "patchSetId": 8
@@ -214,6 +424,30 @@
       "writtenOn": "2021-12-07T19:33:31Z",
       "side": 1,
       "message": "question: is this needed? If they should always start with 0s, maybe we should set the struct members to all be set to 0 in struct declaration?",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 37
+      },
+      "revId": "cc60f073a821c2541c19e30f3e2ecf6f38b3461e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1aea218a_3706b0a2",
+        "filename": "src/erase/sanitize.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-12-08T04:13:09Z",
+      "side": 1,
+      "message": "The struct has 16 elements in it, and ideally if new fields are added I don\u0027t want to have to update this code. \n\nMaybe initializing the struct to default ( \u003d{}) will be more clear. Let me know if you would prefer the longer explicit initialization for each field, and I will switch to it.",
+      "parentUuid": "a596a3c0_466982d1",
       "range": {
         "startLine": 53,
         "startChar": 0,
@@ -249,6 +483,30 @@
     },
     {
       "key": {
+        "uuid": "d53a12b4_678a1858",
+        "filename": "src/erase/sanitize.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-12-08T04:13:09Z",
+      "side": 1,
+      "message": "it should be info. thanks for the catch",
+      "parentUuid": "50385c4d_7892f29d",
+      "range": {
+        "startLine": 73,
+        "startChar": 9,
+        "endLine": 73,
+        "endChar": 14
+      },
+      "revId": "cc60f073a821c2541c19e30f3e2ecf6f38b3461e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f69e7ea4_4800646d",
         "filename": "src/erase/sanitize.cpp",
         "patchSetId": 8
@@ -269,6 +527,30 @@
       "revId": "cc60f073a821c2541c19e30f3e2ecf6f38b3461e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35c0543b_db070e20",
+        "filename": "src/erase/sanitize.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-12-08T04:13:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f69e7ea4_4800646d",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 2
+      },
+      "revId": "cc60f073a821c2541c19e30f3e2ecf6f38b3461e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -295,6 +577,30 @@
     },
     {
       "key": {
+        "uuid": "450204fe_ce2c02d2",
+        "filename": "src/test/erase/meson.build",
+        "patchSetId": 8
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-12-08T04:13:09Z",
+      "side": 1,
+      "message": "yep, this was a merge based oversight on my part",
+      "parentUuid": "84fb81c3_746ac2f2",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 19
+      },
+      "revId": "cc60f073a821c2541c19e30f3e2ecf6f38b3461e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0b1e21d7_6ac759a8",
         "filename": "src/test/erase/sanitize_test.cpp",
         "patchSetId": 8
@@ -315,6 +621,30 @@
       "revId": "cc60f073a821c2541c19e30f3e2ecf6f38b3461e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c85342c_d500e502",
+        "filename": "src/test/erase/sanitize_test.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-12-08T04:13:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0b1e21d7_6ac759a8",
+      "range": {
+        "startLine": 27,
+        "startChar": 16,
+        "endLine": 29,
+        "endChar": 0
+      },
+      "revId": "cc60f073a821c2541c19e30f3e2ecf6f38b3461e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -341,6 +671,30 @@
     },
     {
       "key": {
+        "uuid": "3178bb9f_9e66c3f3",
+        "filename": "src/test/erase/sanitize_test.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-12-08T04:13:09Z",
+      "side": 1,
+      "message": "let me know if you think I need more cases",
+      "parentUuid": "b6315375_d439d6c2",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 23
+      },
+      "revId": "cc60f073a821c2541c19e30f3e2ecf6f38b3461e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b57973b2_5732c127",
         "filename": "src/test/erase/sanitize_test.cpp",
         "patchSetId": 8
@@ -361,6 +715,30 @@
       "revId": "cc60f073a821c2541c19e30f3e2ecf6f38b3461e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66335ffe_bc3fec42",
+        "filename": "src/test/erase/sanitize_test.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-12-08T04:13:09Z",
+      "side": 1,
+      "message": "is that the same as putting as MockSanitize goodSanitize(\"/dev/null\"); ?\n\ndone",
+      "parentUuid": "b57973b2_5732c127",
+      "range": {
+        "startLine": 33,
+        "startChar": 4,
+        "endLine": 33,
+        "endChar": 15
+      },
+      "revId": "cc60f073a821c2541c19e30f3e2ecf6f38b3461e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }

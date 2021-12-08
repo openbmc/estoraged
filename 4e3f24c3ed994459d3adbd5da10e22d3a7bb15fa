@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "c95732b5_02ac4330",
+        "filename": "include/erase.hpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2021-12-08T11:09:42Z",
+      "side": 1,
+      "message": "Yeah, ultimately the class should store an std::string since it needs to outlive the input parameters potentially. I was just saying the input arguments should be string_views.",
+      "parentUuid": "924f868c_94e786f4",
+      "revId": "4e3f24c3ed994459d3adbd5da10e22d3a7bb15fa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d14e0715_d91544fe",
         "filename": "include/estoraged_conf.hpp.in",
         "patchSetId": 33
@@ -84,6 +102,24 @@
       "side": 1,
       "message": "The goals is too allow Expected size for the eMMC can be set in the recipe, so they are not public, and easily changed . Wedig and I also discussed reading this information from a config file, or having it passed in as arguments at start. What are your thoughts?\n \nI could verifyDriveGeometry.cpp and verifyGeometry_test.cpp as a meson config files, letting me use @ERASE_*_GEOMETRY@ in it, and making this file unnecessary?",
       "parentUuid": "d14e0715_d91544fe",
+      "revId": "4e3f24c3ed994459d3adbd5da10e22d3a7bb15fa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f48ea858_3ae285ed",
+        "filename": "include/estoraged_conf.hpp.in",
+        "patchSetId": 33
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2021-12-08T11:09:42Z",
+      "side": 1,
+      "message": "My suggestion wasn\u0027t against using compile time params, just that you don\u0027t need to explicitly define a header file to have contents filled in. You can take advantage of meson doing this for you.\n\nhttps://mesonbuild.com/Configuration.html#configuring-without-an-input-file",
+      "parentUuid": "599a5afc_985973fe",
       "revId": "4e3f24c3ed994459d3adbd5da10e22d3a7bb15fa",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
@@ -262,6 +298,24 @@
       "revId": "4e3f24c3ed994459d3adbd5da10e22d3a7bb15fa",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f39e160_b24ad95c",
+        "filename": "src/erase/erase.cpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2021-12-08T11:09:42Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5f1ab0a1_4b453a58",
+      "revId": "4e3f24c3ed994459d3adbd5da10e22d3a7bb15fa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {

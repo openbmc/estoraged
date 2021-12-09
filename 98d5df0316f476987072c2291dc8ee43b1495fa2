@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "df110d89_7e0a8352",
+        "filename": "src/erase/erase.cpp",
+        "patchSetId": 37
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-12-09T18:39:59Z",
+      "side": 1,
+      "message": "cool, it works.\nI did not see it the fd/create.cpp?\n \nhttps://github.com/openbmc/stdplus/blob/fd0f551cbdd26229dcdcfde2d6195bdf9f258197/src/stdplus/fd/create.cpp#L12",
+      "parentUuid": "85faee12_74b9b917",
+      "revId": "98d5df0316f476987072c2291dc8ee43b1495fa2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "36590103_7efbd6af",
         "filename": "src/erase/erase.cpp",
         "patchSetId": 37
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "2dddcebb_a5f0f1a3",
+        "filename": "src/erase/erase.cpp",
+        "patchSetId": 37
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-12-09T18:39:59Z",
+      "side": 1,
+      "message": "no. I will combine them",
+      "parentUuid": "36590103_7efbd6af",
+      "revId": "98d5df0316f476987072c2291dc8ee43b1495fa2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "87574342_5310118c",
         "filename": "src/erase/erase.cpp",
         "patchSetId": 37
@@ -50,6 +86,24 @@
       "revId": "98d5df0316f476987072c2291dc8ee43b1495fa2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "af82ef18_a1405833",
+        "filename": "src/erase/erase.cpp",
+        "patchSetId": 37
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-12-09T18:39:59Z",
+      "side": 1,
+      "message": "sounds good, I will collapse it.",
+      "parentUuid": "87574342_5310118c",
+      "revId": "98d5df0316f476987072c2291dc8ee43b1495fa2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }

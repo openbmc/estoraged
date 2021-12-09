@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "36590103_7efbd6af",
+        "filename": "src/erase/erase.cpp",
+        "patchSetId": 37
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2021-12-09T10:02:19Z",
+      "side": 1,
+      "message": "The case here is different from below?",
+      "revId": "98d5df0316f476987072c2291dc8ee43b1495fa2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "87574342_5310118c",
+        "filename": "src/erase/erase.cpp",
+        "patchSetId": 37
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2021-12-09T10:02:19Z",
+      "side": 1,
+      "message": "These messages are the same, collapse the calls into a single try / catch. The error output from the exception could explain the failure anyway to give unique information.",
+      "revId": "98d5df0316f476987072c2291dc8ee43b1495fa2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

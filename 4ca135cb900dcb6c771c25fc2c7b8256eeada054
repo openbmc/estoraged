@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "79e13d8e_308da39a",
+        "filename": "src/test/erase/sanitize_test.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-12-10T00:43:56Z",
+      "side": 1,
+      "message": "Same here and below, we should probably just declare the string inplace in the initialization",
+      "range": {
+        "startLine": 43,
+        "startChar": 28,
+        "endLine": 51,
+        "endChar": 53
+      },
+      "revId": "4ca135cb900dcb6c771c25fc2c7b8256eeada054",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

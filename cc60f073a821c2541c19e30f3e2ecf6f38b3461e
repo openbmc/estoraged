@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "94abc283_15930cc5",
+        "filename": "include/sanitize.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-12-10T00:43:56Z",
+      "side": 1,
+      "message": "Ah yes, similar to the suggestion I gave to John Wedig for the other CL - the wrapper should be a separate class that you pass to Sanitize here as an interface (and you can mock the wrapper).\n\nhttps://gerrit.openbmc-project.xyz/c/openbmc/estoraged/+/48972 - please take a look at how eStoraged and filesystemInterface is structured.\n\nHow I imagine this would be designed and tested would be - Sanitize is no longer an interface + implementation class (we could, if you think you\u0027ll need to mock the Sanitize class in the future) and we\u0027ll have IOCTL as an interface + implementation class. That way, in your test you\u0027ll create the actual Sanitize class but pass in the mock IOCTL wrapper.\n\nIn this case since it\u0027s only a single API, it does feel like a bit of an overkill.. so I\u0027m open to other suggestions / opinions.",
+      "parentUuid": "6f4a8376_f4f227a3",
+      "range": {
+        "startLine": 13,
+        "startChar": 6,
+        "endLine": 13,
+        "endChar": 14
+      },
+      "revId": "cc60f073a821c2541c19e30f3e2ecf6f38b3461e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "aafa7ff3_e880fe9d",
         "filename": "include/sanitize.hpp",
         "patchSetId": 8
@@ -460,6 +484,30 @@
     },
     {
       "key": {
+        "uuid": "688c3270_6b7e52b6",
+        "filename": "src/erase/sanitize.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-12-10T00:43:56Z",
+      "side": 1,
+      "message": "Yup, this is cleaner.\n\nWhen I suggested setting the struct members to 0 in struct declaration, I meant in declaration of the struct - but just realized mmc_ioc_cmd is not something we can touch. This looks good now.",
+      "parentUuid": "1aea218a_3706b0a2",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 37
+      },
+      "revId": "cc60f073a821c2541c19e30f3e2ecf6f38b3461e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "50385c4d_7892f29d",
         "filename": "src/erase/sanitize.cpp",
         "patchSetId": 8
@@ -739,6 +787,30 @@
       "revId": "cc60f073a821c2541c19e30f3e2ecf6f38b3461e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "029cf48f_9bc80e89",
+        "filename": "src/test/erase/sanitize_test.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-12-10T00:43:56Z",
+      "side": 1,
+      "message": "Oh yeah, that\u0027s probably better. since we don\u0027t have to declare a variable we won\u0027t use besides the initialization here.",
+      "parentUuid": "66335ffe_bc3fec42",
+      "range": {
+        "startLine": 33,
+        "startChar": 4,
+        "endLine": 33,
+        "endChar": 15
+      },
+      "revId": "cc60f073a821c2541c19e30f3e2ecf6f38b3461e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }

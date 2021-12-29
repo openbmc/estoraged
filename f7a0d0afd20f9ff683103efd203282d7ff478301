@@ -1,6 +1,92 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2b8aa0b_bd4e179c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-12-29T18:45:46Z",
+      "side": 1,
+      "message": "I think you\u0027re supposed to say \"Add pattern...\", right?",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 4
+      },
+      "revId": "f7a0d0afd20f9ff683103efd203282d7ff478301",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfda192f_4760e761",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-12-29T18:45:46Z",
+      "side": 1,
+      "message": "too many characters on one line?",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 73
+      },
+      "revId": "f7a0d0afd20f9ff683103efd203282d7ff478301",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a396693_82dd95ab",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-12-29T18:45:46Z",
+      "side": 1,
+      "message": "fix this",
+      "range": {
+        "startLine": 10,
+        "startChar": 10,
+        "endLine": 10,
+        "endChar": 21
+      },
+      "revId": "f7a0d0afd20f9ff683103efd203282d7ff478301",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dab0c34b_da94a6e6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-12-29T18:45:46Z",
+      "side": 1,
+      "message": "Add a tested section?",
+      "revId": "f7a0d0afd20f9ff683103efd203282d7ff478301",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "e764ea62_ef06e70d",
@@ -14,6 +100,132 @@
       "writtenOn": "2021-12-29T04:00:46Z",
       "side": 1,
       "message": "Thanks for taking a look at this.\nLet me know what you think",
+      "revId": "f7a0d0afd20f9ff683103efd203282d7ff478301",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "caf4f999_b9934628",
+        "filename": "include/pattern.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-12-29T18:45:46Z",
+      "side": 1,
+      "message": "This file needs doxygens",
+      "revId": "f7a0d0afd20f9ff683103efd203282d7ff478301",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a24cde68_3c6838ca",
+        "filename": "include/pattern.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-12-29T18:45:46Z",
+      "side": 1,
+      "message": "Clean this up?",
+      "range": {
+        "startLine": 20,
+        "startChar": 4,
+        "endLine": 20,
+        "endChar": 71
+      },
+      "revId": "f7a0d0afd20f9ff683103efd203282d7ff478301",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57c4782c_e7ca7f3e",
+        "filename": "meson.build",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-12-29T18:45:46Z",
+      "side": 1,
+      "message": "Unnecessary diff?",
+      "revId": "f7a0d0afd20f9ff683103efd203282d7ff478301",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc4e7234_58c574ea",
+        "filename": "src/erase/pattern.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-12-29T18:45:46Z",
+      "side": 1,
+      "message": "Does this return value serve a purpose? Maybe writePattern and verifyPattern should be void?",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 3
+      },
+      "revId": "f7a0d0afd20f9ff683103efd203282d7ff478301",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73255d6e_e6d564c1",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-12-29T18:45:46Z",
+      "side": 1,
+      "message": "Why is this commented out?",
+      "range": {
+        "startLine": 68,
+        "startChar": 13,
+        "endLine": 72,
+        "endChar": 14
+      },
+      "revId": "f7a0d0afd20f9ff683103efd203282d7ff478301",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6aa001a4_bc40696b",
+        "filename": "src/test/erase/pattern_test.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-12-29T18:45:46Z",
+      "side": 1,
+      "message": "Clean this up?",
+      "range": {
+        "startLine": 23,
+        "startChar": 4,
+        "endLine": 24,
+        "endChar": 72
+      },
       "revId": "f7a0d0afd20f9ff683103efd203282d7ff478301",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

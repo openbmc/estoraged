@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "655700bc_98c3f0d4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-12-30T21:27:24Z",
+      "side": 1,
+      "message": "Yes, the imperative mood or whatnot that we prefer for commit header \u003d \"Add pattern\"",
+      "parentUuid": "a2b8aa0b_bd4e179c",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 4
+      },
+      "revId": "f7a0d0afd20f9ff683103efd203282d7ff478301",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cfda192f_4760e761",
         "filename": "/COMMIT_MSG",
         "patchSetId": 6
@@ -42,6 +66,29 @@
         "startChar": 0,
         "endLine": 9,
         "endChar": 73
+      },
+      "revId": "f7a0d0afd20f9ff683103efd203282d7ff478301",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fb5960d_26c16e11",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-12-30T21:27:24Z",
+      "side": 1,
+      "message": "non-compressible?",
+      "range": {
+        "startLine": 9,
+        "startChar": 24,
+        "endLine": 9,
+        "endChar": 28
       },
       "revId": "f7a0d0afd20f9ff683103efd203282d7ff478301",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
@@ -179,6 +226,76 @@
         "startChar": 0,
         "endLine": 23,
         "endChar": 3
+      },
+      "revId": "f7a0d0afd20f9ff683103efd203282d7ff478301",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66303db7_b5dae58f",
+        "filename": "src/erase/pattern.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-12-30T21:27:24Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "fc4e7234_58c574ea",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 3
+      },
+      "revId": "f7a0d0afd20f9ff683103efd203282d7ff478301",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c833f400_8c26b3c5",
+        "filename": "src/erase/pattern.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-12-30T21:27:24Z",
+      "side": 1,
+      "message": "should we just match the types of rand and driveSize, which this variable is interacting with - and go with uint64_t?",
+      "range": {
+        "startLine": 27,
+        "startChar": 4,
+        "endLine": 27,
+        "endChar": 35
+      },
+      "revId": "f7a0d0afd20f9ff683103efd203282d7ff478301",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d207e0c_21806800",
+        "filename": "src/erase/pattern.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-12-30T21:27:24Z",
+      "side": 1,
+      "message": "You can achieve this with\n```\nstd::equal(span1.begin(), span1.end(), span2.begin(), span2.end());\n```",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 104,
+        "endChar": 16
       },
       "revId": "f7a0d0afd20f9ff683103efd203282d7ff478301",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"

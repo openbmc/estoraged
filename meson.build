@@ -13,5 +13,4 @@ eStoraged_root = meson.current_source_dir()
 eStoraged_dbus_headers = include_directories('.')
 
 subdir('include')
-subdir('xyz/openbmc_project/eStoraged')
 subdir('src')

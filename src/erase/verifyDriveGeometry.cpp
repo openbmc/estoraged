@@ -3,11 +3,11 @@
 #include "estoraged_conf.hpp"
 
 #include <phosphor-logging/lg2.hpp>
-#include <xyz/openbmc_project/eStoraged/error.hpp>
+#include <xyz/openbmc_project/Common/error.hpp>
 
 #include <string>
 
-using sdbusplus::xyz::openbmc_project::eStoraged::Error::EraseError;
+using sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
 
 void VerifyDriveGeometry::geometryOkay(uint64_t bytes)
 {
@@ -18,7 +18,7 @@ void VerifyDriveGeometry::geometryOkay(uint64_t bytes)
                    "REDFISH_MESSAGE_ARGS",
                    std::to_string(bytes) + ">" +
                        std::to_string(ERASE_MAX_GEOMETRY));
-        throw EraseError();
+        throw InternalFailure();
     }
     else if (bytes < ERASE_MIN_GEOMETRY)
     {
@@ -27,7 +27,7 @@ void VerifyDriveGeometry::geometryOkay(uint64_t bytes)
             std::string("OpenBMC.0.1.DriveEraseFailure"),
             "REDFISH_MESSAGE_ARGS",
             std::to_string(bytes) + "<" + std::to_string(ERASE_MIN_GEOMETRY));
-        throw EraseError();
+        throw InternalFailure();
     }
     else
     {

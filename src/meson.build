@@ -7,10 +7,10 @@ libeStoraged_deps = [
     fallback: ['phosphor-logging',
                'phosphor_logging_dep'],
     ),
-  eStoraged_dbus,
   dependency('openssl'),
   dependency('libcryptsetup'),
   dependency('stdplus'),
+  dependency('phosphor-dbus-interfaces'),
 ]
 
 libeStoraged_lib = static_library(

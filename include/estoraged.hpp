@@ -8,7 +8,7 @@
 #include <sdbusplus/bus.hpp>
 #include <sdbusplus/exception.hpp>
 #include <sdbusplus/server/object.hpp>
-#include <xyz/openbmc_project/eStoraged/server.hpp>
+#include <xyz/openbmc_project/Inventory/Item/Volume/server.hpp>
 
 #include <filesystem>
 #include <memory>
@@ -19,7 +19,7 @@
 namespace estoraged
 {
 using eStoragedInherit = sdbusplus::server::object_t<
-    sdbusplus::xyz::openbmc_project::server::eStoraged>;
+    sdbusplus::xyz::openbmc_project::Inventory::Item::server::Volume>;
 using estoraged::Cryptsetup;
 using estoraged::Filesystem;
 
@@ -55,21 +55,20 @@ class eStoraged : eStoragedInherit
     /** @brief Format the LUKS encrypted device and create empty filesystem.
      *
      *  @param[in] password - password to set for the LUKS device.
+     *  @param[in] type - filesystem type, e.g. ext4
      */
-    void format(std::vector<uint8_t> password) override;
+    void formatLuks(std::vector<uint8_t> password,
+                    FilesystemType type) override;
 
     /** @brief Erase the contents of the storage device.
      *
-     *  @param[in] password - password for the LUKS device.
      *  @param[in] eraseType - type of erase operation.
      */
-    void erase(std::vector<uint8_t> password, EraseMethod eraseType) override;
+    void erase(EraseMethod eraseType) override;
 
     /** @brief Unmount filesystem and lock the LUKS device.
-     *
-     *  @param[in] password - password for the LUKS device.
      */
-    void lock(std::vector<uint8_t> password) override;
+    void lock() override;
 
     /** @brief Unlock device and mount the filesystem.
      *

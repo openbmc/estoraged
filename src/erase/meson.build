@@ -4,7 +4,10 @@ libeStoragedErase_lib = static_library(
   'erase.cpp',
   include_directories : eStoraged_headers,
   implicit_include_directories: false,
-  dependencies: [eStoraged_dbus, dependency('stdplus'),],
+  dependencies: [
+    dependency('phosphor-dbus-interfaces'),
+    dependency('stdplus'),
+  ],
 )
 
 libeStoragedErase_dep = declare_dependency(

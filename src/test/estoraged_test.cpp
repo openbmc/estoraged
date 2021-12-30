@@ -7,7 +7,7 @@
 
 #include <sdbusplus/bus.hpp>
 #include <sdbusplus/test/sdbus_mock.hpp>
-#include <xyz/openbmc_project/eStoraged/error.hpp>
+#include <xyz/openbmc_project/Common/error.hpp>
 
 #include <exception>
 #include <filesystem>
@@ -72,8 +72,9 @@ class MockCryptsetupInterface : public estoraged::CryptsetupInterface
                 (struct crypt_device * cd, const char* name), (override));
 };
 
-using sdbusplus::xyz::openbmc_project::eStoraged::Error::EncryptionError;
-using sdbusplus::xyz::openbmc_project::eStoraged::Error::FilesystemError;
+using sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
+using sdbusplus::xyz::openbmc_project::Common::Error::ResourceNotFound;
+using sdbusplus::xyz::openbmc_project::Inventory::Item::server::Volume;
 using std::filesystem::path;
 using ::testing::_;
 using ::testing::ContainsRegex;
@@ -96,7 +97,8 @@ class eStoragedTest : public testing::Test
     std::ofstream testFile;
     std::unique_ptr<estoraged::eStoraged> esObject;
     static constexpr auto TEST_PATH = "/test/openbmc_project/storage/test_dev";
-    static constexpr auto ESTORAGED_INTERFACE = "xyz.openbmc_project.eStoraged";
+    static constexpr auto ESTORAGED_INTERFACE =
+        "xyz.openbmc_project.Inventory.Item.Volume";
     sdbusplus::bus::bus bus;
     std::string passwordString;
     std::vector<uint8_t> password;
@@ -188,10 +190,10 @@ TEST_F(eStoragedTest, FormatPass)
     EXPECT_CALL(*mockCryptIface, cryptDeactivate(_, _)).Times(1);
 
     /* Format the encrypted device. */
-    esObject->format(password);
+    esObject->formatLuks(password, Volume::FilesystemType::ext4);
     EXPECT_FALSE(esObject->isLocked());
 
-    esObject->lock(password);
+    esObject->lock();
     EXPECT_TRUE(esObject->isLocked());
 }
 
@@ -201,7 +203,8 @@ TEST_F(eStoragedTest, FormatNoDeviceFail)
     /* Delete the test file. */
     EXPECT_EQ(0, unlink(testFileName));
 
-    EXPECT_THROW(esObject->format(password), EncryptionError);
+    EXPECT_THROW(esObject->formatLuks(password, Volume::FilesystemType::ext4),
+                 ResourceNotFound);
     EXPECT_FALSE(esObject->isLocked());
 
     /* Create the test file again, so that the TearDown function works. */
@@ -216,7 +219,8 @@ TEST_F(eStoragedTest, FormatFail)
     EXPECT_CALL(*mockCryptIface, cryptFormat(_, _, _, _, _, _, _, _))
         .WillOnce(Return(-1));
 
-    EXPECT_THROW(esObject->format(password), EncryptionError);
+    EXPECT_THROW(esObject->formatLuks(password, Volume::FilesystemType::ext4),
+                 InternalFailure);
     EXPECT_FALSE(esObject->isLocked());
 }
 
@@ -233,7 +237,8 @@ TEST_F(eStoragedTest, AddKeyslotFail)
     EXPECT_CALL(*mockCryptIface, cryptKeyslotAddByVolumeKey(_, _, _, _, _, _))
         .WillOnce(Return(-1));
 
-    EXPECT_THROW(esObject->format(password), EncryptionError);
+    EXPECT_THROW(esObject->formatLuks(password, Volume::FilesystemType::ext4),
+                 InternalFailure);
     EXPECT_TRUE(esObject->isLocked());
 }
 
@@ -252,7 +257,8 @@ TEST_F(eStoragedTest, LoadLuksHeaderFail)
 
     EXPECT_CALL(*mockCryptIface, cryptLoad(_, _, _)).WillOnce(Return(-1));
 
-    EXPECT_THROW(esObject->format(password), EncryptionError);
+    EXPECT_THROW(esObject->formatLuks(password, Volume::FilesystemType::ext4),
+                 InternalFailure);
     EXPECT_TRUE(esObject->isLocked());
 }
 
@@ -274,7 +280,8 @@ TEST_F(eStoragedTest, ActivateFail)
     EXPECT_CALL(*mockCryptIface, cryptActivateByPassphrase(_, _, _, _, _, _))
         .WillOnce(Return(-1));
 
-    EXPECT_THROW(esObject->format(password), EncryptionError);
+    EXPECT_THROW(esObject->formatLuks(password, Volume::FilesystemType::ext4),
+                 InternalFailure);
     EXPECT_TRUE(esObject->isLocked());
 }
 
@@ -298,7 +305,8 @@ TEST_F(eStoragedTest, CreateFilesystemFail)
 
     EXPECT_CALL(*mockFsIface, runMkfs(testLuksDevName)).WillOnce(Return(-1));
 
-    EXPECT_THROW(esObject->format(password), FilesystemError);
+    EXPECT_THROW(esObject->formatLuks(password, Volume::FilesystemType::ext4),
+                 InternalFailure);
     EXPECT_FALSE(esObject->isLocked());
 }
 
@@ -325,7 +333,8 @@ TEST_F(eStoragedTest, CreateMountPointFail)
     EXPECT_CALL(*mockFsIface, createDirectory(path(esObject->getMountPoint())))
         .WillOnce(Return(false));
 
-    EXPECT_THROW(esObject->format(password), FilesystemError);
+    EXPECT_THROW(esObject->formatLuks(password, Volume::FilesystemType::ext4),
+                 InternalFailure);
     EXPECT_FALSE(esObject->isLocked());
 }
 
@@ -360,7 +369,8 @@ TEST_F(eStoragedTest, MountFail)
     EXPECT_CALL(*mockFsIface, removeDirectory(path(esObject->getMountPoint())))
         .WillOnce(Return(true));
 
-    EXPECT_THROW(esObject->format(password), FilesystemError);
+    EXPECT_THROW(esObject->formatLuks(password, Volume::FilesystemType::ext4),
+                 InternalFailure);
     EXPECT_FALSE(esObject->isLocked());
 }
 
@@ -395,10 +405,10 @@ TEST_F(eStoragedTest, UnmountFail)
     EXPECT_CALL(*mockFsIface, doUnmount(StrEq(esObject->getMountPoint())))
         .WillOnce(Return(-1));
 
-    esObject->format(password);
+    esObject->formatLuks(password, Volume::FilesystemType::ext4);
     EXPECT_FALSE(esObject->isLocked());
 
-    EXPECT_THROW(esObject->lock(password), FilesystemError);
+    EXPECT_THROW(esObject->lock(), InternalFailure);
     EXPECT_FALSE(esObject->isLocked());
 }
 
@@ -436,11 +446,11 @@ TEST_F(eStoragedTest, RemoveMountPointFail)
     EXPECT_CALL(*mockFsIface, removeDirectory(path(esObject->getMountPoint())))
         .WillOnce(Return(false));
 
-    esObject->format(password);
+    esObject->formatLuks(password, Volume::FilesystemType::ext4);
     EXPECT_FALSE(esObject->isLocked());
 
     /* This will fail to remove the mount point. */
-    EXPECT_THROW(esObject->lock(password), FilesystemError);
+    EXPECT_THROW(esObject->lock(), InternalFailure);
     EXPECT_FALSE(esObject->isLocked());
 }
 
@@ -481,10 +491,10 @@ TEST_F(eStoragedTest, DeactivateFail)
     EXPECT_CALL(*mockCryptIface, cryptDeactivate(_, _)).WillOnce(Return(-1));
 
     /* Format the encrypted device. */
-    esObject->format(password);
+    esObject->formatLuks(password, Volume::FilesystemType::ext4);
     EXPECT_FALSE(esObject->isLocked());
 
-    EXPECT_THROW(esObject->lock(password), EncryptionError);
+    EXPECT_THROW(esObject->lock(), InternalFailure);
     EXPECT_FALSE(esObject->isLocked());
 }
 

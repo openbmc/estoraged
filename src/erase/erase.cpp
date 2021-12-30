@@ -6,9 +6,9 @@
 #include <stdplus/fd/create.hpp>
 #include <stdplus/fd/managed.hpp>
 #include <stdplus/handle/managed.hpp>
-#include <xyz/openbmc_project/eStoraged/error.hpp>
+#include <xyz/openbmc_project/Common/error.hpp>
 
-using sdbusplus::xyz::openbmc_project::eStoraged::Error::EraseError;
+using sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
 using stdplus::fd::ManagedFd;
 
 uint64_t Erase::findSizeOfBlockDevice()
@@ -27,7 +27,7 @@ uint64_t Erase::findSizeOfBlockDevice()
         lg2::error("erase unable to open blockdev", "REDFISH_MESSAGE_ID",
                    std::string("OpenBMC.0.1.DriveEraseFailure"),
                    "REDFISH_MESSAGE_ARGS", std::to_string(fd.get()));
-        throw EraseError();
+        throw InternalFailure();
     }
     return bytes;
 }

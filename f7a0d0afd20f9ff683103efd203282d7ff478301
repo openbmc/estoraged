@@ -48,6 +48,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e90e51c_6384d865",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-12-30T23:16:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a2b8aa0b_bd4e179c",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 4
+      },
+      "revId": "f7a0d0afd20f9ff683103efd203282d7ff478301",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cfda192f_4760e761",
@@ -94,6 +118,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7b3818e_4081bc71",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-12-30T23:16:28Z",
+      "side": 1,
+      "message": "by one, fixed",
+      "parentUuid": "cfda192f_4760e761",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 73
+      },
+      "revId": "f7a0d0afd20f9ff683103efd203282d7ff478301",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5a396693_82dd95ab",
@@ -107,6 +155,30 @@
       "writtenOn": "2021-12-29T18:45:46Z",
       "side": 1,
       "message": "fix this",
+      "range": {
+        "startLine": 10,
+        "startChar": 10,
+        "endLine": 10,
+        "endChar": 21
+      },
+      "revId": "f7a0d0afd20f9ff683103efd203282d7ff478301",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "58b025e7_38b36360",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-12-30T23:16:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a396693_82dd95ab",
       "range": {
         "startLine": 10,
         "startChar": 10,
@@ -168,6 +240,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f04818bd_c8799a50",
+        "filename": "include/pattern.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-12-30T23:16:28Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "caf4f999_b9934628",
+      "revId": "f7a0d0afd20f9ff683103efd203282d7ff478301",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a24cde68_3c6838ca",
@@ -191,6 +281,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "90ee78db_954f7a05",
+        "filename": "include/pattern.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-12-30T23:16:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a24cde68_3c6838ca",
+      "range": {
+        "startLine": 20,
+        "startChar": 4,
+        "endLine": 20,
+        "endChar": 71
+      },
+      "revId": "f7a0d0afd20f9ff683103efd203282d7ff478301",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "57c4782c_e7ca7f3e",
@@ -204,6 +318,24 @@
       "writtenOn": "2021-12-29T18:45:46Z",
       "side": 1,
       "message": "Unnecessary diff?",
+      "revId": "f7a0d0afd20f9ff683103efd203282d7ff478301",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6fdee6c_6934be18",
+        "filename": "meson.build",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-12-30T23:16:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "57c4782c_e7ca7f3e",
       "revId": "f7a0d0afd20f9ff683103efd203282d7ff478301",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -255,6 +387,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b21399b_1af7527d",
+        "filename": "src/erase/pattern.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-12-30T23:16:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fc4e7234_58c574ea",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 3
+      },
+      "revId": "f7a0d0afd20f9ff683103efd203282d7ff478301",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c833f400_8c26b3c5",
@@ -268,6 +424,30 @@
       "writtenOn": "2021-12-30T21:27:24Z",
       "side": 1,
       "message": "should we just match the types of rand and driveSize, which this variable is interacting with - and go with uint64_t?",
+      "range": {
+        "startLine": 27,
+        "startChar": 4,
+        "endLine": 27,
+        "endChar": 35
+      },
+      "revId": "f7a0d0afd20f9ff683103efd203282d7ff478301",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3f8e86c_7815ee86",
+        "filename": "src/erase/pattern.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-12-30T23:16:28Z",
+      "side": 1,
+      "message": "yep fixed. it actually caused an issue when I was testing it. 2GB is the largest value that 32 bits can represent.",
+      "parentUuid": "c833f400_8c26b3c5",
       "range": {
         "startLine": 27,
         "startChar": 4,
@@ -301,6 +481,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "21738821_c60303a0",
+        "filename": "src/erase/pattern.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-12-30T23:16:28Z",
+      "side": 1,
+      "message": "This is much nicer",
+      "parentUuid": "6d207e0c_21806800",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 104,
+        "endChar": 16
+      },
+      "revId": "f7a0d0afd20f9ff683103efd203282d7ff478301",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "73255d6e_e6d564c1",
@@ -324,6 +528,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "666bcf3c_f391319b",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-12-30T23:16:28Z",
+      "side": 1,
+      "message": "Added it back in",
+      "parentUuid": "73255d6e_e6d564c1",
+      "range": {
+        "startLine": 68,
+        "startChar": 13,
+        "endLine": 72,
+        "endChar": 14
+      },
+      "revId": "f7a0d0afd20f9ff683103efd203282d7ff478301",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6aa001a4_bc40696b",
@@ -337,6 +565,30 @@
       "writtenOn": "2021-12-29T18:45:46Z",
       "side": 1,
       "message": "Clean this up?",
+      "range": {
+        "startLine": 23,
+        "startChar": 4,
+        "endLine": 24,
+        "endChar": 72
+      },
+      "revId": "f7a0d0afd20f9ff683103efd203282d7ff478301",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ebaa9f7_e6b3c417",
+        "filename": "src/test/erase/pattern_test.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-12-30T23:16:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6aa001a4_bc40696b",
       "range": {
         "startLine": 23,
         "startChar": 4,

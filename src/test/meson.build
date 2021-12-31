@@ -4,6 +4,7 @@ gmock = dependency('gmock', disabler: true, required: build_tests)
 tests = [
   'erase/verifyGeometry_test',
   'erase/pattern_test',
+  'erase/zero_test',
   'estoraged_test',
 ]
 

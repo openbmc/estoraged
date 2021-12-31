@@ -4,6 +4,7 @@
 #include "cryptsetupInterface.hpp"
 #include "pattern.hpp"
 #include "verifyDriveGeometry.hpp"
+#include "zero.hpp"
 
 #include <libcryptsetup.h>
 #include <openssl/rand.h>
@@ -93,10 +94,18 @@ void eStoraged::erase(EraseMethod inEraseMethod)
         }
         case EraseMethod::ZeroOverWrite:
         {
+            Zero myZero(devPath);
+            ManagedFd drivefd =
+                stdplus::fd::open(devPath, stdplus::fd::OpenAccess::WriteOnly);
+            myZero.writeZero(myZero.findSizeOfBlockDevice(), drivefd);
             break;
         }
         case EraseMethod::ZeroVerify:
         {
+            Zero myZero(devPath);
+            ManagedFd drivefd =
+                stdplus::fd::open(devPath, stdplus::fd::OpenAccess::ReadOnly);
+            myZero.verifyZero(myZero.findSizeOfBlockDevice(), drivefd);
             break;
         }
         case EraseMethod::SecuredLocked:

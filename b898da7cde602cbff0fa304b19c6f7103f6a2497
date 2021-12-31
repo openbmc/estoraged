@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de725bdc_6078bfc4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-12-31T00:03:43Z",
+      "side": 1,
+      "message": "nit: and",
+      "range": {
+        "startLine": 9,
+        "startChar": 40,
+        "endLine": 9,
+        "endChar": 42
+      },
+      "revId": "b898da7cde602cbff0fa304b19c6f7103f6a2497",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "459801a9_ba09790e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-12-31T00:03:43Z",
+      "side": 1,
+      "message": "nit: that the",
+      "range": {
+        "startLine": 10,
+        "startChar": 27,
+        "endLine": 10,
+        "endChar": 29
+      },
+      "revId": "b898da7cde602cbff0fa304b19c6f7103f6a2497",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4d7faee_97c0979d",
+        "filename": "include/pattern.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-12-31T00:03:43Z",
+      "side": 1,
+      "message": "nit: double space",
+      "range": {
+        "startLine": 31,
+        "startChar": 27,
+        "endLine": 31,
+        "endChar": 28
+      },
+      "revId": "b898da7cde602cbff0fa304b19c6f7103f6a2497",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29621bc1_d720f93b",
+        "filename": "src/erase/pattern.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-12-31T00:03:43Z",
+      "side": 1,
+      "message": "Hmm, I\u0027m not sure what the best practices is for defining the SEED (as in, should it be a static constepxr in the cpp?) - is it ok that this is always static? Where did this come from?",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 23
+      },
+      "revId": "b898da7cde602cbff0fa304b19c6f7103f6a2497",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "909aefe0_58d157b1",
+        "filename": "src/erase/pattern.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-12-31T00:03:43Z",
+      "side": 1,
+      "message": "I think this would fail once we rebase to using the general errors",
+      "range": {
+        "startLine": 20,
+        "startChar": 38,
+        "endLine": 20,
+        "endChar": 68
+      },
+      "revId": "b898da7cde602cbff0fa304b19c6f7103f6a2497",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14296d85_00442954",
+        "filename": "src/test/erase/pattern_test.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-12-31T00:03:43Z",
+      "side": 1,
+      "message": "Should we add test coverage for writePattern failing too?",
+      "range": {
+        "startLine": 37,
+        "startChar": 9,
+        "endLine": 37,
+        "endChar": 21
+      },
+      "revId": "b898da7cde602cbff0fa304b19c6f7103f6a2497",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ea76db1_66d3e209",
+        "filename": "src/test/erase/pattern_test.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-12-31T00:03:43Z",
+      "side": 1,
+      "message": "Maybe we should add an EXPECT_NO_THROW?",
+      "range": {
+        "startLine": 39,
+        "startChar": 3,
+        "endLine": 40,
+        "endChar": 1
+      },
+      "revId": "b898da7cde602cbff0fa304b19c6f7103f6a2497",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0983eb04_d7a1b4c7",
+        "filename": "src/test/erase/pattern_test.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2021-12-31T00:03:43Z",
+      "side": 1,
+      "message": "This test seems identical to \"patternPass\".",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 1
+      },
+      "revId": "b898da7cde602cbff0fa304b19c6f7103f6a2497",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

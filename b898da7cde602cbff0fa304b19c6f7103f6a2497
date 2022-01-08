@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a047a1a_d1b58990",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-08T19:32:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "de725bdc_6078bfc4",
+      "range": {
+        "startLine": 9,
+        "startChar": 40,
+        "endLine": 9,
+        "endChar": 42
+      },
+      "revId": "b898da7cde602cbff0fa304b19c6f7103f6a2497",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "459801a9_ba09790e",
@@ -47,6 +71,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7a2a850_4170d93f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-08T19:32:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "459801a9_ba09790e",
+      "range": {
+        "startLine": 10,
+        "startChar": 27,
+        "endLine": 10,
+        "endChar": 29
+      },
+      "revId": "b898da7cde602cbff0fa304b19c6f7103f6a2497",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e4d7faee_97c0979d",
@@ -60,6 +108,30 @@
       "writtenOn": "2021-12-31T00:03:43Z",
       "side": 1,
       "message": "nit: double space",
+      "range": {
+        "startLine": 31,
+        "startChar": 27,
+        "endLine": 31,
+        "endChar": 28
+      },
+      "revId": "b898da7cde602cbff0fa304b19c6f7103f6a2497",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0bf8a84_a9a2aefc",
+        "filename": "include/pattern.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-08T19:32:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e4d7faee_97c0979d",
       "range": {
         "startLine": 31,
         "startChar": 27,
@@ -95,6 +167,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5e04afb4_a98f4f4d",
+        "filename": "src/erase/pattern.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-08T19:32:06Z",
+      "side": 1,
+      "message": "\u003e is it ok that this is always static?\nYes, the prng will give different values if it is not the same in write and verify. That would prevent the sequence from being validated. Also I did not manual test with the generated sequence to ensure entropy for the static seed. I did not see any benefit to a random seed.\n\n\u003e Should it be a static constepxr in the cpp?\nThat would also be a valid way to set this up. It does not need to be compile time evaluated so I had it as a define.\n\n\u003e Where did this come from?\nascii(jebr) \u003d\u003e 6a 65 62 72",
+      "parentUuid": "29621bc1_d720f93b",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 23
+      },
+      "revId": "b898da7cde602cbff0fa304b19c6f7103f6a2497",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "909aefe0_58d157b1",
         "filename": "src/erase/pattern.cpp",
         "patchSetId": 8
@@ -106,6 +202,30 @@
       "writtenOn": "2021-12-31T00:03:43Z",
       "side": 1,
       "message": "I think this would fail once we rebase to using the general errors",
+      "range": {
+        "startLine": 20,
+        "startChar": 38,
+        "endLine": 20,
+        "endChar": 68
+      },
+      "revId": "b898da7cde602cbff0fa304b19c6f7103f6a2497",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d46bb0a_9a937238",
+        "filename": "src/erase/pattern.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-08T19:32:06Z",
+      "side": 1,
+      "message": "yep, https://gerrit.openbmc-project.xyz/c/openbmc/estoraged/+/50065\nchanged some stuff around",
+      "parentUuid": "909aefe0_58d157b1",
       "range": {
         "startLine": 20,
         "startChar": 38,
@@ -141,6 +261,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ff1d8175_f2a1154b",
+        "filename": "src/test/erase/pattern_test.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-08T19:32:06Z",
+      "side": 1,
+      "message": "I had trouble coming up with a good test for just the write.\nIf I pass a fault fd, I get a system error, handled by sdbusplus.\nLet me know if you had anything specific in mind.",
+      "parentUuid": "14296d85_00442954",
+      "range": {
+        "startLine": 37,
+        "startChar": 9,
+        "endLine": 37,
+        "endChar": 21
+      },
+      "revId": "b898da7cde602cbff0fa304b19c6f7103f6a2497",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5ea76db1_66d3e209",
         "filename": "src/test/erase/pattern_test.cpp",
         "patchSetId": 8
@@ -152,6 +296,30 @@
       "writtenOn": "2021-12-31T00:03:43Z",
       "side": 1,
       "message": "Maybe we should add an EXPECT_NO_THROW?",
+      "range": {
+        "startLine": 39,
+        "startChar": 3,
+        "endLine": 40,
+        "endChar": 1
+      },
+      "revId": "b898da7cde602cbff0fa304b19c6f7103f6a2497",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d9b0b4a_001275f7",
+        "filename": "src/test/erase/pattern_test.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-08T19:32:06Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "5ea76db1_66d3e209",
       "range": {
         "startLine": 39,
         "startChar": 3,
@@ -175,6 +343,30 @@
       "writtenOn": "2021-12-31T00:03:43Z",
       "side": 1,
       "message": "This test seems identical to \"patternPass\".",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 1
+      },
+      "revId": "b898da7cde602cbff0fa304b19c6f7103f6a2497",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3fb089f1_e226b168",
+        "filename": "src/test/erase/pattern_test.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-08T19:32:06Z",
+      "side": 1,
+      "message": "the test is almost the same but the size is different (4097 and not 4096)\n\nbecause the disk size is not a divisible by the read/write size, extra logic is verified by this test.",
+      "parentUuid": "0983eb04_d7a1b4c7",
       "range": {
         "startLine": 45,
         "startChar": 0,

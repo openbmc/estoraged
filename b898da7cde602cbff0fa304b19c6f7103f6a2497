@@ -375,6 +375,30 @@
       },
       "revId": "b898da7cde602cbff0fa304b19c6f7103f6a2497",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c5f1474_0eb45ab0",
+        "filename": "src/test/erase/pattern_test.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-01-10T02:04:49Z",
+      "side": 1,
+      "message": "Ah! missed that. I think it\u0027d be good to point it out a little more expectedly just for readability. Maybe just a comment above the size definition to say that 4097 is not divisible or naming it badSize instead of size so it\u0027s a little more obvious",
+      "parentUuid": "3fb089f1_e226b168",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 1
+      },
+      "revId": "b898da7cde602cbff0fa304b19c6f7103f6a2497",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

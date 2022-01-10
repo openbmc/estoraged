@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0c720f92_c4e37821",
+        "filename": "src/erase/pattern.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-10T21:59:02Z",
+      "side": 1,
+      "message": "make sense, I was worried about performance and looking to get ride of implicit cast. So I used simple data types. \nBut I switched to vectors\n\nstd::bytes are used because stdplus uses it.\nhttps://github.com/openbmc/stdplus/blob/master/src/stdplus/fd/impl.hpp#L14",
+      "parentUuid": "dda8c806_e778c395",
+      "range": {
+        "startLine": 30,
+        "startChar": 4,
+        "endLine": 30,
+        "endChar": 51
+      },
+      "revId": "81a4cd427561b6cd6ec4916dd7593f907089361c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f1f81dd8_da975eb9",
         "filename": "src/erase/pattern.cpp",
         "patchSetId": 10
@@ -54,6 +78,30 @@
       "writtenOn": "2022-01-10T02:04:49Z",
       "side": 1,
       "message": "I believe reinterpret_cast is preferred over () style casting",
+      "range": {
+        "startLine": 34,
+        "startChar": 32,
+        "endLine": 34,
+        "endChar": 43
+      },
+      "revId": "81a4cd427561b6cd6ec4916dd7593f907089361c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6114c7e_43eccb57",
+        "filename": "src/erase/pattern.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-10T21:59:02Z",
+      "side": 1,
+      "message": "It is. Changed",
+      "parentUuid": "f1f81dd8_da975eb9",
       "range": {
         "startLine": 34,
         "startChar": 32,

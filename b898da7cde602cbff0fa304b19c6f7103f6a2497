@@ -331,6 +331,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "de6585f5_65da2cf5",
+        "filename": "src/test/erase/pattern_test.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-11T18:21:59Z",
+      "side": 1,
+      "message": "yeah, the writePattern get tested in all the first 2 cases against the readPattern.",
+      "parentUuid": "5e62058f_2f102eed",
+      "range": {
+        "startLine": 37,
+        "startChar": 9,
+        "endLine": 37,
+        "endChar": 21
+      },
+      "revId": "b898da7cde602cbff0fa304b19c6f7103f6a2497",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5ea76db1_66d3e209",

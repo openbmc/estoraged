@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89688569_0fe6d71a",
+        "filename": "src/erase/pattern.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-01-11T03:04:25Z",
+      "side": 1,
+      "message": "nit: Since we\u0027re using this a few times, should we just declare this as a constexpr for readability",
+      "range": {
+        "startLine": 34,
+        "startChar": 29,
+        "endLine": 34,
+        "endChar": 58
+      },
+      "revId": "18f737eb20e28982e5fb1f1da5f7147305a1c956",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

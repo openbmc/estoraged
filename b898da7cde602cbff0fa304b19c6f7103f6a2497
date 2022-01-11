@@ -189,6 +189,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e39897c_16aef679",
+        "filename": "src/erase/pattern.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-01-11T01:49:07Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5e04afb4_a98f4f4d",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 23
+      },
+      "revId": "b898da7cde602cbff0fa304b19c6f7103f6a2497",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "909aefe0_58d157b1",
@@ -273,6 +297,30 @@
       "side": 1,
       "message": "I had trouble coming up with a good test for just the write.\nIf I pass a fault fd, I get a system error, handled by sdbusplus.\nLet me know if you had anything specific in mind.",
       "parentUuid": "14296d85_00442954",
+      "range": {
+        "startLine": 37,
+        "startChar": 9,
+        "endLine": 37,
+        "endChar": 21
+      },
+      "revId": "b898da7cde602cbff0fa304b19c6f7103f6a2497",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e62058f_2f102eed",
+        "filename": "src/test/erase/pattern_test.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-01-11T01:49:07Z",
+      "side": 1,
+      "message": "Hmm I guess we can\u0027t mock out fd here? If not, yeah I\u0027m not sure if we can do much.",
+      "parentUuid": "ff1d8175_f2a1154b",
       "range": {
         "startLine": 37,
         "startChar": 9,

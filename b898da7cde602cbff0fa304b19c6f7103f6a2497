@@ -215,6 +215,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4cc7f35f_910b5c97",
+        "filename": "src/erase/pattern.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-01-11T19:03:28Z",
+      "side": 1,
+      "message": "nit: Just to revive this and the new define that we have for BLOCK_SIZE, I guess here\u0027s the Google styling guide that prefers we don\u0027t use preprocessor macro for definition: https://google.github.io/styleguide/cppguide.html#Preprocessor_Macros\n\nIn the internal copy of totw/140 we can see \"Discouraged Alternatives\" that define just a constant this way.\n\nObviously we are following the OpenBMC standard here so we don\u0027t have to follow  the Google standard, but I think it\u0027d probably be good to follow the Google standard as a backup",
+      "parentUuid": "1e39897c_16aef679",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 23
+      },
+      "revId": "b898da7cde602cbff0fa304b19c6f7103f6a2497",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "909aefe0_58d157b1",
         "filename": "src/erase/pattern.cpp",
         "patchSetId": 8

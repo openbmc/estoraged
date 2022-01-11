@@ -239,6 +239,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "99a8c5ee_c5eae456",
+        "filename": "src/erase/pattern.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-11T23:59:55Z",
+      "side": 1,
+      "message": "sounds good,",
+      "parentUuid": "4cc7f35f_910b5c97",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 23
+      },
+      "revId": "b898da7cde602cbff0fa304b19c6f7103f6a2497",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "909aefe0_58d157b1",
         "filename": "src/erase/pattern.cpp",
         "patchSetId": 8

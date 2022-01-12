@@ -40,6 +40,9 @@ class MockFilesystemInterface : public estoraged::FilesystemInterface
 
     MOCK_METHOD(bool, removeDirectory, (const std::filesystem::path& p),
                 (override));
+
+    MOCK_METHOD(bool, directoryExists, (const std::filesystem::path& p),
+                (override));
 };
 
 class MockCryptsetupInterface : public estoraged::CryptsetupInterface
@@ -173,8 +176,61 @@ TEST_F(eStoragedTest, FormatPass)
 
     EXPECT_CALL(*mockFsIface, runMkfs(testLuksDevName)).WillOnce(Return(0));
 
+    EXPECT_CALL(*mockFsIface, directoryExists(path(esObject->getMountPoint())))
+        .WillOnce(Return(false));
+
     EXPECT_CALL(*mockFsIface, createDirectory(path(esObject->getMountPoint())))
         .WillOnce(Return(true));
+
+    EXPECT_CALL(*mockFsIface,
+                doMount(ContainsRegex("/dev/mapper/"),
+                        StrEq(esObject->getMountPoint()), _, _, _))
+        .WillOnce(Return(0));
+
+    EXPECT_CALL(*mockFsIface, doUnmount(StrEq(esObject->getMountPoint())))
+        .WillOnce(Return(0));
+
+    EXPECT_CALL(*mockFsIface, removeDirectory(path(esObject->getMountPoint())))
+        .WillOnce(Return(true));
+
+    EXPECT_CALL(*mockCryptIface, cryptDeactivate(_, _)).Times(1);
+
+    /* Format the encrypted device. */
+    esObject->formatLuks(password, Volume::FilesystemType::ext4);
+    EXPECT_FALSE(esObject->isLocked());
+
+    esObject->lock();
+    EXPECT_TRUE(esObject->isLocked());
+}
+
+/*
+ * Test case where the mount point directory already exists, so it shouldn't
+ * try to create it.
+ */
+TEST_F(eStoragedTest, MountPointExistsPass)
+{
+    EXPECT_CALL(sdbusMock,
+                sd_bus_emit_properties_changed_strv(
+                    IsNull(), StrEq(TEST_PATH), StrEq(ESTORAGED_INTERFACE), _))
+        .WillRepeatedly(Return(0));
+
+    EXPECT_CALL(*mockCryptIface, cryptFormat(_, _, _, _, _, _, _, _)).Times(1);
+
+    EXPECT_CALL(*mockCryptIface, cryptKeyslotAddByVolumeKey(_, _, _, _, _, _))
+        .Times(1);
+
+    EXPECT_CALL(*mockCryptIface, cryptLoad(_, _, _)).Times(1);
+
+    EXPECT_CALL(*mockCryptIface, cryptActivateByPassphrase(_, _, _, _, _, _))
+        .Times(1);
+
+    EXPECT_CALL(*mockFsIface, runMkfs(testLuksDevName)).WillOnce(Return(0));
+
+    EXPECT_CALL(*mockFsIface, directoryExists(path(esObject->getMountPoint())))
+        .WillOnce(Return(true));
+
+    EXPECT_CALL(*mockFsIface, createDirectory(path(esObject->getMountPoint())))
+        .Times(0);
 
     EXPECT_CALL(*mockFsIface,
                 doMount(ContainsRegex("/dev/mapper/"),
@@ -330,6 +386,9 @@ TEST_F(eStoragedTest, CreateMountPointFail)
 
     EXPECT_CALL(*mockFsIface, runMkfs(testLuksDevName)).WillOnce(Return(0));
 
+    EXPECT_CALL(*mockFsIface, directoryExists(path(esObject->getMountPoint())))
+        .WillOnce(Return(false));
+
     EXPECT_CALL(*mockFsIface, createDirectory(path(esObject->getMountPoint())))
         .WillOnce(Return(false));
 
@@ -357,6 +416,9 @@ TEST_F(eStoragedTest, MountFail)
         .Times(1);
 
     EXPECT_CALL(*mockFsIface, runMkfs(testLuksDevName)).WillOnce(Return(0));
+
+    EXPECT_CALL(*mockFsIface, directoryExists(path(esObject->getMountPoint())))
+        .WillOnce(Return(false));
 
     EXPECT_CALL(*mockFsIface, createDirectory(path(esObject->getMountPoint())))
         .WillOnce(Return(true));
@@ -393,6 +455,9 @@ TEST_F(eStoragedTest, UnmountFail)
         .Times(1);
 
     EXPECT_CALL(*mockFsIface, runMkfs(testLuksDevName)).WillOnce(Return(0));
+
+    EXPECT_CALL(*mockFsIface, directoryExists(path(esObject->getMountPoint())))
+        .WillOnce(Return(false));
 
     EXPECT_CALL(*mockFsIface, createDirectory(path(esObject->getMountPoint())))
         .WillOnce(Return(true));
@@ -431,6 +496,9 @@ TEST_F(eStoragedTest, RemoveMountPointFail)
         .Times(1);
 
     EXPECT_CALL(*mockFsIface, runMkfs(testLuksDevName)).WillOnce(Return(0));
+
+    EXPECT_CALL(*mockFsIface, directoryExists(path(esObject->getMountPoint())))
+        .WillOnce(Return(false));
 
     EXPECT_CALL(*mockFsIface, createDirectory(path(esObject->getMountPoint())))
         .WillOnce(Return(true));
@@ -473,6 +541,9 @@ TEST_F(eStoragedTest, DeactivateFail)
         .Times(1);
 
     EXPECT_CALL(*mockFsIface, runMkfs(testLuksDevName)).WillOnce(Return(0));
+
+    EXPECT_CALL(*mockFsIface, directoryExists(path(esObject->getMountPoint())))
+        .WillOnce(Return(false));
 
     EXPECT_CALL(*mockFsIface, createDirectory(path(esObject->getMountPoint())))
         .WillOnce(Return(true));

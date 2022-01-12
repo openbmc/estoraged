@@ -250,14 +250,22 @@ void eStoraged::createFilesystem()
 
 void eStoraged::mountFilesystem()
 {
-    /* Create directory for the filesystem. */
-    bool success = fsIface->createDirectory(std::filesystem::path(mountPoint));
-    if (!success)
+    /*
+     * Create directory for the filesystem, if it's not already present. It
+     * might already exist if, for example, the BMC reboots after creating the
+     * directory.
+     */
+    if (!fsIface->directoryExists(std::filesystem::path(mountPoint)))
     {
-        lg2::error("Failed to create mount point: {DIR}", "DIR", mountPoint,
-                   "REDFISH_MESSAGE_ID",
-                   std::string("OpenBMC.0.1.MountFilesystemFail"));
-        throw InternalFailure();
+        bool success =
+            fsIface->createDirectory(std::filesystem::path(mountPoint));
+        if (!success)
+        {
+            lg2::error("Failed to create mount point: {DIR}", "DIR", mountPoint,
+                       "REDFISH_MESSAGE_ID",
+                       std::string("OpenBMC.0.1.MountFilesystemFail"));
+            throw InternalFailure();
+        }
     }
 
     /* Run the command to mount the filesystem. */

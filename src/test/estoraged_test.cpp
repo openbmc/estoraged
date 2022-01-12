@@ -40,6 +40,9 @@ class MockFilesystemInterface : public estoraged::FilesystemInterface
 
     MOCK_METHOD(bool, removeDirectory, (const std::filesystem::path& p),
                 (override));
+
+    MOCK_METHOD(bool, directoryExists, (const std::filesystem::path& p),
+                (override));
 };
 
 class MockCryptsetupInterface : public estoraged::CryptsetupInterface
@@ -172,6 +175,9 @@ TEST_F(eStoragedTest, FormatPass)
         .Times(1);
 
     EXPECT_CALL(*mockFsIface, runMkfs(testLuksDevName)).WillOnce(Return(0));
+
+    EXPECT_CALL(*mockFsIface, directoryExists(path(esObject->getMountPoint())))
+        .WillOnce(Return(false));
 
     EXPECT_CALL(*mockFsIface, createDirectory(path(esObject->getMountPoint())))
         .WillOnce(Return(true));
@@ -330,6 +336,9 @@ TEST_F(eStoragedTest, CreateMountPointFail)
 
     EXPECT_CALL(*mockFsIface, runMkfs(testLuksDevName)).WillOnce(Return(0));
 
+    EXPECT_CALL(*mockFsIface, directoryExists(path(esObject->getMountPoint())))
+        .WillOnce(Return(false));
+
     EXPECT_CALL(*mockFsIface, createDirectory(path(esObject->getMountPoint())))
         .WillOnce(Return(false));
 
@@ -357,6 +366,9 @@ TEST_F(eStoragedTest, MountFail)
         .Times(1);
 
     EXPECT_CALL(*mockFsIface, runMkfs(testLuksDevName)).WillOnce(Return(0));
+
+    EXPECT_CALL(*mockFsIface, directoryExists(path(esObject->getMountPoint())))
+        .WillOnce(Return(false));
 
     EXPECT_CALL(*mockFsIface, createDirectory(path(esObject->getMountPoint())))
         .WillOnce(Return(true));
@@ -393,6 +405,9 @@ TEST_F(eStoragedTest, UnmountFail)
         .Times(1);
 
     EXPECT_CALL(*mockFsIface, runMkfs(testLuksDevName)).WillOnce(Return(0));
+
+    EXPECT_CALL(*mockFsIface, directoryExists(path(esObject->getMountPoint())))
+        .WillOnce(Return(false));
 
     EXPECT_CALL(*mockFsIface, createDirectory(path(esObject->getMountPoint())))
         .WillOnce(Return(true));
@@ -431,6 +446,9 @@ TEST_F(eStoragedTest, RemoveMountPointFail)
         .Times(1);
 
     EXPECT_CALL(*mockFsIface, runMkfs(testLuksDevName)).WillOnce(Return(0));
+
+    EXPECT_CALL(*mockFsIface, directoryExists(path(esObject->getMountPoint())))
+        .WillOnce(Return(false));
 
     EXPECT_CALL(*mockFsIface, createDirectory(path(esObject->getMountPoint())))
         .WillOnce(Return(true));
@@ -473,6 +491,9 @@ TEST_F(eStoragedTest, DeactivateFail)
         .Times(1);
 
     EXPECT_CALL(*mockFsIface, runMkfs(testLuksDevName)).WillOnce(Return(0));
+
+    EXPECT_CALL(*mockFsIface, directoryExists(path(esObject->getMountPoint())))
+        .WillOnce(Return(false));
 
     EXPECT_CALL(*mockFsIface, createDirectory(path(esObject->getMountPoint())))
         .WillOnce(Return(true));

@@ -70,6 +70,14 @@ class FilesystemInterface
      *  @returns true on success, false otherwise.
      */
     virtual bool removeDirectory(const std::filesystem::path& p) = 0;
+
+    /** @brief Wrapper around std::filesystem::is_directory
+     *
+     *  @param[in] p - path to directory that we want to query.
+     *
+     *  @returns true if the path exists and represents a directory.
+     */
+    virtual bool directoryExists(const std::filesystem::path& p) = 0;
 };
 
 /** @class Filesystem
@@ -106,6 +114,11 @@ class Filesystem : public FilesystemInterface
     bool removeDirectory(const std::filesystem::path& p) override
     {
         return std::filesystem::remove(p);
+    }
+
+    bool directoryExists(const std::filesystem::path& p) override
+    {
+        return std::filesystem::is_directory(std::filesystem::status(p));
     }
 };
 } // namespace estoraged

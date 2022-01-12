@@ -26,6 +26,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ede6918d_ac5be7fb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-01-12T04:22:29Z",
+      "side": 1,
+      "message": "Oh wow, this operation takes 6 minutes? I wonder if we should chunk / make it asynchronous.\n\nWhat happens if you were to run this busctl call in the background with \u0026 and then call another eStoraged command? (most likely timeout).\n\nI noticed that you ran this command with timeout - do you plan to enforce calling this api with a long default timeout?",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 17
+      },
+      "revId": "a021dd84cb8ef8694b0a198f4554a902c4bfaf06",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "57776604_f06bfbfa",
         "filename": "include/zero.hpp",
         "patchSetId": 1
@@ -49,6 +72,98 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "28fcf3b4_442834ac",
+        "filename": "src/erase/zero.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-01-12T04:22:29Z",
+      "side": 1,
+      "message": "This block size seems to be the same as the other one I reviewed. Is this common - should be extracted out to a header?",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 34
+      },
+      "revId": "a021dd84cb8ef8694b0a198f4554a902c4bfaf06",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57d3b7ae_b77ec5a1",
+        "filename": "src/erase/zero.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-01-12T04:22:29Z",
+      "side": 1,
+      "message": "nit: blockSize",
+      "range": {
+        "startLine": 13,
+        "startChar": 17,
+        "endLine": 13,
+        "endChar": 26
+      },
+      "revId": "a021dd84cb8ef8694b0a198f4554a902c4bfaf06",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c64152aa_9295a5a7",
+        "filename": "src/erase/zero.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-01-12T04:22:29Z",
+      "side": 1,
+      "message": "nit: Should this be const std::array with const std::byte since we don\u0027t want the value of 0s to change?\n\nIf so, maybe we can move it to the header as a static member and use it for memcmp below? (more explanation below - but this is probably optional)",
+      "range": {
+        "startLine": 22,
+        "startChar": 5,
+        "endLine": 22,
+        "endChar": 52
+      },
+      "revId": "a021dd84cb8ef8694b0a198f4554a902c4bfaf06",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1acf2032_59a81812",
+        "filename": "src/erase/zero.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-01-12T04:22:29Z",
+      "side": 1,
+      "message": "I was thinking maybe there\u0027s a clever way to do a quick comparison for all 0s but I couldn\u0027t find one\n\nOne thing I could think of is doing a memcmp with a blockOfZeros in case it\u0027s readily available (comment above) - but I actually don\u0027t know if it\u0027s any faster / less resource intensive and I do like this because it\u0027s easier to read and understand. Let me know what you think, this is more of a weak suggestion",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 0
+      },
+      "revId": "a021dd84cb8ef8694b0a198f4554a902c4bfaf06",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5049b733_ec9e7659",
         "filename": "src/test/erase/zero_test.cpp",
         "patchSetId": 1
@@ -65,6 +180,29 @@
         "startChar": 0,
         "endLine": 27,
         "endChar": 2
+      },
+      "revId": "a021dd84cb8ef8694b0a198f4554a902c4bfaf06",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8bef219_18ce5280",
+        "filename": "src/test/erase/zero_test.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-01-12T04:22:29Z",
+      "side": 1,
+      "message": "minor nit: I guess you don\u0027t need Test suffix since this is already the test?",
+      "range": {
+        "startLine": 29,
+        "startChar": 9,
+        "endLine": 29,
+        "endChar": 13
       },
       "revId": "a021dd84cb8ef8694b0a198f4554a902c4bfaf06",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"

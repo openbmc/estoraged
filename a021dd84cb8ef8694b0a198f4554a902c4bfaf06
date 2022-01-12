@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6413629_bd34dd2c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-01-12T01:21:37Z",
+      "side": 1,
+      "message": "to",
+      "range": {
+        "startLine": 10,
+        "startChar": 8,
+        "endLine": 10,
+        "endChar": 11
+      },
+      "revId": "a021dd84cb8ef8694b0a198f4554a902c4bfaf06",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57776604_f06bfbfa",
+        "filename": "include/zero.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-01-12T01:21:37Z",
+      "side": 1,
+      "message": "Should the ManagedFd object be a member of this class? You could create it in the constructor, since the caller passes in the device path anyway.\n\nOf course, changing this would affect your unit tests. You could have the tests just write to a test file.",
+      "range": {
+        "startLine": 26,
+        "startChar": 39,
+        "endLine": 26,
+        "endChar": 48
+      },
+      "revId": "a021dd84cb8ef8694b0a198f4554a902c4bfaf06",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5049b733_ec9e7659",
+        "filename": "src/test/erase/zero_test.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-01-12T01:21:37Z",
+      "side": 1,
+      "message": "Is this necessary? Could you just use ManagedFd directly?",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 2
+      },
+      "revId": "a021dd84cb8ef8694b0a198f4554a902c4bfaf06",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f02a1a25_94205c91",
+        "filename": "src/test/erase/zero_test.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-01-12T01:21:37Z",
+      "side": 1,
+      "message": "spelling",
+      "range": {
+        "startLine": 47,
+        "startChar": 15,
+        "endLine": 47,
+        "endChar": 27
+      },
+      "revId": "a021dd84cb8ef8694b0a198f4554a902c4bfaf06",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

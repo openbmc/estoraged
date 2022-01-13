@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e915e921_2e31a817",
+        "filename": "src/test/estoraged_test.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-01-13T17:28:40Z",
+      "side": 1,
+      "message": "Yeah, that\u0027s a good idea. I added a test case below.",
+      "parentUuid": "9edda88e_c571bb5e",
+      "range": {
+        "startLine": 44,
+        "startChar": 22,
+        "endLine": 44,
+        "endChar": 37
+      },
+      "revId": "623b778d5538d5ba8583ab39e012ae337f9ff83c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "29108150_b204ed24",
@@ -47,6 +71,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e5b5c1f_4d6ad39c",
+        "filename": "src/test/meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-01-13T17:28:40Z",
+      "side": 1,
+      "message": "I didn\u0027t mean to change this file in this commit. I reverted the change.\n\nBy the way, luks_test is the name of another unit test I have on my local machine, where it actually uses cryptsetup to create an encrypted filesystem inside a file, without mocking anything out. Problem is, you need to run it as root, so it doesn\u0027t work in the OpenBMC CI.",
+      "parentUuid": "29108150_b204ed24",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 16
+      },
+      "revId": "623b778d5538d5ba8583ab39e012ae337f9ff83c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "af00fa26_d0e872fd",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-01-13T00:23:51Z",
       "side": 1,
       "message": "probably use space instead of indent",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 1
+      },
+      "revId": "623b778d5538d5ba8583ab39e012ae337f9ff83c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ebc29e72_596417b9",
+        "filename": "src/test/meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-01-13T17:28:40Z",
+      "side": 1,
+      "message": "I reverted the change to this file. The long timeout was only necessary for the luks_test, which isn\u0027t submitted.",
+      "parentUuid": "af00fa26_d0e872fd",
       "range": {
         "startLine": 20,
         "startChar": 0,

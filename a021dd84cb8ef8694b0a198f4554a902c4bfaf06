@@ -260,6 +260,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "17484847_9da57c38",
+        "filename": "src/erase/zero.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-13T04:10:43Z",
+      "side": 1,
+      "message": "I tested the mmap code and it is slower\n\n`            void* map \u003d ::mmap(NULL, writeSize, PROT_WRITE, MAP_SHARED,\n                               fd.get(), currentIndex);\n            memset(map, 0, writeSize);\n            munmap(map, writeSize);\n`",
+      "parentUuid": "afec5b2c_63e155f4",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 0
+      },
+      "revId": "a021dd84cb8ef8694b0a198f4554a902c4bfaf06",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5049b733_ec9e7659",
         "filename": "src/test/erase/zero_test.cpp",
         "patchSetId": 1

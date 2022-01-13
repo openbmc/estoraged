@@ -332,6 +332,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d56c9829_24623ac6",
+        "filename": "src/erase/zero.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-01-13T22:47:09Z",
+      "side": 1,
+      "message": "You may want to sync up with John Wedig on this and maybe perhaps another Maintainer (William) to see if perhaps this isn\u0027t a big issue.\n\nWe\u0027ll be upstreaming hothd \"soon\" I guess so maybe I\u0027m ok to mention that they have some implementation of async dbus calls.",
+      "parentUuid": "5033d801_c6a34588",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 0
+      },
+      "revId": "a021dd84cb8ef8694b0a198f4554a902c4bfaf06",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5049b733_ec9e7659",
         "filename": "src/test/erase/zero_test.cpp",
         "patchSetId": 1

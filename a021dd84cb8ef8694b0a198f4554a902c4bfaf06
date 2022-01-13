@@ -72,6 +72,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ff8c1fcb_3079bd16",
+        "filename": "include/zero.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-13T01:10:02Z",
+      "side": 1,
+      "message": "The ManagedFd is opened with writeOnly (for write zero) and readOnly for (verify).\nAnd this design allows the calling code to open the file and specify. This declaration matches the patternWrite, and patternVerify design.\n\nLet me know if you want me to change it.",
+      "parentUuid": "57776604_f06bfbfa",
+      "range": {
+        "startLine": 26,
+        "startChar": 39,
+        "endLine": 26,
+        "endChar": 48
+      },
+      "revId": "a021dd84cb8ef8694b0a198f4554a902c4bfaf06",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "28fcf3b4_442834ac",
         "filename": "src/erase/zero.cpp",
         "patchSetId": 1
@@ -116,6 +140,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "88038113_1d52607f",
+        "filename": "src/erase/zero.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-13T01:10:02Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "57d3b7ae_b77ec5a1",
+      "range": {
+        "startLine": 13,
+        "startChar": 17,
+        "endLine": 13,
+        "endChar": 26
+      },
+      "revId": "a021dd84cb8ef8694b0a198f4554a902c4bfaf06",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c64152aa_9295a5a7",
@@ -129,6 +177,30 @@
       "writtenOn": "2022-01-12T04:22:29Z",
       "side": 1,
       "message": "nit: Should this be const std::array with const std::byte since we don\u0027t want the value of 0s to change?\n\nIf so, maybe we can move it to the header as a static member and use it for memcmp below? (more explanation below - but this is probably optional)",
+      "range": {
+        "startLine": 22,
+        "startChar": 5,
+        "endLine": 22,
+        "endChar": 52
+      },
+      "revId": "a021dd84cb8ef8694b0a198f4554a902c4bfaf06",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b8af8dc_7d454668",
+        "filename": "src/erase/zero.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-13T01:10:02Z",
+      "side": 1,
+      "message": "added it the header, just found out static members can\u0027t be const.",
+      "parentUuid": "c64152aa_9295a5a7",
       "range": {
         "startLine": 22,
         "startChar": 5,
@@ -164,6 +236,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "afec5b2c_63e155f4",
+        "filename": "src/erase/zero.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-13T01:10:02Z",
+      "side": 1,
+      "message": "memcmp should be faster, because it igors the types, and will comapare 64 bits at a time. However most time is spent in the read/read call. I just test this and it is not any faster (new 5m46.966s) (original 5m46.920s)\n\nIdeas to make this faster.\n\n1) adjust the block blocksSize, to find an optimum value. I changed this value to 32768, and the timing stayed the same.\n\n2) We could mmap the part of the drive to ram. This is a different set of kernel systems calls. Which will require one less kernel copy then read/read. I will try this next and report back",
+      "parentUuid": "1acf2032_59a81812",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 0
+      },
+      "revId": "a021dd84cb8ef8694b0a198f4554a902c4bfaf06",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5049b733_ec9e7659",
         "filename": "src/test/erase/zero_test.cpp",
         "patchSetId": 1
@@ -175,6 +271,30 @@
       "writtenOn": "2022-01-12T01:21:37Z",
       "side": 1,
       "message": "Is this necessary? Could you just use ManagedFd directly?",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 2
+      },
+      "revId": "a021dd84cb8ef8694b0a198f4554a902c4bfaf06",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ca47d57_238b7396",
+        "filename": "src/test/erase/zero_test.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-13T01:10:02Z",
+      "side": 1,
+      "message": "The managedFd is smart and prevents you from manually setting the raw fd (which is what I need to do), so I needed a modify a private member variable at construction.",
+      "parentUuid": "5049b733_ec9e7659",
       "range": {
         "startLine": 20,
         "startChar": 0,
@@ -221,6 +341,30 @@
       "writtenOn": "2022-01-12T01:21:37Z",
       "side": 1,
       "message": "spelling",
+      "range": {
+        "startLine": 47,
+        "startChar": 15,
+        "endLine": 47,
+        "endChar": 27
+      },
+      "revId": "a021dd84cb8ef8694b0a198f4554a902c4bfaf06",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2841017a_48e9471e",
+        "filename": "src/test/erase/zero_test.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-13T01:10:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f02a1a25_94205c91",
       "range": {
         "startLine": 47,
         "startChar": 15,

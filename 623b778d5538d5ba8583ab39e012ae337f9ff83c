@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9edda88e_c571bb5e",
+        "filename": "src/test/estoraged_test.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-01-13T00:23:51Z",
+      "side": 1,
+      "message": "Would it be meaningful to test the case when directoryExists DOES return true and see that we skip createDirectory call?",
+      "range": {
+        "startLine": 44,
+        "startChar": 22,
+        "endLine": 44,
+        "endChar": 37
+      },
+      "revId": "623b778d5538d5ba8583ab39e012ae337f9ff83c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29108150_b204ed24",
+        "filename": "src/test/meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-01-13T00:23:51Z",
+      "side": 1,
+      "message": "Should we remove this line?",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 16
+      },
+      "revId": "623b778d5538d5ba8583ab39e012ae337f9ff83c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af00fa26_d0e872fd",
+        "filename": "src/test/meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-01-13T00:23:51Z",
+      "side": 1,
+      "message": "probably use space instead of indent",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 1
+      },
+      "revId": "623b778d5538d5ba8583ab39e012ae337f9ff83c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

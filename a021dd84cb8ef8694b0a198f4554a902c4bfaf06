@@ -284,6 +284,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fc22f43a_6a793e37",
+        "filename": "src/erase/zero.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-01-13T22:08:26Z",
+      "side": 1,
+      "message": "I guess if we can\u0027t make this faster, we may need to consider making this call asynchronous or doing chunked calls instead.",
+      "parentUuid": "17484847_9da57c38",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 0
+      },
+      "revId": "a021dd84cb8ef8694b0a198f4554a902c4bfaf06",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5049b733_ec9e7659",
         "filename": "src/test/erase/zero_test.cpp",
         "patchSetId": 1

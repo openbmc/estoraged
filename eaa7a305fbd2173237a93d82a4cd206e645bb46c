@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2aff527b_fa50bff2",
+        "filename": "include/zero.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-01-13T22:08:26Z",
+      "side": 1,
+      "message": "Should we be having a namespace for these? I forget if we did for other files",
+      "revId": "eaa7a305fbd2173237a93d82a4cd206e645bb46c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbefc40a_4cc30ac3",
+        "filename": "include/zero.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-01-13T22:08:26Z",
+      "side": 1,
+      "message": "Maybe we\u0027ll narrow the scope of this constant by putting it as a member variable of class Zero?",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 35
+      },
+      "revId": "eaa7a305fbd2173237a93d82a4cd206e645bb46c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa74a250_5f674d0e",
+        "filename": "include/zero.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-01-13T22:08:26Z",
+      "side": 1,
+      "message": "take out the commented out code - I thought since this was a member variable, this would have to be static constexpr? But maybe since it\u0027s an array it\u0027s not quite right (I always get tripped up by that).",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 66
+      },
+      "revId": "eaa7a305fbd2173237a93d82a4cd206e645bb46c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

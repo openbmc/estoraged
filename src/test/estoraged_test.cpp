@@ -70,6 +70,9 @@ class MockCryptsetupInterface : public estoraged::CryptsetupInterface
 
     MOCK_METHOD(int, cryptDeactivate,
                 (struct crypt_device * cd, const char* name), (override));
+
+    MOCK_METHOD(int, cryptKeyslotDestroy,
+                (struct crypt_device * cd, const int name), (override));
 };
 
 using sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;

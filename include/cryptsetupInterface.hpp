@@ -96,6 +96,17 @@ class CryptsetupInterface
      *  @returns 0 on success or negative errno value otherwise.
      */
     virtual int cryptDeactivate(struct crypt_device* cd, const char* name) = 0;
+
+    /** @brief Wrapper arounds crypt_keyslot_destory.
+     *  @details Used for mocking purposes.
+     *
+     *  @param[in] cd - crypt device handle, can not be NULL.
+     *  @param[in] keyslot requested key slot to destroy
+     *
+     *  @returns 0 on success or negative errno value otherwise.
+     */
+    virtual int cryptKeyslotDestroy(struct crypt_device* cd,
+                                    const int keyslot) = 0;
 };
 
 /** @class Cryptsetup
@@ -142,6 +153,11 @@ class Cryptsetup : public CryptsetupInterface
     int cryptDeactivate(struct crypt_device* cd, const char* name) override
     {
         return crypt_deactivate(cd, name);
+    }
+
+    int cryptKeyslotDestroy(struct crypt_device* cd, const int keyslot) override
+    {
+        return crypt_keyslot_destroy(cd, keyslot);
     }
 };
 

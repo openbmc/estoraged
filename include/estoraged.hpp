@@ -49,7 +49,8 @@ class eStoraged : eStoragedInherit
         eStoragedInherit(bus, path),
         devPath(devPath), containerName(luksName),
         mountPoint("/mnt/" + luksName + "_fs"),
-        cryptIface(std::move(cryptInterface)), fsIface(std::move(fsInterface))
+        cryptIface(std::move(cryptInterface)),
+        fsIface(std::move(fsInterface)), activeKeySlot{0}
     {}
 
     /** @brief Format the LUKS encrypted device and create empty filesystem.
@@ -109,6 +110,12 @@ class eStoraged : eStoragedInherit
      *  @details This is used to mock out filesystem operations.
      */
     std::unique_ptr<FilesystemInterface> fsIface;
+
+    /** @breif the active LUKS keyslot
+     *  @details Needed by Erase, initized to zero, assinged in activation,
+     *  zeroed in deactivation
+     */
+    int activeKeySlot;
 
     /** @brief Format LUKS encrypted device.
      *

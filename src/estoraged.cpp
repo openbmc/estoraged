@@ -1,6 +1,7 @@
 
 #include "estoraged.hpp"
 
+#include "cryptoErase.hpp"
 #include "cryptsetupInterface.hpp"
 #include "pattern.hpp"
 #include "verifyDriveGeometry.hpp"
@@ -60,6 +61,16 @@ void eStoraged::erase(EraseMethod inEraseMethod)
     {
         case EraseMethod::CryptoErase:
         {
+            CryptHandle cryptHandle(devPath.c_str());
+            if (cryptHandle.get() == nullptr)
+            {
+                lg2::error("Failed to initialize crypt device",
+                           "REDFISH_MESSAGE_ID",
+                           std::string("OpenBMC.0.1.FormatFail"));
+                throw ResourceNotFound();
+            }
+
+            CryptoErase myCryptoErase(cryptHandle.get(), activeKeySlot);
             break;
         }
         case EraseMethod::VerifyGeometry:
@@ -212,11 +223,11 @@ void eStoraged::activateLuksDev(struct crypt_device* cd,
         throw InternalFailure();
     }
 
-    retval = cryptIface->cryptActivateByPassphrase(
+    activeKeySlot = cryptIface->cryptActivateByPassphrase(
         cd, containerName.c_str(), CRYPT_ANY_SLOT,
         reinterpret_cast<const char*>(password.data()), password.size(), 0);
 
-    if (retval < 0)
+    if (activeKeySlot < 0)
     {
         lg2::error("Failed to activate LUKS dev: {RETVAL}", "RETVAL", retval,
                    "REDFISH_MESSAGE_ID",
@@ -318,11 +329,13 @@ void eStoraged::deactivateLuksDev()
               std::string("OpenBMC.0.1.DeactivateLuksDev"));
 
     int retval = cryptIface->cryptDeactivate(nullptr, containerName.c_str());
+    activeKeySlot = 0;
     if (retval < 0)
     {
         lg2::error("Failed to deactivate crypt device: {RETVAL}", "RETVAL",
                    retval, "REDFISH_MESSAGE_ID",
                    std::string("OpenBMC.0.1.DeactivateLuksDevFail"));
+
         throw InternalFailure();
     }
 

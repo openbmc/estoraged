@@ -1,6 +1,7 @@
 
 #include "estoraged.hpp"
 
+#include "cryptErase.hpp"
 #include "cryptsetupInterface.hpp"
 #include "pattern.hpp"
 #include "verifyDriveGeometry.hpp"
@@ -15,6 +16,7 @@
 
 #include <filesystem>
 #include <iostream>
+#include <memory>
 #include <string_view>
 #include <vector>
 
@@ -61,6 +63,8 @@ void eStoraged::erase(EraseMethod inEraseMethod)
     {
         case EraseMethod::CryptoErase:
         {
+            CryptErase myCryptErase(devPath);
+            myCryptErase.doErase();
             break;
         }
         case EraseMethod::VerifyGeometry:

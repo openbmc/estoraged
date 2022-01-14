@@ -11,6 +11,7 @@ project(
 
 eStoraged_root = meson.current_source_dir()
 eStoraged_dbus_headers = include_directories('.')
+test_eStoraged_headers = include_directories('include', 'src/test/include')
 
 subdir('include')
 subdir('src')

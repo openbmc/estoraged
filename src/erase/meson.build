@@ -2,6 +2,7 @@ libeStoragedErase_lib = static_library(
   'libeStoragedErase-lib',
   'verifyDriveGeometry.cpp',
   'pattern.cpp',
+  'cryptoErase.cpp',
   'erase.cpp',
   'zero.cpp',
   include_directories : eStoraged_headers,

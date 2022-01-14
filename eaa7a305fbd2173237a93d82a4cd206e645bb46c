@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "664f194e_a06ebca0",
+        "filename": "include/zero.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-14T19:52:16Z",
+      "side": 1,
+      "message": "We did not for the other erase functions. Let me know if you think it is important",
+      "parentUuid": "2aff527b_fa50bff2",
+      "revId": "eaa7a305fbd2173237a93d82a4cd206e645bb46c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bbefc40a_4cc30ac3",
         "filename": "include/zero.hpp",
         "patchSetId": 4
@@ -31,6 +49,30 @@
       "writtenOn": "2022-01-13T22:08:26Z",
       "side": 1,
       "message": "Maybe we\u0027ll narrow the scope of this constant by putting it as a member variable of class Zero?",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 35
+      },
+      "revId": "eaa7a305fbd2173237a93d82a4cd206e645bb46c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d4e101b_82d92fd4",
+        "filename": "include/zero.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-14T19:52:16Z",
+      "side": 1,
+      "message": "It can\u0027t be accessed in the initialization in the zero constructor if it is a member variable. I will move it back the the cpp file.\nAfter moving blockSize to cpp I can\u0027t create the array as a member variable, so I moved that back also.",
+      "parentUuid": "bbefc40a_4cc30ac3",
       "range": {
         "startLine": 10,
         "startChar": 0,

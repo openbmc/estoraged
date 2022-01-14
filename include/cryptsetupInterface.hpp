@@ -96,6 +96,41 @@ class CryptsetupInterface
      *  @returns 0 on success or negative errno value otherwise.
      */
     virtual int cryptDeactivate(struct crypt_device* cd, const char* name) = 0;
+
+    /** @brief Wrapper arounds crypt_keyslot_destory.
+     *  @details Used for mocking purposes.
+     *
+     *  @param[in] cd - crypt device handle, can not be NULL.
+     *  @param[in] keyslot requested key slot to destroy
+     *
+     *  @returns 0 on success or negative errno value otherwise.
+     */
+    virtual int cryptKeyslotDestroy(struct crypt_device* cd,
+                                    const int keyslot) = 0;
+
+    /** @breif wapper crypt_keyslot_max
+     *  @details Used for mocking purposes.
+     *
+     * @param type crypt device type
+     *
+     * @return slot count or negative errno otherwise if device
+     * doesn't not support keyslots.
+     */
+    virtual int cryptKeySlotMax(const char*) = 0;
+
+    /** @breif wapper crypt_keyslot_status
+     *  @details Used for mocking purposes.
+     *  Get information about particular key slot.
+     *
+     * @param cd crypt device handle
+     * @param keyslot requested keyslot to check or CRYPT_ANY_SLOT
+     *
+     * @return value defined by crypt_keyslot_info
+     *
+     */
+
+    virtual crypt_keyslot_info cryptKeySlotStatus(struct crypt_device* cd,
+                                                  int keyslot) = 0;
 };
 
 /** @class Cryptsetup
@@ -142,6 +177,22 @@ class Cryptsetup : public CryptsetupInterface
     int cryptDeactivate(struct crypt_device* cd, const char* name) override
     {
         return crypt_deactivate(cd, name);
+    }
+
+    int cryptKeyslotDestroy(struct crypt_device* cd, const int keyslot) override
+    {
+        return crypt_keyslot_destroy(cd, keyslot);
+    }
+
+    int cryptKeySlotMax(const char* type) override
+    {
+        return crypt_keyslot_max(type);
+    }
+
+    crypt_keyslot_info cryptKeySlotStatus(struct crypt_device* cd,
+                                          int keyslot) override
+    {
+        return crypt_keyslot_status(cd, keyslot);
     }
 };
 

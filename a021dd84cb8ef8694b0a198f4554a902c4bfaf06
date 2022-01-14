@@ -94,6 +94,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff84d7b1_ad84a1d5",
+        "filename": "include/zero.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-01-14T17:40:46Z",
+      "side": 1,
+      "message": "It seems a little cleaner to have the ManagedFd managed internally, since the class already has the filepath. If you\u0027re concerned about WriteOnly vs. ReadOnly, you could have it open the file in the respective member functions.\n\nBut to keep it consistent with the pattern class, you can leave this as-is for now. We can change it later (in both classes), if we want.",
+      "parentUuid": "ff8c1fcb_3079bd16",
+      "range": {
+        "startLine": 26,
+        "startChar": 39,
+        "endLine": 26,
+        "endChar": 48
+      },
+      "revId": "a021dd84cb8ef8694b0a198f4554a902c4bfaf06",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "28fcf3b4_442834ac",
@@ -391,6 +415,30 @@
       "side": 1,
       "message": "The managedFd is smart and prevents you from manually setting the raw fd (which is what I need to do), so I needed a modify a private member variable at construction.",
       "parentUuid": "5049b733_ec9e7659",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 2
+      },
+      "revId": "a021dd84cb8ef8694b0a198f4554a902c4bfaf06",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80a30858_e3fa7d84",
+        "filename": "src/test/erase/zero_test.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-01-14T17:40:46Z",
+      "side": 1,
+      "message": "To make it work, I think you just need to use std::move(fd), like you\u0027re already doing in the constructor for MockManagedFd.",
+      "parentUuid": "6ca47d57_238b7396",
       "range": {
         "startLine": 20,
         "startChar": 0,

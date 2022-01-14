@@ -7,6 +7,8 @@
 
 #include <string>
 
+namespace estoraged
+{
 using sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
 
 void VerifyDriveGeometry::geometryOkay(uint64_t bytes)
@@ -36,3 +38,5 @@ void VerifyDriveGeometry::geometryOkay(uint64_t bytes)
                   std::string("OpenBMC.0.1.DriveEraseSuccess"));
     }
 }
+
+} // namespace estoraged

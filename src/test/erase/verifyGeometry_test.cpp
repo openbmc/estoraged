@@ -7,6 +7,9 @@
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
+namespace estoraged_test
+{
+using estoraged::VerifyDriveGeometry;
 using sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
 
 TEST(VerifyGeometry, TooBigFail)
@@ -28,3 +31,5 @@ TEST(VerifyGeometry, pass)
     VerifyDriveGeometry passVerify("");
     EXPECT_NO_THROW(passVerify.geometryOkay(ERASE_MIN_GEOMETRY + 1));
 }
+
+} // namespace estoraged_test

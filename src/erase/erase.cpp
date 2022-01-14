@@ -8,6 +8,9 @@
 #include <stdplus/handle/managed.hpp>
 #include <xyz/openbmc_project/Common/error.hpp>
 
+namespace estoraged
+{
+
 using sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
 using stdplus::fd::ManagedFd;
 
@@ -31,3 +34,5 @@ uint64_t Erase::findSizeOfBlockDevice()
     }
     return bytes;
 }
+
+} // namespace estoraged

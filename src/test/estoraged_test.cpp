@@ -1,4 +1,7 @@
 
+#include "estoraged_test.hpp"
+
+#include "cryptErase.hpp"
 #include "cryptsetupInterface.hpp"
 #include "estoraged.hpp"
 #include "filesystemInterface.hpp"
@@ -6,8 +9,11 @@
 #include <unistd.h>
 
 #include <sdbusplus/bus.hpp>
+#include <sdbusplus/server/object.hpp>
 #include <sdbusplus/test/sdbus_mock.hpp>
 #include <xyz/openbmc_project/Common/error.hpp>
+#include <xyz/openbmc_project/Inventory/Item/Volume/client.hpp>
+#include <xyz/openbmc_project/Inventory/Item/Volume/server.hpp>
 
 #include <exception>
 #include <filesystem>
@@ -22,65 +28,13 @@
 namespace estoraged_test
 {
 
-class MockFilesystemInterface : public estoraged::FilesystemInterface
-{
-  public:
-    MOCK_METHOD(int, runMkfs, (const std::string& logicalVolume), (override));
-
-    MOCK_METHOD(int, doMount,
-                (const char* source, const char* target,
-                 const char* filesystemtype, unsigned long mountflags,
-                 const void* data),
-                (override));
-
-    MOCK_METHOD(int, doUnmount, (const char* target), (override));
-
-    MOCK_METHOD(bool, createDirectory, (const std::filesystem::path& p),
-                (override));
-
-    MOCK_METHOD(bool, removeDirectory, (const std::filesystem::path& p),
-                (override));
-
-    MOCK_METHOD(bool, directoryExists, (const std::filesystem::path& p),
-                (override));
-};
-
-class MockCryptsetupInterface : public estoraged::CryptsetupInterface
-{
-  public:
-    MOCK_METHOD(int, cryptFormat,
-                (struct crypt_device * cd, const char* type, const char* cipher,
-                 const char* cipher_mode, const char* uuid,
-                 const char* volume_key, size_t volume_key_size, void* params),
-                (override));
-
-    MOCK_METHOD(int, cryptKeyslotAddByVolumeKey,
-                (struct crypt_device * cd, int keyslot, const char* volume_key,
-                 size_t volume_key_size, const char* passphrase,
-                 size_t passphrase_size),
-                (override));
-
-    MOCK_METHOD(int, cryptLoad,
-                (struct crypt_device * cd, const char* requested_type,
-                 void* params),
-                (override));
-
-    MOCK_METHOD(int, cryptActivateByPassphrase,
-                (struct crypt_device * cd, const char* name, int keyslot,
-                 const char* passphrase, size_t passphrase_size,
-                 uint32_t flags),
-                (override));
-
-    MOCK_METHOD(int, cryptDeactivate,
-                (struct crypt_device * cd, const char* name), (override));
-};
-
 using sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
 using sdbusplus::xyz::openbmc_project::Common::Error::ResourceNotFound;
 using sdbusplus::xyz::openbmc_project::Inventory::Item::server::Volume;
 using std::filesystem::path;
 using ::testing::_;
 using ::testing::ContainsRegex;
+using ::testing::Ge;
 using ::testing::IsNull;
 using ::testing::Return;
 using ::testing::StrEq;

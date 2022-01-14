@@ -5,8 +5,11 @@ tests = [
   'erase/verifyGeometry_test',
   'erase/pattern_test',
   'erase/zero_test',
+  'erase/crypto_test',
   'estoraged_test',
 ]
+
+test_eStoraged_headers = include_directories('include')
 
 foreach t : tests
   test(t, executable(t.underscorify(), t + '.cpp',
@@ -16,5 +19,5 @@ foreach t : tests
                        gmock,
                        libeStoraged,
                      ],
-                     include_directories: eStoraged_headers))
+                     include_directories: [eStoraged_headers, test_eStoraged_headers]))
 endforeach

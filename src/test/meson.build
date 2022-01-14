@@ -5,6 +5,7 @@ tests = [
   'erase/verifyGeometry_test',
   'erase/pattern_test',
   'erase/zero_test',
+  'erase/crypto_test',
   'estoraged_test',
 ]
 
@@ -16,5 +17,5 @@ foreach t : tests
                        gmock,
                        libeStoraged,
                      ],
-                     include_directories: eStoraged_headers))
+                     include_directories: test_eStoraged_headers))
 endforeach

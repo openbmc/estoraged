@@ -8,6 +8,8 @@
 #include <span>
 #include <string>
 
+namespace estoraged
+{
 using stdplus::fd::ManagedFd;
 
 class Pattern : public Erase
@@ -36,3 +38,5 @@ class Pattern : public Erase
      */
     void verifyPattern(uint64_t driveSize, ManagedFd& fd);
 };
+
+} // namespace estoraged

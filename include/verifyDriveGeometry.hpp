@@ -4,6 +4,9 @@
 
 #include <string_view>
 
+namespace estoraged
+{
+
 class VerifyDriveGeometry : public Erase
 {
   public:
@@ -21,3 +24,5 @@ class VerifyDriveGeometry : public Erase
      */
     void geometryOkay(uint64_t bytes);
 };
+
+} // namespace estoraged

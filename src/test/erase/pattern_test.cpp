@@ -14,6 +14,10 @@
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
+namespace estoraged_test
+{
+
+using estoraged::Pattern;
 using sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
 using stdplus::fd::ManagedFd;
 
@@ -79,3 +83,5 @@ TEST(pattern, patternsDontMatch)
     MockManagedFd verifyFd(fds[0]);
     EXPECT_THROW(pass.verifyPattern(size, verifyFd), InternalFailure);
 }
+
+} // namespace estoraged_test

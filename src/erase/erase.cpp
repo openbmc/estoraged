@@ -11,6 +11,9 @@
 using sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
 using stdplus::fd::ManagedFd;
 
+namespace estoraged
+{
+
 uint64_t Erase::findSizeOfBlockDevice()
 {
     ManagedFd fd;
@@ -31,3 +34,5 @@ uint64_t Erase::findSizeOfBlockDevice()
     }
     return bytes;
 }
+
+} // namespace estoraged

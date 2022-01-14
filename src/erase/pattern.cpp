@@ -19,6 +19,8 @@ constexpr uint32_t seed = 0x6a656272;
 constexpr size_t blockSize = 4096;
 constexpr size_t blockSizeUsing32 = blockSize / sizeof(uint32_t);
 
+namespace estoraged
+{
 using sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
 using stdplus::fd::ManagedFd;
 
@@ -97,3 +99,5 @@ void Pattern::verifyPattern(const uint64_t driveSize, ManagedFd& fd)
         currentIndex = currentIndex + readSize;
     }
 }
+
+} // namespace estoraged

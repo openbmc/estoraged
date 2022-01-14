@@ -15,6 +15,10 @@
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
+namespace estoraged_test
+{
+
+using estoraged::Pattern;
 using sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
 
 TEST(pattern, patternPass)
@@ -65,3 +69,5 @@ TEST(pattern, patternsDontMatch)
     EXPECT_NO_THROW(pass.writePattern(size - sizeof(dummyValue)));
     EXPECT_THROW(pass.verifyPattern(size), InternalFailure);
 }
+
+} // namespace estoraged_test

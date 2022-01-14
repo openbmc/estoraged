@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 
+namespace estoraged
+{
 /** @class Erase
  *  @brief Erase object provides a base class for the specific erase types
  */
@@ -23,3 +25,5 @@ class Erase
     /* The linux path for the block device */
     std::string devPath;
 };
+
+} // namespace estoraged

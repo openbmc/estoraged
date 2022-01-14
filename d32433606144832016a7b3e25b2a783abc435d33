@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9df4a63e_73ab76b3",
+        "filename": "include/estoraged.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-01-14T17:45:05Z",
+      "side": 1,
+      "message": "Why is this needed? Shouldn\u0027t you just wipe all keyslots?",
+      "range": {
+        "startLine": 114,
+        "startChar": 4,
+        "endLine": 118,
+        "endChar": 22
+      },
+      "revId": "d32433606144832016a7b3e25b2a783abc435d33",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

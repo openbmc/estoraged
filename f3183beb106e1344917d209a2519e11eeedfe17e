@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "247c61f6_84d4cf0f",
+        "filename": "include/zero.hpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-01-15T00:46:37Z",
+      "side": 1,
+      "message": "minor nit: this could be constexpr",
+      "range": {
+        "startLine": 43,
+        "startChar": 11,
+        "endLine": 43,
+        "endChar": 16
+      },
+      "revId": "f3183beb106e1344917d209a2519e11eeedfe17e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

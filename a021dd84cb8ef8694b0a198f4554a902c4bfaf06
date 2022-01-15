@@ -71,6 +71,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a847865_25f1f77d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-15T00:18:38Z",
+      "side": 1,
+      "message": "The plan is to enforce the long timeout, until we have some time to address it.",
+      "parentUuid": "ede6918d_ac5be7fb",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 17
+      },
+      "revId": "a021dd84cb8ef8694b0a198f4554a902c4bfaf06",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "57776604_f06bfbfa",
@@ -355,6 +379,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7680da7_243ddb08",
+        "filename": "src/erase/zero.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-15T00:18:38Z",
+      "side": 1,
+      "message": "It looks like it is possible to have static const member varaibales. Last time I was trying a consexpr and it was give me issues.\n\nMoved back to the header file.",
+      "parentUuid": "2de17f44_28b91fea",
+      "range": {
+        "startLine": 22,
+        "startChar": 5,
+        "endLine": 22,
+        "endChar": 52
+      },
+      "revId": "a021dd84cb8ef8694b0a198f4554a902c4bfaf06",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1acf2032_59a81812",
@@ -512,6 +560,30 @@
       "side": 1,
       "message": "I chatted with Wedig, WAK, and you.\n1) The long term fix is a change the the generate in sdbusplus. That allows us the return a call asynchronously. \n2) the medium term fix is to change the interface to allow a simplistic  asynchronously calls.\n3) The fastest solution is to allow the the long timeouts for this daemon.\n\nThe consensus was to allow the long timeouts for now, until we can go back and make asynchronous returns easy from sdbusplus.",
       "parentUuid": "d56c9829_24623ac6",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 0
+      },
+      "revId": "a021dd84cb8ef8694b0a198f4554a902c4bfaf06",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a936228a_7107090a",
+        "filename": "src/erase/zero.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-15T00:18:38Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "21ed6053_da2cd1f8",
       "range": {
         "startLine": 63,
         "startChar": 0,

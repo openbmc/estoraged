@@ -54,6 +54,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3687eec_893e2ba8",
+        "filename": "include/zero.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-15T00:18:38Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "3feec51f_2456de33",
+      "revId": "eaa7a305fbd2173237a93d82a4cd206e645bb46c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bbefc40a_4cc30ac3",
@@ -114,6 +132,30 @@
       "writtenOn": "2022-01-13T22:08:26Z",
       "side": 1,
       "message": "take out the commented out code - I thought since this was a member variable, this would have to be static constexpr? But maybe since it\u0027s an array it\u0027s not quite right (I always get tripped up by that).",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 66
+      },
+      "revId": "eaa7a305fbd2173237a93d82a4cd206e645bb46c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8cee021a_3cfd7ed6",
+        "filename": "include/zero.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-15T00:18:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa74a250_5f674d0e",
       "range": {
         "startLine": 42,
         "startChar": 0,

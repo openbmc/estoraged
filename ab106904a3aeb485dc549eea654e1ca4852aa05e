@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3aa48d5_c745ebc6",
+        "filename": "src/test/erase/zero_test.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-01-15T00:34:27Z",
+      "side": 1,
+      "message": "minor nit: For tests, you can just use an anonymous namespace",
+      "range": {
+        "startLine": 21,
+        "startChar": 10,
+        "endLine": 21,
+        "endChar": 24
+      },
+      "revId": "ab106904a3aeb485dc549eea654e1ca4852aa05e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

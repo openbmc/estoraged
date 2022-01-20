@@ -16,6 +16,115 @@
       "message": "Thanks for taking the time to look this over",
       "revId": "e38e5225d766c07d0a1bc79485c567001975884a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8991a79_4cf321f2",
+        "filename": "include/cryptErase.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-01-20T21:40:52Z",
+      "side": 1,
+      "message": "nit: add a blank line between the namespace and the include.",
+      "revId": "e38e5225d766c07d0a1bc79485c567001975884a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c30a3e2_3bd78cab",
+        "filename": "src/erase/cryptErase.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-01-20T21:40:52Z",
+      "side": 1,
+      "message": "Just for my own information, what happens if you call this function on a keyslot with some other status?",
+      "range": {
+        "startLine": 62,
+        "startChar": 34,
+        "endLine": 62,
+        "endChar": 53
+      },
+      "revId": "e38e5225d766c07d0a1bc79485c567001975884a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc544dac_efb2d95b",
+        "filename": "src/test/estoraged_test.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 587,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-01-20T21:40:52Z",
+      "side": 1,
+      "message": "It probably makes sense to put these test cases in their own file. To make that work, you\u0027ll need to put the MockCryptsetupInterface class in its own header file.",
+      "range": {
+        "startLine": 586,
+        "startChar": 0,
+        "endLine": 587,
+        "endChar": 24
+      },
+      "revId": "e38e5225d766c07d0a1bc79485c567001975884a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3885009f_7aa1aab0",
+        "filename": "src/test/estoraged_test.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 591,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-01-20T21:40:52Z",
+      "side": 1,
+      "message": "Is there a reason you\u0027re doing a \u003e\u003d comparison?\n\nI think you should use Eq, instead.",
+      "range": {
+        "startLine": 591,
+        "startChar": 46,
+        "endLine": 591,
+        "endChar": 48
+      },
+      "revId": "e38e5225d766c07d0a1bc79485c567001975884a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf3c9a0c_eda0a3b0",
+        "filename": "src/test/estoraged_test.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 626,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-01-20T21:40:52Z",
+      "side": 1,
+      "message": "Is this function supposed to return CRYPT_SLOT_INVALID for every keyslot? If so, you should use WillRepeatedly in this case.",
+      "range": {
+        "startLine": 626,
+        "startChar": 9,
+        "endLine": 626,
+        "endChar": 17
+      },
+      "revId": "e38e5225d766c07d0a1bc79485c567001975884a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

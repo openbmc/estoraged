@@ -16,6 +16,126 @@
       "message": "Thanks for taking a look at this.",
       "revId": "e9fdd1855c29e7265941984c831f16d6d8069e22",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0bc8c185_8d7b4f6c",
+        "filename": "include/cryptsetupInterface.hpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-01-21T17:44:54Z",
+      "side": 1,
+      "message": "fix this",
+      "range": {
+        "startLine": 117,
+        "startChar": 7,
+        "endLine": 117,
+        "endChar": 18
+      },
+      "revId": "e9fdd1855c29e7265941984c831f16d6d8069e22",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "277bafa0_748f6342",
+        "filename": "include/cryptsetupInterface.hpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-01-21T17:44:54Z",
+      "side": 1,
+      "message": "nit: blank line",
+      "revId": "e9fdd1855c29e7265941984c831f16d6d8069e22",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc6a8e20_fa615015",
+        "filename": "src/erase/cryptoErase.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-01-21T17:44:54Z",
+      "side": 1,
+      "message": "I wouldn\u0027t normally expect the constructor itself to do the erase operation. Maybe sync up with Brandon and/or William about whether the crypto erase should be moved to another member function.",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 22
+      },
+      "revId": "e9fdd1855c29e7265941984c831f16d6d8069e22",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eabdbe3a_1fe44244",
+        "filename": "src/test/erase/crypto_test.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-01-21T17:44:54Z",
+      "side": 1,
+      "message": "Looks like you\u0027re not using this",
+      "revId": "e9fdd1855c29e7265941984c831f16d6d8069e22",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7317c66_25322cd2",
+        "filename": "src/test/estoraged_test.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-01-21T17:44:54Z",
+      "side": 1,
+      "message": "remove this",
+      "revId": "e9fdd1855c29e7265941984c831f16d6d8069e22",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "881fd07f_80defb2a",
+        "filename": "src/test/meson.build",
+        "patchSetId": 7
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-01-21T17:44:54Z",
+      "side": 1,
+      "message": "Can this be set to eStoraged_headers instead of a relative path?",
+      "range": {
+        "startLine": 12,
+        "startChar": 45,
+        "endLine": 12,
+        "endChar": 60
+      },
+      "revId": "e9fdd1855c29e7265941984c831f16d6d8069e22",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

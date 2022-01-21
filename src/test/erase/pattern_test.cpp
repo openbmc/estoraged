@@ -8,6 +8,7 @@
 #include <stdplus/fd/managed.hpp>
 #include <xyz/openbmc_project/Common/error.hpp>
 
+#include <fstream>
 #include <system_error>
 
 #include <gmock/gmock-matchers.h>
@@ -15,67 +16,53 @@
 #include <gtest/gtest.h>
 
 using sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
-using stdplus::fd::ManagedFd;
-
-class MockManagedFd : public ManagedFd
-{
-  public:
-    MockManagedFd(int fd) : ManagedFd(std::move(fd))
-    {}
-    ~MockManagedFd()
-    {}
-};
 
 TEST(pattern, patternPass)
 {
+    std::string testFileName = "patternPass";
     uint64_t size = 4096;
-    int fds[2];
-    Pattern pass("fileName");
-    if (pipe(fds))
-    {
-        FAIL();
-    }
-    MockManagedFd writeFd(fds[1]);
-    EXPECT_NO_THROW(pass.writePattern(size, writeFd));
-    MockManagedFd verifyFd(fds[0]);
-    EXPECT_NO_THROW(pass.verifyPattern(size, verifyFd));
+    std::ofstream testFile;
+    testFile.open(testFileName,
+                  std::ios::out | std::ios::binary | std::ios::trunc);
+    testFile.close();
+
+    Pattern pass(testFileName);
+    EXPECT_NO_THROW(pass.writePattern(size));
+    EXPECT_NO_THROW(pass.verifyPattern(size));
 }
 
 /* This test that pattern writes the correct number of bytes even if
  * size of the drive is not divisable by the block size
  */
-TEST(pattern, patternPassNotDivisible)
+TEST(pattern, patternNotDivisible)
 {
+    std::string testFileName = "notDivisible";
     uint64_t size = 4097;
     // 4097 is not divisible by the block size, and we expect no errors
-    int fds[2];
-    Pattern pass("fileName");
-    if (pipe(fds))
-    {
-        FAIL();
-    }
-    MockManagedFd writeFd(fds[1]);
-    EXPECT_NO_THROW(pass.writePattern(size, writeFd));
-    MockManagedFd verifyFd(fds[0]);
-    EXPECT_NO_THROW(pass.verifyPattern(size, verifyFd));
+    std::ofstream testFile;
+    testFile.open(testFileName,
+                  std::ios::out | std::ios::binary | std::ios::trunc);
+    testFile.close();
+
+    Pattern pass(testFileName);
+    EXPECT_NO_THROW(pass.writePattern(size));
+    EXPECT_NO_THROW(pass.verifyPattern(size));
 }
 
 TEST(pattern, patternsDontMatch)
 {
+    std::string testFileName = "patternsDontMatch";
     uint64_t size = 4096;
-    int fds[2];
-    Pattern pass("fileName");
-    if (pipe(fds))
-    {
-        FAIL();
-    }
+    std::ofstream testFile;
+
+    Pattern pass(testFileName);
+
     int dummyValue = 88;
-    if (::write(fds[1], &dummyValue, sizeof(dummyValue)) != sizeof(dummyValue))
-    {
-        FAIL();
-    }
-    MockManagedFd writeFd(fds[1]);
-    pass.writePattern(size - sizeof(dummyValue), writeFd);
-    MockManagedFd verifyFd(fds[0]);
-    EXPECT_THROW(pass.verifyPattern(size, verifyFd), InternalFailure);
+    EXPECT_NO_THROW(pass.writePattern(size - sizeof(dummyValue)));
+    testFile.open(testFileName, std::ios::binary | std::ios::out);
+    testFile.write((const char*)&dummyValue, sizeof(dummyValue));
+    testFile.close();
+
+    EXPECT_NO_THROW(pass.writePattern(size - sizeof(dummyValue)));
+    EXPECT_THROW(pass.verifyPattern(size), InternalFailure);
 }

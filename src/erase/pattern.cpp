@@ -22,13 +22,17 @@ constexpr size_t blockSizeUsing32 = blockSize / sizeof(uint32_t);
 using sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
 using stdplus::fd::ManagedFd;
 
-void Pattern::writePattern(const uint64_t driveSize, ManagedFd& fd)
+void Pattern::writePattern(const uint64_t driveSize)
 {
     // static seed defines a fixed prng sequnce so it can be verified later,
     // and validated for entropy
     uint64_t currentIndex = 0;
     std::minstd_rand0 generator(seed);
     std::array<std::byte, blockSize> randArr;
+
+    ManagedFd fd =
+        stdplus::fd::open(devPath, stdplus::fd::OpenAccess::WriteOnly);
+
     while (currentIndex < driveSize)
     {
         // generate a 4k block of prng
@@ -54,13 +58,17 @@ void Pattern::writePattern(const uint64_t driveSize, ManagedFd& fd)
     }
 }
 
-void Pattern::verifyPattern(const uint64_t driveSize, ManagedFd& fd)
+void Pattern::verifyPattern(const uint64_t driveSize)
 {
 
     uint64_t currentIndex = 0;
     std::minstd_rand0 generator(seed);
     std::array<std::byte, blockSize> randArr;
     std::array<std::byte, blockSize> readArr;
+
+    ManagedFd fd =
+        stdplus::fd::open(devPath, stdplus::fd::OpenAccess::ReadOnly);
+
     while (currentIndex < driveSize)
     {
         size_t readSize = currentIndex + blockSize < driveSize

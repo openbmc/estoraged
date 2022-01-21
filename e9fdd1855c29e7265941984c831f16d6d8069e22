@@ -262,6 +262,30 @@
       },
       "revId": "e9fdd1855c29e7265941984c831f16d6d8069e22",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43463664_771417f3",
+        "filename": "src/test/meson.build",
+        "patchSetId": 7
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-01-21T21:54:38Z",
+      "side": 1,
+      "message": "Hmm, yeah that\u0027d be fine with me.\n\nSince there\u0027s only one test header file, it might also be okay to put estoraged_test.hpp in src/test/, same place as the *_test.cpp files, so you wouldn\u0027t have to bother with this.",
+      "parentUuid": "9899db58_cf7dff7e",
+      "range": {
+        "startLine": 12,
+        "startChar": 45,
+        "endLine": 12,
+        "endChar": 60
+      },
+      "revId": "e9fdd1855c29e7265941984c831f16d6d8069e22",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

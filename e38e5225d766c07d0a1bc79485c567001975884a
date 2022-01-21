@@ -73,6 +73,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "671a4761_0cd3564b",
+        "filename": "include/cryptErase.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-21T18:51:21Z",
+      "side": 1,
+      "message": "done, last time I added the empty line between the class and the open brace",
+      "parentUuid": "be84ec08_257217f5",
+      "revId": "e38e5225d766c07d0a1bc79485c567001975884a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "4c30a3e2_3bd78cab",
         "filename": "src/erase/cryptErase.cpp",
         "patchSetId": 4

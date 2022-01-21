@@ -41,6 +41,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "15d60318_c579a39a",
+        "filename": "include/cryptsetupInterface.hpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-21T18:51:21Z",
+      "side": 1,
+      "message": "It is like that upstream. \nhttps://gitlab.com/cryptsetup/cryptsetup/blob/master/lib/libcryptsetup.h#L1744\nI will add a PR to never ending todo list\ndone",
+      "parentUuid": "0bc8c185_8d7b4f6c",
+      "range": {
+        "startLine": 117,
+        "startChar": 7,
+        "endLine": 117,
+        "endChar": 18
+      },
+      "revId": "e9fdd1855c29e7265941984c831f16d6d8069e22",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "277bafa0_748f6342",
@@ -54,6 +78,24 @@
       "writtenOn": "2022-01-21T17:44:54Z",
       "side": 1,
       "message": "nit: blank line",
+      "revId": "e9fdd1855c29e7265941984c831f16d6d8069e22",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0ad27ad_094b303b",
+        "filename": "include/cryptsetupInterface.hpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-21T18:51:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "277bafa0_748f6342",
       "revId": "e9fdd1855c29e7265941984c831f16d6d8069e22",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -83,6 +125,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4f1b6859_1c785650",
+        "filename": "src/erase/cryptoErase.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-21T18:51:21Z",
+      "side": 1,
+      "message": "I moved it to a doErase member function.\nLet me know if there is anything else I need to do.",
+      "parentUuid": "bc6a8e20_fa615015",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 22
+      },
+      "revId": "e9fdd1855c29e7265941984c831f16d6d8069e22",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "eabdbe3a_1fe44244",
         "filename": "src/test/erase/crypto_test.cpp",
         "patchSetId": 7
@@ -94,6 +160,24 @@
       "writtenOn": "2022-01-21T17:44:54Z",
       "side": 1,
       "message": "Looks like you\u0027re not using this",
+      "revId": "e9fdd1855c29e7265941984c831f16d6d8069e22",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0608fe70_8e8e0f17",
+        "filename": "src/test/erase/crypto_test.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-21T18:51:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eabdbe3a_1fe44244",
       "revId": "e9fdd1855c29e7265941984c831f16d6d8069e22",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -115,6 +199,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ead47f22_da74ce89",
+        "filename": "src/test/estoraged_test.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-21T18:51:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d7317c66_25322cd2",
+      "revId": "e9fdd1855c29e7265941984c831f16d6d8069e22",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "881fd07f_80defb2a",
@@ -128,6 +230,30 @@
       "writtenOn": "2022-01-21T17:44:54Z",
       "side": 1,
       "message": "Can this be set to eStoraged_headers instead of a relative path?",
+      "range": {
+        "startLine": 12,
+        "startChar": 45,
+        "endLine": 12,
+        "endChar": 60
+      },
+      "revId": "e9fdd1855c29e7265941984c831f16d6d8069e22",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9899db58_cf7dff7e",
+        "filename": "src/test/meson.build",
+        "patchSetId": 7
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-21T18:51:21Z",
+      "side": 1,
+      "message": "no, it fails with \"Arguments must be strings\" for the include_directories.\nWe could create \"test_eStoraged_headers\" at the top level messon, so the call would looks like.\n\u003e test_eStoraged_headers \u003d include_directories(\u0027include\u0027, \u0027src/test/include\u0027)",
+      "parentUuid": "881fd07f_80defb2a",
       "range": {
         "startLine": 12,
         "startChar": 45,

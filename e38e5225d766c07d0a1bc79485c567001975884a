@@ -37,6 +37,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "a715a617_3e6813e9",
+        "filename": "include/cryptErase.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-21T04:38:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a8991a79_4cf321f2",
+      "revId": "e38e5225d766c07d0a1bc79485c567001975884a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "4c30a3e2_3bd78cab",
         "filename": "src/erase/cryptErase.cpp",
         "patchSetId": 4
@@ -48,6 +66,30 @@
       "writtenOn": "2022-01-20T21:40:52Z",
       "side": 1,
       "message": "Just for my own information, what happens if you call this function on a keyslot with some other status?",
+      "range": {
+        "startLine": 62,
+        "startChar": 34,
+        "endLine": 62,
+        "endChar": 53
+      },
+      "revId": "e38e5225d766c07d0a1bc79485c567001975884a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d162bbc_6d87bd1b",
+        "filename": "src/erase/cryptErase.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-21T04:38:12Z",
+      "side": 1,
+      "message": "It prints \"I can\u0027t delete this :(\" and returns and error.",
+      "parentUuid": "4c30a3e2_3bd78cab",
       "range": {
         "startLine": 62,
         "startChar": 34,
@@ -81,6 +123,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b76a2bf9_e892d2a6",
+        "filename": "src/test/estoraged_test.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 587,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-21T04:38:12Z",
+      "side": 1,
+      "message": "make sense. I just did not want to do it if you were not onboard.\nDone",
+      "parentUuid": "dc544dac_efb2d95b",
+      "range": {
+        "startLine": 586,
+        "startChar": 0,
+        "endLine": 587,
+        "endChar": 24
+      },
+      "revId": "e38e5225d766c07d0a1bc79485c567001975884a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3885009f_7aa1aab0",
@@ -104,6 +170,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dabbf09d_12e83224",
+        "filename": "src/test/estoraged_test.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 591,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-21T04:38:12Z",
+      "side": 1,
+      "message": "that is funny oversight. It was comparing the pointers and failing, but when I switched to Ge, the new pointer was always greater then and passing.\n\nSwitched to StrEq, after I figured it out.",
+      "parentUuid": "3885009f_7aa1aab0",
+      "range": {
+        "startLine": 591,
+        "startChar": 46,
+        "endLine": 591,
+        "endChar": 48
+      },
+      "revId": "e38e5225d766c07d0a1bc79485c567001975884a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bf3c9a0c_eda0a3b0",
@@ -117,6 +207,30 @@
       "writtenOn": "2022-01-20T21:40:52Z",
       "side": 1,
       "message": "Is this function supposed to return CRYPT_SLOT_INVALID for every keyslot? If so, you should use WillRepeatedly in this case.",
+      "range": {
+        "startLine": 626,
+        "startChar": 9,
+        "endLine": 626,
+        "endChar": 17
+      },
+      "revId": "e38e5225d766c07d0a1bc79485c567001975884a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13e3cd20_e982d9e6",
+        "filename": "src/test/estoraged_test.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 626,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-21T04:38:12Z",
+      "side": 1,
+      "message": "sure, I will also increase the number of slots, so we validate the looping.",
+      "parentUuid": "bf3c9a0c_eda0a3b0",
       "range": {
         "startLine": 626,
         "startChar": 9,

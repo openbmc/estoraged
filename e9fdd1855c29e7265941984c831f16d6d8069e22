@@ -286,6 +286,30 @@
       },
       "revId": "e9fdd1855c29e7265941984c831f16d6d8069e22",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6cdff221_4c34dde3",
+        "filename": "src/test/meson.build",
+        "patchSetId": 7
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-21T23:22:06Z",
+      "side": 1,
+      "message": "I would rather not mix testing headers with binary headers. (in a year it will will be a real task to separate again, and eventually someone will care)",
+      "parentUuid": "43463664_771417f3",
+      "range": {
+        "startLine": 12,
+        "startChar": 45,
+        "endLine": 12,
+        "endChar": 60
+      },
+      "revId": "e9fdd1855c29e7265941984c831f16d6d8069e22",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

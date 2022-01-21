@@ -35,6 +35,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "20681f6d_352ccba2",
+        "filename": "include/cryptErase.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-21T23:22:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "22c68931_356c5d70",
+      "revId": "8164c31e3856973e3c61f8326cf34be1435490bc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bea04aa3_d2cad641",
@@ -48,6 +66,30 @@
       "writtenOn": "2022-01-21T21:54:38Z",
       "side": 1,
       "message": "I think this parameter should still be in the constructor.",
+      "range": {
+        "startLine": 19,
+        "startChar": 17,
+        "endLine": 20,
+        "endChar": 51
+      },
+      "revId": "8164c31e3856973e3c61f8326cf34be1435490bc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "563b7cde_0a816b09",
+        "filename": "include/cryptErase.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-21T23:22:06Z",
+      "side": 1,
+      "message": "It is only used in the doErase method, and it would require adding a member variable to the class to hold the value.\n\nIt can be done, but can you help me understand why it should be in the constructor?",
+      "parentUuid": "bea04aa3_d2cad641",
       "range": {
         "startLine": 19,
         "startChar": 17,

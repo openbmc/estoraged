@@ -73,19 +73,14 @@ void eStoraged::erase(EraseMethod inEraseMethod)
         case EraseMethod::LogicalOverWrite:
         {
             Pattern myErasePattern(devPath);
-            ManagedFd drivefd =
-                stdplus::fd::open(devPath, stdplus::fd::OpenAccess::WriteOnly);
-            myErasePattern.writePattern(myErasePattern.findSizeOfBlockDevice(),
-                                        drivefd);
+            myErasePattern.writePattern(myErasePattern.findSizeOfBlockDevice());
             break;
         }
         case EraseMethod::LogicalVerify:
         {
             Pattern myErasePattern(devPath);
-            ManagedFd drivefd =
-                stdplus::fd::open(devPath, stdplus::fd::OpenAccess::ReadOnly);
-            myErasePattern.verifyPattern(myErasePattern.findSizeOfBlockDevice(),
-                                         drivefd);
+            myErasePattern.verifyPattern(
+                myErasePattern.findSizeOfBlockDevice());
             break;
         }
         case EraseMethod::VendorSanitize:
@@ -95,17 +90,13 @@ void eStoraged::erase(EraseMethod inEraseMethod)
         case EraseMethod::ZeroOverWrite:
         {
             Zero myZero(devPath);
-            ManagedFd drivefd =
-                stdplus::fd::open(devPath, stdplus::fd::OpenAccess::WriteOnly);
-            myZero.writeZero(myZero.findSizeOfBlockDevice(), drivefd);
+            myZero.writeZero(myZero.findSizeOfBlockDevice());
             break;
         }
         case EraseMethod::ZeroVerify:
         {
             Zero myZero(devPath);
-            ManagedFd drivefd =
-                stdplus::fd::open(devPath, stdplus::fd::OpenAccess::ReadOnly);
-            myZero.verifyZero(myZero.findSizeOfBlockDevice(), drivefd);
+            myZero.verifyZero(myZero.findSizeOfBlockDevice());
             break;
         }
         case EraseMethod::SecuredLocked:

@@ -16,8 +16,11 @@ namespace estoraged
 using sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
 using stdplus::fd::ManagedFd;
 
-void Zero::writeZero(const uint64_t driveSize, ManagedFd& fd)
+void Zero::writeZero(const uint64_t driveSize)
 {
+
+    ManagedFd fd =
+        stdplus::fd::open(devPath, stdplus::fd::OpenAccess::WriteOnly);
 
     uint64_t currentIndex = 0;
     const std::array<const std::byte, blockSize> blockOfZeros{};
@@ -42,8 +45,11 @@ void Zero::writeZero(const uint64_t driveSize, ManagedFd& fd)
     }
 }
 
-void Zero::verifyZero(uint64_t driveSize, ManagedFd& fd)
+void Zero::verifyZero(uint64_t driveSize)
 {
+    ManagedFd fd =
+        stdplus::fd::open(devPath, stdplus::fd::OpenAccess::ReadOnly);
+
     uint64_t currentIndex = 0;
     std::array<std::byte, blockSize> readArr;
     const std::array<const std::byte, blockSize> blockOfZeros{};

@@ -24,17 +24,15 @@ class Zero : public Erase
      * and throws errors accordingly.
      *
      *  @param[in] bytes - Size of the block device
-     *  @param[in] managedFd - the file descriptor for the open drive
      */
-    void writeZero(uint64_t driveSize, ManagedFd& fd);
+    void writeZero(uint64_t driveSize);
 
     /** @brief verifies the  uncompressible random pattern is on the drive
      * and throws errors accordingly.
      *
      *  @param[in] bytes - Size of the block device
-     *  @param[in] managedFd - the file descriptor for the open drive
      */
-    void verifyZero(uint64_t driveSize, ManagedFd& fd);
+    void verifyZero(uint64_t driveSize);
 
   private:
     /* @brief the size of the blocks in bytes used for write and verify.

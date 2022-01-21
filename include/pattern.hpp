@@ -24,15 +24,13 @@ class Pattern : public Erase
      * and throws errors accordingly.
      *
      *  @param[in] bytes - Size of the block device
-     *  @param[in] managedFd - the file descriptor for the open drive
      */
-    void writePattern(uint64_t driveSize, ManagedFd& fd);
+    void writePattern(uint64_t driveSize);
 
     /** @brief verifies the uncompressible random pattern is on the drive
      * and throws errors accordingly.
      *
      *  @param[in] bytes - Size of the block device
-     *  @param[in] managedFd - the file descriptor for the open drive
      */
-    void verifyPattern(uint64_t driveSize, ManagedFd& fd);
+    void verifyPattern(uint64_t driveSize);
 };

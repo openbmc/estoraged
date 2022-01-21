@@ -8,6 +8,7 @@
 #include <stdplus/fd/managed.hpp>
 #include <xyz/openbmc_project/Common/error.hpp>
 
+#include <fstream>
 #include <system_error>
 
 #include <gmock/gmock-matchers.h>
@@ -23,17 +24,16 @@ namespace estoraged_test
 
 TEST(Zeros, zeroPass)
 {
+    std::string testFileName = "testfile_pass";
+    std::ofstream testFile;
+
+    testFile.open(testFileName,
+                  std::ios::out | std::ios::binary | std::ios::trunc);
+    testFile.close();
     uint64_t size = 4096;
-    int fds[2];
-    Zero pass("fileName");
-    if (pipe(fds))
-    {
-        FAIL();
-    }
-    ManagedFd writeFd(std::move(fds[1]));
-    EXPECT_NO_THROW(pass.writeZero(size, writeFd));
-    ManagedFd verifyFd(std::move(fds[0]));
-    EXPECT_NO_THROW(pass.verifyZero(size, verifyFd));
+    Zero pass(testFileName);
+    EXPECT_NO_THROW(pass.writeZero(size));
+    EXPECT_NO_THROW(pass.verifyZero(size));
 }
 
 /* This test that pattern writes the correct number of bytes even if
@@ -41,59 +41,62 @@ TEST(Zeros, zeroPass)
  */
 TEST(Zeros, notDivisible)
 {
+    std::string testFileName = "testfile_notDivisible";
+    std::ofstream testFile;
+
+    testFile.open(testFileName,
+                  std::ios::out | std::ios::binary | std::ios::trunc);
+    testFile.close();
+
     uint64_t size = 4097;
     // 4097 is not divisible by the block size, and we expect no errors
-    int fds[2];
-    Zero pass("fileName");
-    if (pipe(fds))
-    {
-        FAIL();
-    }
-    ManagedFd writeFd(std::move(fds[1]));
-    EXPECT_NO_THROW(pass.writeZero(size, writeFd));
-    ManagedFd verifyFd(std::move(fds[0]));
-    EXPECT_NO_THROW(pass.verifyZero(size, verifyFd));
+    Zero pass(testFileName);
+    EXPECT_NO_THROW(pass.writeZero(size));
+    EXPECT_NO_THROW(pass.verifyZero(size));
 }
 
 TEST(Zeros, notZeroStart)
 {
+    std::string testFileName = "testfile_notZeroStart";
+    std::ofstream testFile;
+
+    // open the file and write none zero to it
+    int dummyValue = 0x88776655;
+    testFile.open(testFileName, std::ios::binary | std::ios::out);
+    testFile.write((const char*)&dummyValue, sizeof(dummyValue));
+    testFile.close();
     uint64_t size = 4096;
-    int fds[2];
-    Zero pass("fileName");
-    if (pipe(fds))
-    {
-        FAIL();
-    }
-    int dummyValue = 88;
-    if (::write(fds[1], &dummyValue, sizeof(dummyValue)) != sizeof(dummyValue))
-    {
-        FAIL();
-    }
-    ManagedFd writeFd(std::move(fds[1]));
-    EXPECT_NO_THROW(pass.writeZero(size - sizeof(dummyValue), writeFd));
-    ManagedFd verifyFd(std::move(fds[0]));
-    EXPECT_THROW(pass.verifyZero(size, verifyFd), InternalFailure);
+    Zero pass(testFileName);
+    EXPECT_NO_THROW(pass.writeZero(size - sizeof(dummyValue)));
+
+    // force flush, needed for unit testing
+    std::ofstream file;
+    file.open(testFileName);
+    file.close();
+
+    EXPECT_THROW(pass.verifyZero(size), InternalFailure);
 }
 
 TEST(Zeros, notZeroEnd)
 {
+    std::string testFileName = "testfile_notZeroEnd";
+    std::ofstream testFile;
+
+    testFile.open(testFileName,
+                  std::ios::out | std::ios::binary | std::ios::trunc);
+    testFile.close();
+
     uint64_t size = 4096;
-    int fds[2];
-    Zero pass("fileName");
-    if (pipe(fds))
-    {
-        FAIL();
-    }
+    Zero pass(testFileName);
     int dummyValue = 88;
-    int tmpFd = fds[1];
-    ManagedFd writeFd(std::move(tmpFd));
-    EXPECT_NO_THROW(pass.writeZero(size - sizeof(dummyValue), writeFd));
-    if (::write(fds[1], &dummyValue, sizeof(dummyValue)) != sizeof(dummyValue))
-    {
-        FAIL();
-    }
-    ManagedFd verifyFd(std::move(fds[0]));
-    EXPECT_THROW(pass.verifyZero(size, verifyFd), InternalFailure);
+    EXPECT_NO_THROW(pass.writeZero(size - sizeof(dummyValue)));
+
+    // open the file and write none zero to it
+    testFile.open(testFileName, std::ios::out);
+    testFile << dummyValue;
+    testFile.close();
+
+    EXPECT_THROW(pass.verifyZero(size), InternalFailure);
 }
 
 } // namespace estoraged_test

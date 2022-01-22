@@ -122,6 +122,30 @@
       },
       "revId": "8164c31e3856973e3c61f8326cf34be1435490bc",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d33bdd4c_7132328c",
+        "filename": "include/cryptErase.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-22T01:49:03Z",
+      "side": 1,
+      "message": "okay, done",
+      "parentUuid": "c8344b9e_6e35057b",
+      "range": {
+        "startLine": 19,
+        "startChar": 17,
+        "endLine": 20,
+        "endChar": 51
+      },
+      "revId": "8164c31e3856973e3c61f8326cf34be1435490bc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

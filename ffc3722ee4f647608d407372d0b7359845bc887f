@@ -35,6 +35,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f92105f_3a982d84",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-23T20:50:03Z",
+      "side": 1,
+      "message": "Yeah, imho the goal should be adding a tool called iwyu to the docker test as a option.\nThat would automatically identify files that need to be includes, and should not be included. But in the short term I did it manually",
+      "parentUuid": "2954e264_8b94daab",
+      "revId": "ffc3722ee4f647608d407372d0b7359845bc887f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c52067eb_1a51d792",
@@ -52,6 +70,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "549c4993_6b9a90e1",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-23T20:50:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c52067eb_1a51d792",
+      "revId": "ffc3722ee4f647608d407372d0b7359845bc887f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2305c66b_b74d98c8",
@@ -65,6 +101,30 @@
       "writtenOn": "2022-01-22T02:07:07Z",
       "side": 1,
       "message": "not needed? Some of the other includes in this file probably aren\u0027t needed, either",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 40
+      },
+      "revId": "ffc3722ee4f647608d407372d0b7359845bc887f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "32c36b7b_42c6adbd",
+        "filename": "src/test/erase/crypto_test.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-23T20:50:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2305c66b_b74d98c8",
       "range": {
         "startLine": 12,
         "startChar": 0,
@@ -98,6 +158,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fcb19fc8_63dcb43f",
+        "filename": "src/test/include/estoraged_test.hpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-23T20:50:03Z",
+      "side": 1,
+      "message": "it defines the uint32_t line 75.",
+      "parentUuid": "53e617a8_6bf70748",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 19
+      },
+      "revId": "ffc3722ee4f647608d407372d0b7359845bc887f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fcd5f837_b7930d51",
@@ -121,6 +205,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a25ce1c0_5fe0c05e",
+        "filename": "src/test/include/estoraged_test.hpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-23T20:50:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fcd5f837_b7930d51",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 0
+      },
+      "revId": "ffc3722ee4f647608d407372d0b7359845bc887f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c7f3f49e_1f8797d7",
@@ -134,6 +242,30 @@
       "writtenOn": "2022-01-22T02:07:07Z",
       "side": 1,
       "message": "some of these aren\u0027t needed",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 17
+      },
+      "revId": "ffc3722ee4f647608d407372d0b7359845bc887f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d57ae0a_3503e09b",
+        "filename": "src/test/include/estoraged_test.hpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-23T20:50:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c7f3f49e_1f8797d7",
       "range": {
         "startLine": 16,
         "startChar": 0,

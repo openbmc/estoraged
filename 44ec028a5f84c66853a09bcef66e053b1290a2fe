@@ -41,6 +41,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e514440a_4014e167",
+        "filename": "include/cryptsetupInterface.hpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-25T19:43:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1cdb824b_4ef673ca",
+      "range": {
+        "startLine": 111,
+        "startChar": 21,
+        "endLine": 111,
+        "endChar": 22
+      },
+      "revId": "44ec028a5f84c66853a09bcef66e053b1290a2fe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dd8cf1ae_0034954d",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-01-25T03:36:23Z",
       "side": 1,
       "message": "same here",
+      "range": {
+        "startLine": 121,
+        "startChar": 21,
+        "endLine": 121,
+        "endChar": 22
+      },
+      "revId": "44ec028a5f84c66853a09bcef66e053b1290a2fe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f639c27_402f5719",
+        "filename": "include/cryptsetupInterface.hpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-25T19:43:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dd8cf1ae_0034954d",
       "range": {
         "startLine": 121,
         "startChar": 21,

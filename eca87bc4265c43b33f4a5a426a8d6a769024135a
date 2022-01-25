@@ -212,6 +212,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c4c9c95_64165198",
+        "filename": "meson.build",
+        "patchSetId": 11
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-25T19:43:07Z",
+      "side": 1,
+      "message": "neat, done",
+      "parentUuid": "acee1373_232e4345",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 49
+      },
+      "revId": "eca87bc4265c43b33f4a5a426a8d6a769024135a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cbb8bdc7_7db0bf33",
@@ -273,6 +297,30 @@
       "side": 1,
       "message": "Oh, I see what\u0027s going on.\n\nI feel we should probably have a different include_directories for \"include\" defined here, and a test one at the test meson.build then use both at the test meson.build.",
       "parentUuid": "4281e36f_7c0a0156",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 75
+      },
+      "revId": "eca87bc4265c43b33f4a5a426a8d6a769024135a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c93d0949_729b847c",
+        "filename": "meson.build",
+        "patchSetId": 11
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-25T19:43:07Z",
+      "side": 1,
+      "message": "yep, sounds good.\nDone",
+      "parentUuid": "21e30088_6e6e447e",
       "range": {
         "startLine": 14,
         "startChar": 0,
@@ -354,6 +402,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4661c2ff_2b0e9842",
+        "filename": "src/erase/cryptoErase.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-25T19:43:07Z",
+      "side": 1,
+      "message": "sounds good. We will align with wedig.\n\nPersonally, I think LUKS2 hard coded will be fine until someone wants to use another crypt type. But if another/better crypt type appears we might switch everything to it.",
+      "parentUuid": "1c1a72b2_867f70a7",
+      "range": {
+        "startLine": 37,
+        "startChar": 55,
+        "endLine": 37,
+        "endChar": 66
+      },
+      "revId": "eca87bc4265c43b33f4a5a426a8d6a769024135a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b178e3bf_20c1da4a",
@@ -415,6 +487,30 @@
       "side": 1,
       "message": "Oh I see. It is currently exiting gracefully without doing anything instead (due to for loop condition below.\n\nI\u0027m not sure what the proper behavior is here. We could have a different if case here for 0 specifically if you\u0027d like to notify the users that it didn\u0027t do anything maybe? with a warning message, but not required.",
       "parentUuid": "760322e9_8fd6993c",
+      "range": {
+        "startLine": 48,
+        "startChar": 8,
+        "endLine": 48,
+        "endChar": 22
+      },
+      "revId": "eca87bc4265c43b33f4a5a426a8d6a769024135a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9aee2c0_00b681c8",
+        "filename": "src/erase/cryptoErase.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-25T19:43:07Z",
+      "side": 1,
+      "message": "After re-reading https://mbroz.fedorapeople.org/libcryptsetup_API/gcrypt_keyslot_maxroup__crypt-keyslot.html#gaf4ab92559b609c3aa7a34a2f3e22bee2\n\nIt does not make sense (to me) for cryptsetup supports LUKS2 but with zero keys. (in testing it always returns 32)\n\nI added a specific error messaged for this.",
+      "parentUuid": "8417da69_2aae8048",
       "range": {
         "startLine": 48,
         "startChar": 8,
@@ -621,6 +717,30 @@
       "side": 1,
       "message": "Meh, it\u0027s fine",
       "parentUuid": "e2302558_be5e53f1",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 77,
+        "endChar": 0
+      },
+      "revId": "eca87bc4265c43b33f4a5a426a8d6a769024135a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ded7f52e_6aecbfc1",
+        "filename": "src/test/erase/crypto_test.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-25T19:43:07Z",
+      "side": 1,
+      "message": "yeah, I don\u0027t love it.",
+      "parentUuid": "2791cf1d_39a3e615",
       "range": {
         "startLine": 73,
         "startChar": 0,

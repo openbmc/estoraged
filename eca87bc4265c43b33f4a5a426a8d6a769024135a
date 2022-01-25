@@ -1,0 +1,314 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63cec299_0d3cdf26",
+        "filename": "include/cryptsetupInterface.hpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-01-25T00:51:39Z",
+      "side": 1,
+      "message": "nit: no s",
+      "range": {
+        "startLine": 100,
+        "startChar": 29,
+        "endLine": 100,
+        "endChar": 30
+      },
+      "revId": "eca87bc4265c43b33f4a5a426a8d6a769024135a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c266bb1e_3c5c249c",
+        "filename": "include/cryptsetupInterface.hpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-01-25T00:51:39Z",
+      "side": 1,
+      "message": "nit: \"W\"rapper \"around\" ...",
+      "range": {
+        "startLine": 111,
+        "startChar": 15,
+        "endLine": 111,
+        "endChar": 21
+      },
+      "revId": "eca87bc4265c43b33f4a5a426a8d6a769024135a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a344582_5ab93570",
+        "filename": "include/cryptsetupInterface.hpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-01-25T00:51:39Z",
+      "side": 1,
+      "message": "No name for the parameter variable? It looks like it\u0027s supposed to be type",
+      "range": {
+        "startLine": 119,
+        "startChar": 41,
+        "endLine": 119,
+        "endChar": 43
+      },
+      "revId": "eca87bc4265c43b33f4a5a426a8d6a769024135a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd0ca8e7_35331f76",
+        "filename": "include/cryptsetupInterface.hpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-01-25T00:51:39Z",
+      "side": 1,
+      "message": "nit: \"W\"rapper \"around\" ...",
+      "range": {
+        "startLine": 121,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 42
+      },
+      "revId": "eca87bc4265c43b33f4a5a426a8d6a769024135a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbb8bdc7_7db0bf33",
+        "filename": "meson.build",
+        "patchSetId": 11
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-01-25T00:51:39Z",
+      "side": 1,
+      "message": "I\u0027m guessing this would only be useful for tests within src/test, would it make sense for this to go to src/test/meson.build?",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 75
+      },
+      "revId": "eca87bc4265c43b33f4a5a426a8d6a769024135a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff57ed35_96ea92a9",
+        "filename": "src/erase/cryptoErase.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-01-25T00:51:39Z",
+      "side": 1,
+      "message": "Question: Will this always be CRYPT_LUKS2? or would there be time when it\u0027s not (as in, should we need to worry about having to pass this in as a parameter?). I think we use it in other places already so I\u0027m guessing we have a design decision to only use this",
+      "range": {
+        "startLine": 37,
+        "startChar": 55,
+        "endLine": 37,
+        "endChar": 66
+      },
+      "revId": "eca87bc4265c43b33f4a5a426a8d6a769024135a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b178e3bf_20c1da4a",
+        "filename": "src/erase/cryptoErase.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-01-25T00:51:39Z",
+      "side": 1,
+      "message": "Is 0 key slot an invalid number of keyslots? Technically, it is valid (as in, it\u0027s not a negative number to indicate an error) but we don\u0027t want a 0 keyslot I guess?",
+      "range": {
+        "startLine": 48,
+        "startChar": 8,
+        "endLine": 48,
+        "endChar": 22
+      },
+      "revId": "eca87bc4265c43b33f4a5a426a8d6a769024135a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43c2e0e2_d96106d7",
+        "filename": "src/test/erase/crypto_test.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-01-25T00:51:39Z",
+      "side": 1,
+      "message": "nit: crypt instead of cryp",
+      "range": {
+        "startLine": 32,
+        "startChar": 23,
+        "endLine": 32,
+        "endChar": 27
+      },
+      "revId": "eca87bc4265c43b33f4a5a426a8d6a769024135a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e76e0406_02f8ebaa",
+        "filename": "src/test/erase/crypto_test.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-01-25T00:51:39Z",
+      "side": 1,
+      "message": "const std::string instead and below (string_view would still make a copy at open)",
+      "revId": "eca87bc4265c43b33f4a5a426a8d6a769024135a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9877dd60_fb5fdf22",
+        "filename": "src/test/erase/crypto_test.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-01-25T00:51:39Z",
+      "side": 1,
+      "message": "nit: new line here",
+      "revId": "eca87bc4265c43b33f4a5a426a8d6a769024135a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06288268_8956b9d6",
+        "filename": "src/test/erase/crypto_test.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-01-25T00:51:39Z",
+      "side": 1,
+      "message": "We should just use ASSERT that this is not false instead and below",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 77,
+        "endChar": 0
+      },
+      "revId": "eca87bc4265c43b33f4a5a426a8d6a769024135a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0682f232_7b5b6698",
+        "filename": "src/test/erase/crypto_test.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-01-25T00:51:39Z",
+      "side": 1,
+      "message": "These are reused a bunch of times, should we make a TEST_F instead and make these calls in the constructor instead?",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 105,
+        "endChar": 0
+      },
+      "revId": "eca87bc4265c43b33f4a5a426a8d6a769024135a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e0f78cd_8b9efd9e",
+        "filename": "src/test/estoraged_test.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-01-25T00:51:39Z",
+      "side": 1,
+      "message": "Do we need these new header includes",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 63
+      },
+      "revId": "eca87bc4265c43b33f4a5a426a8d6a769024135a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ba68e0b_a5d542b6",
+        "filename": "src/test/meson.build",
+        "patchSetId": 11
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-01-25T00:51:39Z",
+      "side": 1,
+      "message": "Thinking it might makes sense to be declared in this file (as noted in a previous comment)",
+      "range": {
+        "startLine": 20,
+        "startChar": 42,
+        "endLine": 20,
+        "endChar": 64
+      },
+      "revId": "eca87bc4265c43b33f4a5a426a8d6a769024135a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

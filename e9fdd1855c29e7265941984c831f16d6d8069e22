@@ -334,6 +334,30 @@
       },
       "revId": "e9fdd1855c29e7265941984c831f16d6d8069e22",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "754bc204_b46d113e",
+        "filename": "src/test/meson.build",
+        "patchSetId": 7
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-25T03:00:09Z",
+      "side": 1,
+      "message": "Bradon kim (in the top level meson)\n\u003eI\u0027m guessing this would only be useful for tests within src/test, would it make sense for this to go to src/test/meson.build?\n\nIdeally we would just add a headerfile to the existing eStoraged_headers. Or Maybe I can create a new set of include dirs and use two different include dirs on line 22",
+      "parentUuid": "6cdff221_4c34dde3",
+      "range": {
+        "startLine": 12,
+        "startChar": 45,
+        "endLine": 12,
+        "endChar": 60
+      },
+      "revId": "e9fdd1855c29e7265941984c831f16d6d8069e22",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

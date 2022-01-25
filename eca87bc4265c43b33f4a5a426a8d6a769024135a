@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d7f306f_371df05c",
+        "filename": "include/cryptsetupInterface.hpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-25T03:00:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "63cec299_0d3cdf26",
+      "range": {
+        "startLine": 100,
+        "startChar": 29,
+        "endLine": 100,
+        "endChar": 30
+      },
+      "revId": "eca87bc4265c43b33f4a5a426a8d6a769024135a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c266bb1e_3c5c249c",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-01-25T00:51:39Z",
       "side": 1,
       "message": "nit: \"W\"rapper \"around\" ...",
+      "range": {
+        "startLine": 111,
+        "startChar": 15,
+        "endLine": 111,
+        "endChar": 21
+      },
+      "revId": "eca87bc4265c43b33f4a5a426a8d6a769024135a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4f8a86e_88c6db08",
+        "filename": "include/cryptsetupInterface.hpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-25T03:00:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c266bb1e_3c5c249c",
       "range": {
         "startLine": 111,
         "startChar": 15,
@@ -70,6 +118,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "687c346d_dbd3885d",
+        "filename": "include/cryptsetupInterface.hpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-25T03:00:09Z",
+      "side": 1,
+      "message": "Done, thanks for the name.",
+      "parentUuid": "0a344582_5ab93570",
+      "range": {
+        "startLine": 119,
+        "startChar": 41,
+        "endLine": 119,
+        "endChar": 43
+      },
+      "revId": "eca87bc4265c43b33f4a5a426a8d6a769024135a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fd0ca8e7_35331f76",
@@ -93,6 +165,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9761f010_eec0a3d0",
+        "filename": "include/cryptsetupInterface.hpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-25T03:00:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fd0ca8e7_35331f76",
+      "range": {
+        "startLine": 121,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 42
+      },
+      "revId": "eca87bc4265c43b33f4a5a426a8d6a769024135a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cbb8bdc7_7db0bf33",
@@ -106,6 +202,30 @@
       "writtenOn": "2022-01-25T00:51:39Z",
       "side": 1,
       "message": "I\u0027m guessing this would only be useful for tests within src/test, would it make sense for this to go to src/test/meson.build?",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 75
+      },
+      "revId": "eca87bc4265c43b33f4a5a426a8d6a769024135a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4281e36f_7c0a0156",
+        "filename": "meson.build",
+        "patchSetId": 11
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-25T03:00:09Z",
+      "side": 1,
+      "message": "It was here and we moved it to avoid the relative path.\n\nhttps://gerrit.openbmc-project.xyz/c/openbmc/estoraged/+/50394/7..11/src/test/meson.build#b12\n\nI will open re open wedigs comment when it was there.",
+      "parentUuid": "cbb8bdc7_7db0bf33",
       "range": {
         "startLine": 14,
         "startChar": 0,
@@ -141,6 +261,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "64e15562_a91692ca",
+        "filename": "src/erase/cryptoErase.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-25T03:00:09Z",
+      "side": 1,
+      "message": "I don\u0027t know if an official desion has been made.\n\nWedig uses it:\nhttps://gerrit.openbmc-project.xyz/c/openbmc/estoraged/+/50394/11/src/estoraged.cpp#b215\n\nhttps://gerrit.openbmc-project.xyz/c/openbmc/estoraged/+/50394/11/src/estoraged.cpp#b178\n\nI felt it would be unseemly for me to make it configurable while Wedigs work uses it directly. We can make it a build time variable in another CL?",
+      "parentUuid": "ff57ed35_96ea92a9",
+      "range": {
+        "startLine": 37,
+        "startChar": 55,
+        "endLine": 37,
+        "endChar": 66
+      },
+      "revId": "eca87bc4265c43b33f4a5a426a8d6a769024135a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b178e3bf_20c1da4a",
         "filename": "src/erase/cryptoErase.cpp",
         "patchSetId": 11
@@ -152,6 +296,30 @@
       "writtenOn": "2022-01-25T00:51:39Z",
       "side": 1,
       "message": "Is 0 key slot an invalid number of keyslots? Technically, it is valid (as in, it\u0027s not a negative number to indicate an error) but we don\u0027t want a 0 keyslot I guess?",
+      "range": {
+        "startLine": 48,
+        "startChar": 8,
+        "endLine": 48,
+        "endChar": 22
+      },
+      "revId": "eca87bc4265c43b33f4a5a426a8d6a769024135a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "760322e9_8fd6993c",
+        "filename": "src/erase/cryptoErase.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-25T03:00:09Z",
+      "side": 1,
+      "message": "yeah, if we have zero keyslots, that means the device is already ran cryptoErase.\nSo I thought it might be better to fail, but maybe it is better to not fail.\nChanged.",
+      "parentUuid": "b178e3bf_20c1da4a",
       "range": {
         "startLine": 48,
         "startChar": 8,
@@ -185,6 +353,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "08a30dc2_1f88d74e",
+        "filename": "src/test/erase/crypto_test.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-25T03:00:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "43c2e0e2_d96106d7",
+      "range": {
+        "startLine": 32,
+        "startChar": 23,
+        "endLine": 32,
+        "endChar": 27
+      },
+      "revId": "eca87bc4265c43b33f4a5a426a8d6a769024135a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e76e0406_02f8ebaa",
@@ -198,6 +390,24 @@
       "writtenOn": "2022-01-25T00:51:39Z",
       "side": 1,
       "message": "const std::string instead and below (string_view would still make a copy at open)",
+      "revId": "eca87bc4265c43b33f4a5a426a8d6a769024135a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "115b7ad8_0784103a",
+        "filename": "src/test/erase/crypto_test.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-25T03:00:09Z",
+      "side": 1,
+      "message": "yeah, it has to copy to make the c_string.\nIt is now a \"static constexpr char\"",
+      "parentUuid": "e76e0406_02f8ebaa",
       "revId": "eca87bc4265c43b33f4a5a426a8d6a769024135a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -219,6 +429,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "033ec598_cba9517b",
+        "filename": "src/test/erase/crypto_test.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-25T03:00:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9877dd60_fb5fdf22",
+      "revId": "eca87bc4265c43b33f4a5a426a8d6a769024135a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "06288268_8956b9d6",
@@ -232,6 +460,30 @@
       "writtenOn": "2022-01-25T00:51:39Z",
       "side": 1,
       "message": "We should just use ASSERT that this is not false instead and below",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 77,
+        "endChar": 0
+      },
+      "revId": "eca87bc4265c43b33f4a5a426a8d6a769024135a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2302558_be5e53f1",
+        "filename": "src/test/erase/crypto_test.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-25T03:00:09Z",
+      "side": 1,
+      "message": "This is Wedig\u0027s pattern. It is more verbose, but prints a specific error message.\n\n(https://gerrit.openbmc-project.xyz/plugins/gitiles/openbmc/estoraged/+/refs/heads/master/src/test/estoraged_test.cpp#119)\n\nThe use case looks the same. If we don\u0027t like this I can change in both places.",
+      "parentUuid": "06288268_8956b9d6",
       "range": {
         "startLine": 73,
         "startChar": 0,
@@ -265,6 +517,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2cd75f96_194a3a69",
+        "filename": "src/test/erase/crypto_test.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-25T03:00:09Z",
+      "side": 1,
+      "message": "yes it can be. \ndone",
+      "parentUuid": "0682f232_7b5b6698",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 105,
+        "endChar": 0
+      },
+      "revId": "eca87bc4265c43b33f4a5a426a8d6a769024135a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5e0f78cd_8b9efd9e",
@@ -288,6 +564,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e2f7da7_2a4563a4",
+        "filename": "src/test/estoraged_test.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-25T03:00:09Z",
+      "side": 1,
+      "message": "estoraged_test ( yes for MockCryptsetupInterface, MockFilesystemInterface... )\ncryptErase (not removed)\ncryptsetupInterface (no removed)\nestoraged ( yes for eStoraged object)\nfilesystemInterface ( no )\nunistd (yes for the uint8_t)\nsdbusplus/bus (no )\nsdbusplus/server/object.hpp ( ?)\nsdbusplus/test/sdbus_mock.hpp (yes for sdbusMock)\nxyz/openbmc_project/Common/error.hpp (yes for errors::*)\nxyz/openbmc_project/Inventory/Item/Volume/client (for volumes::ext4)\nxyz/openbmc_project/Inventory/Item/Volume/server.hpp (no) \n\ndone.",
+      "parentUuid": "5e0f78cd_8b9efd9e",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 63
+      },
+      "revId": "eca87bc4265c43b33f4a5a426a8d6a769024135a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5ba68e0b_a5d542b6",
@@ -301,6 +601,30 @@
       "writtenOn": "2022-01-25T00:51:39Z",
       "side": 1,
       "message": "Thinking it might makes sense to be declared in this file (as noted in a previous comment)",
+      "range": {
+        "startLine": 20,
+        "startChar": 42,
+        "endLine": 20,
+        "endChar": 64
+      },
+      "revId": "eca87bc4265c43b33f4a5a426a8d6a769024135a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2dc6a6a5_f4a2577b",
+        "filename": "src/test/meson.build",
+        "patchSetId": 11
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-25T03:00:09Z",
+      "side": 1,
+      "message": "It was here and we moved it to avoid the relative path.\n\nhttps://gerrit.openbmc-project.xyz/c/openbmc/estoraged/+/50394/7..11/src/test/meson.build#b12\n\nI will open re open wedigs comment when it was there.",
+      "parentUuid": "5ba68e0b_a5d542b6",
       "range": {
         "startLine": 20,
         "startChar": 42,

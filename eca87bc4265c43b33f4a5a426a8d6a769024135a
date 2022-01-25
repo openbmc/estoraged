@@ -191,6 +191,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "acee1373_232e4345",
+        "filename": "meson.build",
+        "patchSetId": 11
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-01-25T03:36:23Z",
+      "side": 1,
+      "message": "Just realized, do we even use this anymore since we don\u0027t generate the dbus headers?",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 49
+      },
+      "revId": "eca87bc4265c43b33f4a5a426a8d6a769024135a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cbb8bdc7_7db0bf33",
         "filename": "meson.build",
         "patchSetId": 11
@@ -226,6 +249,30 @@
       "side": 1,
       "message": "It was here and we moved it to avoid the relative path.\n\nhttps://gerrit.openbmc-project.xyz/c/openbmc/estoraged/+/50394/7..11/src/test/meson.build#b12\n\nI will open re open wedigs comment when it was there.",
       "parentUuid": "cbb8bdc7_7db0bf33",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 75
+      },
+      "revId": "eca87bc4265c43b33f4a5a426a8d6a769024135a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21e30088_6e6e447e",
+        "filename": "meson.build",
+        "patchSetId": 11
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-01-25T03:36:23Z",
+      "side": 1,
+      "message": "Oh, I see what\u0027s going on.\n\nI feel we should probably have a different include_directories for \"include\" defined here, and a test one at the test meson.build then use both at the test meson.build.",
+      "parentUuid": "4281e36f_7c0a0156",
       "range": {
         "startLine": 14,
         "startChar": 0,
@@ -285,6 +332,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1c1a72b2_867f70a7",
+        "filename": "src/erase/cryptoErase.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-01-25T03:36:23Z",
+      "side": 1,
+      "message": "Yeah we can have a discussion when he\u0027s back and in another CL",
+      "parentUuid": "64e15562_a91692ca",
+      "range": {
+        "startLine": 37,
+        "startChar": 55,
+        "endLine": 37,
+        "endChar": 66
+      },
+      "revId": "eca87bc4265c43b33f4a5a426a8d6a769024135a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b178e3bf_20c1da4a",
         "filename": "src/erase/cryptoErase.cpp",
         "patchSetId": 11
@@ -320,6 +391,30 @@
       "side": 1,
       "message": "yeah, if we have zero keyslots, that means the device is already ran cryptoErase.\nSo I thought it might be better to fail, but maybe it is better to not fail.\nChanged.",
       "parentUuid": "b178e3bf_20c1da4a",
+      "range": {
+        "startLine": 48,
+        "startChar": 8,
+        "endLine": 48,
+        "endChar": 22
+      },
+      "revId": "eca87bc4265c43b33f4a5a426a8d6a769024135a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8417da69_2aae8048",
+        "filename": "src/erase/cryptoErase.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-01-25T03:36:23Z",
+      "side": 1,
+      "message": "Oh I see. It is currently exiting gracefully without doing anything instead (due to for loop condition below.\n\nI\u0027m not sure what the proper behavior is here. We could have a different if case here for 0 specifically if you\u0027d like to notify the users that it didn\u0027t do anything maybe? with a warning message, but not required.",
+      "parentUuid": "760322e9_8fd6993c",
       "range": {
         "startLine": 48,
         "startChar": 8,
@@ -412,6 +507,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "26eb5f27_161c1717",
+        "filename": "src/test/erase/crypto_test.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-01-25T03:36:23Z",
+      "side": 1,
+      "message": "Nice",
+      "parentUuid": "115b7ad8_0784103a",
+      "revId": "eca87bc4265c43b33f4a5a426a8d6a769024135a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9877dd60_fb5fdf22",
@@ -484,6 +597,30 @@
       "side": 1,
       "message": "This is Wedig\u0027s pattern. It is more verbose, but prints a specific error message.\n\n(https://gerrit.openbmc-project.xyz/plugins/gitiles/openbmc/estoraged/+/refs/heads/master/src/test/estoraged_test.cpp#119)\n\nThe use case looks the same. If we don\u0027t like this I can change in both places.",
       "parentUuid": "06288268_8956b9d6",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 77,
+        "endChar": 0
+      },
+      "revId": "eca87bc4265c43b33f4a5a426a8d6a769024135a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2791cf1d_39a3e615",
+        "filename": "src/test/erase/crypto_test.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-01-25T03:36:23Z",
+      "side": 1,
+      "message": "Meh, it\u0027s fine",
+      "parentUuid": "e2302558_be5e53f1",
       "range": {
         "startLine": 73,
         "startChar": 0,

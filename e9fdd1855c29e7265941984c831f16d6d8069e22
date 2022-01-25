@@ -358,6 +358,30 @@
       },
       "revId": "e9fdd1855c29e7265941984c831f16d6d8069e22",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a41b02e4_d2fb9fc8",
+        "filename": "src/test/meson.build",
+        "patchSetId": 7
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-01-25T03:36:23Z",
+      "side": 1,
+      "message": "Yes, I think your last option makes the most sense imo",
+      "parentUuid": "754bc204_b46d113e",
+      "range": {
+        "startLine": 12,
+        "startChar": 45,
+        "endLine": 12,
+        "endChar": 60
+      },
+      "revId": "e9fdd1855c29e7265941984c831f16d6d8069e22",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9187f219_891f4506",
+        "filename": "src/erase/cryptoErase.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-01-25T19:40:44Z",
+      "side": 1,
+      "message": "missing ,",
+      "range": {
+        "startLine": 57,
+        "startChar": 53,
+        "endLine": 57,
+        "endChar": 54
+      },
+      "revId": "0e7e4095491c25bbae7b287aa2cc6d981ced05ed",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e9c3850_9b8be066",
+        "filename": "src/erase/cryptoErase.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-01-25T19:40:44Z",
+      "side": 1,
+      "message": "Do we actually want to fail? It sounded like getting 0 means it was already zeroed - would it make more sense to just exit this gracefully (maybe with just the error logs?)",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 33
+      },
+      "revId": "0e7e4095491c25bbae7b287aa2cc6d981ced05ed",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

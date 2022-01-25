@@ -41,6 +41,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "af201b29_26ced17e",
+        "filename": "src/erase/cryptoErase.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-25T19:55:40Z",
+      "side": 1,
+      "message": "😳 \ndone",
+      "parentUuid": "9187f219_891f4506",
+      "range": {
+        "startLine": 57,
+        "startChar": 53,
+        "endLine": 57,
+        "endChar": 54
+      },
+      "revId": "0e7e4095491c25bbae7b287aa2cc6d981ced05ed",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8e9c3850_9b8be066",
@@ -78,6 +102,30 @@
       "side": 1,
       "message": "Also, might be worth testing this special / corner case",
       "parentUuid": "8e9c3850_9b8be066",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 33
+      },
+      "revId": "0e7e4095491c25bbae7b287aa2cc6d981ced05ed",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1a334f2_5e379594",
+        "filename": "src/erase/cryptoErase.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-25T19:55:40Z",
+      "side": 1,
+      "message": "I wrote and thought \"0 means it was already zeroed\" that earlier.\nBut that is not the case. Even after zeroed the MAX keyslots should stay the same. \n\nMaxkeyslots being zero is different then having no working keyslots.\nIf zero is returned by maxkeyslots, something is very wrong.\n\ntest added",
+      "parentUuid": "eb30a47b_2e295725",
       "range": {
         "startLine": 60,
         "startChar": 0,

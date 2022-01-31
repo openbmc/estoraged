@@ -1,6 +1,7 @@
 {
   "comments": [
     {
+      "unresolved": true,
       "key": {
         "uuid": "9875c986_df7c495b",
         "filename": "include/sanitize.hpp",
@@ -14,10 +15,28 @@
       "side": 1,
       "message": "This file needs doxygens",
       "revId": "a879d0a080dd8e3ba03c09f17685bc0a9250dbcb",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "998285d1_278e9e91",
+        "filename": "include/sanitize.hpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-31T18:57:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9875c986_df7c495b",
+      "revId": "a879d0a080dd8e3ba03c09f17685bc0a9250dbcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "55ccb814_dc70164f",
         "filename": "src/erase/sanitize.cpp",
@@ -37,10 +56,34 @@
         "endChar": 46
       },
       "revId": "a879d0a080dd8e3ba03c09f17685bc0a9250dbcb",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3375534_f35f9deb",
+        "filename": "src/erase/sanitize.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-31T18:57:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "55ccb814_dc70164f",
+      "range": {
+        "startLine": 58,
+        "startChar": 45,
+        "endLine": 58,
+        "endChar": 46
+      },
+      "revId": "a879d0a080dd8e3ba03c09f17685bc0a9250dbcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "9f8f138c_030d8635",
         "filename": "src/erase/sanitize.cpp",
@@ -60,8 +103,31 @@
         "endChar": 57
       },
       "revId": "a879d0a080dd8e3ba03c09f17685bc0a9250dbcb",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "50831588_7b09bdb4",
+        "filename": "src/erase/sanitize.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-01-31T18:57:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f8f138c_030d8635",
+      "range": {
+        "startLine": 65,
+        "startChar": 56,
+        "endLine": 65,
+        "endChar": 57
+      },
+      "revId": "a879d0a080dd8e3ba03c09f17685bc0a9250dbcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

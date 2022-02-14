@@ -16,6 +16,98 @@
       "message": "This is working now.\nI had do do a work around for because the eMMC firmware does not appear to follow the spec.",
       "revId": "429290a4d2b10aae447cce377807fe7f95faef8e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa545bb4_f6c9475d",
+        "filename": "include/sanitize.hpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-02-14T18:22:50Z",
+      "side": 1,
+      "message": "Can you comment what this means?\n\nAlso, should this go in the .cpp file? That\u0027s the only place you\u0027re using it.",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 49
+      },
+      "revId": "429290a4d2b10aae447cce377807fe7f95faef8e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ac21870_206af27f",
+        "filename": "src/erase/sanitize.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-02-14T18:22:50Z",
+      "side": 1,
+      "message": "delete this?",
+      "range": {
+        "startLine": 77,
+        "startChar": 8,
+        "endLine": 81,
+        "endChar": 11
+      },
+      "revId": "429290a4d2b10aae447cce377807fe7f95faef8e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9150eb4b_445c6046",
+        "filename": "src/erase/sanitize.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-02-14T18:22:50Z",
+      "side": 1,
+      "message": "This code will never be reached since twiddleBrokenEXT_CSD_ERASE_GROUP_DEF is hard-coded to true.",
+      "range": {
+        "startLine": 84,
+        "startChar": 4,
+        "endLine": 88,
+        "endChar": 5
+      },
+      "revId": "429290a4d2b10aae447cce377807fe7f95faef8e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e33e07c2_1a5c579a",
+        "filename": "src/test/erase/sanitize_test.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-02-14T18:22:50Z",
+      "side": 1,
+      "message": "nit: This comment is misleading. The test won\u0027t attempt to open the file, since doIoctlMulti() is mocked out.",
+      "range": {
+        "startLine": 59,
+        "startChar": 3,
+        "endLine": 59,
+        "endChar": 51
+      },
+      "revId": "429290a4d2b10aae447cce377807fe7f95faef8e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

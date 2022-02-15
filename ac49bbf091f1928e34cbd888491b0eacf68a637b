@@ -16,6 +16,167 @@
       "message": "Let me know if you see anything else",
       "revId": "ac49bbf091f1928e34cbd888491b0eacf68a637b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d4bb812_a4a677c6",
+        "filename": "include/sanitize.hpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-02-15T21:52:21Z",
+      "side": 1,
+      "message": "This class should have doxygens.",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 2
+      },
+      "revId": "ac49bbf091f1928e34cbd888491b0eacf68a637b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6250f568_5042d3f2",
+        "filename": "meson_options.txt",
+        "patchSetId": 21
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-02-15T21:52:21Z",
+      "side": 1,
+      "message": "Do you intend for this to ultimately replace your hard-coded constant in the .cpp file? It\u0027s currently not used.\n\nAlso, I wonder if the purpose of this would be more clear if you called it something different, e.g. force_low_capacity_sanitize.",
+      "range": {
+        "startLine": 5,
+        "startChar": 8,
+        "endLine": 5,
+        "endChar": 44
+      },
+      "revId": "ac49bbf091f1928e34cbd888491b0eacf68a637b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b80b9c3_6c626a0f",
+        "filename": "src/erase/sanitize.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-02-15T21:52:21Z",
+      "side": 1,
+      "message": "This is not internal to Google, so we probably shouldn\u0027t use language like \"our eMMC\".",
+      "range": {
+        "startLine": 17,
+        "startChar": 3,
+        "endLine": 17,
+        "endChar": 11
+      },
+      "revId": "ac49bbf091f1928e34cbd888491b0eacf68a637b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80c4d7cd_aeb69f7d",
+        "filename": "src/erase/sanitize.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-02-15T21:52:21Z",
+      "side": 1,
+      "message": "The Samsung datasheet says this is 0 at power-up. I guess the driver might be setting this bit?",
+      "range": {
+        "startLine": 18,
+        "startChar": 3,
+        "endLine": 18,
+        "endChar": 31
+      },
+      "revId": "ac49bbf091f1928e34cbd888491b0eacf68a637b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2f9b42d_28210547",
+        "filename": "src/erase/sanitize.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-02-15T21:52:21Z",
+      "side": 1,
+      "message": "compliant",
+      "range": {
+        "startLine": 81,
+        "startChar": 60,
+        "endLine": 81,
+        "endChar": 69
+      },
+      "revId": "ac49bbf091f1928e34cbd888491b0eacf68a637b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c913507_ded4ba4c",
+        "filename": "src/erase/sanitize.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-02-15T21:52:21Z",
+      "side": 1,
+      "message": "Strictly speaking, you should only be checking bit 0 in this register. The upper bits are reserved.",
+      "range": {
+        "startLine": 84,
+        "startChar": 8,
+        "endLine": 84,
+        "endChar": 55
+      },
+      "revId": "ac49bbf091f1928e34cbd888491b0eacf68a637b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18b31347_5edc6267",
+        "filename": "src/erase/sanitize.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-02-15T21:52:21Z",
+      "side": 1,
+      "message": "Can you get this value from a register? Where did you get 512?",
+      "range": {
+        "startLine": 87,
+        "startChar": 8,
+        "endLine": 87,
+        "endChar": 41
+      },
+      "revId": "ac49bbf091f1928e34cbd888491b0eacf68a637b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

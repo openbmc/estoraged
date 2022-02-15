@@ -104,6 +104,9 @@ void eStoraged::erase(EraseMethod inEraseMethod)
         }
         case EraseMethod::SecuredLocked:
         {
+            lock();
+            // TODO implemented hardware locking
+            // Until that is done, we can lock
             break;
         }
     }

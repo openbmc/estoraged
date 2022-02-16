@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "62c4ca41_6f8a31f9",
+        "filename": "include/sanitize.hpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-02-16T19:37:28Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "5d4bb812_a4a677c6",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 2
+      },
+      "revId": "ac49bbf091f1928e34cbd888491b0eacf68a637b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6250f568_5042d3f2",
         "filename": "meson_options.txt",
         "patchSetId": 21
@@ -54,6 +78,30 @@
       "writtenOn": "2022-02-15T21:52:21Z",
       "side": 1,
       "message": "Do you intend for this to ultimately replace your hard-coded constant in the .cpp file? It\u0027s currently not used.\n\nAlso, I wonder if the purpose of this would be more clear if you called it something different, e.g. force_low_capacity_sanitize.",
+      "range": {
+        "startLine": 5,
+        "startChar": 8,
+        "endLine": 5,
+        "endChar": 44
+      },
+      "revId": "ac49bbf091f1928e34cbd888491b0eacf68a637b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea7e55f9_b0bf04a0",
+        "filename": "meson_options.txt",
+        "patchSetId": 21
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-02-16T19:37:28Z",
+      "side": 1,
+      "message": "I do plan to have this setting as a build time option.\nI changed it so it is being used now.",
+      "parentUuid": "6250f568_5042d3f2",
       "range": {
         "startLine": 5,
         "startChar": 8,
@@ -77,6 +125,30 @@
       "writtenOn": "2022-02-15T21:52:21Z",
       "side": 1,
       "message": "This is not internal to Google, so we probably shouldn\u0027t use language like \"our eMMC\".",
+      "range": {
+        "startLine": 17,
+        "startChar": 3,
+        "endLine": 17,
+        "endChar": 11
+      },
+      "revId": "ac49bbf091f1928e34cbd888491b0eacf68a637b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "51e421fe_f8ae49b9",
+        "filename": "src/erase/sanitize.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-02-16T19:37:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b80b9c3_6c626a0f",
       "range": {
         "startLine": 17,
         "startChar": 3,
@@ -133,6 +205,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d7c9b53_69536157",
+        "filename": "src/erase/sanitize.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-02-16T19:37:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c2f9b42d_28210547",
+      "range": {
+        "startLine": 81,
+        "startChar": 60,
+        "endLine": 81,
+        "endChar": 69
+      },
+      "revId": "ac49bbf091f1928e34cbd888491b0eacf68a637b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6c913507_ded4ba4c",
@@ -156,6 +252,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "308c3991_9376ed10",
+        "filename": "src/erase/sanitize.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-02-16T19:37:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6c913507_ded4ba4c",
+      "range": {
+        "startLine": 84,
+        "startChar": 8,
+        "endLine": 84,
+        "endChar": 55
+      },
+      "revId": "ac49bbf091f1928e34cbd888491b0eacf68a637b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "18b31347_5edc6267",
@@ -169,6 +289,30 @@
       "writtenOn": "2022-02-15T21:52:21Z",
       "side": 1,
       "message": "Can you get this value from a register? Where did you get 512?",
+      "range": {
+        "startLine": 87,
+        "startChar": 8,
+        "endLine": 87,
+        "endChar": 41
+      },
+      "revId": "ac49bbf091f1928e34cbd888491b0eacf68a637b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6d3993e_ea2f218e",
+        "filename": "src/erase/sanitize.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-02-16T19:37:28Z",
+      "side": 1,
+      "message": "This comes from the eMMC spec\nTable 39, page 108 \nErase Group Size is 512B (only applies if EXT_CSD_ERASE_GROUP_DEF is 0)",
+      "parentUuid": "18b31347_5edc6267",
       "range": {
         "startLine": 87,
         "startChar": 8,

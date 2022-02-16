@@ -65,6 +65,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7bfce7e1_17804669",
+        "filename": "include/sanitize.hpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-02-16T23:03:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "62c4ca41_6f8a31f9",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 2
+      },
+      "revId": "ac49bbf091f1928e34cbd888491b0eacf68a637b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6250f568_5042d3f2",
@@ -313,6 +337,30 @@
       "side": 1,
       "message": "This comes from the eMMC spec\nTable 39, page 108 \nErase Group Size is 512B (only applies if EXT_CSD_ERASE_GROUP_DEF is 0)",
       "parentUuid": "18b31347_5edc6267",
+      "range": {
+        "startLine": 87,
+        "startChar": 8,
+        "endLine": 87,
+        "endChar": 41
+      },
+      "revId": "ac49bbf091f1928e34cbd888491b0eacf68a637b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fef0bc38_cfea0cdc",
+        "filename": "src/erase/sanitize.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-02-16T23:03:12Z",
+      "side": 1,
+      "message": "Alright, thanks for the pointer. If I\u0027m understanding correctly, we can read the NATIVE_SECTOR_SIZE register to determine this value. Is there a reason you\u0027re not doing that? It\u0027s either going to be 512B or 4KB (for large eMMCs).",
+      "parentUuid": "e6d3993e_ea2f218e",
       "range": {
         "startLine": 87,
         "startChar": 8,

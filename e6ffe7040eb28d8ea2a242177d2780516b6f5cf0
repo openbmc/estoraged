@@ -1,6 +1,7 @@
 {
   "comments": [
     {
+      "unresolved": true,
       "key": {
         "uuid": "16708184_9400f2f3",
         "filename": "include/erase.hpp",
@@ -14,8 +15,25 @@
       "side": 1,
       "message": "#pragma once",
       "revId": "e6ffe7040eb28d8ea2a242177d2780516b6f5cf0",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "665ad0cb_7eacf7d4",
+        "filename": "include/erase.hpp",
+        "patchSetId": 39
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-02-19T00:04:12Z",
+      "side": 1,
+      "message": "Added in later change",
+      "parentUuid": "16708184_9400f2f3",
+      "revId": "e6ffe7040eb28d8ea2a242177d2780516b6f5cf0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

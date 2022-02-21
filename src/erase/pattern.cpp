@@ -30,8 +30,11 @@ void Pattern::writePattern(const uint64_t driveSize)
     // static seed defines a fixed prng sequnce so it can be verified later,
     // and validated for entropy
     uint64_t currentIndex = 0;
+
+    // random number generator seeded with a constant value will
+    // generate a predictable sequence of values NOLINTNEXTLINE
     std::minstd_rand0 generator(seed);
-    std::array<std::byte, blockSize> randArr;
+    std::array<std::byte, blockSize> randArr{};
 
     ManagedFd fd =
         stdplus::fd::open(devPath, stdplus::fd::OpenAccess::WriteOnly);
@@ -65,9 +68,11 @@ void Pattern::verifyPattern(const uint64_t driveSize)
 {
 
     uint64_t currentIndex = 0;
+    // random number generator seeded with a constant value will
+    // generate a predictable sequence of values NOLINTNEXTLINE
     std::minstd_rand0 generator(seed);
-    std::array<std::byte, blockSize> randArr;
-    std::array<std::byte, blockSize> readArr;
+    std::array<std::byte, blockSize> randArr{};
+    std::array<std::byte, blockSize> readArr{};
 
     ManagedFd fd =
         stdplus::fd::open(devPath, stdplus::fd::OpenAccess::ReadOnly);

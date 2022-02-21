@@ -17,7 +17,6 @@
 
 using estoraged::Zero;
 using sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
-using stdplus::fd::ManagedFd;
 
 namespace estoraged_test
 {
@@ -61,9 +60,10 @@ TEST(Zeros, notZeroStart)
     std::ofstream testFile;
 
     // open the file and write none zero to it
-    int dummyValue = 0x88776655;
+    uint32_t dummyValue = 0x88776655;
     testFile.open(testFileName, std::ios::binary | std::ios::out);
-    testFile.write((const char*)&dummyValue, sizeof(dummyValue));
+    testFile.write((reinterpret_cast<const char*>(&dummyValue)),
+                   sizeof(dummyValue));
     testFile.close();
     uint64_t size = 4096;
     Zero pass(testFileName);
@@ -88,7 +88,7 @@ TEST(Zeros, notZeroEnd)
 
     uint64_t size = 4096;
     Zero pass(testFileName);
-    int dummyValue = 88;
+    uint32_t dummyValue = 88;
     EXPECT_NO_THROW(pass.writeZero(size - sizeof(dummyValue)));
 
     // open the file and write none zero to it

@@ -26,7 +26,7 @@ using estoraged::Filesystem;
 /** @class eStoraged
  *  @brief eStoraged object to manage a LUKS encrypted storage device.
  */
-class eStoraged : eStoragedInherit
+class EStoraged : eStoragedInherit
 {
   public:
     /** @brief Constructor for eStoraged
@@ -40,7 +40,7 @@ class eStoraged : eStoragedInherit
      *  @param[in] fsInterface - (optional) pointer to FilesystemInterface
      *    object
      */
-    eStoraged(sdbusplus::bus::bus& bus, const char* path,
+    EStoraged(sdbusplus::bus::bus& bus, const char* path,
               const std::string& devPath, const std::string& luksName,
               std::unique_ptr<CryptsetupInterface> cryptInterface =
                   std::make_unique<Cryptsetup>(),

@@ -63,7 +63,8 @@ TEST(pattern, patternsDontMatch)
 
     int dummyValue = 88;
     testFile.open(testFileName, std::ios::binary | std::ios::out);
-    testFile.write((const char*)&dummyValue, sizeof(dummyValue));
+    testFile.write((reinterpret_cast<const char*>(&dummyValue)),
+                   sizeof(dummyValue));
     testFile.close();
 
     EXPECT_NO_THROW(pass.writePattern(size - sizeof(dummyValue)));

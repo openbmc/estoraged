@@ -17,7 +17,7 @@ using stdplus::fd::ManagedFd;
 uint64_t Erase::findSizeOfBlockDevice()
 {
     ManagedFd fd;
-    uint64_t bytes;
+    uint64_t bytes = 0;
     try
     {
         // open block dev

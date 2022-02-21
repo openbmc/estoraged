@@ -15,7 +15,12 @@ class CryptsetupInterface
 {
   public:
     virtual ~CryptsetupInterface() = default;
+    CryptsetupInterface() = default;
+    CryptsetupInterface(const CryptsetupInterface&) = delete;
+    CryptsetupInterface& operator=(const CryptsetupInterface&) = delete;
 
+    CryptsetupInterface(CryptsetupInterface&&) = delete;
+    CryptsetupInterface& operator=(CryptsetupInterface&&) = delete;
     /** @brief Wrapper around crypt_format.
      *  @details Used for mocking purposes.
      *
@@ -105,8 +110,7 @@ class CryptsetupInterface
      *
      *  @returns 0 on success or negative errno value otherwise.
      */
-    virtual int cryptKeyslotDestroy(struct crypt_device* cd,
-                                    const int keyslot) = 0;
+    virtual int cryptKeyslotDestroy(struct crypt_device* cd, int keyslot) = 0;
 
     /** @breif Wapper around crypt_keyslot_max
      *  @details Used for mocking purposes.
@@ -138,8 +142,14 @@ class CryptsetupInterface
 class Cryptsetup : public CryptsetupInterface
 {
   public:
-    ~Cryptsetup() = default;
+    ~Cryptsetup() override = default;
 
+    Cryptsetup() = default;
+    Cryptsetup(const Cryptsetup&) = delete;
+    Cryptsetup& operator=(const Cryptsetup&) = delete;
+
+    Cryptsetup(Cryptsetup&&) = delete;
+    Cryptsetup& operator=(Cryptsetup&&) = delete;
     int cryptFormat(struct crypt_device* cd, const char* type,
                     const char* cipher, const char* cipherMode,
                     const char* uuid, const char* volumeKey,
@@ -222,7 +232,7 @@ class CryptHandle
      */
     struct crypt_device* init(const char* device)
     {
-        struct crypt_device* cryptDev;
+        struct crypt_device* cryptDev = nullptr;
         int retval = crypt_init(&cryptDev, device);
         if (retval < 0)
         {

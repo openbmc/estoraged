@@ -38,23 +38,23 @@ using ::testing::StrEq;
  */
 sdbusplus::SdBusMock sdbusMock;
 
-class eStoragedTest : public testing::Test
+class EStoragedTest : public testing::Test
 {
   public:
-    static constexpr char testFileName[] = "testfile";
-    static constexpr char testLuksDevName[] = "testfile_luksDev";
+    const char* testFileName = "testfile";
+    const char* testLuksDevName = "testfile_luksDev";
     std::ofstream testFile;
-    std::unique_ptr<estoraged::eStoraged> esObject;
-    static constexpr auto TEST_PATH = "/test/openbmc_project/storage/test_dev";
-    static constexpr auto ESTORAGED_INTERFACE =
+    std::unique_ptr<estoraged::EStoraged> esObject;
+    const char* testPath = "/test/openbmc_project/storage/test_dev";
+    const char* estoragedInterface =
         "xyz.openbmc_project.Inventory.Item.Volume";
     sdbusplus::bus::bus bus;
     std::string passwordString;
     std::vector<uint8_t> password;
-    MockCryptsetupInterface* mockCryptIface;
-    MockFilesystemInterface* mockFsIface;
+    MockCryptsetupInterface* mockCryptIface{};
+    MockFilesystemInterface* mockFsIface{};
 
-    eStoragedTest() :
+    EStoragedTest() :
         bus(sdbusplus::get_mocked_new(&sdbusMock)), passwordString("password"),
         password(passwordString.begin(), passwordString.end())
     {}
@@ -71,16 +71,16 @@ class eStoragedTest : public testing::Test
         }
 
         EXPECT_CALL(sdbusMock,
-                    sd_bus_add_object_vtable(IsNull(), _, StrEq(TEST_PATH),
-                                             StrEq(ESTORAGED_INTERFACE), _, _))
+                    sd_bus_add_object_vtable(IsNull(), _, StrEq(testPath),
+                                             StrEq(estoragedInterface), _, _))
             .WillRepeatedly(Return(0));
 
         EXPECT_CALL(sdbusMock,
-                    sd_bus_emit_object_added(IsNull(), StrEq(TEST_PATH)))
+                    sd_bus_emit_object_added(IsNull(), StrEq(testPath)))
             .WillRepeatedly(Return(0));
 
         EXPECT_CALL(sdbusMock,
-                    sd_bus_emit_object_removed(IsNull(), StrEq(TEST_PATH)))
+                    sd_bus_emit_object_removed(IsNull(), StrEq(testPath)))
             .WillRepeatedly(Return(0));
 
         std::unique_ptr<MockCryptsetupInterface> cryptIface =
@@ -90,9 +90,8 @@ class eStoragedTest : public testing::Test
             std::make_unique<MockFilesystemInterface>();
         mockFsIface = fsIface.get();
 
-        esObject = std::make_unique<estoraged::eStoraged>(
-            bus, TEST_PATH, std::string(testFileName),
-            std::string(testLuksDevName), std::move(cryptIface),
+        esObject = std::make_unique<estoraged::EStoraged>(
+            bus, testPath, testFileName, testLuksDevName, std::move(cryptIface),
             std::move(fsIface));
     }
 
@@ -103,11 +102,11 @@ class eStoragedTest : public testing::Test
 };
 
 /* Test case to format and then lock the LUKS device. */
-TEST_F(eStoragedTest, FormatPass)
+TEST_F(EStoragedTest, FormatPass)
 {
     EXPECT_CALL(sdbusMock,
                 sd_bus_emit_properties_changed_strv(
-                    IsNull(), StrEq(TEST_PATH), StrEq(ESTORAGED_INTERFACE), _))
+                    IsNull(), StrEq(testPath), StrEq(estoragedInterface), _))
         .WillRepeatedly(Return(0));
 
     EXPECT_CALL(*mockCryptIface, cryptFormat(_, _, _, _, _, _, _, _)).Times(1);
@@ -153,11 +152,11 @@ TEST_F(eStoragedTest, FormatPass)
  * Test case where the mount point directory already exists, so it shouldn't
  * try to create it.
  */
-TEST_F(eStoragedTest, MountPointExistsPass)
+TEST_F(EStoragedTest, MountPointExistsPass)
 {
     EXPECT_CALL(sdbusMock,
                 sd_bus_emit_properties_changed_strv(
-                    IsNull(), StrEq(TEST_PATH), StrEq(ESTORAGED_INTERFACE), _))
+                    IsNull(), StrEq(testPath), StrEq(estoragedInterface), _))
         .WillRepeatedly(Return(0));
 
     EXPECT_CALL(*mockCryptIface, cryptFormat(_, _, _, _, _, _, _, _)).Times(1);
@@ -200,7 +199,7 @@ TEST_F(eStoragedTest, MountPointExistsPass)
 }
 
 /* Test case where the device/file doesn't exist. */
-TEST_F(eStoragedTest, FormatNoDeviceFail)
+TEST_F(EStoragedTest, FormatNoDeviceFail)
 {
     /* Delete the test file. */
     EXPECT_EQ(0, unlink(testFileName));
@@ -216,7 +215,7 @@ TEST_F(eStoragedTest, FormatNoDeviceFail)
 }
 
 /* Test case where we fail to format the LUKS device. */
-TEST_F(eStoragedTest, FormatFail)
+TEST_F(EStoragedTest, FormatFail)
 {
     EXPECT_CALL(*mockCryptIface, cryptFormat(_, _, _, _, _, _, _, _))
         .WillOnce(Return(-1));
@@ -227,11 +226,11 @@ TEST_F(eStoragedTest, FormatFail)
 }
 
 /* Test case where we fail to set the password for the LUKS device. */
-TEST_F(eStoragedTest, AddKeyslotFail)
+TEST_F(EStoragedTest, AddKeyslotFail)
 {
     EXPECT_CALL(sdbusMock,
                 sd_bus_emit_properties_changed_strv(
-                    IsNull(), StrEq(TEST_PATH), StrEq(ESTORAGED_INTERFACE), _))
+                    IsNull(), StrEq(testPath), StrEq(estoragedInterface), _))
         .WillRepeatedly(Return(0));
 
     EXPECT_CALL(*mockCryptIface, cryptFormat(_, _, _, _, _, _, _, _)).Times(1);
@@ -245,11 +244,11 @@ TEST_F(eStoragedTest, AddKeyslotFail)
 }
 
 /* Test case where we fail to load the LUKS header. */
-TEST_F(eStoragedTest, LoadLuksHeaderFail)
+TEST_F(EStoragedTest, LoadLuksHeaderFail)
 {
     EXPECT_CALL(sdbusMock,
                 sd_bus_emit_properties_changed_strv(
-                    IsNull(), StrEq(TEST_PATH), StrEq(ESTORAGED_INTERFACE), _))
+                    IsNull(), StrEq(testPath), StrEq(estoragedInterface), _))
         .WillRepeatedly(Return(0));
 
     EXPECT_CALL(*mockCryptIface, cryptFormat(_, _, _, _, _, _, _, _)).Times(1);
@@ -265,11 +264,11 @@ TEST_F(eStoragedTest, LoadLuksHeaderFail)
 }
 
 /* Test case where we fail to activate the LUKS device. */
-TEST_F(eStoragedTest, ActivateFail)
+TEST_F(EStoragedTest, ActivateFail)
 {
     EXPECT_CALL(sdbusMock,
                 sd_bus_emit_properties_changed_strv(
-                    IsNull(), StrEq(TEST_PATH), StrEq(ESTORAGED_INTERFACE), _))
+                    IsNull(), StrEq(testPath), StrEq(estoragedInterface), _))
         .WillRepeatedly(Return(0));
 
     EXPECT_CALL(*mockCryptIface, cryptFormat(_, _, _, _, _, _, _, _)).Times(1);
@@ -288,11 +287,11 @@ TEST_F(eStoragedTest, ActivateFail)
 }
 
 /* Test case where we fail to create the filesystem. */
-TEST_F(eStoragedTest, CreateFilesystemFail)
+TEST_F(EStoragedTest, CreateFilesystemFail)
 {
     EXPECT_CALL(sdbusMock,
                 sd_bus_emit_properties_changed_strv(
-                    IsNull(), StrEq(TEST_PATH), StrEq(ESTORAGED_INTERFACE), _))
+                    IsNull(), StrEq(testPath), StrEq(estoragedInterface), _))
         .WillRepeatedly(Return(0));
 
     EXPECT_CALL(*mockCryptIface, cryptFormat(_, _, _, _, _, _, _, _)).Times(1);
@@ -313,11 +312,11 @@ TEST_F(eStoragedTest, CreateFilesystemFail)
 }
 
 /* Test case where we fail to create the mount point. */
-TEST_F(eStoragedTest, CreateMountPointFail)
+TEST_F(EStoragedTest, CreateMountPointFail)
 {
     EXPECT_CALL(sdbusMock,
                 sd_bus_emit_properties_changed_strv(
-                    IsNull(), StrEq(TEST_PATH), StrEq(ESTORAGED_INTERFACE), _))
+                    IsNull(), StrEq(testPath), StrEq(estoragedInterface), _))
         .WillRepeatedly(Return(0));
 
     EXPECT_CALL(*mockCryptIface, cryptFormat(_, _, _, _, _, _, _, _)).Times(1);
@@ -344,11 +343,11 @@ TEST_F(eStoragedTest, CreateMountPointFail)
 }
 
 /* Test case where we fail to mount the filesystem. */
-TEST_F(eStoragedTest, MountFail)
+TEST_F(EStoragedTest, MountFail)
 {
     EXPECT_CALL(sdbusMock,
                 sd_bus_emit_properties_changed_strv(
-                    IsNull(), StrEq(TEST_PATH), StrEq(ESTORAGED_INTERFACE), _))
+                    IsNull(), StrEq(testPath), StrEq(estoragedInterface), _))
         .WillRepeatedly(Return(0));
 
     EXPECT_CALL(*mockCryptIface, cryptFormat(_, _, _, _, _, _, _, _)).Times(1);
@@ -383,11 +382,11 @@ TEST_F(eStoragedTest, MountFail)
 }
 
 /* Test case where we fail to unmount the filesystem. */
-TEST_F(eStoragedTest, UnmountFail)
+TEST_F(EStoragedTest, UnmountFail)
 {
     EXPECT_CALL(sdbusMock,
                 sd_bus_emit_properties_changed_strv(
-                    IsNull(), StrEq(TEST_PATH), StrEq(ESTORAGED_INTERFACE), _))
+                    IsNull(), StrEq(testPath), StrEq(estoragedInterface), _))
         .WillRepeatedly(Return(0));
 
     EXPECT_CALL(*mockCryptIface, cryptFormat(_, _, _, _, _, _, _, _)).Times(1);
@@ -424,11 +423,11 @@ TEST_F(eStoragedTest, UnmountFail)
 }
 
 /* Test case where we fail to remove the mount point. */
-TEST_F(eStoragedTest, RemoveMountPointFail)
+TEST_F(EStoragedTest, RemoveMountPointFail)
 {
     EXPECT_CALL(sdbusMock,
                 sd_bus_emit_properties_changed_strv(
-                    IsNull(), StrEq(TEST_PATH), StrEq(ESTORAGED_INTERFACE), _))
+                    IsNull(), StrEq(testPath), StrEq(estoragedInterface), _))
         .WillRepeatedly(Return(0));
 
     EXPECT_CALL(*mockCryptIface, cryptFormat(_, _, _, _, _, _, _, _)).Times(1);
@@ -469,11 +468,11 @@ TEST_F(eStoragedTest, RemoveMountPointFail)
 }
 
 /* Test case where we fail to deactivate the LUKS device. */
-TEST_F(eStoragedTest, DeactivateFail)
+TEST_F(EStoragedTest, DeactivateFail)
 {
     EXPECT_CALL(sdbusMock,
                 sd_bus_emit_properties_changed_strv(
-                    IsNull(), StrEq(TEST_PATH), StrEq(ESTORAGED_INTERFACE), _))
+                    IsNull(), StrEq(testPath), StrEq(estoragedInterface), _))
         .WillRepeatedly(Return(0));
 
     EXPECT_CALL(*mockCryptIface, cryptFormat(_, _, _, _, _, _, _, _)).Times(1);

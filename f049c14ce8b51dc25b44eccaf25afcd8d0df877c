@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0109585f_d4fd9387",
+        "filename": "include/sanitize.hpp",
+        "patchSetId": 22
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-02-21T22:10:26Z",
+      "side": 1,
+      "message": "The fact that the build didn\u0027t fail on this naming issue would imply you guys didn\u0027t check in a clang-tidy?  Please do that post-haste, and clean up the errors before you check in any more features.",
+      "range": {
+        "startLine": 111,
+        "startChar": 7,
+        "endLine": 111,
+        "endChar": 29
+      },
+      "revId": "f049c14ce8b51dc25b44eccaf25afcd8d0df877c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6c6d3a6d_ac5b905e",
         "filename": "src/erase/sanitize.cpp",
         "patchSetId": 22

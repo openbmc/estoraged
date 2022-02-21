@@ -26,7 +26,7 @@ int main(int argc, char** argv)
 
     std::string physicalBlockDev = "/dev/mmcblk0";
     std::string containerBlockDev;
-    int opt;
+    int opt = 0;
     while ((opt = getopt(argc, argv, "b:c:")) != -1)
     {
         switch (opt)
@@ -68,7 +68,7 @@ int main(int argc, char** argv)
     b.request_name(busName.c_str());
 
     /* Create an eStoraged object. */
-    estoraged::eStoraged esObject{b, path.c_str(), physicalBlockDev,
+    estoraged::EStoraged esObject{b, path.c_str(), physicalBlockDev,
                                   containerBlockDev};
     lg2::info("Storage management service is running", "REDFISH_MESSAGE_ID",
               std::string("OpenBMC.1.0.ServiceStarted"));

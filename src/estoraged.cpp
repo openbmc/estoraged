@@ -9,11 +9,11 @@
 
 #include <libcryptsetup.h>
 #include <openssl/rand.h>
-#include <stdlib.h>
 
 #include <phosphor-logging/lg2.hpp>
 #include <xyz/openbmc_project/Common/error.hpp>
 
+#include <cstdlib>
 #include <filesystem>
 #include <iostream>
 #include <string_view>
@@ -26,7 +26,7 @@ using sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
 using sdbusplus::xyz::openbmc_project::Common::Error::ResourceNotFound;
 using sdbusplus::xyz::openbmc_project::Common::Error::UnsupportedRequest;
 
-void eStoraged::formatLuks(std::vector<uint8_t> password, FilesystemType type)
+void EStoraged::formatLuks(std::vector<uint8_t> password, FilesystemType type)
 {
     std::string msg = "OpenBMC.0.1.DriveFormat";
     lg2::info("Starting format", "REDFISH_MESSAGE_ID", msg);
@@ -53,7 +53,7 @@ void eStoraged::formatLuks(std::vector<uint8_t> password, FilesystemType type)
     mountFilesystem();
 }
 
-void eStoraged::erase(EraseMethod inEraseMethod)
+void EStoraged::erase(EraseMethod inEraseMethod)
 {
     std::cerr << "Erasing encrypted eMMC" << std::endl;
     lg2::info("Starting erase", "REDFISH_MESSAGE_ID",
@@ -115,7 +115,7 @@ void eStoraged::erase(EraseMethod inEraseMethod)
     }
 }
 
-void eStoraged::lock()
+void EStoraged::lock()
 {
     std::string msg = "OpenBMC.0.1.DriveLock";
     lg2::info("Starting lock", "REDFISH_MESSAGE_ID", msg);
@@ -124,7 +124,7 @@ void eStoraged::lock()
     deactivateLuksDev();
 }
 
-void eStoraged::unlock(std::vector<uint8_t> password)
+void EStoraged::unlock(std::vector<uint8_t> password)
 {
     std::string msg = "OpenBMC.0.1.DriveUnlock";
     lg2::info("Starting unlock", "REDFISH_MESSAGE_ID", msg);
@@ -141,24 +141,25 @@ void eStoraged::unlock(std::vector<uint8_t> password)
     mountFilesystem();
 }
 
-void eStoraged::changePassword(std::vector<uint8_t>, std::vector<uint8_t>)
+void EStoraged::changePassword(std::vector<uint8_t> /*oldPassword*/,
+                               std::vector<uint8_t> /*newPassword*/)
 {
     std::cerr << "Changing password for encrypted eMMC" << std::endl;
     lg2::info("Starting change password", "REDFISH_MESSAGE_ID",
               std::string("OpenBMC.0.1.DrivePasswordChanged"));
 }
 
-bool eStoraged::isLocked() const
+bool EStoraged::isLocked() const
 {
     return locked();
 }
 
-std::string_view eStoraged::getMountPoint() const
+std::string_view EStoraged::getMountPoint() const
 {
     return mountPoint;
 }
 
-void eStoraged::formatLuksDev(struct crypt_device* cd,
+void EStoraged::formatLuksDev(struct crypt_device* cd,
                               std::vector<uint8_t> password)
 {
     lg2::info("Formatting device {DEV}", "DEV", devPath, "REDFISH_MESSAGE_ID",
@@ -206,7 +207,7 @@ void eStoraged::formatLuksDev(struct crypt_device* cd,
               std::string("OpenBMC.0.1.FormatLuksDevSuccess"));
 }
 
-void eStoraged::activateLuksDev(struct crypt_device* cd,
+void EStoraged::activateLuksDev(struct crypt_device* cd,
                                 std::vector<uint8_t> password)
 {
     lg2::info("Activating LUKS dev {DEV}", "DEV", devPath, "REDFISH_MESSAGE_ID",
@@ -241,11 +242,11 @@ void eStoraged::activateLuksDev(struct crypt_device* cd,
               std::string("OpenBMC.0.1.ActivateLuksDevSuccess"));
 }
 
-void eStoraged::createFilesystem()
+void EStoraged::createFilesystem()
 {
     /* Run the command to create the filesystem. */
     int retval = fsIface->runMkfs(containerName);
-    if (retval)
+    if (retval != 0)
     {
         lg2::error("Failed to create filesystem: {RETVAL}", "RETVAL", retval,
                    "REDFISH_MESSAGE_ID",
@@ -257,7 +258,7 @@ void eStoraged::createFilesystem()
               std::string("OpenBMC.0.1.CreateFilesystemSuccess"));
 }
 
-void eStoraged::mountFilesystem()
+void EStoraged::mountFilesystem()
 {
     /*
      * Create directory for the filesystem, if it's not already present. It
@@ -281,7 +282,7 @@ void eStoraged::mountFilesystem()
     std::string luksContainer("/dev/mapper/" + containerName);
     int retval = fsIface->doMount(luksContainer.c_str(), mountPoint.c_str(),
                                   "ext4", 0, nullptr);
-    if (retval)
+    if (retval != 0)
     {
         lg2::error("Failed to mount filesystem: {RETVAL}", "RETVAL", retval,
                    "REDFISH_MESSAGE_ID",
@@ -302,10 +303,10 @@ void eStoraged::mountFilesystem()
               std::string("OpenBMC.0.1.MountFilesystemSuccess"));
 }
 
-void eStoraged::unmountFilesystem()
+void EStoraged::unmountFilesystem()
 {
     int retval = fsIface->doUnmount(mountPoint.c_str());
-    if (retval)
+    if (retval != 0)
     {
         lg2::error("Failed to unmount filesystem: {RETVAL}", "RETVAL", retval,
                    "REDFISH_MESSAGE_ID",
@@ -328,7 +329,7 @@ void eStoraged::unmountFilesystem()
               std::string("OpenBMC.0.1.MountFilesystemSuccess"));
 }
 
-void eStoraged::deactivateLuksDev()
+void EStoraged::deactivateLuksDev()
 {
     lg2::info("Deactivating LUKS device {DEV}", "DEV", devPath,
               "REDFISH_MESSAGE_ID",

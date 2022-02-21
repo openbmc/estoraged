@@ -17,7 +17,6 @@
 
 using estoraged::Zero;
 using sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
-using stdplus::fd::ManagedFd;
 
 namespace estoraged_test
 {

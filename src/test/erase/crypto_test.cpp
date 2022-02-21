@@ -20,16 +20,13 @@ namespace estoraged_test
 {
 
 using estoraged::CryptErase;
-using estoraged::Cryptsetup;
-using estoraged::CryptsetupInterface;
 using sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
 using sdbusplus::xyz::openbmc_project::Common::Error::ResourceNotFound;
-using sdbusplus::xyz::openbmc_project::Inventory::Item::server::Volume;
 using ::testing::_;
 using ::testing::Return;
 using ::testing::StrEq;
 
-class cryptoEraseTest : public testing::Test
+class CryptoEraseTest : public testing::Test
 {
   public:
     static constexpr char testFileName[] = "testfile";
@@ -49,7 +46,7 @@ class cryptoEraseTest : public testing::Test
     }
 };
 
-TEST_F(cryptoEraseTest, EraseCryptPass)
+TEST_F(CryptoEraseTest, EraseCryptPass)
 {
     std::unique_ptr<MockCryptsetupInterface> mockCryptIface =
         std::make_unique<MockCryptsetupInterface>();
@@ -70,7 +67,7 @@ TEST_F(cryptoEraseTest, EraseCryptPass)
     EXPECT_NO_THROW(myCryptErase.doErase());
 }
 
-TEST_F(cryptoEraseTest, EraseCrypMaxSlotFails)
+TEST_F(CryptoEraseTest, EraseCrypMaxSlotFails)
 {
     std::unique_ptr<MockCryptsetupInterface> mockCryptIface =
         std::make_unique<MockCryptsetupInterface>();
@@ -86,7 +83,7 @@ TEST_F(cryptoEraseTest, EraseCrypMaxSlotFails)
     EXPECT_THROW(myCryptErase.doErase(), ResourceNotFound);
 }
 
-TEST_F(cryptoEraseTest, EraseCrypMaxSlotZero)
+TEST_F(CryptoEraseTest, EraseCrypMaxSlotZero)
 {
     std::unique_ptr<MockCryptsetupInterface> mockCryptIface =
         std::make_unique<MockCryptsetupInterface>();
@@ -102,7 +99,7 @@ TEST_F(cryptoEraseTest, EraseCrypMaxSlotZero)
     EXPECT_THROW(myCryptErase.doErase(), ResourceNotFound);
 }
 
-TEST_F(cryptoEraseTest, EraseCrypOnlyInvalid)
+TEST_F(CryptoEraseTest, EraseCrypOnlyInvalid)
 {
     std::unique_ptr<MockCryptsetupInterface> mockCryptIface =
         std::make_unique<MockCryptsetupInterface>();
@@ -121,7 +118,7 @@ TEST_F(cryptoEraseTest, EraseCrypOnlyInvalid)
     EXPECT_NO_THROW(myCryptErase.doErase());
 }
 
-TEST_F(cryptoEraseTest, EraseCrypDestoryFails)
+TEST_F(CryptoEraseTest, EraseCrypDestoryFails)
 {
     std::unique_ptr<MockCryptsetupInterface> mockCryptIface =
         std::make_unique<MockCryptsetupInterface>();

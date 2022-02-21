@@ -20,25 +20,23 @@ namespace estoraged_test
 {
 
 using estoraged::CryptErase;
-using estoraged::Cryptsetup;
-using estoraged::CryptsetupInterface;
 using sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
 using sdbusplus::xyz::openbmc_project::Common::Error::ResourceNotFound;
-using sdbusplus::xyz::openbmc_project::Inventory::Item::server::Volume;
 using ::testing::_;
 using ::testing::Return;
 using ::testing::StrEq;
 
-class cryptoEraseTest : public testing::Test
+const std::string testFileName = "testFile";
+
+class CryptoEraseTest : public testing::Test
 {
   public:
-    static constexpr char testFileName[] = "testfile";
     std::ofstream testFile;
 
     void SetUp() override
     {
         /* Create an empty file that we'll pretend is a 'storage device'. */
-        testFile.open(testFileName,
+        testFile.open(testFileName.c_str(),
                       std::ios::out | std::ios::binary | std::ios::trunc);
         testFile.close();
         if (testFile.fail())
@@ -49,7 +47,7 @@ class cryptoEraseTest : public testing::Test
     }
 };
 
-TEST_F(cryptoEraseTest, EraseCryptPass)
+TEST_F(CryptoEraseTest, EraseCryptPass)
 {
     std::unique_ptr<MockCryptsetupInterface> mockCryptIface =
         std::make_unique<MockCryptsetupInterface>();
@@ -66,11 +64,11 @@ TEST_F(cryptoEraseTest, EraseCryptPass)
     EXPECT_CALL(*mockCryptIface, cryptKeyslotDestroy(_, 0)).Times(1);
 
     CryptErase myCryptErase =
-        CryptErase(testFileName, std::move(mockCryptIface));
+        CryptErase(testFileName.c_str(), std::move(mockCryptIface));
     EXPECT_NO_THROW(myCryptErase.doErase());
 }
 
-TEST_F(cryptoEraseTest, EraseCrypMaxSlotFails)
+TEST_F(CryptoEraseTest, EraseCrypMaxSlotFails)
 {
     std::unique_ptr<MockCryptsetupInterface> mockCryptIface =
         std::make_unique<MockCryptsetupInterface>();
@@ -82,11 +80,11 @@ TEST_F(cryptoEraseTest, EraseCrypMaxSlotFails)
         .WillOnce(Return(-1));
 
     CryptErase myCryptErase =
-        CryptErase(testFileName, std::move(mockCryptIface));
+        CryptErase(testFileName.c_str(), std::move(mockCryptIface));
     EXPECT_THROW(myCryptErase.doErase(), ResourceNotFound);
 }
 
-TEST_F(cryptoEraseTest, EraseCrypMaxSlotZero)
+TEST_F(CryptoEraseTest, EraseCrypMaxSlotZero)
 {
     std::unique_ptr<MockCryptsetupInterface> mockCryptIface =
         std::make_unique<MockCryptsetupInterface>();
@@ -98,11 +96,11 @@ TEST_F(cryptoEraseTest, EraseCrypMaxSlotZero)
         .WillOnce(Return(0));
 
     CryptErase myCryptErase =
-        CryptErase(testFileName, std::move(mockCryptIface));
+        CryptErase(testFileName.c_str(), std::move(mockCryptIface));
     EXPECT_THROW(myCryptErase.doErase(), ResourceNotFound);
 }
 
-TEST_F(cryptoEraseTest, EraseCrypOnlyInvalid)
+TEST_F(CryptoEraseTest, EraseCrypOnlyInvalid)
 {
     std::unique_ptr<MockCryptsetupInterface> mockCryptIface =
         std::make_unique<MockCryptsetupInterface>();
@@ -117,11 +115,11 @@ TEST_F(cryptoEraseTest, EraseCrypOnlyInvalid)
         .WillRepeatedly(Return(CRYPT_SLOT_INVALID));
 
     CryptErase myCryptErase =
-        CryptErase(testFileName, std::move(mockCryptIface));
+        CryptErase(testFileName.c_str(), std::move(mockCryptIface));
     EXPECT_NO_THROW(myCryptErase.doErase());
 }
 
-TEST_F(cryptoEraseTest, EraseCrypDestoryFails)
+TEST_F(CryptoEraseTest, EraseCrypDestoryFails)
 {
     std::unique_ptr<MockCryptsetupInterface> mockCryptIface =
         std::make_unique<MockCryptsetupInterface>();
@@ -139,7 +137,7 @@ TEST_F(cryptoEraseTest, EraseCrypDestoryFails)
         .WillOnce(Return(-1));
 
     CryptErase myCryptErase =
-        CryptErase(testFileName, std::move(mockCryptIface));
+        CryptErase(testFileName.c_str(), std::move(mockCryptIface));
     EXPECT_THROW(myCryptErase.doErase(), InternalFailure);
 }
 

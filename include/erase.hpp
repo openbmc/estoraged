@@ -14,7 +14,6 @@ class Erase
      */
     Erase(std::string_view inDevPath) : devPath(inDevPath)
     {}
-    virtual ~Erase() = default;
 
     /** @brief finds the size of the linux block device in bytes
      *  @return size of a block device using the devPath

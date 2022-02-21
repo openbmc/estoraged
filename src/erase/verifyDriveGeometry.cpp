@@ -22,7 +22,7 @@ void VerifyDriveGeometry::geometryOkay(uint64_t bytes)
                        std::to_string(ERASE_MAX_GEOMETRY));
         throw InternalFailure();
     }
-    else if (bytes < ERASE_MIN_GEOMETRY)
+    if (bytes < ERASE_MIN_GEOMETRY)
     {
         lg2::error(
             "eStorageD erase verify Geometry too small", "REDFISH_MESSAGE_ID",
@@ -31,12 +31,9 @@ void VerifyDriveGeometry::geometryOkay(uint64_t bytes)
             std::to_string(bytes) + "<" + std::to_string(ERASE_MIN_GEOMETRY));
         throw InternalFailure();
     }
-    else
-    {
-        lg2::info("eStorageD erase verify Geometry in range",
-                  "REDFISH_MESSAGE_ID",
-                  std::string("OpenBMC.0.1.DriveEraseSuccess"));
-    }
+
+    lg2::info("eStorageD erase verify Geometry in range", "REDFISH_MESSAGE_ID",
+              std::string("OpenBMC.0.1.DriveEraseSuccess"));
 }
 
 } // namespace estoraged

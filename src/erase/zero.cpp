@@ -51,7 +51,7 @@ void Zero::verifyZero(uint64_t driveSize)
         stdplus::fd::open(devPath, stdplus::fd::OpenAccess::ReadOnly);
 
     uint64_t currentIndex = 0;
-    std::array<std::byte, blockSize> readArr;
+    std::array<std::byte, blockSize> readArr{};
     const std::array<const std::byte, blockSize> blockOfZeros{};
 
     while (currentIndex < driveSize)
@@ -70,7 +70,7 @@ void Zero::verifyZero(uint64_t driveSize)
                        std::string("eStorageD.1.0.EraseFailure"));
             throw InternalFailure();
         }
-        if (memcmp(readArr.data(), blockOfZeros.data(), readSize))
+        if (memcmp(readArr.data(), blockOfZeros.data(), readSize) != 0)
         {
             lg2::error("Estoraged erase zeros block is not zero",
                        "REDFISH_MESSAGE_ID",

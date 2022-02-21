@@ -17,6 +17,13 @@ class FilesystemInterface
   public:
     virtual ~FilesystemInterface() = default;
 
+    FilesystemInterface() = default;
+    FilesystemInterface(const FilesystemInterface&) = delete;
+    FilesystemInterface& operator=(const FilesystemInterface&) = delete;
+
+    FilesystemInterface(FilesystemInterface&&) = delete;
+    FilesystemInterface& operator=(FilesystemInterface&&) = delete;
+
     /** @brief Runs the mkfs command to create the filesystem.
      *  @details Used for mocking purposes.
      *
@@ -86,11 +93,18 @@ class FilesystemInterface
 class Filesystem : public FilesystemInterface
 {
   public:
-    ~Filesystem() = default;
+    ~Filesystem() override = default;
+    Filesystem() = default;
+    Filesystem(const Filesystem&) = delete;
+    Filesystem& operator=(const Filesystem&) = delete;
+
+    Filesystem(Filesystem&&) = delete;
+    Filesystem& operator=(Filesystem&&) = delete;
 
     int runMkfs(const std::string& logicalVolume) override
     {
         std::string mkfsCommand("mkfs.ext4 /dev/mapper/" + logicalVolume);
+        // calling 'system' uses a command processor //NOLINTNEXTLINE
         return system(mkfsCommand.c_str());
     }
 

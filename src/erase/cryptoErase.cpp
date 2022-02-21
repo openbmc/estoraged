@@ -34,8 +34,7 @@ void CryptErase::doErase()
         throw ResourceNotFound();
     }
     /* cryptLoad */
-    if (cryptIface.get()->cryptLoad(cryptHandle.get(), CRYPT_LUKS2, nullptr) !=
-        0)
+    if (cryptIface->cryptLoad(cryptHandle.get(), CRYPT_LUKS2, nullptr) != 0)
     {
         lg2::error("Failed to load the key slots for destruction",
                    "REDFISH_MESSAGE_ID",
@@ -44,7 +43,7 @@ void CryptErase::doErase()
     }
 
     /* find key slots */
-    int nKeySlots = cryptIface.get()->cryptKeySlotMax(CRYPT_LUKS2);
+    int nKeySlots = cryptIface->cryptKeySlotMax(CRYPT_LUKS2);
     if (nKeySlots < 0)
     {
         lg2::error("Failed to find the max keyslots", "REDFISH_MESSAGE_ID",
@@ -64,12 +63,11 @@ void CryptErase::doErase()
     for (int i = 0; i < nKeySlots; i++)
     {
         crypt_keyslot_info ki =
-            cryptIface.get()->cryptKeySlotStatus(cryptHandle.get(), i);
+            cryptIface->cryptKeySlotStatus(cryptHandle.get(), i);
 
         if (ki == CRYPT_SLOT_ACTIVE || ki == CRYPT_SLOT_ACTIVE_LAST)
         {
-            if (cryptIface.get()->cryptKeyslotDestroy(cryptHandle.get(), i) !=
-                0)
+            if (cryptIface->cryptKeyslotDestroy(cryptHandle.get(), i) != 0)
             {
                 lg2::error(
                     "Estoraged erase failed to destroy keyslot, continuing",

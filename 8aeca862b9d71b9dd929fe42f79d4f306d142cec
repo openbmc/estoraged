@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92be5334_b7ba55cb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-02-22T17:41:29Z",
+      "side": 1,
+      "message": "This repo initially had a clang-tidy, but then we removed it when we added the yaml files for the D-Bus inteface, since clang-tidy was complaining about the generated files. See here: https://gerrit.openbmc-project.xyz/c/openbmc/estoraged/+/48587\n\nWe should be able to put the clang-tidy back now.",
+      "revId": "8aeca862b9d71b9dd929fe42f79d4f306d142cec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

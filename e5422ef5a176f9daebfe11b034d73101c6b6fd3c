@@ -72,6 +72,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1281737_d20af483",
+        "filename": ".clang-tidy",
+        "patchSetId": 3
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-02-23T18:53:20Z",
+      "side": 1,
+      "message": "yes, it creates the error when the defines are used.",
+      "parentUuid": "275c1318_dcb178ed",
+      "range": {
+        "startLine": 209,
+        "startChar": 0,
+        "endLine": 209,
+        "endChar": 31
+      },
+      "revId": "e5422ef5a176f9daebfe11b034d73101c6b6fd3c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e5bee5c3_87d53645",
@@ -133,6 +157,30 @@
       "side": 1,
       "message": "Okay, why did the strings need to be moved? Does \"static constexpr std::string\" not work? You might need to use \"static constexpr std::string_view\".",
       "parentUuid": "e933e825_b25cf620",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 55
+      },
+      "revId": "e5422ef5a176f9daebfe11b034d73101c6b6fd3c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "76b962ed_64b6c5f5",
+        "filename": "src/test/estoraged_test.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-02-23T18:53:20Z",
+      "side": 1,
+      "message": "it look like auto uses const char * for strings.",
+      "parentUuid": "290d3d3d_5e61e034",
       "range": {
         "startLine": 40,
         "startChar": 0,

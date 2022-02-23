@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "275c1318_dcb178ed",
+        "filename": ".clang-tidy",
+        "patchSetId": 3
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-02-23T18:35:32Z",
+      "side": 1,
+      "message": "You\u0027re referring to estoraged_conf.hpp, right? That file is listed in clang-ignore. Does clang-tidy still complain even with clang-ignore?",
+      "parentUuid": "260906d2_8d474d45",
+      "range": {
+        "startLine": 209,
+        "startChar": 0,
+        "endLine": 209,
+        "endChar": 31
+      },
+      "revId": "e5422ef5a176f9daebfe11b034d73101c6b6fd3c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e5bee5c3_87d53645",
         "filename": "src/test/estoraged_test.cpp",
         "patchSetId": 3
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "clang-tidy gave me an error.\nIt told me not use arrays of chars, but use std::arrays.\nI did not want to do that, so I switched to strings, but they had to be moved out side the class.",
       "parentUuid": "e5bee5c3_87d53645",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 55
+      },
+      "revId": "e5422ef5a176f9daebfe11b034d73101c6b6fd3c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "290d3d3d_5e61e034",
+        "filename": "src/test/estoraged_test.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-02-23T18:35:32Z",
+      "side": 1,
+      "message": "Okay, why did the strings need to be moved? Does \"static constexpr std::string\" not work? You might need to use \"static constexpr std::string_view\".",
+      "parentUuid": "e933e825_b25cf620",
       "range": {
         "startLine": 40,
         "startChar": 0,

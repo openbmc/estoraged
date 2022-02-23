@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "260906d2_8d474d45",
+        "filename": ".clang-tidy",
+        "patchSetId": 3
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-02-23T18:05:44Z",
+      "side": 1,
+      "message": "We use macros, defined by a meson generated file. \nWe should fix this, but I wanted to limit the invasive of this one change",
+      "parentUuid": "4ff898d2_f0126fbe",
+      "range": {
+        "startLine": 209,
+        "startChar": 0,
+        "endLine": 209,
+        "endChar": 31
+      },
+      "revId": "e5422ef5a176f9daebfe11b034d73101c6b6fd3c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e5bee5c3_87d53645",
         "filename": "src/test/estoraged_test.cpp",
         "patchSetId": 3
@@ -37,6 +61,30 @@
       "writtenOn": "2022-02-23T17:22:29Z",
       "side": 1,
       "message": "Is there a reason why these aren\u0027t part the class anymore?",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 55
+      },
+      "revId": "e5422ef5a176f9daebfe11b034d73101c6b6fd3c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e933e825_b25cf620",
+        "filename": "src/test/estoraged_test.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-02-23T18:05:44Z",
+      "side": 1,
+      "message": "clang-tidy gave me an error.\nIt told me not use arrays of chars, but use std::arrays.\nI did not want to do that, so I switched to strings, but they had to be moved out side the class.",
+      "parentUuid": "e5bee5c3_87d53645",
       "range": {
         "startLine": 40,
         "startChar": 0,

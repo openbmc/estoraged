@@ -96,6 +96,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "62d930ea_21227354",
+        "filename": ".clang-tidy",
+        "patchSetId": 3
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-02-23T19:53:54Z",
+      "side": 1,
+      "message": "Could we put a TODO comment here to get rid of this in the future?\n\nOtherwise, could it be that meson seems to use .clang-format-ignore file? https://mesonbuild.com/Code-formatting.html",
+      "parentUuid": "c1281737_d20af483",
+      "range": {
+        "startLine": 209,
+        "startChar": 0,
+        "endLine": 209,
+        "endChar": 31
+      },
+      "revId": "e5422ef5a176f9daebfe11b034d73101c6b6fd3c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e5bee5c3_87d53645",

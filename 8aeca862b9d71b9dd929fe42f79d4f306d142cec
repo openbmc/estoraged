@@ -57,6 +57,30 @@
       },
       "revId": "8aeca862b9d71b9dd929fe42f79d4f306d142cec",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77907654_c2b795d1",
+        "filename": "src/erase/erase.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2022-02-24T21:58:29Z",
+      "side": 1,
+      "message": "fd.ioctl handles those errors",
+      "parentUuid": "0f85a877_758a6ec6",
+      "range": {
+        "startLine": 26,
+        "startChar": 11,
+        "endLine": 26,
+        "endChar": 16
+      },
+      "revId": "8aeca862b9d71b9dd929fe42f79d4f306d142cec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

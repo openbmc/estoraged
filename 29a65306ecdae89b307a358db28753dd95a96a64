@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b093d514_13c939e4",
+        "filename": "src/test/estoraged_test.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-02-24T03:30:33Z",
+      "side": 1,
+      "message": "Drive by comment (please don\u0027t fix it in this patch) unit tests are supposed to be units, and shouldn\u0027t rely on another file existing, or a particular order to succeed.  This file should be cleaned up at the end of the test that creates it, ideally via a passed in /tmp/\u003cguid\u003e directory so we can have two copies of the tests running at once without.\n\nNot super important to fix, just FYI.",
+      "range": {
+        "startLine": 204,
+        "startChar": 0,
+        "endLine": 205,
+        "endChar": 39
+      },
+      "revId": "29a65306ecdae89b307a358db28753dd95a96a64",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

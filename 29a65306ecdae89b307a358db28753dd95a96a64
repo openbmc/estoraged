@@ -39,6 +39,30 @@
       },
       "revId": "29a65306ecdae89b307a358db28753dd95a96a64",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03702f21_8fb39367",
+        "filename": "src/test/estoraged_test.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-02-24T23:00:59Z",
+      "side": 1,
+      "message": "I am not a google mock expert, but I believe this file is created for every test, in the setup member (line 62) the EStoragedTest class. And then destroyed for every test in tear down (line 98)\n\nMost of the time we want a file there for test. However, in this test we don\u0027t want the file, so we remove it, then add it back so tear down works.\n\nBut agree, we need to append the guid to the name of the file, so we can run n of these test in parallel.",
+      "parentUuid": "b093d514_13c939e4",
+      "range": {
+        "startLine": 204,
+        "startChar": 0,
+        "endLine": 205,
+        "endChar": 39
+      },
+      "revId": "29a65306ecdae89b307a358db28753dd95a96a64",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

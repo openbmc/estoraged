@@ -192,6 +192,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "70e5493a_139b5023",
+        "filename": ".clang-tidy",
+        "patchSetId": 3
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-02-24T23:00:59Z",
+      "side": 1,
+      "message": "done, this cppcoreguidelines-macro-usage.AllowedRegexp  worked perfectly",
+      "parentUuid": "51443d6b_64326240",
+      "range": {
+        "startLine": 209,
+        "startChar": 0,
+        "endLine": 209,
+        "endChar": 31
+      },
+      "revId": "e5422ef5a176f9daebfe11b034d73101c6b6fd3c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e5bee5c3_87d53645",
@@ -301,6 +325,54 @@
       "side": 1,
       "message": "Technically these std::string declarations would also fail the https://clang.llvm.org/extra/clang-tidy/checks/cppcoreguidelines-interfaces-global-init.html check had we turned it on, because std::string has to construct before main, and could throw before main.\n\nauto works (although I\u0027m a firm believe that it makes code harder to read and debug).  Explicitly declaring these constexpr char * would also be another solution.",
       "parentUuid": "76b962ed_64b6c5f5",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 55
+      },
+      "revId": "e5422ef5a176f9daebfe11b034d73101c6b6fd3c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9bb9971_762792de",
+        "filename": "src/test/estoraged_test.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-02-24T23:00:59Z",
+      "side": 1,
+      "message": "switch to const char*, because I agree with Ed.",
+      "parentUuid": "aba0aae8_bb198058",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 55
+      },
+      "revId": "e5422ef5a176f9daebfe11b034d73101c6b6fd3c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ddb62120_cd954f7d",
+        "filename": "src/test/estoraged_test.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-02-24T23:00:59Z",
+      "side": 1,
+      "message": "I agree, switching to const char *",
+      "parentUuid": "aba0aae8_bb198058",
       "range": {
         "startLine": 40,
         "startChar": 0,

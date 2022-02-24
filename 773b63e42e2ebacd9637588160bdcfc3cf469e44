@@ -22,6 +22,30 @@
       },
       "revId": "773b63e42e2ebacd9637588160bdcfc3cf469e44",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea12a22d_7161707c",
+        "filename": ".clang-ignore",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-02-24T23:52:18Z",
+      "side": 1,
+      "message": "good call, removed",
+      "parentUuid": "9696da31_b02b0a5e",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 34
+      },
+      "revId": "773b63e42e2ebacd9637588160bdcfc3cf469e44",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

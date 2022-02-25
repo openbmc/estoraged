@@ -51,6 +51,23 @@
       "parentUuid": "5696f158_cc6525d0",
       "revId": "6660058338d0313c8bf85a9cb94b0140b96f6015",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53ee7888_178b6ccd",
+        "filename": "src/meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2022-02-25T18:00:04Z",
+      "side": 1,
+      "message": "Btw you can get rid of all the `fallback` stuff by defining variables in the wrapfiles so that you don\u0027t need to move out all of the definitions like this.\n\nhttps://github.com/openbmc/google-misc/blob/master/subprojects/sdeventplus.wrap#L6",
+      "revId": "6660058338d0313c8bf85a9cb94b0140b96f6015",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

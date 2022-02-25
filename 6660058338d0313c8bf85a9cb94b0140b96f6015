@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7a5989c_72c219a3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-02-25T17:57:52Z",
+      "side": 1,
+      "message": "Thanks for the cleanup",
+      "revId": "6660058338d0313c8bf85a9cb94b0140b96f6015",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5696f158_cc6525d0",
@@ -14,6 +31,24 @@
       "writtenOn": "2022-02-25T15:38:19Z",
       "side": 1,
       "message": "The code uses lg2 header, but this dependency was missing.",
+      "revId": "6660058338d0313c8bf85a9cb94b0140b96f6015",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fcb79cfd_fc382ca4",
+        "filename": "src/erase/meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-02-25T17:57:52Z",
+      "side": 1,
+      "message": "Good catch",
+      "parentUuid": "5696f158_cc6525d0",
       "revId": "6660058338d0313c8bf85a9cb94b0140b96f6015",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

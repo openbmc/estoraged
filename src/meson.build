@@ -1,16 +1,32 @@
+phosphor_dbus_interfaces_dep = dependency(
+  'phosphor-dbus-interfaces',
+  fallback: ['phosphor-dbus-interfaces', 'phosphor_dbus_interfaces_dep'],
+)
+
+phosphor_logging_dep = dependency(
+  'phosphor-logging',
+  fallback: ['phosphor-logging', 'phosphor_logging_dep'],
+)
+
+sdbusplus_dep = dependency(
+  'sdbusplus',
+  fallback: ['sdbusplus', 'sdbusplus_dep'],
+)
+
+stdplus_dep = dependency(
+  'stdplus',
+  fallback: ['stdplus', 'stdplus_dep'],
+)
 
 subdir('erase')
 
 libeStoraged_deps = [
-  dependency('sdbusplus'),
-  dependency('phosphor-logging',
-    fallback: ['phosphor-logging',
-               'phosphor_logging_dep'],
-    ),
-  dependency('openssl'),
   dependency('libcryptsetup'),
-  dependency('stdplus'),
-  dependency('phosphor-dbus-interfaces'),
+  dependency('openssl'),
+  phosphor_dbus_interfaces_dep,
+  phosphor_logging_dep,
+  sdbusplus_dep,
+  stdplus_dep,
 ]
 
 libeStoraged_lib = static_library(

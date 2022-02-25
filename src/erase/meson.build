@@ -8,8 +8,9 @@ libeStoragedErase_lib = static_library(
   include_directories : eStoraged_headers,
   implicit_include_directories: false,
   dependencies: [
-    dependency('phosphor-dbus-interfaces'),
-    dependency('stdplus'),
+    phosphor_dbus_interfaces_dep,
+    phosphor_logging_dep,
+    stdplus_dep,
   ],
 )
 

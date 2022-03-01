@@ -158,6 +158,30 @@
       },
       "revId": "f5ca35c62ff35b82cc24813507e4a1a5fc195fff",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "436fa1c7_bd5123bc",
+        "filename": "src/main.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-03-01T18:01:45Z",
+      "side": 1,
+      "message": "Shouldn\u0027t we print the details of the exception?",
+      "parentUuid": "13a9a4ba_3c44af09",
+      "range": {
+        "startLine": 83,
+        "startChar": 4,
+        "endLine": 86,
+        "endChar": 5
+      },
+      "revId": "f5ca35c62ff35b82cc24813507e4a1a5fc195fff",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

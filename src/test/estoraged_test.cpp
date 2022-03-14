@@ -48,6 +48,7 @@ class EStoragedTest : public testing::Test
     const char* testPath = "/test/openbmc_project/storage/test_dev";
     const char* estoragedInterface =
         "xyz.openbmc_project.Inventory.Item.Volume";
+    const char* driveInterface = "xyz.openbmc_project.Inventory.Item.Drive";
     sdbusplus::bus::bus bus;
     std::string passwordString;
     std::vector<uint8_t> password;
@@ -73,6 +74,11 @@ class EStoragedTest : public testing::Test
         EXPECT_CALL(sdbusMock,
                     sd_bus_add_object_vtable(IsNull(), _, StrEq(testPath),
                                              StrEq(estoragedInterface), _, _))
+            .WillRepeatedly(Return(0));
+
+        EXPECT_CALL(sdbusMock,
+                    sd_bus_add_object_vtable(IsNull(), _, StrEq(testPath),
+                                             StrEq(driveInterface), _, _))
             .WillRepeatedly(Return(0));
 
         EXPECT_CALL(sdbusMock,
@@ -104,6 +110,11 @@ class EStoragedTest : public testing::Test
 /* Test case to format and then lock the LUKS device. */
 TEST_F(EStoragedTest, FormatPass)
 {
+    EXPECT_CALL(sdbusMock,
+                sd_bus_emit_properties_changed_strv(IsNull(), StrEq(testPath),
+                                                    StrEq(driveInterface), _))
+        .WillRepeatedly(Return(0));
+
     EXPECT_CALL(sdbusMock,
                 sd_bus_emit_properties_changed_strv(
                     IsNull(), StrEq(testPath), StrEq(estoragedInterface), _))
@@ -154,6 +165,11 @@ TEST_F(EStoragedTest, FormatPass)
  */
 TEST_F(EStoragedTest, MountPointExistsPass)
 {
+    EXPECT_CALL(sdbusMock,
+                sd_bus_emit_properties_changed_strv(IsNull(), StrEq(testPath),
+                                                    StrEq(driveInterface), _))
+        .WillRepeatedly(Return(0));
+
     EXPECT_CALL(sdbusMock,
                 sd_bus_emit_properties_changed_strv(
                     IsNull(), StrEq(testPath), StrEq(estoragedInterface), _))
@@ -229,6 +245,11 @@ TEST_F(EStoragedTest, FormatFail)
 TEST_F(EStoragedTest, AddKeyslotFail)
 {
     EXPECT_CALL(sdbusMock,
+                sd_bus_emit_properties_changed_strv(IsNull(), StrEq(testPath),
+                                                    StrEq(driveInterface), _))
+        .WillRepeatedly(Return(0));
+
+    EXPECT_CALL(sdbusMock,
                 sd_bus_emit_properties_changed_strv(
                     IsNull(), StrEq(testPath), StrEq(estoragedInterface), _))
         .WillRepeatedly(Return(0));
@@ -246,6 +267,11 @@ TEST_F(EStoragedTest, AddKeyslotFail)
 /* Test case where we fail to load the LUKS header. */
 TEST_F(EStoragedTest, LoadLuksHeaderFail)
 {
+    EXPECT_CALL(sdbusMock,
+                sd_bus_emit_properties_changed_strv(IsNull(), StrEq(testPath),
+                                                    StrEq(driveInterface), _))
+        .WillRepeatedly(Return(0));
+
     EXPECT_CALL(sdbusMock,
                 sd_bus_emit_properties_changed_strv(
                     IsNull(), StrEq(testPath), StrEq(estoragedInterface), _))
@@ -266,6 +292,11 @@ TEST_F(EStoragedTest, LoadLuksHeaderFail)
 /* Test case where we fail to activate the LUKS device. */
 TEST_F(EStoragedTest, ActivateFail)
 {
+    EXPECT_CALL(sdbusMock,
+                sd_bus_emit_properties_changed_strv(IsNull(), StrEq(testPath),
+                                                    StrEq(driveInterface), _))
+        .WillRepeatedly(Return(0));
+
     EXPECT_CALL(sdbusMock,
                 sd_bus_emit_properties_changed_strv(
                     IsNull(), StrEq(testPath), StrEq(estoragedInterface), _))
@@ -289,6 +320,11 @@ TEST_F(EStoragedTest, ActivateFail)
 /* Test case where we fail to create the filesystem. */
 TEST_F(EStoragedTest, CreateFilesystemFail)
 {
+    EXPECT_CALL(sdbusMock,
+                sd_bus_emit_properties_changed_strv(IsNull(), StrEq(testPath),
+                                                    StrEq(driveInterface), _))
+        .WillRepeatedly(Return(0));
+
     EXPECT_CALL(sdbusMock,
                 sd_bus_emit_properties_changed_strv(
                     IsNull(), StrEq(testPath), StrEq(estoragedInterface), _))
@@ -314,6 +350,11 @@ TEST_F(EStoragedTest, CreateFilesystemFail)
 /* Test case where we fail to create the mount point. */
 TEST_F(EStoragedTest, CreateMountPointFail)
 {
+    EXPECT_CALL(sdbusMock,
+                sd_bus_emit_properties_changed_strv(IsNull(), StrEq(testPath),
+                                                    StrEq(driveInterface), _))
+        .WillRepeatedly(Return(0));
+
     EXPECT_CALL(sdbusMock,
                 sd_bus_emit_properties_changed_strv(
                     IsNull(), StrEq(testPath), StrEq(estoragedInterface), _))
@@ -345,6 +386,11 @@ TEST_F(EStoragedTest, CreateMountPointFail)
 /* Test case where we fail to mount the filesystem. */
 TEST_F(EStoragedTest, MountFail)
 {
+    EXPECT_CALL(sdbusMock,
+                sd_bus_emit_properties_changed_strv(IsNull(), StrEq(testPath),
+                                                    StrEq(driveInterface), _))
+        .WillRepeatedly(Return(0));
+
     EXPECT_CALL(sdbusMock,
                 sd_bus_emit_properties_changed_strv(
                     IsNull(), StrEq(testPath), StrEq(estoragedInterface), _))
@@ -384,6 +430,11 @@ TEST_F(EStoragedTest, MountFail)
 /* Test case where we fail to unmount the filesystem. */
 TEST_F(EStoragedTest, UnmountFail)
 {
+    EXPECT_CALL(sdbusMock,
+                sd_bus_emit_properties_changed_strv(IsNull(), StrEq(testPath),
+                                                    StrEq(driveInterface), _))
+        .WillRepeatedly(Return(0));
+
     EXPECT_CALL(sdbusMock,
                 sd_bus_emit_properties_changed_strv(
                     IsNull(), StrEq(testPath), StrEq(estoragedInterface), _))
@@ -425,6 +476,11 @@ TEST_F(EStoragedTest, UnmountFail)
 /* Test case where we fail to remove the mount point. */
 TEST_F(EStoragedTest, RemoveMountPointFail)
 {
+    EXPECT_CALL(sdbusMock,
+                sd_bus_emit_properties_changed_strv(IsNull(), StrEq(testPath),
+                                                    StrEq(driveInterface), _))
+        .WillRepeatedly(Return(0));
+
     EXPECT_CALL(sdbusMock,
                 sd_bus_emit_properties_changed_strv(
                     IsNull(), StrEq(testPath), StrEq(estoragedInterface), _))
@@ -470,6 +526,11 @@ TEST_F(EStoragedTest, RemoveMountPointFail)
 /* Test case where we fail to deactivate the LUKS device. */
 TEST_F(EStoragedTest, DeactivateFail)
 {
+    EXPECT_CALL(sdbusMock,
+                sd_bus_emit_properties_changed_strv(IsNull(), StrEq(testPath),
+                                                    StrEq(driveInterface), _))
+        .WillRepeatedly(Return(0));
+
     EXPECT_CALL(sdbusMock,
                 sd_bus_emit_properties_changed_strv(
                     IsNull(), StrEq(testPath), StrEq(estoragedInterface), _))

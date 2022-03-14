@@ -8,6 +8,7 @@
 #include <sdbusplus/bus.hpp>
 #include <sdbusplus/exception.hpp>
 #include <sdbusplus/server/object.hpp>
+#include <xyz/openbmc_project/Inventory/Item/Drive/server.hpp>
 #include <xyz/openbmc_project/Inventory/Item/Volume/server.hpp>
 
 #include <filesystem>
@@ -18,6 +19,8 @@
 
 namespace estoraged
 {
+using driveInherit = sdbusplus::server::object_t<
+    sdbusplus::xyz::openbmc_project::Inventory::Item::server::Drive>;
 using eStoragedInherit = sdbusplus::server::object_t<
     sdbusplus::xyz::openbmc_project::Inventory::Item::server::Volume>;
 using estoraged::Cryptsetup;
@@ -26,7 +29,7 @@ using estoraged::Filesystem;
 /** @class eStoraged
  *  @brief eStoraged object to manage a LUKS encrypted storage device.
  */
-class EStoraged : eStoragedInherit
+class EStoraged : private eStoragedInherit, private driveInherit
 {
   public:
     /** @brief Constructor for eStoraged
@@ -47,10 +50,12 @@ class EStoraged : eStoragedInherit
               std::unique_ptr<FilesystemInterface> fsInterface =
                   std::make_unique<Filesystem>()) :
         eStoragedInherit(bus, path),
-        devPath(devPath), containerName(luksName),
+        driveInherit(bus, path), devPath(devPath), containerName(luksName),
         mountPoint("/mnt/" + luksName + "_fs"),
         cryptIface(std::move(cryptInterface)), fsIface(std::move(fsInterface))
-    {}
+    {
+        capacity(15);
+    }
 
     /** @brief Format the LUKS encrypted device and create empty filesystem.
      *
@@ -143,6 +148,8 @@ class EStoraged : eStoragedInherit
 
     /** @brief Unmount the filesystem. */
     void unmountFilesystem();
+
+    void initProperties();
 };
 
 } // namespace estoraged

@@ -55,7 +55,7 @@ int main(int argc, char** argv)
         }
 
         /* DBus path location to place the object. */
-        std::string path = "/xyz/openbmc_project/storage/" + deviceName;
+        std::string path = "/xyz/openbmc_project/inventory/" + deviceName;
 
         /*
          * Create a new bus and affix an object manager for the subtree path we

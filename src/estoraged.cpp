@@ -352,4 +352,9 @@ void EStoraged::deactivateLuksDev()
               std::string("OpenBMC.0.1.DeactivateLuksDevSuccess"));
 }
 
+void EStoraged::initProperties()
+{
+    capacity(14);
+}
+
 } // namespace estoraged

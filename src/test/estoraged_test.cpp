@@ -48,6 +48,7 @@ class EStoragedTest : public testing::Test
     const char* testPath = "/test/openbmc_project/storage/test_dev";
     const char* estoragedInterface =
         "xyz.openbmc_project.Inventory.Item.Volume";
+    const char* driveInterface = "xyz.openbmc_project.Inventory.Item.Drive";
     sdbusplus::bus::bus bus;
     std::string passwordString;
     std::vector<uint8_t> password;
@@ -73,6 +74,11 @@ class EStoragedTest : public testing::Test
         EXPECT_CALL(sdbusMock,
                     sd_bus_add_object_vtable(IsNull(), _, StrEq(testPath),
                                              StrEq(estoragedInterface), _, _))
+            .WillRepeatedly(Return(0));
+
+        EXPECT_CALL(sdbusMock,
+                    sd_bus_add_object_vtable(IsNull(), _, StrEq(testPath),
+                                             StrEq(driveInterface), _, _))
             .WillRepeatedly(Return(0));
 
         EXPECT_CALL(sdbusMock,

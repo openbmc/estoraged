@@ -81,6 +81,30 @@
       },
       "revId": "e46e553583ee527099f0c95091a637a7eff3d512",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc7ffe55_63c25aa0",
+        "filename": "src/main.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-03-15T21:34:46Z",
+      "side": 1,
+      "message": "I think a suddir should work, let me check.\n\nI also believe it is possible to have the interfaces (volumes and drives) on different paths if we wanted to do that. I don\u0027t have a good sense for what is considered best practices here.",
+      "parentUuid": "0dfdb407_b5578be6",
+      "range": {
+        "startLine": 58,
+        "startChar": 28,
+        "endLine": 58,
+        "endChar": 59
+      },
+      "revId": "e46e553583ee527099f0c95091a637a7eff3d512",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

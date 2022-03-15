@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "291929da_bf741841",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-03-15T21:21:50Z",
+      "side": 1,
+      "message": "Yes, let\u0027s add more details here - as we discussed offline yesterday, it\u0027s because bmcweb currently looks only at this particular path: https://github.com/openbmc/bmcweb/blob/master/redfish-core/lib/storage.hpp#L561",
+      "parentUuid": "5bc1b783_55e0140a",
+      "revId": "e46e553583ee527099f0c95091a637a7eff3d512",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a48571aa_9a9dcfb3",
         "filename": "src/main.cpp",
         "patchSetId": 1
@@ -31,6 +49,30 @@
       "writtenOn": "2022-03-15T20:55:01Z",
       "side": 1,
       "message": "Would it make sense to keep \"storage\" in the path, e.g. /xyz/openbmc_project/inventory/storage/...?",
+      "range": {
+        "startLine": 58,
+        "startChar": 28,
+        "endLine": 58,
+        "endChar": 59
+      },
+      "revId": "e46e553583ee527099f0c95091a637a7eff3d512",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0dfdb407_b5578be6",
+        "filename": "src/main.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-03-15T21:21:50Z",
+      "side": 1,
+      "message": "I\u0027m not quite sure if subdirectory of inventory/storage works with the mapper.. but worth checking out.",
+      "parentUuid": "a48571aa_9a9dcfb3",
       "range": {
         "startLine": 58,
         "startChar": 28,

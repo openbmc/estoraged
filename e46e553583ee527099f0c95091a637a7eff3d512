@@ -105,6 +105,30 @@
       },
       "revId": "e46e553583ee527099f0c95091a637a7eff3d512",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33fa7d43_4df155ff",
+        "filename": "src/main.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-03-15T22:03:57Z",
+      "side": 1,
+      "message": "The mappers find eStorageD drives interface even when  it is in a subpath.\n\n\n`busctl call -j xyz.openbmc_project.ObjectMapper /xyz/openbmc_project/object_mapper xyz.openbmc_project.ObjectMapper GetSubTree  sias \"/xyz/openbmc_project/inventory\" 0 1 \"xyz.openbmc_project.Inventory.Item.Drive\" `",
+      "parentUuid": "bc7ffe55_63c25aa0",
+      "range": {
+        "startLine": 58,
+        "startChar": 28,
+        "endLine": 58,
+        "endChar": 59
+      },
+      "revId": "e46e553583ee527099f0c95091a637a7eff3d512",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

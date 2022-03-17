@@ -1,6 +1,7 @@
 #pragma once
 
 #include "erase.hpp"
+#include "util.hpp"
 
 #include <string_view>
 
@@ -22,6 +23,10 @@ class VerifyDriveGeometry : public Erase
      *
      *  @param[in] bytes - Size of the block device
      */
+    void geometryOkay()
+    {
+        geometryOkay(util::Util::findSizeOfBlockDevice(devPath));
+    }
     void geometryOkay(uint64_t bytes);
 };
 

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "erase.hpp"
+#include "util.hpp"
 
 #include <stdplus/fd/create.hpp>
 #include <stdplus/fd/managed.hpp>
@@ -27,6 +28,11 @@ class Pattern : public Erase
      *
      *  @param[in] bytes - Size of the block device
      */
+    void writePattern()
+    {
+        writePattern(util::Util::findSizeOfBlockDevice(devPath));
+    }
+
     void writePattern(uint64_t driveSize);
 
     /** @brief verifies the uncompressible random pattern is on the drive
@@ -34,6 +40,11 @@ class Pattern : public Erase
      *
      *  @param[in] bytes - Size of the block device
      */
+
+    void verifyPattern()
+    {
+        verifyPattern(util::Util::findSizeOfBlockDevice(devPath));
+    }
     void verifyPattern(uint64_t driveSize);
 };
 

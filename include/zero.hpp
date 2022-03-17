@@ -1,6 +1,7 @@
 #pragma once
 
 #include "erase.hpp"
+#include "util.hpp"
 
 #include <stdplus/fd/create.hpp>
 #include <stdplus/fd/managed.hpp>
@@ -19,20 +20,33 @@ class Zero : public Erase
      */
     Zero(std::string_view inDevPath) : Erase(inDevPath)
     {}
-
     /** @brief writes zero to the drive
      * and throws errors accordingly.
-     *
-     *  @param[in] bytes - Size of the block device
+     *  @param[in] driveSize - the size of the block device in bytes
      */
     void writeZero(uint64_t driveSize);
 
+    /** @brief writes zero to the drive
+     * and throws errors accordingly.
+     */
+    void writeZero()
+    {
+        writeZero(util::Util::findSizeOfBlockDevice(devPath));
+    }
+
     /** @brief verifies the  uncompressible random pattern is on the drive
      * and throws errors accordingly.
-     *
-     *  @param[in] bytes - Size of the block device
+     *  @param[in] driveSize - the size of the block device in bytes
      */
     void verifyZero(uint64_t driveSize);
+
+    /** @brief verifies the  uncompressible random pattern is on the drive
+     * and throws errors accordingly.
+     */
+    void verifyZero()
+    {
+        verifyZero(util::Util::findSizeOfBlockDevice(devPath));
+    }
 
   private:
     /* @brief the size of the blocks in bytes used for write and verify.

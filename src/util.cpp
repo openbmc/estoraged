@@ -1,6 +1,4 @@
-
-/*
-#include "erase.hpp"
+#include "util.hpp"
 
 #include <linux/fs.h>
 
@@ -10,13 +8,16 @@
 #include <stdplus/handle/managed.hpp>
 #include <xyz/openbmc_project/Common/error.hpp>
 
+#include <string_view>
+
 namespace estoraged
 {
+namespace util
+{
+using ::sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
+using ::stdplus::fd::ManagedFd;
 
-using sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
-using stdplus::fd::ManagedFd;
-
-uint64_t Erase::findSizeOfBlockDevice()
+uint64_t Util::findSizeOfBlockDevice(const std::string& devPath)
 {
     ManagedFd fd;
     uint64_t bytes = 0;
@@ -37,6 +38,6 @@ uint64_t Erase::findSizeOfBlockDevice()
     return bytes;
 }
 
+} // namespace util
+
 } // namespace estoraged
-  //
-*/

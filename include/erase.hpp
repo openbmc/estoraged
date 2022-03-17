@@ -15,12 +15,7 @@ class Erase
     Erase(std::string_view inDevPath) : devPath(inDevPath)
     {}
 
-    /** @brief finds the size of the linux block device in bytes
-     *  @return size of a block device using the devPath
-     */
-    uint64_t findSizeOfBlockDevice();
-
-  protected:
+    // protected:
     /* The linux path for the block device */
     std::string devPath;
 };

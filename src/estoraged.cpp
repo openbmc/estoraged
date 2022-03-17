@@ -69,21 +69,19 @@ void EStoraged::erase(EraseMethod inEraseMethod)
         case EraseMethod::VerifyGeometry:
         {
             VerifyDriveGeometry myVerifyGeometry(devPath);
-            uint64_t size = myVerifyGeometry.findSizeOfBlockDevice();
-            myVerifyGeometry.geometryOkay(size);
+            myVerifyGeometry.geometryOkay();
             break;
         }
         case EraseMethod::LogicalOverWrite:
         {
             Pattern myErasePattern(devPath);
-            myErasePattern.writePattern(myErasePattern.findSizeOfBlockDevice());
+            myErasePattern.writePattern();
             break;
         }
         case EraseMethod::LogicalVerify:
         {
             Pattern myErasePattern(devPath);
-            myErasePattern.verifyPattern(
-                myErasePattern.findSizeOfBlockDevice());
+            myErasePattern.verifyPattern();
             break;
         }
         case EraseMethod::VendorSanitize:
@@ -93,13 +91,13 @@ void EStoraged::erase(EraseMethod inEraseMethod)
         case EraseMethod::ZeroOverWrite:
         {
             Zero myZero(devPath);
-            myZero.writeZero(myZero.findSizeOfBlockDevice());
+            myZero.writeZero();
             break;
         }
         case EraseMethod::ZeroVerify:
         {
             Zero myZero(devPath);
-            myZero.verifyZero(myZero.findSizeOfBlockDevice());
+            myZero.verifyZero();
             break;
         }
         case EraseMethod::SecuredLocked:

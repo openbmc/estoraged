@@ -44,6 +44,7 @@ class EStoragedTest : public testing::Test
     const char* testFileName = "testfile";
     const char* testLuksDevName = "testfile_luksDev";
     uint64_t testSize = 24;
+    uint8_t testLifeTime = 25;
     std::ofstream testFile;
     std::unique_ptr<estoraged::EStoraged> esObject;
     const char* testPath = "/test/openbmc_project/storage/test_dev";
@@ -99,7 +100,7 @@ class EStoragedTest : public testing::Test
 
         esObject = std::make_unique<estoraged::EStoraged>(
             bus, testPath, testFileName, testLuksDevName, testSize,
-            std::move(cryptIface), std::move(fsIface));
+            testLifeTime, std::move(cryptIface), std::move(fsIface));
     }
 
     void TearDown() override

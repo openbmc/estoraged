@@ -8,6 +8,8 @@
 #include <stdplus/handle/managed.hpp>
 #include <xyz/openbmc_project/Common/error.hpp>
 
+#include <fstream>
+#include <iostream>
 #include <string_view>
 
 namespace estoraged
@@ -17,7 +19,7 @@ namespace util
 using ::sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
 using ::stdplus::fd::ManagedFd;
 
-uint64_t Util::findSizeOfBlockDevice(const std::string& devPath)
+uint64_t findSizeOfBlockDevice(const std::string& devPath)
 {
     ManagedFd fd;
     uint64_t bytes = 0;
@@ -36,6 +38,31 @@ uint64_t Util::findSizeOfBlockDevice(const std::string& devPath)
         throw InternalFailure();
     }
     return bytes;
+}
+
+uint8_t findPredictedMediaLifeLeftPercent(const std::string& sysfsPath)
+{
+    uint16_t first = 0, second = 0;
+    std::ifstream lifeTimeFile;
+    try
+    {
+        lifeTimeFile.open(sysfsPath + "/life_time", std::ios_base::in);
+        lifeTimeFile >> first;
+        lifeTimeFile >> second;
+    }
+    catch (...)
+    {
+        lg2::error("Unable to read sysfs", "REDFISH_MESSAGE_ID",
+                   std::string("OpenBMC.0.1.DriveEraseFailure"));
+        lifeTimeFile.close();
+        return 255;
+    }
+    lifeTimeFile.close();
+    if (first > second)
+    {
+        return static_cast<uint8_t>(100 - first);
+    }
+    return static_cast<uint8_t>(100 - second);
 }
 
 } // namespace util

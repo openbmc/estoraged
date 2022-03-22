@@ -2,6 +2,7 @@
 
 #include "cryptsetupInterface.hpp"
 #include "filesystemInterface.hpp"
+#include "util.hpp"
 
 #include <libcryptsetup.h>
 
@@ -46,7 +47,7 @@ class EStoraged : private eStoragedInherit, private driveInherit
      */
     EStoraged(sdbusplus::bus::bus& bus, const char* path,
               const std::string& devPath, const std::string& luksName,
-              uint64_t size,
+              uint64_t size, uint8_t lifeTime,
               std::unique_ptr<CryptsetupInterface> cryptInterface =
                   std::make_unique<Cryptsetup>(),
               std::unique_ptr<FilesystemInterface> fsInterface =
@@ -57,6 +58,7 @@ class EStoraged : private eStoragedInherit, private driveInherit
         cryptIface(std::move(cryptInterface)), fsIface(std::move(fsInterface))
     {
         capacity(size);
+        predictedMediaLifeLeftPercent(lifeTime);
     }
 
     /** @brief Format the LUKS encrypted device and create empty filesystem.

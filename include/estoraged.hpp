@@ -8,6 +8,7 @@
 #include <sdbusplus/bus.hpp>
 #include <sdbusplus/exception.hpp>
 #include <sdbusplus/server/object.hpp>
+#include <util.hpp>
 #include <xyz/openbmc_project/Inventory/Item/Drive/server.hpp>
 #include <xyz/openbmc_project/Inventory/Item/Volume/server.hpp>
 
@@ -45,6 +46,7 @@ class EStoraged : private eStoragedInherit, private driveInherit
      */
     EStoraged(sdbusplus::bus::bus& bus, const char* path,
               const std::string& devPath, const std::string& luksName,
+              uint64_t size,
               std::unique_ptr<CryptsetupInterface> cryptInterface =
                   std::make_unique<Cryptsetup>(),
               std::unique_ptr<FilesystemInterface> fsInterface =
@@ -53,7 +55,9 @@ class EStoraged : private eStoragedInherit, private driveInherit
         driveInherit(bus, path), devPath(devPath), containerName(luksName),
         mountPoint("/mnt/" + luksName + "_fs"),
         cryptIface(std::move(cryptInterface)), fsIface(std::move(fsInterface))
-    {}
+    {
+        capacity(size);
+    }
 
     /** @brief Format the LUKS encrypted device and create empty filesystem.
      *

@@ -33,7 +33,7 @@ using sdbusplus::xyz::openbmc_project::Inventory::Item::server::Volume;
 
 EStoraged::EStoraged(sdbusplus::asio::object_server& server,
                      const std::string& devPath, const std::string& luksName,
-                     uint64_t size,
+                     uint64_t size, uint8_t lifeTime,
                      std::unique_ptr<CryptsetupInterface> cryptInterface,
                      std::unique_ptr<FilesystemInterface> fsInterface) :
     devPath(devPath),
@@ -77,6 +77,8 @@ EStoraged::EStoraged(sdbusplus::asio::object_server& server,
     driveInterface = objectServer.add_interface(
         path, "xyz.openbmc_project.Inventory.Item.Drive");
     driveInterface->register_property("Capacity", size);
+    driveInterface->register_property("PredictedMediaLifeLeftPercent",
+                                      lifeTime);
 
     volumeInterface->initialize();
     driveInterface->initialize();

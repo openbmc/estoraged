@@ -5,6 +5,7 @@
 
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/bus.hpp>
+#include <util.hpp>
 
 #include <filesystem>
 #include <iostream>
@@ -69,8 +70,9 @@ int main(int argc, char** argv)
         b.request_name(busName.c_str());
 
         /* Create an eStoraged object. */
-        estoraged::EStoraged esObject{b, path.c_str(), physicalBlockDev,
-                                      containerBlockDev};
+        estoraged::EStoraged esObject{
+            b, path.c_str(), physicalBlockDev, containerBlockDev,
+            estoraged::util::Util::findSizeOfBlockDevice(physicalBlockDev)};
         lg2::info("Storage management service is running", "REDFISH_MESSAGE_ID",
                   std::string("OpenBMC.1.0.ServiceStarted"));
 

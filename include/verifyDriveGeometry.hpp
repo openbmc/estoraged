@@ -25,7 +25,7 @@ class VerifyDriveGeometry : public Erase
      */
     void geometryOkay()
     {
-        geometryOkay(util::Util::findSizeOfBlockDevice(devPath));
+        geometryOkay(util::findSizeOfBlockDevice(devPath));
     }
     void geometryOkay(uint64_t bytes);
 };

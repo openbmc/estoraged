@@ -23,15 +23,21 @@ static void usage(std::string_view name)
            "  -b <blockDevice>          The phyical encrypted device\n"
            "                            If omitted, default is /dev/mmcblk0.\n"
            "  -c <containerName>        The LUKS container name to be created\n"
-           "                            If omitted, default is luks-<devName>";
+           "                            If omitted, default is luks-<devName>"
+           "  -s <sysfsDevice>          The interface to kernel data "
+           "structures\n"
+           "                            Dealing with this disk. If omitted, "
+           "default\n"
+           "                            /sys/block/mmcblk0/device/ \n";
 }
 
 int main(int argc, char** argv)
 {
     std::string physicalBlockDev = "/dev/mmcblk0";
+    std::string sysfsDev = "/sys/block/mmcblk0/device";
     std::string containerBlockDev;
     int opt = 0;
-    while ((opt = getopt(argc, argv, "b:c:")) != -1)
+    while ((opt = getopt(argc, argv, "b:c:s:")) != -1)
     {
         switch (opt)
         {
@@ -40,6 +46,9 @@ int main(int argc, char** argv)
                 break;
             case 'c':
                 containerBlockDev = optarg;
+                break;
+            case 's':
+                sysfsDev = optarg;
                 break;
             default:
                 usage(*argv);
@@ -68,7 +77,8 @@ int main(int argc, char** argv)
 
         estoraged::EStoraged esObject{
             server, physicalBlockDev, containerBlockDev,
-            estoraged::util::Util::findSizeOfBlockDevice(physicalBlockDev)};
+            estoraged::util::findSizeOfBlockDevice(physicalBlockDev),
+            estoraged::util::findPredictedMediaLifeLeftPercent(sysfsDev)};
         lg2::info("Storage management service is running", "REDFISH_MESSAGE_ID",
                   std::string("OpenBMC.1.0.ServiceStarted"));
 

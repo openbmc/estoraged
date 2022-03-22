@@ -44,16 +44,18 @@ class EStoraged : private eStoragedInherit, private driveInherit
      *    object
      */
     EStoraged(sdbusplus::bus::bus& bus, const char* path,
-              const std::string& devPath, const std::string& luksName,
+              const std::string& devPathIn, const std::string& luksName,
               std::unique_ptr<CryptsetupInterface> cryptInterface =
                   std::make_unique<Cryptsetup>(),
               std::unique_ptr<FilesystemInterface> fsInterface =
                   std::make_unique<Filesystem>()) :
         eStoragedInherit(bus, path),
-        driveInherit(bus, path), devPath(devPath), containerName(luksName),
+        driveInherit(bus, path), devPath(devPathIn), containerName(luksName),
         mountPoint("/mnt/" + luksName + "_fs"),
         cryptIface(std::move(cryptInterface)), fsIface(std::move(fsInterface))
-    {}
+    {
+        capacity(util::Util::findSizeOfBlockDevice(devPath))
+    }
 
     /** @brief Format the LUKS encrypted device and create empty filesystem.
      *

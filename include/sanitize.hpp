@@ -96,7 +96,7 @@ class Sanitize : public Erase
      */
     void doSanitize()
     {
-        doSanitize(util::Util::findSizeOfBlockDevice(devPath));
+        doSanitize(util::findSizeOfBlockDevice(devPath));
     }
 
   private:

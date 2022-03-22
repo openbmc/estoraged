@@ -31,7 +31,7 @@ class Zero : public Erase
      */
     void writeZero()
     {
-        writeZero(util::Util::findSizeOfBlockDevice(devPath));
+        writeZero(util::findSizeOfBlockDevice(devPath));
     }
 
     /** @brief verifies the  uncompressible random pattern is on the drive
@@ -45,7 +45,7 @@ class Zero : public Erase
      */
     void verifyZero()
     {
-        verifyZero(util::Util::findSizeOfBlockDevice(devPath));
+        verifyZero(util::findSizeOfBlockDevice(devPath));
     }
 
   private:

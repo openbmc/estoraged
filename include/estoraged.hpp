@@ -2,6 +2,7 @@
 
 #include "cryptsetupInterface.hpp"
 #include "filesystemInterface.hpp"
+#include "util.hpp"
 
 #include <libcryptsetup.h>
 
@@ -36,6 +37,8 @@ class EStoraged
      *  @param[in] server - sdbusplus asio object server
      *  @param[in] devPath - path to device file, e.g. /dev/mmcblk0
      *  @param[in] luksName - name for the LUKS container
+     *  @param[in] size - size of the drive in bytes
+     *  @param[in] lifeTime - percent of lifetime remaining for a drive
      *  @param[in] cryptInterface - (optional) pointer to CryptsetupInterface
      *    object
      *  @param[in] fsInterface - (optional) pointer to FilesystemInterface
@@ -43,7 +46,7 @@ class EStoraged
      */
     EStoraged(sdbusplus::asio::object_server& server,
               const std::string& devPath, const std::string& luksName,
-              uint64_t size,
+              uint64_t size, uint8_t lifeTime,
               std::unique_ptr<CryptsetupInterface> cryptInterface =
                   std::make_unique<Cryptsetup>(),
               std::unique_ptr<FilesystemInterface> fsInterface =

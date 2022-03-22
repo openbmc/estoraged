@@ -30,7 +30,7 @@ class Pattern : public Erase
      */
     void writePattern()
     {
-        writePattern(util::Util::findSizeOfBlockDevice(devPath));
+        writePattern(util::findSizeOfBlockDevice(devPath));
     }
 
     void writePattern(uint64_t driveSize);
@@ -43,7 +43,7 @@ class Pattern : public Erase
 
     void verifyPattern()
     {
-        verifyPattern(util::Util::findSizeOfBlockDevice(devPath));
+        verifyPattern(util::findSizeOfBlockDevice(devPath));
     }
     void verifyPattern(uint64_t driveSize);
 };

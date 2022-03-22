@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9469846f_23f0f250",
+        "filename": "include/erase.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-03-22T19:48:28Z",
+      "side": 1,
+      "message": "clean this up? Why is this no longer protected?",
+      "range": {
+        "startLine": 18,
+        "startChar": 4,
+        "endLine": 18,
+        "endChar": 17
+      },
+      "revId": "0220e164b5f40989d8dc86eb19dc07c0c5a38018",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ca3aa4d_0f5c6387",
+        "filename": "src/erase/erase.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-03-22T19:48:28Z",
+      "side": 1,
+      "message": "Clean this up?",
+      "revId": "0220e164b5f40989d8dc86eb19dc07c0c5a38018",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

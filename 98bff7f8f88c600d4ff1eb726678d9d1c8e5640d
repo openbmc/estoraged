@@ -16,6 +16,98 @@
       "message": "Thanks for looking this over",
       "revId": "98bff7f8f88c600d4ff1eb726678d9d1c8e5640d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6841908d_7a3e27e4",
+        "filename": "include/util.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-03-23T00:05:19Z",
+      "side": 1,
+      "message": "nit: we should have @param[in] for devpath",
+      "range": {
+        "startLine": 13,
+        "startChar": 9,
+        "endLine": 13,
+        "endChar": 15
+      },
+      "revId": "98bff7f8f88c600d4ff1eb726678d9d1c8e5640d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50805b83_7436415b",
+        "filename": "include/zero.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-03-23T00:05:19Z",
+      "side": 1,
+      "message": "nit: should be updated to driveSize",
+      "range": {
+        "startLine": 27,
+        "startChar": 19,
+        "endLine": 27,
+        "endChar": 24
+      },
+      "revId": "98bff7f8f88c600d4ff1eb726678d9d1c8e5640d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1ec15fd_cb74ee28",
+        "filename": "include/zero.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-03-23T00:05:19Z",
+      "side": 1,
+      "message": "nit: should be updated to driveSize",
+      "range": {
+        "startLine": 39,
+        "startChar": 19,
+        "endLine": 39,
+        "endChar": 24
+      },
+      "revId": "98bff7f8f88c600d4ff1eb726678d9d1c8e5640d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80680618_63e9eb31",
+        "filename": "include/zero.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-03-23T00:05:19Z",
+      "side": 1,
+      "message": "nit: I think it makes more sense to have these flipped in order (since the writeZero(uint64_t) is used BY writeZero()",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 0
+      },
+      "revId": "98bff7f8f88c600d4ff1eb726678d9d1c8e5640d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

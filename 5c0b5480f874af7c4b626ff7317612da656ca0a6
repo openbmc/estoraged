@@ -24,6 +24,23 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7aa01a5_8427864e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-03-23T05:49:04Z",
+      "side": 1,
+      "message": "Thanks for looking this over",
+      "revId": "5c0b5480f874af7c4b626ff7317612da656ca0a6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a61142a7_37800754",
@@ -60,6 +77,30 @@
       "writtenOn": "2022-03-23T01:26:04Z",
       "side": 1,
       "message": "which \"capacity\" are we setting here again? Is this one of the dbus property?",
+      "range": {
+        "startLine": 59,
+        "startChar": 8,
+        "endLine": 59,
+        "endChar": 16
+      },
+      "revId": "5c0b5480f874af7c4b626ff7317612da656ca0a6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b952e2a_caff7d57",
+        "filename": "include/estoraged.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-03-23T05:49:04Z",
+      "side": 1,
+      "message": "yep, it is defined in the drive interface,\nsee: https://github.com/openbmc/phosphor-dbus-interfaces/blob/332a7b865b756ded61fd8eddd3c88b9e4a510a3b/yaml/xyz/openbmc_project/Inventory/Item/Drive.interface.yaml#L5",
+      "parentUuid": "6cbb243d_b2d65d67",
       "range": {
         "startLine": 59,
         "startChar": 8,

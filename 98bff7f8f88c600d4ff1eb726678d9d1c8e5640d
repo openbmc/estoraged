@@ -41,6 +41,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "29552d28_bc2bf9d2",
+        "filename": "include/util.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-03-23T01:14:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6841908d_7a3e27e4",
+      "range": {
+        "startLine": 13,
+        "startChar": 9,
+        "endLine": 13,
+        "endChar": 15
+      },
+      "revId": "98bff7f8f88c600d4ff1eb726678d9d1c8e5640d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "50805b83_7436415b",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-03-23T00:05:19Z",
       "side": 1,
       "message": "nit: should be updated to driveSize",
+      "range": {
+        "startLine": 27,
+        "startChar": 19,
+        "endLine": 27,
+        "endChar": 24
+      },
+      "revId": "98bff7f8f88c600d4ff1eb726678d9d1c8e5640d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d6b172a_4155ed94",
+        "filename": "include/zero.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-03-23T01:14:15Z",
+      "side": 1,
+      "message": "sounds good, \nI correcteed the doxygen comments",
+      "parentUuid": "50805b83_7436415b",
       "range": {
         "startLine": 27,
         "startChar": 19,
@@ -87,6 +135,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "100c703a_232b2177",
+        "filename": "include/zero.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-03-23T01:14:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b1ec15fd_cb74ee28",
+      "range": {
+        "startLine": 39,
+        "startChar": 19,
+        "endLine": 39,
+        "endChar": 24
+      },
+      "revId": "98bff7f8f88c600d4ff1eb726678d9d1c8e5640d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "80680618_63e9eb31",
@@ -100,6 +172,30 @@
       "writtenOn": "2022-03-23T00:05:19Z",
       "side": 1,
       "message": "nit: I think it makes more sense to have these flipped in order (since the writeZero(uint64_t) is used BY writeZero()",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 0
+      },
+      "revId": "98bff7f8f88c600d4ff1eb726678d9d1c8e5640d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f18a06f8_c3c01888",
+        "filename": "include/zero.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-03-23T01:14:15Z",
+      "side": 1,
+      "message": "I can flip them so the parameter\u0027ed variation are first.",
+      "parentUuid": "80680618_63e9eb31",
       "range": {
         "startLine": 28,
         "startChar": 0,

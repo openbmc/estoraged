@@ -138,6 +138,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d633b0b5_aaea1cac",
+        "filename": "include/estoraged.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-03-24T04:20:35Z",
+      "side": 1,
+      "message": "I am not worried with technicalities, and there is no need to a apologies. \n\nMy goals is to write code that is easy to read and modify, while still being perforate. And shadowing the member variable with a parameter make the code more difficult to modifiy in the future. I made this mistake in patch-set one, and I thought I would fix it so future deveoplers are not also burned by this shadowing. \n\nhttps://gerrit.openbmc-project.xyz/c/openbmc/estoraged/+/52247/1/include/estoraged.hpp#57 \n\n\nThere is no discernible advantage to shadowing your member variables with parameters of the same. And, there is a very clear dis advantage, using the wrong one, (which I did, and other developers will do).\n\nEither ways, I am glad you are such a dedicated and thorough reviewer, thanks for all the hard-work you put in. Could you explain the pros, and cons you see to your shadow method.",
+      "parentUuid": "c84cd39e_e902840d",
+      "range": {
+        "startLine": 48,
+        "startChar": 33,
+        "endLine": 48,
+        "endChar": 42
+      },
+      "revId": "5c0b5480f874af7c4b626ff7317612da656ca0a6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6cbb243d_b2d65d67",
         "filename": "include/estoraged.hpp",
         "patchSetId": 3

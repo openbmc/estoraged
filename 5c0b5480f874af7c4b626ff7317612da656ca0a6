@@ -114,6 +114,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c84cd39e_e902840d",
+        "filename": "include/estoraged.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-03-24T01:46:25Z",
+      "side": 1,
+      "message": "Yes, I\u0027m referring to line 55 when I made the comment.\n\nBy \"technically not shadowing\", I was saying it is shadowing BUT initializer list handles it differently so it\u0027s \"technically not\", but maybe that\u0027s the wrong use of \"technically\" here since it is indeed \"technically / objectively\" shadowing and it\u0027s \"subjectively\" not the usual shadowing. Apologies for the confusion.\n\nSure, although I would suggest that instead of going up to TOF, we could bring the other maintainers / contributors of this repo to chime in (William and John Wedig) as this started as a minor nit, that we can perhaps resolve within our repo (although it would be cool to see how TOF works).",
+      "parentUuid": "a807b5e2_10229d0c",
+      "range": {
+        "startLine": 48,
+        "startChar": 33,
+        "endLine": 48,
+        "endChar": 42
+      },
+      "revId": "5c0b5480f874af7c4b626ff7317612da656ca0a6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6cbb243d_b2d65d67",
         "filename": "include/estoraged.hpp",
         "patchSetId": 3

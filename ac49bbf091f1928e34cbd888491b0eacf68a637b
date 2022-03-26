@@ -369,6 +369,30 @@
       },
       "revId": "ac49bbf091f1928e34cbd888491b0eacf68a637b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7511f2e4_c5f23b64",
+        "filename": "src/erase/sanitize.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-03-26T01:03:05Z",
+      "side": 1,
+      "message": "It comes from 6.6.34 as I understand the spec",
+      "parentUuid": "fef0bc38_cfea0cdc",
+      "range": {
+        "startLine": 87,
+        "startChar": 8,
+        "endLine": 87,
+        "endChar": 41
+      },
+      "revId": "ac49bbf091f1928e34cbd888491b0eacf68a637b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

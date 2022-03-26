@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f0a5fce4_b4e63be1",
+        "filename": "include/sanitize.hpp",
+        "patchSetId": 22
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-03-26T01:03:05Z",
+      "side": 1,
+      "message": "We enabled clang tidy, but it does not flag this. I am unsure why.",
+      "parentUuid": "0109585f_d4fd9387",
+      "range": {
+        "startLine": 111,
+        "startChar": 7,
+        "endLine": 111,
+        "endChar": 29
+      },
+      "revId": "f049c14ce8b51dc25b44eccaf25afcd8d0df877c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6c6d3a6d_ac5b905e",
         "filename": "src/erase/sanitize.cpp",
         "patchSetId": 22
@@ -54,6 +78,30 @@
       "writtenOn": "2022-02-16T23:03:12Z",
       "side": 1,
       "message": "spelling",
+      "range": {
+        "startLine": 78,
+        "startChar": 11,
+        "endLine": 78,
+        "endChar": 18
+      },
+      "revId": "f049c14ce8b51dc25b44eccaf25afcd8d0df877c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "35b1121e_c88b87af",
+        "filename": "src/erase/sanitize.cpp",
+        "patchSetId": 22
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-03-26T01:03:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6c6d3a6d_ac5b905e",
       "range": {
         "startLine": 78,
         "startChar": 11,
@@ -77,6 +125,30 @@
       "writtenOn": "2022-02-16T23:03:12Z",
       "side": 1,
       "message": "You mean !\u003d, right?",
+      "range": {
+        "startLine": 81,
+        "startChar": 57,
+        "endLine": 81,
+        "endChar": 59
+      },
+      "revId": "f049c14ce8b51dc25b44eccaf25afcd8d0df877c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80f18aff_7142abf0",
+        "filename": "src/erase/sanitize.cpp",
+        "patchSetId": 22
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-03-26T01:03:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ef8685c9_b1a7a713",
       "range": {
         "startLine": 81,
         "startChar": 57,

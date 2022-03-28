@@ -16,6 +16,75 @@
       "message": "Thanks for looking this over",
       "revId": "50a0f731eadfdedb9f2b41fb0336bbb2661dfd4e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c29b97ae_b0dc1202",
+        "filename": "src/erase/sanitize.cpp",
+        "patchSetId": 27
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-03-28T20:58:18Z",
+      "side": 1,
+      "message": "I don\u0027t think you should be setting this to 0. This might conflict with the driver in Linux, which is probably the thing setting this to 1.",
+      "range": {
+        "startLine": 83,
+        "startChar": 8,
+        "endLine": 83,
+        "endChar": 49
+      },
+      "revId": "50a0f731eadfdedb9f2b41fb0336bbb2661dfd4e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0396059_6dc0cb14",
+        "filename": "src/erase/sanitize.cpp",
+        "patchSetId": 27
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-03-28T20:58:18Z",
+      "side": 1,
+      "message": "From reading 6.6.9, my understanding is that this arg is specified as an address, not in erase blocks. Addresses are expressed either in bytes or 512 byte sectors. See section 5.2. This address isn\u0027t necessarily the same as erase blocks.\n\nIn light of this, I suspect the \u0027twiddle\u0027 stuff is unnecessary. IIUC the value of ERASE_GROUP_DEF hardly matters when you do an erase. It is only relevant in that the eMMC rounds down to the nearest erase group boundary.",
+      "range": {
+        "startLine": 105,
+        "startChar": 21,
+        "endLine": 105,
+        "endChar": 24
+      },
+      "revId": "50a0f731eadfdedb9f2b41fb0336bbb2661dfd4e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a85585a_b6051b5e",
+        "filename": "src/erase/sanitize.cpp",
+        "patchSetId": 27
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-03-28T20:58:18Z",
+      "side": 1,
+      "message": "why this?",
+      "range": {
+        "startLine": 106,
+        "startChar": 4,
+        "endLine": 109,
+        "endChar": 5
+      },
+      "revId": "50a0f731eadfdedb9f2b41fb0336bbb2661dfd4e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

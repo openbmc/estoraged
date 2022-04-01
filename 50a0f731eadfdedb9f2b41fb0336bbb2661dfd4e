@@ -157,6 +157,30 @@
       },
       "revId": "50a0f731eadfdedb9f2b41fb0336bbb2661dfd4e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92455e02_b66836d8",
+        "filename": "src/erase/sanitize.cpp",
+        "patchSetId": 27
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-01T00:50:54Z",
+      "side": 1,
+      "message": "hmm, I guess the start and end addresses represent an inclusive range. For example, if we only wanted to erase the first block, the ERASE_GROUP_START would be 0, and ERASE_GROUP_END would also be 0.",
+      "parentUuid": "53ac8599_563892cc",
+      "range": {
+        "startLine": 106,
+        "startChar": 4,
+        "endLine": 109,
+        "endChar": 5
+      },
+      "revId": "50a0f731eadfdedb9f2b41fb0336bbb2661dfd4e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

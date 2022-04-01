@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2150462d_e106946b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 29
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-01T00:50:54Z",
+      "side": 1,
+      "message": "Why does your commit message show the same busctl command twice?",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 14
+      },
+      "revId": "c519c323125bb7a924629880b0ba63e8264628e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47fba1c0_a844a5c5",
+        "filename": "src/erase/sanitize.cpp",
+        "patchSetId": 29
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-01T00:50:54Z",
+      "side": 1,
+      "message": "Did you ever try reading the OCR register to determine which addressing scheme to use?\n\nAt the very least, if you want to leave this hard-coded to 512 bytes, you should probably add a comment saying this is only correct if the eMMC is \u003e\u003d2GB.",
+      "range": {
+        "startLine": 76,
+        "startChar": 13,
+        "endLine": 76,
+        "endChar": 23
+      },
+      "revId": "c519c323125bb7a924629880b0ba63e8264628e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55955692_ecb76b29",
+        "filename": "src/erase/sanitize.cpp",
+        "patchSetId": 29
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-01T00:50:54Z",
+      "side": 1,
+      "message": "I don\u0027t think this is the right section. Section 5.2 talks about sector addresses.",
+      "range": {
+        "startLine": 76,
+        "startChar": 54,
+        "endLine": 76,
+        "endChar": 61
+      },
+      "revId": "c519c323125bb7a924629880b0ba63e8264628e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

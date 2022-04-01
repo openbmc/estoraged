@@ -9,7 +9,7 @@
 namespace estoraged
 {
 
-using stdplus::fd::ManagedFd;
+using stdplus::fd::Fd;
 
 class Zero : public Erase
 {
@@ -23,29 +23,35 @@ class Zero : public Erase
     /** @brief writes zero to the drive
      * and throws errors accordingly.
      *  @param[in] driveSize - the size of the block device in bytes
+     *  @param[in] fd - the stdplus file descriptor
      */
-    void writeZero(uint64_t driveSize);
+    void writeZero(uint64_t driveSize, Fd& fd);
 
     /** @brief writes zero to the drive
      * and throws errors accordingly.
      */
     void writeZero()
     {
-        writeZero(util::Util::findSizeOfBlockDevice(devPath));
+        stdplus::fd::Fd&& fd =
+            stdplus::fd::open(devPath, stdplus::fd::OpenAccess::WriteOnly);
+        writeZero(util::Util::findSizeOfBlockDevice(devPath), fd);
     }
 
     /** @brief verifies the  uncompressible random pattern is on the drive
      * and throws errors accordingly.
      *  @param[in] driveSize - the size of the block device in bytes
+     *  @param[in] fd - the stdplus file descriptor
      */
-    void verifyZero(uint64_t driveSize);
+    void verifyZero(uint64_t driveSize, Fd& fd);
 
     /** @brief verifies the  uncompressible random pattern is on the drive
      * and throws errors accordingly.
      */
     void verifyZero()
     {
-        verifyZero(util::Util::findSizeOfBlockDevice(devPath));
+        stdplus::fd::Fd&& fd =
+            stdplus::fd::open(devPath, stdplus::fd::OpenAccess::ReadOnly);
+        verifyZero(util::Util::findSizeOfBlockDevice(devPath), fd);
     }
 
   private:

@@ -30,10 +30,12 @@ class Pattern : public Erase
      */
     void writePattern()
     {
-        writePattern(util::Util::findSizeOfBlockDevice(devPath));
+        writePattern(
+            util::Util::findSizeOfBlockDevice(devPath),
+            stdplus::fd::open(devPath, stdplus::fd::OpenAccess::WriteOnly));
     }
 
-    void writePattern(uint64_t driveSize);
+    void writePattern(uint64_t driveSize, ManagedFd fd);
 
     /** @brief verifies the uncompressible random pattern is on the drive
      * and throws errors accordingly.
@@ -43,9 +45,11 @@ class Pattern : public Erase
 
     void verifyPattern()
     {
-        verifyPattern(util::Util::findSizeOfBlockDevice(devPath));
+        verifyPattern(
+            util::Util::findSizeOfBlockDevice(devPath),
+            stdplus::fd::open(devPath, stdplus::fd::OpenAccess::ReadOnly));
     }
-    void verifyPattern(uint64_t driveSize);
+    void verifyPattern(uint64_t driveSize, ManagedFd fd);
 };
 
 } // namespace estoraged

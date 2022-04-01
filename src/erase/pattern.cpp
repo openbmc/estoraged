@@ -25,7 +25,7 @@ constexpr size_t blockSizeUsing32 = blockSize / sizeof(uint32_t);
 using sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
 using stdplus::fd::ManagedFd;
 
-void Pattern::writePattern(const uint64_t driveSize)
+void Pattern::writePattern(const uint64_t driveSize, ManagedFd fd)
 {
     // static seed defines a fixed prng sequnce so it can be verified later,
     // and validated for entropy
@@ -35,9 +35,6 @@ void Pattern::writePattern(const uint64_t driveSize)
     // generate a predictable sequence of values NOLINTNEXTLINE
     std::minstd_rand0 generator(seed);
     std::array<std::byte, blockSize> randArr{};
-
-    ManagedFd fd =
-        stdplus::fd::open(devPath, stdplus::fd::OpenAccess::WriteOnly);
 
     while (currentIndex < driveSize)
     {
@@ -52,19 +49,17 @@ void Pattern::writePattern(const uint64_t driveSize)
         size_t writeSize = currentIndex + blockSize < driveSize
                                ? blockSize
                                : driveSize - currentIndex;
-        if (fd.write({randArr.data(), writeSize}).size() != writeSize)
+        uint32_t written = 0;
+        while (written < writeSize)
         {
-            lg2::error("Estoraged erase pattern unable to write sizeof(long)",
-                       "REDFISH_MESSAGE_ID",
-                       std::string("eStorageD.1.0.EraseFailure"),
-                       "REDFISH_MESSAGE_ARGS", std::to_string(fd.get()));
-            throw InternalFailure();
+            written += fd.write({randArr.data() + written, writeSize - written})
+                           .size();
         }
         currentIndex = currentIndex + writeSize;
     }
 }
 
-void Pattern::verifyPattern(const uint64_t driveSize)
+void Pattern::verifyPattern(const uint64_t driveSize, ManagedFd fd)
 {
 
     uint64_t currentIndex = 0;
@@ -73,9 +68,6 @@ void Pattern::verifyPattern(const uint64_t driveSize)
     std::minstd_rand0 generator(seed);
     std::array<std::byte, blockSize> randArr{};
     std::array<std::byte, blockSize> readArr{};
-
-    ManagedFd fd =
-        stdplus::fd::open(devPath, stdplus::fd::OpenAccess::ReadOnly);
 
     while (currentIndex < driveSize)
     {
@@ -91,7 +83,12 @@ void Pattern::verifyPattern(const uint64_t driveSize)
             {
                 (*randArrFill)[i] = generator();
             }
-            fd.read({readArr.data(), readSize});
+            uint32_t read = 0;
+            while (read < readSize)
+            {
+                read +=
+                    fd.read({readArr.data() + read, readSize - read}).size();
+            }
         }
         catch (...)
         {

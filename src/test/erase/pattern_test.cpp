@@ -31,8 +31,12 @@ TEST(pattern, patternPass)
     testFile.close();
 
     Pattern pass(testFileName);
-    EXPECT_NO_THROW(pass.writePattern(size));
-    EXPECT_NO_THROW(pass.verifyPattern(size));
+    EXPECT_NO_THROW(pass.writePattern(
+        size,
+        stdplus::fd::open(testFileName, stdplus::fd::OpenAccess::ReadWrite)));
+    EXPECT_NO_THROW(pass.verifyPattern(
+        size,
+        stdplus::fd::open(testFileName, stdplus::fd::OpenAccess::ReadWrite)));
 }
 
 /* This test that pattern writes the correct number of bytes even if
@@ -49,8 +53,12 @@ TEST(pattern, patternNotDivisible)
     testFile.close();
 
     Pattern pass(testFileName);
-    EXPECT_NO_THROW(pass.writePattern(size));
-    EXPECT_NO_THROW(pass.verifyPattern(size));
+    EXPECT_NO_THROW(pass.writePattern(
+        size,
+        stdplus::fd::open(testFileName, stdplus::fd::OpenAccess::ReadWrite)));
+    EXPECT_NO_THROW(pass.verifyPattern(
+        size,
+        stdplus::fd::open(testFileName, stdplus::fd::OpenAccess::ReadWrite)));
 }
 
 TEST(pattern, patternsDontMatch)
@@ -67,8 +75,14 @@ TEST(pattern, patternsDontMatch)
                    sizeof(dummyValue));
     testFile.close();
 
-    EXPECT_NO_THROW(pass.writePattern(size - sizeof(dummyValue)));
-    EXPECT_THROW(pass.verifyPattern(size), InternalFailure);
+    EXPECT_NO_THROW(pass.writePattern(
+        size - sizeof(dummyValue),
+        stdplus::fd::open(testFileName, stdplus::fd::OpenAccess::ReadWrite)));
+    EXPECT_THROW(
+        pass.verifyPattern(
+            size, stdplus::fd::open(testFileName,
+                                    stdplus::fd::OpenAccess::ReadWrite)),
+        InternalFailure);
 }
 
 } // namespace estoraged_test

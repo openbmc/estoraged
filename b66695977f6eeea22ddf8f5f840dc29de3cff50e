@@ -41,6 +41,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a381b4e_684ad569",
+        "filename": "include/sanitize.hpp",
+        "patchSetId": 30
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-01T22:40:55Z",
+      "side": 1,
+      "message": "yep, removed",
+      "parentUuid": "c2a4abea_798e2e44",
+      "range": {
+        "startLine": 103,
+        "startChar": 4,
+        "endLine": 105,
+        "endChar": 46
+      },
+      "revId": "b66695977f6eeea22ddf8f5f840dc29de3cff50e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "52544d6e_3f6aaf8b",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-04-01T16:50:40Z",
       "side": 1,
       "message": "remove this",
+      "range": {
+        "startLine": 117,
+        "startChar": 5,
+        "endLine": 117,
+        "endChar": 67
+      },
+      "revId": "b66695977f6eeea22ddf8f5f840dc29de3cff50e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fbea5ea8_acc86fc0",
+        "filename": "include/sanitize.hpp",
+        "patchSetId": 30
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-01T22:40:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "52544d6e_3f6aaf8b",
       "range": {
         "startLine": 117,
         "startChar": 5,
@@ -87,6 +135,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac1221e5_add49050",
+        "filename": "src/erase/sanitize.cpp",
+        "patchSetId": 30
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-01T22:40:55Z",
+      "side": 1,
+      "message": "Yeah, I can put them in an anonymous namespace. \nI could also add them to the class namespace, that might be a more normal approach, but the that would increase the scope.\nThe anonymous sounds like a good idea.",
+      "parentUuid": "4a31e322_73377df7",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 33
+      },
+      "revId": "b66695977f6eeea22ddf8f5f840dc29de3cff50e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "572b7666_b1282ee0",
@@ -100,6 +172,30 @@
       "writtenOn": "2022-04-01T18:48:39Z",
       "side": 1,
       "message": "minor nit: The\n\nAlso, I guess the header has the doxygen styled detail already - so not sure if this is needed.",
+      "range": {
+        "startLine": 72,
+        "startChar": 3,
+        "endLine": 72,
+        "endChar": 6
+      },
+      "revId": "b66695977f6eeea22ddf8f5f840dc29de3cff50e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8a2b0c4_b35cc6f0",
+        "filename": "src/erase/sanitize.cpp",
+        "patchSetId": 30
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-01T22:40:55Z",
+      "side": 1,
+      "message": "Typically there are not comments describing the function in the cpp file.\nI will remove them to keep the code consistent.\n\nLet me know if that is not okay",
+      "parentUuid": "572b7666_b1282ee0",
       "range": {
         "startLine": 72,
         "startChar": 3,
@@ -133,6 +229,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "08e43469_cd0e2ed1",
+        "filename": "src/erase/sanitize.cpp",
+        "patchSetId": 30
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-01T22:40:55Z",
+      "side": 1,
+      "message": "Typically there are not comments describing the function in the cpp file.\nI will remove them to keep the code consistent.\n\nLet me know if that is not okay",
+      "parentUuid": "0727b2cb_72759a93",
+      "range": {
+        "startLine": 106,
+        "startChar": 3,
+        "endLine": 106,
+        "endChar": 6
+      },
+      "revId": "b66695977f6eeea22ddf8f5f840dc29de3cff50e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1fac52fa_a52d12f4",
@@ -146,6 +266,30 @@
       "writtenOn": "2022-04-01T16:50:40Z",
       "side": 1,
       "message": "This can be removed.",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 46
+      },
+      "revId": "b66695977f6eeea22ddf8f5f840dc29de3cff50e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4a9a28e_2f847634",
+        "filename": "src/test/erase/sanitize_test.cpp",
+        "patchSetId": 30
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-01T22:40:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1fac52fa_a52d12f4",
       "range": {
         "startLine": 23,
         "startChar": 0,
@@ -179,6 +323,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "90934471_91d65bf5",
+        "filename": "src/test/erase/sanitize_test.cpp",
+        "patchSetId": 30
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-01T22:40:55Z",
+      "side": 1,
+      "message": "I update the comment, to be more clear (sanitize::emmcErase)",
+      "parentUuid": "e7fea5d7_5a1937d2",
+      "range": {
+        "startLine": 53,
+        "startChar": 32,
+        "endLine": 53,
+        "endChar": 40
+      },
+      "revId": "b66695977f6eeea22ddf8f5f840dc29de3cff50e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f3a8ec48_58d96676",
@@ -192,6 +360,30 @@
       "writtenOn": "2022-04-01T16:50:40Z",
       "side": 1,
       "message": "I think this test name is misleading. Something like EraseFailure might be better.\n\nThe fact that the file doesn\u0027t exist doesn\u0027t matter, since the ioctls get mocked out. This test is actually exercising the case where the erase ioctl fails.",
+      "range": {
+        "startLine": 54,
+        "startChar": 15,
+        "endLine": 54,
+        "endChar": 27
+      },
+      "revId": "b66695977f6eeea22ddf8f5f840dc29de3cff50e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "962c4a3a_b757edb1",
+        "filename": "src/test/erase/sanitize_test.cpp",
+        "patchSetId": 30
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-01T22:40:55Z",
+      "side": 1,
+      "message": "The test is designed to exercise what would happen (in the sanitize logic) if the file was not found. (because that is likely to happen eventually) \n\nIf the file is not found I expect\n- IOCTL returns -1,\n- and sanitize::emmcErase to throw\n\nI will change the name to be more clear",
+      "parentUuid": "f3a8ec48_58d96676",
       "range": {
         "startLine": 54,
         "startChar": 15,

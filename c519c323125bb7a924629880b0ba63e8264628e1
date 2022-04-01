@@ -24,6 +24,47 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4207935_e4c11191",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 29
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-01T02:26:12Z",
+      "side": 1,
+      "message": "I updated the busctl call with the new path.\nI will remove the command that uses the old path.",
+      "parentUuid": "2150462d_e106946b",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 14
+      },
+      "revId": "c519c323125bb7a924629880b0ba63e8264628e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc38d661_ca20214e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 29
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-01T02:26:12Z",
+      "side": 1,
+      "message": "Thanks for looking this over",
+      "revId": "c519c323125bb7a924629880b0ba63e8264628e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "47fba1c0_a844a5c5",
@@ -60,6 +101,54 @@
       "writtenOn": "2022-04-01T00:50:54Z",
       "side": 1,
       "message": "I don\u0027t think this is the right section. Section 5.2 talks about sector addresses.",
+      "range": {
+        "startLine": 76,
+        "startChar": 54,
+        "endLine": 76,
+        "endChar": 61
+      },
+      "revId": "c519c323125bb7a924629880b0ba63e8264628e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5165a3e8_f4207fc9",
+        "filename": "src/erase/sanitize.cpp",
+        "patchSetId": 29
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-01T02:26:12Z",
+      "side": 1,
+      "message": "I will update the comment. I think it is unlikely we will use a smaller eMMC.",
+      "parentUuid": "47fba1c0_a844a5c5",
+      "range": {
+        "startLine": 76,
+        "startChar": 13,
+        "endLine": 76,
+        "endChar": 23
+      },
+      "revId": "c519c323125bb7a924629880b0ba63e8264628e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "341b6e09_6a3f8eb8",
+        "filename": "src/erase/sanitize.cpp",
+        "patchSetId": 29
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-01T02:26:12Z",
+      "side": 1,
+      "message": "In section 6.6.34\nTable 39 — e•MMC internal sizes and related Units / Granularities\nDefines the sector Native sector size 512.",
+      "parentUuid": "55955692_ecb76b29",
       "range": {
         "startLine": 76,
         "startChar": 54,

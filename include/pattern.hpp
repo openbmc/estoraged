@@ -11,7 +11,7 @@
 
 namespace estoraged
 {
-using stdplus::fd::ManagedFd;
+using stdplus::fd::Fd;
 
 class Pattern : public Erase
 {
@@ -30,10 +30,12 @@ class Pattern : public Erase
      */
     void writePattern()
     {
-        writePattern(util::Util::findSizeOfBlockDevice(devPath));
+        stdplus::fd::Fd&& fd =
+            stdplus::fd::open(devPath, stdplus::fd::OpenAccess::WriteOnly);
+        writePattern(util::Util::findSizeOfBlockDevice(devPath), fd);
     }
 
-    void writePattern(uint64_t driveSize);
+    void writePattern(uint64_t driveSize, Fd& fd);
 
     /** @brief verifies the uncompressible random pattern is on the drive
      * and throws errors accordingly.
@@ -43,9 +45,11 @@ class Pattern : public Erase
 
     void verifyPattern()
     {
-        verifyPattern(util::Util::findSizeOfBlockDevice(devPath));
+        stdplus::fd::Fd&& fd =
+            stdplus::fd::open(devPath, stdplus::fd::OpenAccess::ReadOnly);
+        verifyPattern(util::Util::findSizeOfBlockDevice(devPath), fd);
     }
-    void verifyPattern(uint64_t driveSize);
+    void verifyPattern(uint64_t driveSize, Fd& fd);
 };
 
 } // namespace estoraged

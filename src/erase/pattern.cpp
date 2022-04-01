@@ -52,13 +52,11 @@ void Pattern::writePattern(const uint64_t driveSize)
         size_t writeSize = currentIndex + blockSize < driveSize
                                ? blockSize
                                : driveSize - currentIndex;
-        if (fd.write({randArr.data(), writeSize}).size() != writeSize)
+        uint32_t written = 0;
+        while (written < writeSize)
         {
-            lg2::error("Estoraged erase pattern unable to write sizeof(long)",
-                       "REDFISH_MESSAGE_ID",
-                       std::string("eStorageD.1.0.EraseFailure"),
-                       "REDFISH_MESSAGE_ARGS", std::to_string(fd.get()));
-            throw InternalFailure();
+            written += fd.write({randArr.data() + written, writeSize - written})
+                           .size();
         }
         currentIndex = currentIndex + writeSize;
     }
@@ -91,7 +89,12 @@ void Pattern::verifyPattern(const uint64_t driveSize)
             {
                 (*randArrFill)[i] = generator();
             }
-            fd.read({readArr.data(), readSize});
+            uint32_t read = 0;
+            while (read < readSize)
+            {
+                read +=
+                    fd.read({readArr.data() + read, readSize - read}).size();
+            }
         }
         catch (...)
         {

@@ -32,7 +32,13 @@ void Zero::writeZero(const uint64_t driveSize)
                                  : driveSize - currentIndex;
         try
         {
-            fd.write({blockOfZeros.data(), writeSize});
+            uint32_t write = 0;
+            while (write < writeSize)
+            {
+                write +=
+                    fd.write({blockOfZeros.data() + write, writeSize - write})
+                        .size();
+            }
         }
         catch (...)
         {
@@ -61,7 +67,12 @@ void Zero::verifyZero(uint64_t driveSize)
                                 : driveSize - currentIndex;
         try
         {
-            fd.read({readArr.data(), readSize});
+            uint32_t read = 0;
+            while (read < readSize)
+            {
+                read +=
+                    fd.read({readArr.data() + read, readSize - read}).size();
+            }
         }
         catch (...)
         {

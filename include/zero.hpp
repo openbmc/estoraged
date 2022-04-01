@@ -9,7 +9,7 @@
 namespace estoraged
 {
 
-using stdplus::fd::ManagedFd;
+using stdplus::fd::Fd;
 
 class Zero : public Erase
 {
@@ -23,29 +23,35 @@ class Zero : public Erase
     /** @brief writes zero to the drive
      * and throws errors accordingly.
      *  @param[in] driveSize - the size of the block device in bytes
+     *  @param[in] fd - the stdplus file descriptor
      */
-    void writeZero(uint64_t driveSize);
+    void writeZero(uint64_t driveSize, Fd& fd);
 
-    /** @brief writes zero to the drive
+    /** @brief writes zero to the drive using default parameters,
      * and throws errors accordingly.
      */
     void writeZero()
     {
-        writeZero(util::findSizeOfBlockDevice(devPath));
+        stdplus::fd::Fd&& fd =
+            stdplus::fd::open(devPath, stdplus::fd::OpenAccess::WriteOnly);
+        writeZero(util::findSizeOfBlockDevice(devPath), fd);
     }
 
-    /** @brief verifies the  uncompressible random pattern is on the drive
+    /** @brief verifies the drive has only zeros on it,
      * and throws errors accordingly.
      *  @param[in] driveSize - the size of the block device in bytes
+     *  @param[in] fd - the stdplus file descriptor
      */
-    void verifyZero(uint64_t driveSize);
+    void verifyZero(uint64_t driveSize, Fd& fd);
 
-    /** @brief verifies the  uncompressible random pattern is on the drive
-     * and throws errors accordingly.
+    /** @brief verifies the drive has only zeros on it,
+     * using the default parameters. It also throws errors accordingly.
      */
     void verifyZero()
     {
-        verifyZero(util::findSizeOfBlockDevice(devPath));
+        stdplus::fd::Fd&& fd =
+            stdplus::fd::open(devPath, stdplus::fd::OpenAccess::ReadOnly);
+        verifyZero(util::findSizeOfBlockDevice(devPath), fd);
     }
 
   private:
@@ -53,6 +59,8 @@ class Zero : public Erase
      * 32768 was also tested. It had almost identical performance.
      */
     static constexpr size_t blockSize = 4096;
+    static constexpr size_t maxRetry = 32;
+    static constexpr size_t delay = 1000; // 1 mS
 };
 
 } // namespace estoraged

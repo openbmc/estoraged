@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1e4551a_0230a4b7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 30
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-04-01T18:48:39Z",
+      "side": 1,
+      "message": "Thanks Wedig for the thorough review - looks like they just need addressing with some of my comments before this can go in.",
+      "revId": "b66695977f6eeea22ddf8f5f840dc29de3cff50e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c2a4abea_798e2e44",
@@ -42,6 +59,75 @@
         "startChar": 5,
         "endLine": 117,
         "endChar": 67
+      },
+      "revId": "b66695977f6eeea22ddf8f5f840dc29de3cff50e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a31e322_73377df7",
+        "filename": "src/erase/sanitize.cpp",
+        "patchSetId": 30
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-04-01T18:48:39Z",
+      "side": 1,
+      "message": "minor nit / question: I\u0027m not sure what the proper rule for file scoped constants are - should they perhaps be placed in an anonymous namespace? I\u0027m not sure what the best practice is actually. This is probably fine too.",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 33
+      },
+      "revId": "b66695977f6eeea22ddf8f5f840dc29de3cff50e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "572b7666_b1282ee0",
+        "filename": "src/erase/sanitize.cpp",
+        "patchSetId": 30
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-04-01T18:48:39Z",
+      "side": 1,
+      "message": "minor nit: The\n\nAlso, I guess the header has the doxygen styled detail already - so not sure if this is needed.",
+      "range": {
+        "startLine": 72,
+        "startChar": 3,
+        "endLine": 72,
+        "endChar": 6
+      },
+      "revId": "b66695977f6eeea22ddf8f5f840dc29de3cff50e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0727b2cb_72759a93",
+        "filename": "src/erase/sanitize.cpp",
+        "patchSetId": 30
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-04-01T18:48:39Z",
+      "side": 1,
+      "message": "minor nit: The\n\nAlso, I guess the header has the doxygen styled detail already - so not sure if this is needed.",
+      "range": {
+        "startLine": 106,
+        "startChar": 3,
+        "endLine": 106,
+        "endChar": 6
       },
       "revId": "b66695977f6eeea22ddf8f5f840dc29de3cff50e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"

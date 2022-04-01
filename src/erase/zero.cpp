@@ -16,11 +16,11 @@ namespace estoraged
 using sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
 using stdplus::fd::ManagedFd;
 
-void Zero::writeZero(const uint64_t driveSize)
+void Zero::writeZero(const uint64_t driveSize, ManagedFd fd)
 {
 
-    ManagedFd fd =
-        stdplus::fd::open(devPath, stdplus::fd::OpenAccess::WriteOnly);
+    //  ManagedFd fd =
+    //        stdplus::fd::open(devPath, stdplus::fd::OpenAccess::WriteOnly);
 
     uint64_t currentIndex = 0;
     const std::array<const std::byte, blockSize> blockOfZeros{};
@@ -32,7 +32,13 @@ void Zero::writeZero(const uint64_t driveSize)
                                  : driveSize - currentIndex;
         try
         {
-            fd.write({blockOfZeros.data(), writeSize});
+            uint32_t write = 0;
+            while (write < writeSize)
+            {
+                write +=
+                    fd.write({blockOfZeros.data() + write, writeSize - write})
+                        .size();
+            }
         }
         catch (...)
         {
@@ -45,10 +51,10 @@ void Zero::writeZero(const uint64_t driveSize)
     }
 }
 
-void Zero::verifyZero(uint64_t driveSize)
+void Zero::verifyZero(uint64_t driveSize, ManagedFd fd)
 {
-    ManagedFd fd =
-        stdplus::fd::open(devPath, stdplus::fd::OpenAccess::ReadOnly);
+    //    ManagedFd fd =
+    //        stdplus::fd::open(devPath, stdplus::fd::OpenAccess::ReadOnly);
 
     uint64_t currentIndex = 0;
     std::array<std::byte, blockSize> readArr{};
@@ -61,7 +67,12 @@ void Zero::verifyZero(uint64_t driveSize)
                                 : driveSize - currentIndex;
         try
         {
-            fd.read({readArr.data(), readSize});
+            uint32_t read = 0;
+            while (read < readSize)
+            {
+                read +=
+                    fd.read({readArr.data() + read, readSize - read}).size();
+            }
         }
         catch (...)
         {

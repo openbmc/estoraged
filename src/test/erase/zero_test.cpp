@@ -15,11 +15,12 @@
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
-using estoraged::Zero;
-using sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
-
 namespace estoraged_test
 {
+
+using estoraged::Zero;
+using sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
+using stdplus::fd::ManagedFd;
 
 TEST(Zeros, zeroPass)
 {
@@ -31,8 +32,12 @@ TEST(Zeros, zeroPass)
     testFile.close();
     uint64_t size = 4096;
     Zero pass(testFileName);
-    EXPECT_NO_THROW(pass.writeZero(size));
-    EXPECT_NO_THROW(pass.verifyZero(size));
+    EXPECT_NO_THROW(pass.writeZero(
+        size,
+        stdplus::fd::open(testFileName, stdplus::fd::OpenAccess::ReadWrite)));
+    EXPECT_NO_THROW(pass.verifyZero(
+        size,
+        stdplus::fd::open(testFileName, stdplus::fd::OpenAccess::ReadWrite)));
 }
 
 /* This test that pattern writes the correct number of bytes even if
@@ -49,9 +54,16 @@ TEST(Zeros, notDivisible)
 
     uint64_t size = 4097;
     // 4097 is not divisible by the block size, and we expect no errors
+    ManagedFd fd =
+        stdplus::fd::open(testFileName, stdplus::fd::OpenAccess::ReadWrite);
+
     Zero pass(testFileName);
-    EXPECT_NO_THROW(pass.writeZero(size));
-    EXPECT_NO_THROW(pass.verifyZero(size));
+    EXPECT_NO_THROW(pass.writeZero(
+        size,
+        stdplus::fd::open(testFileName, stdplus::fd::OpenAccess::ReadWrite)));
+    EXPECT_NO_THROW(pass.verifyZero(
+        size,
+        stdplus::fd::open(testFileName, stdplus::fd::OpenAccess::ReadWrite)));
 }
 
 TEST(Zeros, notZeroStart)
@@ -67,14 +79,19 @@ TEST(Zeros, notZeroStart)
     testFile.close();
     uint64_t size = 4096;
     Zero pass(testFileName);
-    EXPECT_NO_THROW(pass.writeZero(size - sizeof(dummyValue)));
+    EXPECT_NO_THROW(pass.writeZero(
+        size - sizeof(dummyValue),
+        stdplus::fd::open(testFileName, stdplus::fd::OpenAccess::ReadWrite)));
 
     // force flush, needed for unit testing
     std::ofstream file;
     file.open(testFileName);
     file.close();
 
-    EXPECT_THROW(pass.verifyZero(size), InternalFailure);
+    EXPECT_THROW(pass.verifyZero(size, stdplus::fd::open(
+                                           testFileName,
+                                           stdplus::fd::OpenAccess::ReadWrite)),
+                 InternalFailure);
 }
 
 TEST(Zeros, notZeroEnd)
@@ -89,14 +106,21 @@ TEST(Zeros, notZeroEnd)
     uint64_t size = 4096;
     Zero pass(testFileName);
     uint32_t dummyValue = 88;
-    EXPECT_NO_THROW(pass.writeZero(size - sizeof(dummyValue)));
+    EXPECT_NO_THROW(pass.writeZero(
+        size - sizeof(dummyValue),
+        stdplus::fd::open(testFileName, stdplus::fd::OpenAccess::ReadWrite)));
 
     // open the file and write none zero to it
     testFile.open(testFileName, std::ios::out);
     testFile << dummyValue;
     testFile.close();
+    ManagedFd fd =
+        stdplus::fd::open(testFileName, stdplus::fd::OpenAccess::ReadWrite);
 
-    EXPECT_THROW(pass.verifyZero(size), InternalFailure);
+    EXPECT_THROW(pass.verifyZero(size, stdplus::fd::open(
+                                           testFileName,
+                                           stdplus::fd::OpenAccess::ReadWrite)),
+                 InternalFailure);
 }
 
 } // namespace estoraged_test

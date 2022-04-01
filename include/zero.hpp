@@ -23,29 +23,35 @@ class Zero : public Erase
     /** @brief writes zero to the drive
      * and throws errors accordingly.
      *  @param[in] driveSize - the size of the block device in bytes
+     *  @param[in] fd - the stdplus file descriptor
      */
-    void writeZero(uint64_t driveSize);
+    void writeZero(uint64_t driveSize, ManagedFd fd);
 
     /** @brief writes zero to the drive
      * and throws errors accordingly.
      */
     void writeZero()
     {
-        writeZero(util::Util::findSizeOfBlockDevice(devPath));
+        writeZero(
+            util::Util::findSizeOfBlockDevice(devPath),
+            stdplus::fd::open(devPath, stdplus::fd::OpenAccess::WriteOnly));
     }
 
     /** @brief verifies the  uncompressible random pattern is on the drive
      * and throws errors accordingly.
      *  @param[in] driveSize - the size of the block device in bytes
+     *  @param[in] fd - the stdplus file descriptor
      */
-    void verifyZero(uint64_t driveSize);
+    void verifyZero(uint64_t driveSize, ManagedFd fd);
 
     /** @brief verifies the  uncompressible random pattern is on the drive
      * and throws errors accordingly.
      */
     void verifyZero()
     {
-        verifyZero(util::Util::findSizeOfBlockDevice(devPath));
+        verifyZero(
+            util::Util::findSizeOfBlockDevice(devPath),
+            stdplus::fd::open(devPath, stdplus::fd::OpenAccess::ReadOnly));
     }
 
   private:

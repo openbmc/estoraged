@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2a4abea_798e2e44",
+        "filename": "include/sanitize.hpp",
+        "patchSetId": 30
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-01T16:50:40Z",
+      "side": 1,
+      "message": "These are no longer necessary, right?",
+      "range": {
+        "startLine": 103,
+        "startChar": 4,
+        "endLine": 105,
+        "endChar": 46
+      },
+      "revId": "b66695977f6eeea22ddf8f5f840dc29de3cff50e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52544d6e_3f6aaf8b",
+        "filename": "include/sanitize.hpp",
+        "patchSetId": 30
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-01T16:50:40Z",
+      "side": 1,
+      "message": "remove this",
+      "range": {
+        "startLine": 117,
+        "startChar": 5,
+        "endLine": 117,
+        "endChar": 67
+      },
+      "revId": "b66695977f6eeea22ddf8f5f840dc29de3cff50e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fac52fa_a52d12f4",
+        "filename": "src/test/erase/sanitize_test.cpp",
+        "patchSetId": 30
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-01T16:50:40Z",
+      "side": 1,
+      "message": "This can be removed.",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 46
+      },
+      "revId": "b66695977f6eeea22ddf8f5f840dc29de3cff50e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7fea5d7_5a1937d2",
+        "filename": "src/test/erase/sanitize_test.cpp",
+        "patchSetId": 30
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-01T16:50:40Z",
+      "side": 1,
+      "message": "you mean erase, right?",
+      "range": {
+        "startLine": 53,
+        "startChar": 32,
+        "endLine": 53,
+        "endChar": 40
+      },
+      "revId": "b66695977f6eeea22ddf8f5f840dc29de3cff50e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3a8ec48_58d96676",
+        "filename": "src/test/erase/sanitize_test.cpp",
+        "patchSetId": 30
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-01T16:50:40Z",
+      "side": 1,
+      "message": "I think this test name is misleading. Something like EraseFailure might be better.\n\nThe fact that the file doesn\u0027t exist doesn\u0027t matter, since the ioctls get mocked out. This test is actually exercising the case where the erase ioctl fails.",
+      "range": {
+        "startLine": 54,
+        "startChar": 15,
+        "endLine": 54,
+        "endChar": 27
+      },
+      "revId": "b66695977f6eeea22ddf8f5f840dc29de3cff50e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

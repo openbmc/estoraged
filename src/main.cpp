@@ -3,12 +3,16 @@
 
 #include <unistd.h>
 
+#include <boost/asio/io_context.hpp>
 #include <phosphor-logging/lg2.hpp>
+#include <sdbusplus/asio/connection.hpp>
+#include <sdbusplus/asio/object_server.hpp>
 #include <sdbusplus/bus.hpp>
 #include <util.hpp>
 
 #include <filesystem>
 #include <iostream>
+#include <memory>
 #include <string>
 
 static void usage(std::string_view name)
@@ -24,7 +28,6 @@ static void usage(std::string_view name)
 
 int main(int argc, char** argv)
 {
-
     std::string physicalBlockDev = "/dev/mmcblk0";
     std::string containerBlockDev;
     int opt = 0;
@@ -55,32 +58,22 @@ int main(int argc, char** argv)
             containerBlockDev = "luks-" + deviceName;
         }
 
-        /* DBus path location to place the object. */
-        std::string path =
-            "/xyz/openbmc_project/inventory/storage/" + deviceName;
-        /*
-         * Create a new bus and affix an object manager for the subtree path we
-         * intend to place objects at.
-         */
-        auto b = sdbusplus::bus::new_default();
-        sdbusplus::server::manager_t m{b, path.c_str()};
-
-        /* Reserve the dbus service name. */
+        // setup connection to dbus
+        boost::asio::io_context io;
+        auto conn = std::make_shared<sdbusplus::asio::connection>(io);
+        // request D-Bus server name.
         std::string busName = "xyz.openbmc_project.eStoraged." + deviceName;
-        b.request_name(busName.c_str());
+        conn->request_name(busName.c_str());
+        auto server = sdbusplus::asio::object_server(conn);
 
-        /* Create an eStoraged object. */
         estoraged::EStoraged esObject{
-            b, path.c_str(), physicalBlockDev, containerBlockDev,
+            server, physicalBlockDev, containerBlockDev,
             estoraged::util::Util::findSizeOfBlockDevice(physicalBlockDev)};
         lg2::info("Storage management service is running", "REDFISH_MESSAGE_ID",
                   std::string("OpenBMC.1.0.ServiceStarted"));
 
-        while (true)
-        {
-            b.wait();
-            b.process_discard();
-        }
+        io.run();
+        return 0;
     }
     catch (const std::exception& e)
     {

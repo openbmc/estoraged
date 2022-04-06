@@ -5,6 +5,7 @@
 
 #include <libcryptsetup.h>
 
+#include <sdbusplus/asio/object_server.hpp>
 #include <sdbusplus/bus.hpp>
 #include <sdbusplus/exception.hpp>
 #include <sdbusplus/server/object.hpp>
@@ -20,23 +21,19 @@
 
 namespace estoraged
 {
-using driveInherit = sdbusplus::server::object_t<
-    sdbusplus::xyz::openbmc_project::Inventory::Item::server::Drive>;
-using eStoragedInherit = sdbusplus::server::object_t<
-    sdbusplus::xyz::openbmc_project::Inventory::Item::server::Volume>;
 using estoraged::Cryptsetup;
 using estoraged::Filesystem;
+using sdbusplus::xyz::openbmc_project::Inventory::Item::server::Volume;
 
 /** @class eStoraged
  *  @brief eStoraged object to manage a LUKS encrypted storage device.
  */
-class EStoraged : private eStoragedInherit, private driveInherit
+class EStoraged
 {
   public:
     /** @brief Constructor for eStoraged
      *
-     *  @param[in] bus - sdbusplus dbus object
-     *  @param[in] path - DBus object path
+     *  @param[in] server - sdbusplus asio object server
      *  @param[in] devPath - path to device file, e.g. /dev/mmcblk0
      *  @param[in] luksName - name for the LUKS container
      *  @param[in] cryptInterface - (optional) pointer to CryptsetupInterface
@@ -44,52 +41,53 @@ class EStoraged : private eStoragedInherit, private driveInherit
      *  @param[in] fsInterface - (optional) pointer to FilesystemInterface
      *    object
      */
-    EStoraged(sdbusplus::bus::bus& bus, const char* path,
+    EStoraged(sdbusplus::asio::object_server& server,
               const std::string& devPath, const std::string& luksName,
               uint64_t size,
               std::unique_ptr<CryptsetupInterface> cryptInterface =
                   std::make_unique<Cryptsetup>(),
               std::unique_ptr<FilesystemInterface> fsInterface =
-                  std::make_unique<Filesystem>()) :
-        eStoragedInherit(bus, path),
-        driveInherit(bus, path), devPath(devPath), containerName(luksName),
-        mountPoint("/mnt/" + luksName + "_fs"),
-        cryptIface(std::move(cryptInterface)), fsIface(std::move(fsInterface))
-    {
-        capacity(size);
-    }
+                  std::make_unique<Filesystem>());
+
+    /** @brief Destructor for eStoraged. */
+    ~EStoraged();
+
+    EStoraged& operator=(const EStoraged&) = delete;
+    EStoraged(const EStoraged&) = delete;
+    EStoraged(EStoraged&&) = default;
+    EStoraged& operator=(EStoraged&&) = default;
 
     /** @brief Format the LUKS encrypted device and create empty filesystem.
      *
      *  @param[in] password - password to set for the LUKS device.
      *  @param[in] type - filesystem type, e.g. ext4
      */
-    void formatLuks(std::vector<uint8_t> password,
-                    FilesystemType type) override;
+    void formatLuks(const std::vector<uint8_t>& password,
+                    Volume::FilesystemType type);
 
     /** @brief Erase the contents of the storage device.
      *
      *  @param[in] eraseType - type of erase operation.
      */
-    void erase(EraseMethod eraseType) override;
+    void erase(Volume::EraseMethod eraseType);
 
     /** @brief Unmount filesystem and lock the LUKS device.
      */
-    void lock() override;
+    void lock();
 
     /** @brief Unlock device and mount the filesystem.
      *
      *  @param[in] password - password for the LUKS device.
      */
-    void unlock(std::vector<uint8_t> password) override;
+    void unlock(std::vector<uint8_t> password);
 
     /** @brief Change the password for the LUKS device.
      *
      *  @param[in] oldPassword - old password for the LUKS device.
      *  @param[in] newPassword - new password for the LUKS device.
      */
-    void changePassword(std::vector<uint8_t> oldPassword,
-                        std::vector<uint8_t> newPassword) override;
+    void changePassword(const std::vector<uint8_t>& oldPassword,
+                        const std::vector<uint8_t>& newPassword);
 
     /** @brief Check if the LUKS device is currently locked. */
     bool isLocked() const;
@@ -107,6 +105,9 @@ class EStoraged : private eStoragedInherit, private driveInherit
     /** @brief Mount point for the filesystem. */
     std::string mountPoint;
 
+    /** @brief Indicates whether the LUKS device is currently locked. */
+    bool lockedProperty;
+
     /** @brief Pointer to cryptsetup interface object.
      *  @details This is used to mock out the cryptsetup functions.
      */
@@ -116,6 +117,15 @@ class EStoraged : private eStoragedInherit, private driveInherit
      *  @details This is used to mock out filesystem operations.
      */
     std::unique_ptr<FilesystemInterface> fsIface;
+
+    /** @brief D-Bus object server. */
+    sdbusplus::asio::object_server& objectServer;
+
+    /** @brief D-Bus interface for the logical volume. */
+    std::shared_ptr<sdbusplus::asio::dbus_interface> volumeInterface;
+
+    /** @brief D-Bus interface for the physical drive. */
+    std::shared_ptr<sdbusplus::asio::dbus_interface> driveInterface;
 
     /** @brief Format LUKS encrypted device.
      *
@@ -150,6 +160,12 @@ class EStoraged : private eStoragedInherit, private driveInherit
 
     /** @brief Unmount the filesystem. */
     void unmountFilesystem();
+
+    /** @brief Set the locked property.
+     *
+     *  @param[in] isLocked - indicates whether the LUKS device is locked.
+     */
+    void locked(bool isLocked);
 };
 
 } // namespace estoraged

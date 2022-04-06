@@ -16,6 +16,138 @@
       "message": "Thanks for looking this over",
       "revId": "7371c5929c6dc988929fd1a822d93d28ad5a2ea6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bd5c88d_93b9ab67",
+        "filename": "include/pattern.hpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-06T20:16:10Z",
+      "side": 1,
+      "message": "Add comment for the new parameter.",
+      "range": {
+        "startLine": 29,
+        "startChar": 5,
+        "endLine": 30,
+        "endChar": 7
+      },
+      "revId": "7371c5929c6dc988929fd1a822d93d28ad5a2ea6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53080bd9_40afe89c",
+        "filename": "include/pattern.hpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-06T20:16:10Z",
+      "side": 1,
+      "message": "same here",
+      "range": {
+        "startLine": 43,
+        "startChar": 5,
+        "endLine": 44,
+        "endChar": 7
+      },
+      "revId": "7371c5929c6dc988929fd1a822d93d28ad5a2ea6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6184ebd_374fa146",
+        "filename": "src/test/erase/pattern_test.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-06T20:16:10Z",
+      "side": 1,
+      "message": "In the zero test, you have a test case where you read too much data. But you don\u0027t have that here.",
+      "revId": "7371c5929c6dc988929fd1a822d93d28ad5a2ea6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "942afa08_9839a61a",
+        "filename": "src/test/erase/pattern_test.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-06T20:16:10Z",
+      "side": 1,
+      "message": "Why are there 2 of these?",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 102,
+        "endChar": 59
+      },
+      "revId": "7371c5929c6dc988929fd1a822d93d28ad5a2ea6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36cea839_cee53655",
+        "filename": "src/test/erase/pattern_test.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-06T20:16:10Z",
+      "side": 1,
+      "message": "Does the test ever get to the point of returning restOfData? It seems to me that it will just return shortData1 indefinitely.\n\nIt might make sense to have this conform to what you\u0027re doing in the zero test, where you just have several WillOnce() clauses in a row.",
+      "range": {
+        "startLine": 124,
+        "startChar": 4,
+        "endLine": 129,
+        "endChar": 12
+      },
+      "revId": "7371c5929c6dc988929fd1a822d93d28ad5a2ea6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9919427_0b99e673",
+        "filename": "src/test/erase/pattern_test.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-06T20:16:10Z",
+      "side": 1,
+      "message": "Did you forget the verify step?",
+      "range": {
+        "startLine": 137,
+        "startChar": 4,
+        "endLine": 137,
+        "endChar": 51
+      },
+      "revId": "7371c5929c6dc988929fd1a822d93d28ad5a2ea6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

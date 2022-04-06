@@ -41,6 +41,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3dd2e91_e01ad609",
+        "filename": "include/pattern.hpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-06T22:42:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7bd5c88d_93b9ab67",
+      "range": {
+        "startLine": 29,
+        "startChar": 5,
+        "endLine": 30,
+        "endChar": 7
+      },
+      "revId": "7371c5929c6dc988929fd1a822d93d28ad5a2ea6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "53080bd9_40afe89c",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-04-06T20:16:10Z",
       "side": 1,
       "message": "same here",
+      "range": {
+        "startLine": 43,
+        "startChar": 5,
+        "endLine": 44,
+        "endChar": 7
+      },
+      "revId": "7371c5929c6dc988929fd1a822d93d28ad5a2ea6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a05a0f9_afde0709",
+        "filename": "include/pattern.hpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-06T22:42:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "53080bd9_40afe89c",
       "range": {
         "startLine": 43,
         "startChar": 5,
@@ -81,6 +129,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "298c073c_ab1fca3d",
+        "filename": "src/test/erase/pattern_test.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-06T22:42:21Z",
+      "side": 1,
+      "message": "Yep, I can add that test back.\nAdded back",
+      "parentUuid": "e6184ebd_374fa146",
+      "revId": "7371c5929c6dc988929fd1a822d93d28ad5a2ea6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "942afa08_9839a61a",
@@ -94,6 +160,30 @@
       "writtenOn": "2022-04-06T20:16:10Z",
       "side": 1,
       "message": "Why are there 2 of these?",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 102,
+        "endChar": 59
+      },
+      "revId": "7371c5929c6dc988929fd1a822d93d28ad5a2ea6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5982cf5e_731d7f01",
+        "filename": "src/test/erase/pattern_test.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-06T22:42:21Z",
+      "side": 1,
+      "message": "It is intentional.\nI wanted 3 chunks of data. short1, short2, restOfData?",
+      "parentUuid": "942afa08_9839a61a",
       "range": {
         "startLine": 101,
         "startChar": 0,
@@ -129,6 +219,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4e698674_6cce02f9",
+        "filename": "src/test/erase/pattern_test.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-06T22:42:21Z",
+      "side": 1,
+      "message": "That is a fine idea.\nI was under the impression that the InSequence would inforce the retires of the EXEPCT calls, but I am not an expert.",
+      "parentUuid": "36cea839_cee53655",
+      "range": {
+        "startLine": 124,
+        "startChar": 4,
+        "endLine": 129,
+        "endChar": 12
+      },
+      "revId": "7371c5929c6dc988929fd1a822d93d28ad5a2ea6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f9919427_0b99e673",
         "filename": "src/test/erase/pattern_test.cpp",
         "patchSetId": 9
@@ -140,6 +254,30 @@
       "writtenOn": "2022-04-06T20:16:10Z",
       "side": 1,
       "message": "Did you forget the verify step?",
+      "range": {
+        "startLine": 137,
+        "startChar": 4,
+        "endLine": 137,
+        "endChar": 51
+      },
+      "revId": "7371c5929c6dc988929fd1a822d93d28ad5a2ea6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fcc02f5e_80c367bc",
+        "filename": "src/test/erase/pattern_test.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-06T22:42:21Z",
+      "side": 1,
+      "message": "no I removed it, along with the expect reads.\nI was not sure the complexity the expect_calls were worth it.",
+      "parentUuid": "f9919427_0b99e673",
       "range": {
         "startLine": 137,
         "startChar": 4,

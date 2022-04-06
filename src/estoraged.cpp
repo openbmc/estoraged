@@ -12,12 +12,15 @@
 #include <openssl/rand.h>
 
 #include <phosphor-logging/lg2.hpp>
+#include <sdbusplus/asio/object_server.hpp>
 #include <xyz/openbmc_project/Common/error.hpp>
 
 #include <cstdlib>
 #include <filesystem>
 #include <iostream>
+#include <string>
 #include <string_view>
+#include <utility>
 #include <vector>
 
 namespace estoraged
@@ -26,13 +29,73 @@ namespace estoraged
 using sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
 using sdbusplus::xyz::openbmc_project::Common::Error::ResourceNotFound;
 using sdbusplus::xyz::openbmc_project::Common::Error::UnsupportedRequest;
+using sdbusplus::xyz::openbmc_project::Inventory::Item::server::Volume;
 
-void EStoraged::formatLuks(std::vector<uint8_t> password, FilesystemType type)
+EStoraged::EStoraged(sdbusplus::asio::object_server& objectServer,
+                     const std::string& devPath, const std::string& luksName,
+                     uint64_t size,
+                     std::unique_ptr<CryptsetupInterface> cryptInterface,
+                     std::unique_ptr<FilesystemInterface> fsInterface) :
+    objectServer(objectServer),
+    devPath(devPath), containerName(luksName),
+    mountPoint("/mnt/" + luksName + "_fs"), lockedProperty(false),
+    capacityProperty(size), cryptIface(std::move(cryptInterface)),
+    fsIface(std::move(fsInterface))
+{
+    /* Get the filename of the device (without "/dev/"). */
+    std::string deviceName = std::filesystem::path(devPath).filename().string();
+    /* DBus object path */
+    std::string path = "/xyz/openbmc_project/inventory/storage/" + deviceName;
+
+    /* Add Volume interface. */
+    volumeInterface = this->objectServer.add_interface(
+        path, "xyz.openbmc_project.Inventory.Item.Volume");
+    volumeInterface->register_method(
+        "FormatLuks",
+        [this](std::vector<uint8_t>& password, Volume::FilesystemType type) {
+            this->formatLuks(password, type);
+        });
+    volumeInterface->register_method(
+        "Erase",
+        [this](Volume::EraseMethod eraseType) { this->erase(eraseType); });
+    volumeInterface->register_method("Lock", [this]() { this->lock(); });
+    volumeInterface->register_method(
+        "Unlock",
+        [this](std::vector<uint8_t>& password) { this->unlock(password); });
+    volumeInterface->register_method(
+        "ChangePassword", [this](std::vector<uint8_t>& oldPassword,
+                                 std::vector<uint8_t>& newPassword) {
+            this->changePassword(oldPassword, newPassword);
+        });
+    volumeInterface->register_property_r(
+        "Locked", lockedProperty, sdbusplus::vtable::property_::emits_change,
+        [this](bool& value) {
+            value = this->isLocked();
+            return value;
+        });
+
+    /* Add Drive interface. */
+    driveInterface = this->objectServer.add_interface(
+        path, "xyz.openbmc_project.Inventory.Item.Drive");
+    driveInterface->register_property("Capacity", capacityProperty);
+
+    volumeInterface->initialize();
+    driveInterface->initialize();
+}
+
+EStoraged::~EStoraged()
+{
+    objectServer.remove_interface(volumeInterface);
+    objectServer.remove_interface(driveInterface);
+}
+
+void EStoraged::formatLuks(const std::vector<uint8_t>& password,
+                           Volume::FilesystemType type)
 {
     std::string msg = "OpenBMC.0.1.DriveFormat";
     lg2::info("Starting format", "REDFISH_MESSAGE_ID", msg);
 
-    if (type != FilesystemType::ext4)
+    if (type != Volume::FilesystemType::ext4)
     {
         lg2::error("Only ext4 filesystems are supported currently",
                    "REDFISH_MESSAGE_ID", std::string("OpenBMC.0.1.FormatFail"));
@@ -54,56 +117,56 @@ void EStoraged::formatLuks(std::vector<uint8_t> password, FilesystemType type)
     mountFilesystem();
 }
 
-void EStoraged::erase(EraseMethod inEraseMethod)
+void EStoraged::erase(Volume::EraseMethod inEraseMethod)
 {
     std::cerr << "Erasing encrypted eMMC" << std::endl;
     lg2::info("Starting erase", "REDFISH_MESSAGE_ID",
               std::string("OpenBMC.0.1.DriveErase"));
     switch (inEraseMethod)
     {
-        case EraseMethod::CryptoErase:
+        case Volume::EraseMethod::CryptoErase:
         {
             CryptErase myCryptErase(devPath);
             myCryptErase.doErase();
             break;
         }
-        case EraseMethod::VerifyGeometry:
+        case Volume::EraseMethod::VerifyGeometry:
         {
             VerifyDriveGeometry myVerifyGeometry(devPath);
             myVerifyGeometry.geometryOkay();
             break;
         }
-        case EraseMethod::LogicalOverWrite:
+        case Volume::EraseMethod::LogicalOverWrite:
         {
             Pattern myErasePattern(devPath);
             myErasePattern.writePattern();
             break;
         }
-        case EraseMethod::LogicalVerify:
+        case Volume::EraseMethod::LogicalVerify:
         {
             Pattern myErasePattern(devPath);
             myErasePattern.verifyPattern();
             break;
         }
-        case EraseMethod::VendorSanitize:
+        case Volume::EraseMethod::VendorSanitize:
         {
             Sanitize mySanitize(devPath);
             mySanitize.doSanitize();
             break;
         }
-        case EraseMethod::ZeroOverWrite:
+        case Volume::EraseMethod::ZeroOverWrite:
         {
             Zero myZero(devPath);
             myZero.writeZero();
             break;
         }
-        case EraseMethod::ZeroVerify:
+        case Volume::EraseMethod::ZeroVerify:
         {
             Zero myZero(devPath);
             myZero.verifyZero();
             break;
         }
-        case EraseMethod::SecuredLocked:
+        case Volume::EraseMethod::SecuredLocked:
         {
             if (isLocked())
             {
@@ -138,12 +201,12 @@ void EStoraged::unlock(std::vector<uint8_t> password)
         throw ResourceNotFound();
     }
 
-    activateLuksDev(cryptHandle.get(), password);
+    activateLuksDev(cryptHandle.get(), std::move(password));
     mountFilesystem();
 }
 
-void EStoraged::changePassword(std::vector<uint8_t> /*oldPassword*/,
-                               std::vector<uint8_t> /*newPassword*/)
+void EStoraged::changePassword(const std::vector<uint8_t>& /*oldPassword*/,
+                               const std::vector<uint8_t>& /*newPassword*/)
 {
     std::cerr << "Changing password for encrypted eMMC" << std::endl;
     lg2::info("Starting change password", "REDFISH_MESSAGE_ID",
@@ -152,7 +215,7 @@ void EStoraged::changePassword(std::vector<uint8_t> /*oldPassword*/,
 
 bool EStoraged::isLocked() const
 {
-    return locked();
+    return lockedProperty;
 }
 
 std::string_view EStoraged::getMountPoint() const
@@ -351,6 +414,11 @@ void EStoraged::deactivateLuksDev()
     lg2::info("Successfully deactivated LUKS device {DEV}", "DEV", devPath,
               "REDFISH_MESSAGE_ID",
               std::string("OpenBMC.0.1.DeactivateLuksDevSuccess"));
+}
+
+void EStoraged::locked(bool newValue)
+{
+    lockedProperty = newValue;
 }
 
 } // namespace estoraged

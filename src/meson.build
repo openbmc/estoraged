@@ -1,7 +1,22 @@
 phosphor_dbus_interfaces_dep = dependency('phosphor-dbus-interfaces')
 phosphor_logging_dep = dependency('phosphor-logging')
-sdbusplus_dep = dependency('sdbusplus')
+
+sdbusplus_dep = dependency('sdbusplus', required: false, include_type: 'system')
+if not sdbusplus_dep.found()
+  sdbusplus_proj = subproject('sdbusplus', required: true)
+  sdbusplus = sdbusplus_proj.get_variable('sdbusplus_dep')
+  sdbusplus = sdbusplus.as_system('system')
+endif
+
 stdplus_dep = dependency('stdplus')
+
+boost_dep = dependency('boost',version : '>=1.78.0', required : false, include_type: 'system')
+if not boost_dep.found()
+  subproject('boost', required: false)
+  boost_inc = include_directories('subprojects/boost_1_78_0/', is_system:true)
+  boost  = declare_dependency(include_directories : boost_inc)
+  boost = boost.as_system('system')
+endif
 
 subdir('erase')
 
@@ -12,6 +27,7 @@ libeStoraged_deps = [
   phosphor_logging_dep,
   sdbusplus_dep,
   stdplus_dep,
+  boost_dep,
 ]
 
 libeStoraged_lib = static_library(

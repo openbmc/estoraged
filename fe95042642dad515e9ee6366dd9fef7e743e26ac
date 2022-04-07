@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df56ee58_90ed4e00",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1000885
+      },
+      "writtenOn": "2022-04-07T23:33:24Z",
+      "side": 1,
+      "message": "the set function should all take in `const`",
+      "range": {
+        "startLine": 64,
+        "startChar": 16,
+        "endLine": 64,
+        "endChar": 45
+      },
+      "revId": "fe95042642dad515e9ee6366dd9fef7e743e26ac",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3730a904_8e23eef2",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1000885
+      },
+      "writtenOn": "2022-04-07T23:33:24Z",
+      "side": 1,
+      "message": "should one of them be const?",
+      "range": {
+        "startLine": 66,
+        "startChar": 32,
+        "endLine": 67,
+        "endChar": 68
+      },
+      "revId": "fe95042642dad515e9ee6366dd9fef7e743e26ac",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47b3373a_c592cfe8",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1000885
+      },
+      "writtenOn": "2022-04-07T23:33:24Z",
+      "side": 1,
+      "message": "this is probably not needed. Since when this gets destroyed, the service is also gone.",
+      "range": {
+        "startLine": 86,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 1
+      },
+      "revId": "fe95042642dad515e9ee6366dd9fef7e743e26ac",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de51b80d_99b17c37",
+        "filename": "src/test/estoraged_test.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000885
+      },
+      "writtenOn": "2022-04-07T23:33:24Z",
+      "side": 1,
+      "message": "should use the closest header to get io_context\n\n```\n#include \u003csdbusplus/asio/connection.hpp\u003e\n```",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 25
+      },
+      "revId": "fe95042642dad515e9ee6366dd9fef7e743e26ac",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

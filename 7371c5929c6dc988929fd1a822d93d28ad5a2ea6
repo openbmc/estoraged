@@ -382,6 +382,30 @@
       },
       "revId": "7371c5929c6dc988929fd1a822d93d28ad5a2ea6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b65e2bd_5593889c",
+        "filename": "src/test/erase/pattern_test.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-07T21:22:43Z",
+      "side": 1,
+      "message": "done. we are now exercising the verifyPattern also",
+      "parentUuid": "d178e197_4374cc70",
+      "range": {
+        "startLine": 137,
+        "startChar": 4,
+        "endLine": 137,
+        "endChar": 51
+      },
+      "revId": "7371c5929c6dc988929fd1a822d93d28ad5a2ea6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

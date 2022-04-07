@@ -243,6 +243,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8dd6f0ef_0aeb2a69",
+        "filename": "src/test/erase/pattern_test.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-07T16:47:39Z",
+      "side": 1,
+      "message": "By using WillRepeatedly(), I think the test will just return shortData1 every time. There\u0027s no indication for when it should start returning restOfData. You can try adding print statement to confirm this behavior, if you want.",
+      "parentUuid": "4e698674_6cce02f9",
+      "range": {
+        "startLine": 124,
+        "startChar": 4,
+        "endLine": 129,
+        "endChar": 12
+      },
+      "revId": "7371c5929c6dc988929fd1a822d93d28ad5a2ea6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f9919427_0b99e673",
         "filename": "src/test/erase/pattern_test.cpp",
         "patchSetId": 9
@@ -278,6 +302,30 @@
       "side": 1,
       "message": "no I removed it, along with the expect reads.\nI was not sure the complexity the expect_calls were worth it.",
       "parentUuid": "f9919427_0b99e673",
+      "range": {
+        "startLine": 137,
+        "startChar": 4,
+        "endLine": 137,
+        "endChar": 51
+      },
+      "revId": "7371c5929c6dc988929fd1a822d93d28ad5a2ea6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea731b4f_766d540c",
+        "filename": "src/test/erase/pattern_test.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-07T16:47:39Z",
+      "side": 1,
+      "message": "I think it makes sense to add the coverage for the verify portion, as well. You did it fairly concisely in the zero test.",
+      "parentUuid": "fcc02f5e_80c367bc",
       "range": {
         "startLine": 137,
         "startChar": 4,

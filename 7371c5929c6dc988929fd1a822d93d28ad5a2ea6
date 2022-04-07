@@ -406,6 +406,30 @@
       },
       "revId": "7371c5929c6dc988929fd1a822d93d28ad5a2ea6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "561891cc_4a2d55c3",
+        "filename": "src/test/erase/pattern_test.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-07T23:19:08Z",
+      "side": 1,
+      "message": "I don\u0027t think InSequence is doing anything in this case.\n\nMy understanding of InSequence is that it\u0027s used to enforce a certain order of different function calls. You\u0027re not doing that. You are just changing the behavior of the mocked function as it gets called multiple times.\n\nI think this is all you\u0027re trying to do. This is the type of thing you have in the zero test.\n\nEXPECT_CALL(mock, write(_))\n        .WillOnce(Return(shortData1))\n        .WillOnce(Return(resetOfData))\n        .WillOnce(Return(shortData2));",
+      "parentUuid": "3b65e2bd_5593889c",
+      "range": {
+        "startLine": 137,
+        "startChar": 4,
+        "endLine": 137,
+        "endChar": 51
+      },
+      "revId": "7371c5929c6dc988929fd1a822d93d28ad5a2ea6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

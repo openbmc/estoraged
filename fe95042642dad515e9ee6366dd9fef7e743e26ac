@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "351b6387_5f367404",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-08T00:00:24Z",
+      "side": 1,
+      "message": "never mind, you need to caputure the object state.\nYou got it right.",
+      "parentUuid": "5fb02b34_f30bf501",
+      "range": {
+        "startLine": 55,
+        "startChar": 8,
+        "endLine": 57,
+        "endChar": 9
+      },
+      "revId": "fe95042642dad515e9ee6366dd9fef7e743e26ac",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "13270f8c_6019a870",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-04-07T23:51:02Z",
       "side": 1,
       "message": "same as above.",
+      "range": {
+        "startLine": 60,
+        "startChar": 8,
+        "endLine": 60,
+        "endChar": 73
+      },
+      "revId": "fe95042642dad515e9ee6366dd9fef7e743e26ac",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f80edfd_85f01742",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-08T00:00:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "13270f8c_6019a870",
       "range": {
         "startLine": 60,
         "startChar": 8,

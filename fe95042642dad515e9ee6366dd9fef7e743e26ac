@@ -1,6 +1,121 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f2809b0_2d9e3d98",
+        "filename": ".clang-tidy",
+        "patchSetId": 3
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-08T19:11:14Z",
+      "side": 1,
+      "message": "Nit, FWIW, I generally just remove these these days in my repos;  Having a bunch of commented out tests isn\u0027t super helpful to the reader.",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 99,
+        "endChar": 37
+      },
+      "revId": "fe95042642dad515e9ee6366dd9fef7e743e26ac",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f311a3f_c8039539",
+        "filename": "include/estoraged.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-08T19:11:14Z",
+      "side": 1,
+      "message": "This looks like it\u0027s set once in the constructor, then used later in the constructor and never used again.  Does it need to live as a class member?",
+      "range": {
+        "startLine": 120,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 30
+      },
+      "revId": "fe95042642dad515e9ee6366dd9fef7e743e26ac",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c53f8931_4326dfe3",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-08T19:11:14Z",
+      "side": 1,
+      "message": "nit, there\u0027s a lot of places that use this-\u003e, which can be a little redundant.  With that said, there\u0027s no style rule on that, so it\u0027s up to you if you want to keep it that way.",
+      "range": {
+        "startLine": 51,
+        "startChar": 22,
+        "endLine": 51,
+        "endChar": 28
+      },
+      "revId": "fe95042642dad515e9ee6366dd9fef7e743e26ac",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5d56cf2_d1c5e515",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-08T19:11:14Z",
+      "side": 1,
+      "message": "I see this pattern a few places, I\u0027ll mention it here;\n\ncapturing by \"this\" in an async callback is hard to do properly.  It can be done, by making sure your interface structures are the last things declared, and therefore the first things destroyed (so they can\u0027t accidentally call back during destruction)\n\nOne pattern that is complex, but \"safer\" is to inherit from shared_from_this\u003cEStoraged\u003e, and capture weak_from_this() within your lambdas, then within the lambda, call weak_ptr\u003c\u003e::lock(), and bail out early if the lock fails.\n\nWith that said, EStorageD in this context is essentially a singleton, has a long lifetime, and as written, this code does look correct, so I will leave it up to your judgement if you want to change it.",
+      "range": {
+        "startLine": 55,
+        "startChar": 9,
+        "endLine": 55,
+        "endChar": 13
+      },
+      "revId": "fe95042642dad515e9ee6366dd9fef7e743e26ac",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b6e78e8_ac75c733",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-08T19:11:14Z",
+      "side": 1,
+      "message": "Just FYI, now that we have c++20 universally turned on, this would be more ideally written with std::bind_front, but sdbusplus doesn\u0027t support that yet.  Food for thought if anyone is looking for \"fun\" work that would be a learning experience and help the project at the same time.\n\nI dug into this a little the other day and can give you some pointers if anyone is interested.",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 45
+      },
+      "revId": "fe95042642dad515e9ee6366dd9fef7e743e26ac",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5fb02b34_f30bf501",
@@ -38,6 +153,30 @@
       "side": 1,
       "message": "never mind, you need to caputure the object state.\nYou got it right.",
       "parentUuid": "5fb02b34_f30bf501",
+      "range": {
+        "startLine": 55,
+        "startChar": 8,
+        "endLine": 57,
+        "endChar": 9
+      },
+      "revId": "fe95042642dad515e9ee6366dd9fef7e743e26ac",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c67882b_189e106a",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-08T19:11:14Z",
+      "side": 1,
+      "message": "You have to capture the instance of the member.",
+      "parentUuid": "351b6387_5f367404",
       "range": {
         "startLine": 55,
         "startChar": 8,
@@ -120,6 +259,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "94e866d3_2a58a6b1",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-08T19:11:14Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "df56ee58_90ed4e00",
+      "range": {
+        "startLine": 64,
+        "startChar": 16,
+        "endLine": 64,
+        "endChar": 45
+      },
+      "revId": "fe95042642dad515e9ee6366dd9fef7e743e26ac",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3730a904_8e23eef2",
         "filename": "src/estoraged.cpp",
         "patchSetId": 3
@@ -136,6 +299,53 @@
         "startChar": 32,
         "endLine": 67,
         "endChar": 68
+      },
+      "revId": "fe95042642dad515e9ee6366dd9fef7e743e26ac",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24e97b11_1e3b56a9",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-08T19:11:14Z",
+      "side": 1,
+      "message": "I think both should be const, no?  They\u0027re inputs.",
+      "parentUuid": "3730a904_8e23eef2",
+      "range": {
+        "startLine": 66,
+        "startChar": 32,
+        "endLine": 67,
+        "endChar": 68
+      },
+      "revId": "fe95042642dad515e9ee6366dd9fef7e743e26ac",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a23e8593_65f4347b",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-08T19:11:14Z",
+      "side": 1,
+      "message": "Isn\u0027t this supposed to return true (ie that the set succeeded) not the new value?",
+      "range": {
+        "startLine": 74,
+        "startChar": 12,
+        "endLine": 74,
+        "endChar": 25
       },
       "revId": "fe95042642dad515e9ee6366dd9fef7e743e26ac",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
@@ -166,6 +376,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f7954887_5c5330a8",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-08T19:11:14Z",
+      "side": 1,
+      "message": "This id needed because of unfortunate coding decisions that James and I made in this API early on.  It was under the assumption that a lot of interfaces would be \"fire and forget\" so having objectServer own the instance of it was better.  It\u0027d really love to fix it some day to be really RAII, but for the moment, it is what it is.",
+      "parentUuid": "47b3373a_c592cfe8",
+      "range": {
+        "startLine": 86,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 1
+      },
+      "revId": "fe95042642dad515e9ee6366dd9fef7e743e26ac",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "de51b80d_99b17c37",
         "filename": "src/test/estoraged_test.cpp",
         "patchSetId": 3
@@ -177,6 +411,30 @@
       "writtenOn": "2022-04-07T23:33:24Z",
       "side": 1,
       "message": "should use the closest header to get io_context\n\n```\n#include \u003csdbusplus/asio/connection.hpp\u003e\n```",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 25
+      },
+      "revId": "fe95042642dad515e9ee6366dd9fef7e743e26ac",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fede93f6_30205e87",
+        "filename": "src/test/estoraged_test.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-08T19:11:14Z",
+      "side": 1,
+      "message": "+1.  This improves your compile times quite a bit when you use specific headers.",
+      "parentUuid": "de51b80d_99b17c37",
       "range": {
         "startLine": 7,
         "startChar": 0,

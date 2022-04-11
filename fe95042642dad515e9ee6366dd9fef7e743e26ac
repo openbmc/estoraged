@@ -240,6 +240,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "75109775_fb96f575",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-04-11T23:52:27Z",
+      "side": 1,
+      "message": "We had some discussion regarding shadowing in a previous code review where if it\u0027s a simple initializer list and copying over params to member variables without doing anything further in constructor, I prefer just having the same name (since there\u0027s no ambiguity).\n\nAgreed though, that if you start using the parameter in the constructor more extensively then it may be better to just change the name for better readability rather than spamming this-\u003e everywhere (which, in this case, ew only saved one \"this\" so meh)\n\nFor context Ed, this is the code review in question: https://gerrit.openbmc-project.xyz/c/openbmc/estoraged/+/52247/3..5/include/estoraged.hpp#b48",
+      "parentUuid": "206d1746_008c8bee",
+      "range": {
+        "startLine": 51,
+        "startChar": 22,
+        "endLine": 51,
+        "endChar": 28
+      },
+      "revId": "fe95042642dad515e9ee6366dd9fef7e743e26ac",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "e5d56cf2_d1c5e515",
         "filename": "src/estoraged.cpp",
         "patchSetId": 3

@@ -216,6 +216,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "206d1746_008c8bee",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-11T17:48:58Z",
+      "side": 1,
+      "message": "\u003e I changed the name of the argument for objectServer in the constructor, so I don\u0027t need this-\u003e anymore.\n\u003e \n\u003e If we want to change any other cases of shadowing that already exist, that can be in a separate commit.\n\nAgreed.",
+      "parentUuid": "b07d567d_9f52c42d",
+      "range": {
+        "startLine": 51,
+        "startChar": 22,
+        "endLine": 51,
+        "endChar": 28
+      },
+      "revId": "fe95042642dad515e9ee6366dd9fef7e743e26ac",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "e5d56cf2_d1c5e515",
         "filename": "src/estoraged.cpp",
         "patchSetId": 3
@@ -251,6 +275,30 @@
       "side": 1,
       "message": "Alright, good to know. I\u0027ll continue capturing by \"this\", if that\u0027s okay.\n\nIf I understand correctly, I think I should at least change the header file to declare the interfaces last, so that the callbacks don\u0027t try to access the other members during destruction. I made that change.",
       "parentUuid": "e5d56cf2_d1c5e515",
+      "range": {
+        "startLine": 55,
+        "startChar": 9,
+        "endLine": 55,
+        "endChar": 13
+      },
+      "revId": "fe95042642dad515e9ee6366dd9fef7e743e26ac",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8019477_21cd4410",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-11T17:48:58Z",
+      "side": 1,
+      "message": "\u003e Alright, good to know. I\u0027ll continue capturing by \"this\", if that\u0027s okay.\n\nYep, totally up to you, just be very careful when reviewing code for lifetime issues.\n\n\u003e \n\u003e If I understand correctly, I think I should at least change the header file to declare the interfaces last, so that the callbacks don\u0027t try to access the other members during destruction. I made that change.\n\nCorrect",
+      "parentUuid": "269b1768_dcaa4e2a",
       "range": {
         "startLine": 55,
         "startChar": 9,
@@ -581,6 +629,30 @@
       "side": 1,
       "message": "For the set functions, I think you\u0027re right, but since this is a get function, I think I\u0027m supposed to return the new value. That\u0027s what I see in other places.",
       "parentUuid": "a23e8593_65f4347b",
+      "range": {
+        "startLine": 74,
+        "startChar": 12,
+        "endLine": 74,
+        "endChar": 25
+      },
+      "revId": "fe95042642dad515e9ee6366dd9fef7e743e26ac",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3bb73a24_6508789c",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-11T17:48:58Z",
+      "side": 1,
+      "message": "I thought they were the same, but I guess not.  ACK.",
+      "parentUuid": "702a5023_9ceec186",
       "range": {
         "startLine": 74,
         "startChar": 12,

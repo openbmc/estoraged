@@ -70,7 +70,7 @@ int main(int argc, char** argv)
         boost::asio::io_context io;
         auto conn = std::make_shared<sdbusplus::asio::connection>(io);
         // request D-Bus server name.
-        std::string busName = "xyz.openbmc_project.eStoraged." + deviceName;
+        std::string busName = "xyz.openbmc_project.eStoraged";
         conn->request_name(busName.c_str());
         auto server = sdbusplus::asio::object_server(conn);
 

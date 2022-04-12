@@ -18,6 +18,46 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b3c9c5e_583df6b6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-12T00:49:07Z",
+      "side": 1,
+      "message": "Some minor questions",
+      "revId": "9407ad82418122f372453d333776b5fa805809ca",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f215939_aec3898a",
+        "filename": "include/estoraged.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-12T00:49:07Z",
+      "side": 1,
+      "message": "why do you use smart pointers below, and have a referance to object_server. \n\nCan you use a unique_ptr for this?",
+      "range": {
+        "startLine": 122,
+        "startChar": 34,
+        "endLine": 122,
+        "endChar": 36
+      },
+      "revId": "9407ad82418122f372453d333776b5fa805809ca",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1253492d_fa8fa115",
@@ -59,6 +99,52 @@
         "startChar": 16,
         "endLine": 165,
         "endChar": 20
+      },
+      "revId": "9407ad82418122f372453d333776b5fa805809ca",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9fda8cc_8ec83497",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-12T00:49:07Z",
+      "side": 1,
+      "message": "is there a reason add_interface is preferred over add_unique_interface?\n\nIt would let us keep the unique_ptr, which I have a slight preference for.",
+      "range": {
+        "startLine": 50,
+        "startChar": 35,
+        "endLine": 50,
+        "endChar": 48
+      },
+      "revId": "9407ad82418122f372453d333776b5fa805809ca",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf134fc9_b4b0a63e",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-12T00:49:07Z",
+      "side": 1,
+      "message": "I think you need to deconstruct the objectServer (or switch to smart pointers).\nb/c objectServer owns the shared ptr to the interfaces.",
+      "range": {
+        "startLine": 85,
+        "startChar": 11,
+        "endLine": 85,
+        "endChar": 12
       },
       "revId": "9407ad82418122f372453d333776b5fa805809ca",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"

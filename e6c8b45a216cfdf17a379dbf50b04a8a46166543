@@ -43,6 +43,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "025e14fe_b5d739ec",
+        "filename": "include/util.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-12T20:40:07Z",
+      "side": 1,
+      "message": "Looks like this should be \u0027string\u0027. You don\u0027t actually use string_view in this file.",
+      "range": {
+        "startLine": 2,
+        "startChar": 10,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "e6c8b45a216cfdf17a379dbf50b04a8a46166543",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9083e118_82e18a5e",
         "filename": "src/main.cpp",
         "patchSetId": 4
@@ -59,6 +82,29 @@
         "startChar": 40,
         "endLine": 25,
         "endChar": 41
+      },
+      "revId": "e6c8b45a216cfdf17a379dbf50b04a8a46166543",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "29226c7b_17f7d2c3",
+        "filename": "src/main.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-12T20:40:07Z",
+      "side": 1,
+      "message": "FYI, I plan to remove all these arguments once I integrate eStoraged with EntityManager. At that point, I want to implement code to look for the sysfs entries automatically.",
+      "range": {
+        "startLine": 19,
+        "startChar": 10,
+        "endLine": 25,
+        "endChar": 77
       },
       "revId": "e6c8b45a216cfdf17a379dbf50b04a8a46166543",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
@@ -89,6 +135,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "952a2e74_ef316efc",
+        "filename": "src/main.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-12T20:40:07Z",
+      "side": 1,
+      "message": "You need to update this.",
+      "range": {
+        "startLine": 37,
+        "startChar": 38,
+        "endLine": 37,
+        "endChar": 42
+      },
+      "revId": "e6c8b45a216cfdf17a379dbf50b04a8a46166543",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3d5d491_d5b2988f",
+        "filename": "src/util.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-12T20:40:07Z",
+      "side": 1,
+      "message": "string",
+      "range": {
+        "startLine": 13,
+        "startChar": 10,
+        "endLine": 13,
+        "endChar": 21
+      },
+      "revId": "e6c8b45a216cfdf17a379dbf50b04a8a46166543",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cfcb5053_ebb7971b",
         "filename": "src/util.cpp",
         "patchSetId": 4
@@ -112,6 +204,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3f27339f_725e2c98",
+        "filename": "src/util.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-12T20:40:07Z",
+      "side": 1,
+      "message": "It might be worth also checking if either value is too big, in case you read a bogus value.",
+      "range": {
+        "startLine": 52,
+        "startChar": 8,
+        "endLine": 52,
+        "endChar": 39
+      },
+      "revId": "e6c8b45a216cfdf17a379dbf50b04a8a46166543",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5c798d5a_fc84c082",
         "filename": "src/util.cpp",
         "patchSetId": 4
@@ -123,6 +238,30 @@
       "writtenOn": "2022-04-12T18:44:36Z",
       "side": 1,
       "message": "Do we need to think about underflow cases here?",
+      "range": {
+        "startLine": 68,
+        "startChar": 36,
+        "endLine": 70,
+        "endChar": 48
+      },
+      "revId": "e6c8b45a216cfdf17a379dbf50b04a8a46166543",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "202a74f7_d4c9a67e",
+        "filename": "src/util.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-12T20:40:07Z",
+      "side": 1,
+      "message": "Yeah, it\u0027s actually possible to read back 11.",
+      "parentUuid": "5c798d5a_fc84c082",
       "range": {
         "startLine": 68,
         "startChar": 36,

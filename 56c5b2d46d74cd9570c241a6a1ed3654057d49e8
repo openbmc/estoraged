@@ -1,0 +1,383 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e75651a_95984c85",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 14
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-04-12T00:09:50Z",
+      "side": 1,
+      "message": "Is there any testing that was done that we could put here?",
+      "revId": "56c5b2d46d74cd9570c241a6a1ed3654057d49e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "75859972_d1ed4269",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-04-12T00:09:50Z",
+      "side": 1,
+      "message": "x",
+      "revId": "56c5b2d46d74cd9570c241a6a1ed3654057d49e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fdb46105_4a490a6d",
+        "filename": "include/pattern.hpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-04-12T00:09:50Z",
+      "side": 1,
+      "message": "Let\u0027s copy what we have for zero.hpp - let\u0027s move this one up to where the current writePattern() is (since the doxygen currently is not matching, as it has params)\n\nAnd have a very short doxygen for the one without params.",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 50
+      },
+      "revId": "56c5b2d46d74cd9570c241a6a1ed3654057d49e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "860b7235_43106f7f",
+        "filename": "include/pattern.hpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-04-12T00:09:50Z",
+      "side": 1,
+      "message": "Same here as above",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 51
+      },
+      "revId": "56c5b2d46d74cd9570c241a6a1ed3654057d49e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16aa9816_3164c101",
+        "filename": "include/pattern.hpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-04-12T00:09:50Z",
+      "side": 1,
+      "message": "prefer size_t unless there\u0027s a good reason to use it (according to openbmc style guide: https://github.com/openbmc/docs/blob/master/cpp-style-and-conventions.md#misc-guidelines)",
+      "range": {
+        "startLine": 60,
+        "startChar": 21,
+        "endLine": 61,
+        "endChar": 29
+      },
+      "revId": "56c5b2d46d74cd9570c241a6a1ed3654057d49e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d809aaa_b79a73f0",
+        "filename": "include/zero.hpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-04-12T00:09:50Z",
+      "side": 1,
+      "message": "How were these constants chosen?",
+      "range": {
+        "startLine": 62,
+        "startChar": 40,
+        "endLine": 63,
+        "endChar": 51
+      },
+      "revId": "56c5b2d46d74cd9570c241a6a1ed3654057d49e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ced2a15_46ee92ed",
+        "filename": "include/zero.hpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-04-12T00:09:50Z",
+      "side": 1,
+      "message": "same as the other file, prefer size_t: https://github.com/openbmc/docs/blob/master/cpp-style-and-conventions.md#misc-guidelines",
+      "range": {
+        "startLine": 62,
+        "startChar": 21,
+        "endLine": 63,
+        "endChar": 29
+      },
+      "revId": "56c5b2d46d74cd9570c241a6a1ed3654057d49e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "191a6b1a_15e5a344",
+        "filename": "src/erase/pattern.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-04-12T00:09:50Z",
+      "side": 1,
+      "message": "size_t",
+      "range": {
+        "startLine": 49,
+        "startChar": 8,
+        "endLine": 49,
+        "endChar": 16
+      },
+      "revId": "56c5b2d46d74cd9570c241a6a1ed3654057d49e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b11f7724_f974d174",
+        "filename": "src/erase/pattern.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-04-12T00:09:50Z",
+      "side": 1,
+      "message": "size_t",
+      "range": {
+        "startLine": 96,
+        "startChar": 21,
+        "endLine": 96,
+        "endChar": 26
+      },
+      "revId": "56c5b2d46d74cd9570c241a6a1ed3654057d49e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d64f7afd_0369ed92",
+        "filename": "src/erase/zero.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-04-12T00:09:50Z",
+      "side": 1,
+      "message": "should this be written?",
+      "range": {
+        "startLine": 33,
+        "startChar": 21,
+        "endLine": 33,
+        "endChar": 26
+      },
+      "revId": "56c5b2d46d74cd9570c241a6a1ed3654057d49e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8878e4b7_c29f7fca",
+        "filename": "src/erase/zero.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-04-12T00:09:50Z",
+      "side": 1,
+      "message": "size_t",
+      "range": {
+        "startLine": 34,
+        "startChar": 12,
+        "endLine": 34,
+        "endChar": 20
+      },
+      "revId": "56c5b2d46d74cd9570c241a6a1ed3654057d49e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0405e2b_cdf57cc3",
+        "filename": "src/erase/zero.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-04-12T00:09:50Z",
+      "side": 1,
+      "message": "size_t",
+      "range": {
+        "startLine": 80,
+        "startChar": 12,
+        "endLine": 80,
+        "endChar": 20
+      },
+      "revId": "56c5b2d46d74cd9570c241a6a1ed3654057d49e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60724db0_45cacb3b",
+        "filename": "src/test/erase/pattern_test.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-04-12T00:09:50Z",
+      "side": 1,
+      "message": "is this supposed to be taken out?",
+      "range": {
+        "startLine": 116,
+        "startChar": 0,
+        "endLine": 116,
+        "endChar": 55
+      },
+      "revId": "56c5b2d46d74cd9570c241a6a1ed3654057d49e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56d1d81a_78f529ca",
+        "filename": "src/test/erase/pattern_test.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-04-12T00:09:50Z",
+      "side": 1,
+      "message": "should we have a short write fail test too?",
+      "range": {
+        "startLine": 165,
+        "startChar": 12,
+        "endLine": 165,
+        "endChar": 25
+      },
+      "revId": "56c5b2d46d74cd9570c241a6a1ed3654057d49e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfae1dd5_167a18e9",
+        "filename": "src/test/erase/pattern_test.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-04-12T00:09:50Z",
+      "side": 1,
+      "message": "Oh, what lint error was this throwing?",
+      "range": {
+        "startLine": 198,
+        "startChar": 3,
+        "endLine": 198,
+        "endChar": 17
+      },
+      "revId": "56c5b2d46d74cd9570c241a6a1ed3654057d49e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00b75449_598d97d5",
+        "filename": "src/test/erase/zero_test.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-04-12T00:09:50Z",
+      "side": 1,
+      "message": "Should we have short write fail too?",
+      "range": {
+        "startLine": 152,
+        "startChar": 12,
+        "endLine": 152,
+        "endChar": 25
+      },
+      "revId": "56c5b2d46d74cd9570c241a6a1ed3654057d49e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "593ecdbc_1ac0e43f",
+        "filename": "src/test/erase/zero_test.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-04-12T00:09:50Z",
+      "side": 1,
+      "message": "same question as the other file",
+      "range": {
+        "startLine": 185,
+        "startChar": 3,
+        "endLine": 185,
+        "endChar": 17
+      },
+      "revId": "56c5b2d46d74cd9570c241a6a1ed3654057d49e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

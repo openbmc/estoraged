@@ -16,6 +16,121 @@
       "message": "Let me know if you see anything that needs attention.",
       "revId": "e6c8b45a216cfdf17a379dbf50b04a8a46166543",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4df0bc5d_b63b1f07",
+        "filename": "include/estoraged.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-04-12T18:44:36Z",
+      "side": 1,
+      "message": "add to doxygen param above",
+      "range": {
+        "startLine": 50,
+        "startChar": 37,
+        "endLine": 50,
+        "endChar": 45
+      },
+      "revId": "e6c8b45a216cfdf17a379dbf50b04a8a46166543",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9083e118_82e18a5e",
+        "filename": "src/main.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-04-12T18:44:36Z",
+      "side": 1,
+      "message": "Is this supposed to be continuation of the above sentence?\n```\n\"The interface to kernel data structures\"\n```\n\nIf so, should it be something like:\n```\n\"The interface to kernel data structures dealing with this disk\"\n```\n\nAnd therefore, small d?",
+      "range": {
+        "startLine": 25,
+        "startChar": 40,
+        "endLine": 25,
+        "endChar": 41
+      },
+      "revId": "e6c8b45a216cfdf17a379dbf50b04a8a46166543",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1972865_2c4abd57",
+        "filename": "src/main.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-04-12T18:44:36Z",
+      "side": 1,
+      "message": "nit: default \"is\" similar to above?",
+      "range": {
+        "startLine": 26,
+        "startChar": 19,
+        "endLine": 26,
+        "endChar": 20
+      },
+      "revId": "e6c8b45a216cfdf17a379dbf50b04a8a46166543",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfcb5053_ebb7971b",
+        "filename": "src/util.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-04-12T18:44:36Z",
+      "side": 1,
+      "message": "Could we get a more descriptive variable names or a brief comment on what these 2 bytes from /life_time file is supposed to give us? or where in the spec this is taken from",
+      "range": {
+        "startLine": 45,
+        "startChar": 13,
+        "endLine": 45,
+        "endChar": 27
+      },
+      "revId": "e6c8b45a216cfdf17a379dbf50b04a8a46166543",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c798d5a_fc84c082",
+        "filename": "src/util.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-04-12T18:44:36Z",
+      "side": 1,
+      "message": "Do we need to think about underflow cases here?",
+      "range": {
+        "startLine": 68,
+        "startChar": 36,
+        "endLine": 70,
+        "endChar": 48
+      },
+      "revId": "e6c8b45a216cfdf17a379dbf50b04a8a46166543",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

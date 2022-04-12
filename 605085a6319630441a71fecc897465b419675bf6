@@ -22,6 +22,30 @@
       },
       "revId": "605085a6319630441a71fecc897465b419675bf6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a603535e_af5026ce",
+        "filename": ".clang-tidy",
+        "patchSetId": 4
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-12T20:07:30Z",
+      "side": 0,
+      "message": "Clang was flagging an error in one of the boost asio files, which I wasn\u0027t able to resolve by disabling lint for specific lines.\n\nYou can see the error here: https://jenkins.openbmc.org/job/ci-repository/40663/console\n\nI spent a long time fighting with it, trying to figure out how I could set up the build differently to resolve the clang error. Somehow, bmcweb doesn\u0027t run into this, so I was trying to use that as an example, but ultimately, I had to remove this check.",
+      "parentUuid": "6ac27f35_ade364ab",
+      "range": {
+        "startLine": 99,
+        "startChar": 20,
+        "endLine": 99,
+        "endChar": 34
+      },
+      "revId": "605085a6319630441a71fecc897465b419675bf6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

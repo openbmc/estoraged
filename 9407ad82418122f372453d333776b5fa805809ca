@@ -58,6 +58,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f52c23e_a9262d9a",
+        "filename": "include/estoraged.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-12T20:07:30Z",
+      "side": 1,
+      "message": "Since the objectServer depends on the io_context object in main(), main() needs to manage this. So, main is responsible for creating the objectServer and later destroying it.\n\nIf anything, I might be able to use shared_ptr, but not unique_ptr.\n\nThis is the way it\u0027s done in other places, like dbus-sensors, but let me know if you think it\u0027s worth changing to shared_ptr.",
+      "parentUuid": "9f215939_aec3898a",
+      "range": {
+        "startLine": 122,
+        "startChar": 34,
+        "endLine": 122,
+        "endChar": 36
+      },
+      "revId": "9407ad82418122f372453d333776b5fa805809ca",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1253492d_fa8fa115",
@@ -104,6 +128,54 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d28801ce_c15daaf8",
+        "filename": "include/estoraged.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-12T20:07:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "775c28f5_2ae7a99f",
+      "range": {
+        "startLine": 165,
+        "startChar": 16,
+        "endLine": 165,
+        "endChar": 20
+      },
+      "revId": "9407ad82418122f372453d333776b5fa805809ca",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae7e0ec2_376b756d",
+        "filename": "include/estoraged.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-12T20:07:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1253492d_fa8fa115",
+      "range": {
+        "startLine": 165,
+        "startChar": 21,
+        "endLine": 165,
+        "endChar": 29
+      },
+      "revId": "9407ad82418122f372453d333776b5fa805809ca",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f9fda8cc_8ec83497",
@@ -127,6 +199,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ea5ef5e_9e781c0e",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-12T20:07:30Z",
+      "side": 1,
+      "message": "If I were to use add_unique_interface(), I would have to pass in a function that adds all the methods and properties before initialize() gets called. Here\u0027s an example: https://github.com/openbmc/sdbusplus/blob/90fab6bb667460053cfc4587b58c987f74b1bf58/example/register-property.cpp#L23\n\nI think the way I have it seems more convenient, allowing me to add the methods and properties one at a time, and then I can call initialize() at the end, when I\u0027m done.",
+      "parentUuid": "f9fda8cc_8ec83497",
+      "range": {
+        "startLine": 50,
+        "startChar": 35,
+        "endLine": 50,
+        "endChar": 48
+      },
+      "revId": "9407ad82418122f372453d333776b5fa805809ca",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bf134fc9_b4b0a63e",
@@ -140,6 +236,30 @@
       "writtenOn": "2022-04-12T00:49:07Z",
       "side": 1,
       "message": "I think you need to deconstruct the objectServer (or switch to smart pointers).\nb/c objectServer owns the shared ptr to the interfaces.",
+      "range": {
+        "startLine": 85,
+        "startChar": 11,
+        "endLine": 85,
+        "endChar": 12
+      },
+      "revId": "9407ad82418122f372453d333776b5fa805809ca",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "87e15d67_7927c6b7",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-12T20:07:30Z",
+      "side": 1,
+      "message": "As mentioned above, main is responsible for destroying the objectServer.",
+      "parentUuid": "bf134fc9_b4b0a63e",
       "range": {
         "startLine": 85,
         "startChar": 11,

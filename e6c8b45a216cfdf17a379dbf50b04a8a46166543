@@ -41,6 +41,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "41a14caf_b2d7127f",
+        "filename": "include/estoraged.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-13T17:39:51Z",
+      "side": 1,
+      "message": "added",
+      "parentUuid": "4df0bc5d_b63b1f07",
+      "range": {
+        "startLine": 50,
+        "startChar": 37,
+        "endLine": 50,
+        "endChar": 45
+      },
+      "revId": "e6c8b45a216cfdf17a379dbf50b04a8a46166543",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "025e14fe_b5d739ec",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-04-12T20:40:07Z",
       "side": 1,
       "message": "Looks like this should be \u0027string\u0027. You don\u0027t actually use string_view in this file.",
+      "range": {
+        "startLine": 2,
+        "startChar": 10,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "e6c8b45a216cfdf17a379dbf50b04a8a46166543",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6a1b3fe_d8966a06",
+        "filename": "include/util.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-13T17:39:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "025e14fe_b5d739ec",
       "range": {
         "startLine": 2,
         "startChar": 10,
@@ -110,6 +158,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "05fe0278_1b7bc7f6",
+        "filename": "src/main.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-13T17:39:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9083e118_82e18a5e",
+      "range": {
+        "startLine": 25,
+        "startChar": 40,
+        "endLine": 25,
+        "endChar": 41
+      },
+      "revId": "e6c8b45a216cfdf17a379dbf50b04a8a46166543",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d1972865_2c4abd57",
@@ -123,6 +195,30 @@
       "writtenOn": "2022-04-12T18:44:36Z",
       "side": 1,
       "message": "nit: default \"is\" similar to above?",
+      "range": {
+        "startLine": 26,
+        "startChar": 19,
+        "endLine": 26,
+        "endChar": 20
+      },
+      "revId": "e6c8b45a216cfdf17a379dbf50b04a8a46166543",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1c38436_4c922b76",
+        "filename": "src/main.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-13T17:39:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d1972865_2c4abd57",
       "range": {
         "startLine": 26,
         "startChar": 19,
@@ -156,6 +252,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad219388_6af59fdb",
+        "filename": "src/main.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-13T17:39:51Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "952a2e74_ef316efc",
+      "range": {
+        "startLine": 37,
+        "startChar": 38,
+        "endLine": 37,
+        "endChar": 42
+      },
+      "revId": "e6c8b45a216cfdf17a379dbf50b04a8a46166543",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e3d5d491_d5b2988f",
@@ -169,6 +289,30 @@
       "writtenOn": "2022-04-12T20:40:07Z",
       "side": 1,
       "message": "string",
+      "range": {
+        "startLine": 13,
+        "startChar": 10,
+        "endLine": 13,
+        "endChar": 21
+      },
+      "revId": "e6c8b45a216cfdf17a379dbf50b04a8a46166543",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc45edce_ce8ed231",
+        "filename": "src/util.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-13T17:39:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e3d5d491_d5b2988f",
       "range": {
         "startLine": 13,
         "startChar": 10,
@@ -202,6 +346,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1bd8a53a_1dfcedc3",
+        "filename": "src/util.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-13T17:39:51Z",
+      "side": 1,
+      "message": "yes, I added the information I have.",
+      "parentUuid": "cfcb5053_ebb7971b",
+      "range": {
+        "startLine": 45,
+        "startChar": 13,
+        "endLine": 45,
+        "endChar": 27
+      },
+      "revId": "e6c8b45a216cfdf17a379dbf50b04a8a46166543",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3f27339f_725e2c98",
@@ -215,6 +383,30 @@
       "writtenOn": "2022-04-12T20:40:07Z",
       "side": 1,
       "message": "It might be worth also checking if either value is too big, in case you read a bogus value.",
+      "range": {
+        "startLine": 52,
+        "startChar": 8,
+        "endLine": 52,
+        "endChar": 39
+      },
+      "revId": "e6c8b45a216cfdf17a379dbf50b04a8a46166543",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2cc47de_1aa9373a",
+        "filename": "src/util.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-13T17:39:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f27339f_725e2c98",
       "range": {
         "startLine": 52,
         "startChar": 8,
@@ -262,6 +454,30 @@
       "side": 1,
       "message": "Yeah, it\u0027s actually possible to read back 11.",
       "parentUuid": "5c798d5a_fc84c082",
+      "range": {
+        "startLine": 68,
+        "startChar": 36,
+        "endLine": 70,
+        "endChar": 48
+      },
+      "revId": "e6c8b45a216cfdf17a379dbf50b04a8a46166543",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c8aca4a_634b884c",
+        "filename": "src/util.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-13T17:39:51Z",
+      "side": 1,
+      "message": "yes, the values should range from 1 to 11, and I changed the logic, to maximize granularity, at the expense of being pessimistic. \n \nLet me know what you think.",
+      "parentUuid": "202a74f7_d4c9a67e",
       "range": {
         "startLine": 68,
         "startChar": 36,

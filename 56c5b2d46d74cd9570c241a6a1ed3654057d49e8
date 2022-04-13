@@ -71,6 +71,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ec1d74e_cd1b9184",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-04-13T22:38:26Z",
+      "side": 1,
+      "message": "XD oops",
+      "parentUuid": "1914f208_a8b94687",
+      "revId": "56c5b2d46d74cd9570c241a6a1ed3654057d49e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fdb46105_4a490a6d",
@@ -214,6 +232,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ac5dced0_05acc528",
+        "filename": "include/pattern.hpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-04-13T22:38:26Z",
+      "side": 1,
+      "message": "Ah sorry, delay is time.\n\nHmm, I guess the style guide says use int (since this is not count), but we know time is uint, so maybe we can just use uint here. Do you mind asking the discord to see if we should include \"uint\" in the preferred section? We could simply just update the doc and try adding uint and see what people say (best way to get response from people is to make wrong assumption, or something)",
+      "parentUuid": "09c1bb83_dea893f3",
+      "range": {
+        "startLine": 60,
+        "startChar": 21,
+        "endLine": 61,
+        "endChar": 29
+      },
+      "revId": "56c5b2d46d74cd9570c241a6a1ed3654057d49e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6d809aaa_b79a73f0",
         "filename": "include/zero.hpp",
         "patchSetId": 14
@@ -301,6 +343,54 @@
         "startChar": 40,
         "endLine": 63,
         "endChar": 51
+      },
+      "revId": "56c5b2d46d74cd9570c241a6a1ed3654057d49e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff92e1d8_5c38aa11",
+        "filename": "include/zero.hpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-04-13T22:38:26Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c08d5228_dcc2a55c",
+      "range": {
+        "startLine": 62,
+        "startChar": 40,
+        "endLine": 63,
+        "endChar": 51
+      },
+      "revId": "56c5b2d46d74cd9570c241a6a1ed3654057d49e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d0fa221_9216f251",
+        "filename": "include/zero.hpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-04-13T22:38:26Z",
+      "side": 1,
+      "message": "Same as above",
+      "parentUuid": "e4a5be7e_2d67f382",
+      "range": {
+        "startLine": 62,
+        "startChar": 21,
+        "endLine": 63,
+        "endChar": 29
       },
       "revId": "56c5b2d46d74cd9570c241a6a1ed3654057d49e8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
@@ -437,6 +527,30 @@
       "side": 1,
       "message": "it can be.\nDone",
       "parentUuid": "d64f7afd_0369ed92",
+      "range": {
+        "startLine": 33,
+        "startChar": 21,
+        "endLine": 33,
+        "endChar": 26
+      },
+      "revId": "56c5b2d46d74cd9570c241a6a1ed3654057d49e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ed8e960_038efd0c",
+        "filename": "src/erase/zero.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-04-13T22:38:26Z",
+      "side": 1,
+      "message": "(just following the \"written\" variable used in pattern.cpp + it makes more sense)",
+      "parentUuid": "ba5555d8_4ac71f3f",
       "range": {
         "startLine": 33,
         "startChar": 21,
@@ -708,6 +822,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fc1b6b77_1a33d5a0",
+        "filename": "src/test/erase/pattern_test.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-04-13T22:38:26Z",
+      "side": 1,
+      "message": "I guess a bigger question may be - we don\u0027t seem to  be using ThrowException Action that we define. Is this needed?",
+      "parentUuid": "8a7c2870_b4205d73",
+      "range": {
+        "startLine": 198,
+        "startChar": 3,
+        "endLine": 198,
+        "endChar": 17
+      },
+      "revId": "56c5b2d46d74cd9570c241a6a1ed3654057d49e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "00b75449_598d97d5",
         "filename": "src/test/erase/zero_test.cpp",
         "patchSetId": 14
@@ -790,6 +928,30 @@
       "side": 1,
       "message": "Clang wants a destructor because a constructors was created in google mock\n\n```\n../src/test/erase/pattern_test.cpp:197:1: error: class \u0027ThrowExceptionAction\u0027 defines a copy constructor but does not define a destructor, a copy assignment operator, a move constructor or a move assignment operator [cppcoreguidelines-special-member-functions,-warnings-as-errors]\nACTION(ThrowException)\n^\n/usr/local/include/gmock/gmock-actions.h:1628:9: note: expanded from macro \u0027ACTION\u0027\n  class name##Action {                                                        \\\n        ^\n```\nI would rather not try to change google mock\u0027s macro if we did not have to.",
       "parentUuid": "593ecdbc_1ac0e43f",
+      "range": {
+        "startLine": 185,
+        "startChar": 3,
+        "endLine": 185,
+        "endChar": 17
+      },
+      "revId": "56c5b2d46d74cd9570c241a6a1ed3654057d49e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e87e6cb_30b872cd",
+        "filename": "src/test/erase/zero_test.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-04-13T22:38:26Z",
+      "side": 1,
+      "message": "Same as above.",
+      "parentUuid": "14aaa2af_0252a8ec",
       "range": {
         "startLine": 185,
         "startChar": 3,

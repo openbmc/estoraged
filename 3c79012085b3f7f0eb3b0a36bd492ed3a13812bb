@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95137058_ae03118c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-13T20:03:26Z",
+      "side": 1,
+      "message": "Can you add a \"Tested:\" section?",
+      "revId": "3c79012085b3f7f0eb3b0a36bd492ed3a13812bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5daa8562_1831a4b7",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-13T20:03:26Z",
+      "side": 1,
+      "message": "This is capitalized in the yaml file: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Inventory/Item/Drive.interface.yaml",
+      "range": {
+        "startLine": 80,
+        "startChar": 39,
+        "endLine": 80,
+        "endChar": 40
+      },
+      "revId": "3c79012085b3f7f0eb3b0a36bd492ed3a13812bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

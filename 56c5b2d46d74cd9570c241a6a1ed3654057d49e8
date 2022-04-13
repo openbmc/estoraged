@@ -635,6 +635,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "41c7626a_4c39f408",
+        "filename": "src/test/erase/pattern_test.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-13T22:32:33Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "73d9186a_24fa3191",
+      "range": {
+        "startLine": 165,
+        "startChar": 12,
+        "endLine": 165,
+        "endChar": 25
+      },
+      "revId": "56c5b2d46d74cd9570c241a6a1ed3654057d49e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cfae1dd5_167a18e9",

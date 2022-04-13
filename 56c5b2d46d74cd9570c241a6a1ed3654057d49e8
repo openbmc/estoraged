@@ -53,6 +53,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1914f208_a8b94687",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-13T22:29:38Z",
+      "side": 1,
+      "message": "marks the spot, probably",
+      "parentUuid": "75859972_d1ed4269",
+      "revId": "56c5b2d46d74cd9570c241a6a1ed3654057d49e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fdb46105_4a490a6d",
@@ -66,6 +84,30 @@
       "writtenOn": "2022-04-12T00:09:50Z",
       "side": 1,
       "message": "Let\u0027s copy what we have for zero.hpp - let\u0027s move this one up to where the current writePattern() is (since the doxygen currently is not matching, as it has params)\n\nAnd have a very short doxygen for the one without params.",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 50
+      },
+      "revId": "56c5b2d46d74cd9570c241a6a1ed3654057d49e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9ee4a8c_0b720ec8",
+        "filename": "include/pattern.hpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-13T22:29:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fdb46105_4a490a6d",
       "range": {
         "startLine": 39,
         "startChar": 0,
@@ -99,6 +141,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "92fe1ec6_59dddb9f",
+        "filename": "include/pattern.hpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-13T22:29:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "860b7235_43106f7f",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 51
+      },
+      "revId": "56c5b2d46d74cd9570c241a6a1ed3654057d49e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "16aa9816_3164c101",
@@ -112,6 +178,30 @@
       "writtenOn": "2022-04-12T00:09:50Z",
       "side": 1,
       "message": "prefer size_t unless there\u0027s a good reason to use it (according to openbmc style guide: https://github.com/openbmc/docs/blob/master/cpp-style-and-conventions.md#misc-guidelines)",
+      "range": {
+        "startLine": 60,
+        "startChar": 21,
+        "endLine": 61,
+        "endChar": 29
+      },
+      "revId": "56c5b2d46d74cd9570c241a6a1ed3654057d49e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09c1bb83_dea893f3",
+        "filename": "include/pattern.hpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-13T22:29:38Z",
+      "side": 1,
+      "message": "done?\n\nConfirm you want to store time in a size_t by checking resolved.",
+      "parentUuid": "16aa9816_3164c101",
       "range": {
         "startLine": 60,
         "startChar": 21,
@@ -170,6 +260,54 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e4a5be7e_2d67f382",
+        "filename": "include/zero.hpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-13T22:29:38Z",
+      "side": 1,
+      "message": "done?\n\nConfirm you want to store time in a size_t by marking resolved.",
+      "parentUuid": "5ced2a15_46ee92ed",
+      "range": {
+        "startLine": 62,
+        "startChar": 21,
+        "endLine": 63,
+        "endChar": 29
+      },
+      "revId": "56c5b2d46d74cd9570c241a6a1ed3654057d49e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c08d5228_dcc2a55c",
+        "filename": "include/zero.hpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-13T22:29:38Z",
+      "side": 1,
+      "message": "heuristically. The our current system does not produce short read/writes\nI am open to suggestions.",
+      "parentUuid": "6d809aaa_b79a73f0",
+      "range": {
+        "startLine": 62,
+        "startChar": 40,
+        "endLine": 63,
+        "endChar": 51
+      },
+      "revId": "56c5b2d46d74cd9570c241a6a1ed3654057d49e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "191a6b1a_15e5a344",
         "filename": "src/erase/pattern.cpp",
         "patchSetId": 14
@@ -181,6 +319,30 @@
       "writtenOn": "2022-04-12T00:09:50Z",
       "side": 1,
       "message": "size_t",
+      "range": {
+        "startLine": 49,
+        "startChar": 8,
+        "endLine": 49,
+        "endChar": 16
+      },
+      "revId": "56c5b2d46d74cd9570c241a6a1ed3654057d49e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2048664a_4dffbd28",
+        "filename": "src/erase/pattern.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-13T22:29:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "191a6b1a_15e5a344",
       "range": {
         "startLine": 49,
         "startChar": 8,
@@ -214,6 +376,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "94459e73_f062f6d9",
+        "filename": "src/erase/pattern.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-13T22:29:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b11f7724_f974d174",
+      "range": {
+        "startLine": 96,
+        "startChar": 21,
+        "endLine": 96,
+        "endChar": 26
+      },
+      "revId": "56c5b2d46d74cd9570c241a6a1ed3654057d49e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d64f7afd_0369ed92",
@@ -227,6 +413,30 @@
       "writtenOn": "2022-04-12T00:09:50Z",
       "side": 1,
       "message": "should this be written?",
+      "range": {
+        "startLine": 33,
+        "startChar": 21,
+        "endLine": 33,
+        "endChar": 26
+      },
+      "revId": "56c5b2d46d74cd9570c241a6a1ed3654057d49e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba5555d8_4ac71f3f",
+        "filename": "src/erase/zero.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-13T22:29:38Z",
+      "side": 1,
+      "message": "it can be.\nDone",
+      "parentUuid": "d64f7afd_0369ed92",
       "range": {
         "startLine": 33,
         "startChar": 21,
@@ -260,6 +470,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "19357072_200fbdc6",
+        "filename": "src/erase/zero.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-13T22:29:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8878e4b7_c29f7fca",
+      "range": {
+        "startLine": 34,
+        "startChar": 12,
+        "endLine": 34,
+        "endChar": 20
+      },
+      "revId": "56c5b2d46d74cd9570c241a6a1ed3654057d49e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b0405e2b_cdf57cc3",
@@ -283,6 +517,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea990238_6e201a71",
+        "filename": "src/erase/zero.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-13T22:29:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b0405e2b_cdf57cc3",
+      "range": {
+        "startLine": 80,
+        "startChar": 12,
+        "endLine": 80,
+        "endChar": 20
+      },
+      "revId": "56c5b2d46d74cd9570c241a6a1ed3654057d49e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "60724db0_45cacb3b",
@@ -296,6 +554,30 @@
       "writtenOn": "2022-04-12T00:09:50Z",
       "side": 1,
       "message": "is this supposed to be taken out?",
+      "range": {
+        "startLine": 116,
+        "startChar": 0,
+        "endLine": 116,
+        "endChar": 55
+      },
+      "revId": "56c5b2d46d74cd9570c241a6a1ed3654057d49e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c159c3ee_dbb4262d",
+        "filename": "src/test/erase/pattern_test.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-13T22:29:38Z",
+      "side": 1,
+      "message": "yes",
+      "parentUuid": "60724db0_45cacb3b",
       "range": {
         "startLine": 116,
         "startChar": 0,
@@ -331,6 +613,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "73d9186a_24fa3191",
+        "filename": "src/test/erase/pattern_test.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-13T22:29:38Z",
+      "side": 1,
+      "message": "It is named shortRead, but it test both short and short writes. \nI will adjust the name.",
+      "parentUuid": "56d1d81a_78f529ca",
+      "range": {
+        "startLine": 165,
+        "startChar": 12,
+        "endLine": 165,
+        "endChar": 25
+      },
+      "revId": "56c5b2d46d74cd9570c241a6a1ed3654057d49e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cfae1dd5_167a18e9",
         "filename": "src/test/erase/pattern_test.cpp",
         "patchSetId": 14
@@ -342,6 +648,30 @@
       "writtenOn": "2022-04-12T00:09:50Z",
       "side": 1,
       "message": "Oh, what lint error was this throwing?",
+      "range": {
+        "startLine": 198,
+        "startChar": 3,
+        "endLine": 198,
+        "endChar": 17
+      },
+      "revId": "56c5b2d46d74cd9570c241a6a1ed3654057d49e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a7c2870_b4205d73",
+        "filename": "src/test/erase/pattern_test.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-13T22:29:38Z",
+      "side": 1,
+      "message": "Clang wants a destructor because a constructors was created in google mock\n\n```\n../src/test/erase/pattern_test.cpp:197:1: error: class \u0027ThrowExceptionAction\u0027 defines a copy constructor but does not define a destructor, a copy assignment operator, a move constructor or a move assignment operator [cppcoreguidelines-special-member-functions,-warnings-as-errors]\nACTION(ThrowException)\n^\n/usr/local/include/gmock/gmock-actions.h:1628:9: note: expanded from macro \u0027ACTION\u0027\n  class name##Action {                                                        \\\n        ^\n```\nI would rather not try to change google mock\u0027s macro if we did not have to.",
+      "parentUuid": "cfae1dd5_167a18e9",
       "range": {
         "startLine": 198,
         "startChar": 3,
@@ -375,6 +705,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7893d7e2_74b2fd98",
+        "filename": "src/test/erase/zero_test.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-13T22:29:38Z",
+      "side": 1,
+      "message": "the name is missleading the code below test both reads and writes.\nRenamed.",
+      "parentUuid": "00b75449_598d97d5",
+      "range": {
+        "startLine": 152,
+        "startChar": 12,
+        "endLine": 152,
+        "endChar": 25
+      },
+      "revId": "56c5b2d46d74cd9570c241a6a1ed3654057d49e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "593ecdbc_1ac0e43f",
@@ -388,6 +742,30 @@
       "writtenOn": "2022-04-12T00:09:50Z",
       "side": 1,
       "message": "same question as the other file",
+      "range": {
+        "startLine": 185,
+        "startChar": 3,
+        "endLine": 185,
+        "endChar": 17
+      },
+      "revId": "56c5b2d46d74cd9570c241a6a1ed3654057d49e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14aaa2af_0252a8ec",
+        "filename": "src/test/erase/zero_test.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-13T22:29:38Z",
+      "side": 1,
+      "message": "Clang wants a destructor because a constructors was created in google mock\n\n```\n../src/test/erase/pattern_test.cpp:197:1: error: class \u0027ThrowExceptionAction\u0027 defines a copy constructor but does not define a destructor, a copy assignment operator, a move constructor or a move assignment operator [cppcoreguidelines-special-member-functions,-warnings-as-errors]\nACTION(ThrowException)\n^\n/usr/local/include/gmock/gmock-actions.h:1628:9: note: expanded from macro \u0027ACTION\u0027\n  class name##Action {                                                        \\\n        ^\n```\nI would rather not try to change google mock\u0027s macro if we did not have to.",
+      "parentUuid": "593ecdbc_1ac0e43f",
       "range": {
         "startLine": 185,
         "startChar": 3,

@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca460a37_02fa886e",
+        "filename": "src/util.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-04-13T17:58:10Z",
+      "side": 1,
+      "message": "Maybe end the previous line with a period or continue this as a single sentence with \"that\" Linux...",
+      "range": {
+        "startLine": 47,
+        "startChar": 5,
+        "endLine": 47,
+        "endChar": 7
+      },
+      "revId": "8b5cd09a9560c1919d08bd55d41358f34491d02e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7be7ec41_f36cc9aa",
+        "filename": "src/util.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-04-13T17:58:10Z",
+      "side": 1,
+      "message": "exposes",
+      "range": {
+        "startLine": 47,
+        "startChar": 13,
+        "endLine": 47,
+        "endChar": 19
+      },
+      "revId": "8b5cd09a9560c1919d08bd55d41358f34491d02e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

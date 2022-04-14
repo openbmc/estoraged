@@ -22,6 +22,30 @@
       },
       "revId": "75bda6bde64246aeef504510b61bc21d9a55cd2f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "821f6a75_bac79577",
+        "filename": "src/erase/zero.cpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-14T17:25:21Z",
+      "side": 1,
+      "message": "I did not intend to push this.\n\nI will run test with and without them, and only keep them if they produce a substantial difference. A small percent of speed gain is not worth the programming complexity they add.\n\nIt will (likely:) speed up this section of the code. It takes more time to jump (in assembly) then not jump. So this used to change the instruction from (jump if equal) to (jump if not equal) and then swap the code paths.\n\nHowever on modern systems the processors branch prediction optimization, dominates the jump/nojump distinction. So the implementation is more less clear.",
+      "parentUuid": "d4481e2a_b0f8574a",
+      "range": {
+        "startLine": 44,
+        "startChar": 22,
+        "endLine": 44,
+        "endChar": 30
+      },
+      "revId": "75bda6bde64246aeef504510b61bc21d9a55cd2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

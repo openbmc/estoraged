@@ -1,83 +1,171 @@
 
 #include "estoraged.hpp"
+#include "getConfig.hpp"
+#include "util.hpp"
 
-#include <unistd.h>
-
+#include <boost/asio/deadline_timer.hpp>
 #include <boost/asio/io_context.hpp>
+#include <boost/asio/post.hpp>
+#include <boost/container/flat_map.hpp>
+#include <boost/container/throw_exception.hpp>
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/asio/connection.hpp>
 #include <sdbusplus/asio/object_server.hpp>
 #include <sdbusplus/bus.hpp>
+#include <sdbusplus/bus/match.hpp>
 #include <util.hpp>
 
+#include <cstdlib>
 #include <filesystem>
 #include <iostream>
 #include <memory>
 #include <string>
 
-static void usage(std::string_view name)
+/*
+ * Get the configuration objects from Entity Manager and create new D-Bus
+ * objects for each one. This function can be called multiple times, in case
+ * new configuration objects show up later.
+ *
+ * Note: Currently, eStoraged can only support 1 eMMC device.
+ * Additional changes will be needed to support more than 1 eMMC, or to support
+ * more types of storage devices.
+ */
+void createStorageObjects(
+    boost::asio::io_context& io, sdbusplus::asio::object_server& objectServer,
+    boost::container::flat_map<
+        std::string, std::unique_ptr<estoraged::EStoraged>>& storageObjects,
+    std::shared_ptr<sdbusplus::asio::connection>& dbusConnection)
 {
-    std::cerr
-        << "Usage: " << name
-        << "eStorageD service on the BMC\n\n"
-           "  -b <blockDevice>          The phyical encrypted device\n"
-           "                            If omitted, default is /dev/mmcblk0.\n"
-           "  -c <containerName>        The LUKS container name to be created\n"
-           "                            If omitted, default is luks-<devName>"
-           "  -s <sysfsDevice>          The interface to kernel data\n"
-           "                            structures dealing with this drive.\n"
-           "                            If omitted, default is\n"
-           "                            /sys/block/mmcblk0/device/\n";
+    auto getter = std::make_shared<estoraged::GetStorageConfiguration>(
+        dbusConnection,
+        [&io, &objectServer, &storageObjects](
+            const estoraged::ManagedStorageType& storageConfigurations) {
+            size_t numConfigObj = storageConfigurations.size();
+            if (numConfigObj > 1)
+            {
+                lg2::error(
+                    "eStoraged can only manage 1 eMMC device; found {NUM}",
+                    "NUM", numConfigObj, "REDFISH_MESSAGE_ID",
+                    std::string("OpenBMC.0.1.CreateStorageObjectsFail"));
+                return;
+            }
+
+            for (const std::pair<sdbusplus::message::object_path,
+                                 estoraged::StorageData>& storage :
+                 storageConfigurations)
+            {
+                const std::string& path = storage.first.str;
+
+                if (storageObjects.find(path) != storageObjects.end())
+                {
+                    /*
+                     * We've already created this object, or at least
+                     * attempted to.
+                     */
+                    continue;
+                }
+
+                /* Get the properties from the config object. */
+                const estoraged::StorageData& data = storage.second;
+
+                /* Look for the device file. */
+                const std::filesystem::path blockDevDir{"/sys/block"};
+                std::filesystem::path deviceFile, sysfsDir;
+                std::string luksName;
+                bool found = estoraged::util::findDevice(
+                    data, blockDevDir, deviceFile, sysfsDir, luksName);
+                if (!found)
+                {
+                    lg2::error(
+                        "Device not found for path {PATH}", "PATH", path,
+                        "REDFISH_MESSAGE_ID",
+                        std::string("OpenBMC.0.1.CreateStorageObjectsFail"));
+                    /*
+                     * Set a NULL pointer as a placeholder, so that we don't
+                     * try and fail again later.
+                     */
+                    storageObjects[path] = nullptr;
+                    continue;
+                }
+
+                uint64_t size =
+                    estoraged::util::findSizeOfBlockDevice(deviceFile);
+
+                uint8_t lifeleft =
+                    estoraged::util::findPredictedMediaLifeLeftPercent(
+                        sysfsDir);
+                /* Create the storage object. */
+                storageObjects[path] = std::make_unique<estoraged::EStoraged>(
+                    objectServer, deviceFile, luksName, size, lifeleft);
+                lg2::info("Created eStoraged object for path {PATH}", "PATH",
+                          path, "REDFISH_MESSAGE_ID",
+                          std::string("OpenBMC.0.1.CreateStorageObjects"));
+            }
+        });
+    getter->getConfiguration();
 }
 
-int main(int argc, char** argv)
+int main(void)
 {
-    std::string physicalBlockDev = "/dev/mmcblk0";
-    std::string sysfsDev = "/sys/block/mmcblk0/device";
-    std::string containerBlockDev;
-    int opt = 0;
-    while ((opt = getopt(argc, argv, "b:c:s:")) != -1)
-    {
-        switch (opt)
-        {
-            case 'b':
-                physicalBlockDev = optarg;
-                break;
-            case 'c':
-                containerBlockDev = optarg;
-                break;
-            case 's':
-                sysfsDev = optarg;
-                break;
-            default:
-                usage(*argv);
-                exit(EXIT_FAILURE);
-        }
-    }
     try
     {
-        /* Get the filename of the device (without "/dev/"). */
-        std::string deviceName =
-            std::filesystem::path(physicalBlockDev).filename().string();
-        /* If containerName arg wasn't provided, create one based on deviceName.
-         */
-        if (containerBlockDev.empty())
-        {
-            containerBlockDev = "luks-" + deviceName;
-        }
-
         // setup connection to dbus
         boost::asio::io_context io;
         auto conn = std::make_shared<sdbusplus::asio::connection>(io);
         // request D-Bus server name.
-        std::string busName = "xyz.openbmc_project.eStoraged";
-        conn->request_name(busName.c_str());
-        auto server = sdbusplus::asio::object_server(conn);
+        conn->request_name("xyz.openbmc_project.eStoraged");
+        sdbusplus::asio::object_server server(conn);
+        boost::container::flat_map<std::string,
+                                   std::unique_ptr<estoraged::EStoraged>>
+            storageObjects;
 
-        estoraged::EStoraged esObject{
-            server, physicalBlockDev, containerBlockDev,
-            estoraged::util::findSizeOfBlockDevice(physicalBlockDev),
-            estoraged::util::findPredictedMediaLifeLeftPercent(sysfsDev)};
+        boost::asio::post(io, [&]() {
+            createStorageObjects(io, server, storageObjects, conn);
+        });
+
+        /*
+         * Set up an event handler to process any new configuration objects
+         * that show up later.
+         */
+        boost::asio::deadline_timer filterTimer(io);
+        std::function<void(sdbusplus::message::message&)> eventHandler =
+            [&](sdbusplus::message::message& message) {
+                if (message.is_method_error())
+                {
+                    lg2::error("eventHandler callback method error");
+                    return;
+                }
+                /*
+                 * This implicitly cancels the timer, if it's already pending.
+                 * If there's a burst of events within a short period, we want
+                 * to handle them all at once. So, we will wait this long for no
+                 * more events to occur, before processing them.
+                 */
+                filterTimer.expires_from_now(boost::posix_time::seconds(1));
+
+                filterTimer.async_wait(
+                    [&](const boost::system::error_code& ec) {
+                        if (ec == boost::asio::error::operation_aborted)
+                        {
+                            /* we were canceled */
+                            return;
+                        }
+                        if (ec)
+                        {
+                            lg2::error("timer error");
+                            return;
+                        }
+                        createStorageObjects(io, server, storageObjects, conn);
+                    });
+            };
+
+        auto match = std::make_unique<sdbusplus::bus::match::match>(
+            static_cast<sdbusplus::bus::bus&>(*conn),
+            "type='signal',member='PropertiesChanged',path_namespace='" +
+                std::string("/xyz/openbmc_project/inventory") +
+                "',arg0namespace='" + estoraged::emmcConfigInterface + "'",
+            eventHandler);
+
         lg2::info("Storage management service is running", "REDFISH_MESSAGE_ID",
                   std::string("OpenBMC.1.0.ServiceStarted"));
 

@@ -1,5 +1,7 @@
 #include "util.hpp"
 
+#include "getConfig.hpp"
+
 #include <linux/fs.h>
 
 #include <phosphor-logging/lg2.hpp>
@@ -8,6 +10,7 @@
 #include <stdplus/handle/managed.hpp>
 #include <xyz/openbmc_project/Common/error.hpp>
 
+#include <filesystem>
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -87,6 +90,58 @@ uint8_t findPredictedMediaLifeLeftPercent(const std::string& sysfsPath)
     }
 
     return static_cast<uint8_t>(11 - maxLifeUsed) * 10;
+}
+
+bool findDevice(const StorageData& data, const std::filesystem::path& searchDir,
+                std::filesystem::path& deviceFile,
+                std::filesystem::path& sysfsDir, std::string& luksName)
+{
+    /* Check what type of storage device this is. */
+    estoraged::BasicVariantType typeVariant;
+    try
+    {
+        /* The EntityManager config should have this property set. */
+        typeVariant = data.at("Type");
+    }
+    catch (const boost::container::out_of_range& e)
+    {
+        lg2::error("Could not read device type", "REDFISH_MESSAGE_ID",
+                   std::string("OpenBMC.0.1.FindDeviceFail"));
+        return false;
+    }
+
+    /*
+     * Currently, we only support eMMC, so report an error for any other device
+     * types.
+     */
+    std::string type = std::get<std::string>(typeVariant);
+    if (type.compare("EmmcDevice") != 0)
+    {
+        lg2::error("Unsupported device type {TYPE}", "TYPE", type,
+                   "REDFISH_MESSAGE_ID",
+                   std::string("OpenBMC.0.1.FindDeviceFail"));
+        return false;
+    }
+
+    /* Look for the eMMC in the specified searchDir directory. */
+    for (auto const& dirEntry : std::filesystem::directory_iterator{searchDir})
+    {
+        std::filesystem::path curDevice(dirEntry.path().filename());
+        if (curDevice.string().starts_with("mmcblk"))
+        {
+            sysfsDir = dirEntry.path();
+            sysfsDir /= "device";
+
+            deviceFile = "/dev";
+            deviceFile /= curDevice;
+
+            luksName = "luks-" + curDevice.string();
+            return true;
+        }
+    }
+
+    /* Device wasn't found. */
+    return false;
 }
 
 } // namespace util

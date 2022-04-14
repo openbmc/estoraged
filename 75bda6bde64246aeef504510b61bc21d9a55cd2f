@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4481e2a_b0f8574a",
+        "filename": "src/erase/zero.cpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-04-14T03:58:51Z",
+      "side": 1,
+      "message": "whoa, first time seeing this being used.\n\nI see that these are the \"unlikely\" paths and from my reading of the reference page, seems to be used correctly but curious (and to learn more), why did you decide to add these? Are they needed?",
+      "range": {
+        "startLine": 44,
+        "startChar": 22,
+        "endLine": 44,
+        "endChar": 30
+      },
+      "revId": "75bda6bde64246aeef504510b61bc21d9a55cd2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

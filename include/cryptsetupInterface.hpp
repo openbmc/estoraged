@@ -7,6 +7,7 @@
 #include <xyz/openbmc_project/Common/error.hpp>
 
 #include <string>
+#include <string_view>
 
 namespace estoraged
 {
@@ -222,7 +223,7 @@ class CryptHandle
      *
      *  @param[in] device - path to device file
      */
-    explicit CryptHandle(const char* device) : handle(init(device))
+    explicit CryptHandle(const std::string_view& device) : handle(init(device))
     {}
 
     /** @brief Get a pointer to the crypt_device struct. */
@@ -244,10 +245,10 @@ class CryptHandle
      *
      *  @param[in] device - path to device file
      */
-    struct crypt_device* init(const char* device)
+    struct crypt_device* init(const std::string_view& device)
     {
         struct crypt_device* cryptDev = nullptr;
-        int retval = crypt_init(&cryptDev, device);
+        int retval = crypt_init(&cryptDev, std::string(device).c_str());
         if (retval < 0)
         {
             lg2::error("Failed to crypt_init", "REDFISH_MESSAGE_ID",

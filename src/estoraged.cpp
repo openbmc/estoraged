@@ -102,10 +102,8 @@ void EStoraged::formatLuks(const std::vector<uint8_t>& password,
         throw UnsupportedRequest();
     }
 
-    CryptHandle cryptHandle(devPath.c_str());
-
-    formatLuksDev(cryptHandle.get(), password);
-    activateLuksDev(cryptHandle.get(), password);
+    formatLuksDev(password);
+    activateLuksDev(password);
 
     createFilesystem();
     mountFilesystem();
@@ -187,9 +185,7 @@ void EStoraged::unlock(std::vector<uint8_t> password)
     std::string msg = "OpenBMC.0.1.DriveUnlock";
     lg2::info("Starting unlock", "REDFISH_MESSAGE_ID", msg);
 
-    CryptHandle cryptHandle(devPath.c_str());
-
-    activateLuksDev(cryptHandle.get(), std::move(password));
+    activateLuksDev(std::move(password));
     mountFilesystem();
 }
 
@@ -211,8 +207,7 @@ std::string_view EStoraged::getMountPoint() const
     return mountPoint;
 }
 
-void EStoraged::formatLuksDev(struct crypt_device* cd,
-                              std::vector<uint8_t> password)
+void EStoraged::formatLuksDev(std::vector<uint8_t> password)
 {
     lg2::info("Formatting device {DEV}", "DEV", devPath, "REDFISH_MESSAGE_ID",
               std::string("OpenBMC.0.1.FormatLuksDev"));
@@ -226,11 +221,15 @@ void EStoraged::formatLuksDev(struct crypt_device* cd,
                    std::string("OpenBMC.0.1.FormatLuksDevFail"));
         throw InternalFailure();
     }
+
+    /* Create the handle. */
+    CryptHandle cryptHandle(devPath);
+
     /* Format the LUKS encrypted device. */
-    int retval =
-        cryptIface->cryptFormat(cd, CRYPT_LUKS2, "aes", "xts-plain64", nullptr,
-                                reinterpret_cast<const char*>(volumeKey.data()),
-                                volumeKey.size(), nullptr);
+    int retval = cryptIface->cryptFormat(
+        cryptHandle.get(), CRYPT_LUKS2, "aes", "xts-plain64", nullptr,
+        reinterpret_cast<const char*>(volumeKey.data()), volumeKey.size(),
+        nullptr);
     if (retval < 0)
     {
         lg2::error("Failed to format encrypted device: {RETVAL}", "RETVAL",
@@ -244,7 +243,7 @@ void EStoraged::formatLuksDev(struct crypt_device* cd,
 
     /* Set the password. */
     retval = cryptIface->cryptKeyslotAddByVolumeKey(
-        cd, CRYPT_ANY_SLOT, nullptr, 0,
+        cryptHandle.get(), CRYPT_ANY_SLOT, nullptr, 0,
         reinterpret_cast<const char*>(password.data()), password.size());
 
     if (retval < 0)
@@ -259,13 +258,15 @@ void EStoraged::formatLuksDev(struct crypt_device* cd,
               std::string("OpenBMC.0.1.FormatLuksDevSuccess"));
 }
 
-void EStoraged::activateLuksDev(struct crypt_device* cd,
-                                std::vector<uint8_t> password)
+void EStoraged::activateLuksDev(std::vector<uint8_t> password)
 {
     lg2::info("Activating LUKS dev {DEV}", "DEV", devPath, "REDFISH_MESSAGE_ID",
               std::string("OpenBMC.0.1.ActivateLuksDev"));
 
-    int retval = cryptIface->cryptLoad(cd, CRYPT_LUKS2, nullptr);
+    /* Create the handle. */
+    CryptHandle cryptHandle(devPath);
+
+    int retval = cryptIface->cryptLoad(cryptHandle.get(), CRYPT_LUKS2, nullptr);
     if (retval < 0)
     {
         lg2::error("Failed to load LUKS header: {RETVAL}", "RETVAL", retval,
@@ -275,7 +276,7 @@ void EStoraged::activateLuksDev(struct crypt_device* cd,
     }
 
     retval = cryptIface->cryptActivateByPassphrase(
-        cd, containerName.c_str(), CRYPT_ANY_SLOT,
+        cryptHandle.get(), containerName.c_str(), CRYPT_ANY_SLOT,
         reinterpret_cast<const char*>(password.data()), password.size(), 0);
 
     if (retval < 0)

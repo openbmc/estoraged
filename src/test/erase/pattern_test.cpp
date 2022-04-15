@@ -95,17 +95,14 @@ TEST(pattern, patternsDontMatch)
     EXPECT_THROW(pass.verifyPattern(size, readFd), InternalFailure);
 }
 
-uint64_t size = 4096;
-size_t shortSize = 128;
-static auto shortData1 = std::vector<std::byte>(shortSize);
-static auto shortData2 = std::vector<std::byte>(shortSize);
-static auto restOfData = std::vector<std::byte>(size - shortSize * 2);
-
 TEST(pattern, shortReadWritePass)
 {
     std::string testFileName = "testfile_shortRead";
-
     uint64_t size = 4096;
+    size_t shortSize = 128;
+    static auto shortData1 = std::vector<std::byte>(shortSize);
+    static auto shortData2 = std::vector<std::byte>(shortSize);
+    static auto restOfData = std::vector<std::byte>(size - shortSize * 2);
     Pattern pass(testFileName);
     stdplus::fd::FdMock mock;
 

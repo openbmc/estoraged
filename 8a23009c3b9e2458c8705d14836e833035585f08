@@ -104,6 +104,30 @@
       },
       "revId": "8a23009c3b9e2458c8705d14836e833035585f08",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2630f75_be8082b2",
+        "filename": "src/erase/zero.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-04-15T18:04:08Z",
+      "side": 1,
+      "message": "Ah that makes sense. Alternative, I wonder if it\u0027d be cleaner (and logically make it very clear) if we did an `if (written \u003d\u003d writeSize) {break}` check so that we don\u0027t have to go through the retry logic in the first place.\n\nBecause currently, we could actually pass the write on the last retry and it would throw.\n\nThat way, we don\u0027t need this retry check to skip the first try for sleep",
+      "parentUuid": "24bdb390_1597ce0d",
+      "range": {
+        "startLine": 46,
+        "startChar": 15,
+        "endLine": 49,
+        "endChar": 17
+      },
+      "revId": "8a23009c3b9e2458c8705d14836e833035585f08",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

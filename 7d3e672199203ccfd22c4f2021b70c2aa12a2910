@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6cac683d_20d544da",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-15T17:03:48Z",
+      "side": 1,
+      "message": "The crypto erase code also needs to be updated.",
+      "revId": "7d3e672199203ccfd22c4f2021b70c2aa12a2910",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "829811fc_c3f67f5c",
         "filename": "include/cryptsetupInterface.hpp",
         "patchSetId": 1
@@ -19,6 +36,29 @@
         "startChar": 34,
         "endLine": 233,
         "endChar": 44
+      },
+      "revId": "7d3e672199203ccfd22c4f2021b70c2aa12a2910",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef4443ed_2a3e6d9f",
+        "filename": "include/cryptsetupInterface.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-15T17:03:48Z",
+      "side": 1,
+      "message": "If you\u0027re changing the constructor, so that *handle is never set to nullptr, is this needed?",
+      "range": {
+        "startLine": 231,
+        "startChar": 7,
+        "endLine": 236,
+        "endChar": 37
       },
       "revId": "7d3e672199203ccfd22c4f2021b70c2aa12a2910",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"

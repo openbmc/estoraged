@@ -132,18 +132,15 @@ class EStoraged
 
     /** @brief Format LUKS encrypted device.
      *
-     *  @param[in] cd - initialized crypt_device struct for the device.
      *  @param[in] password - password to set for the LUKS device.
      */
-    void formatLuksDev(struct crypt_device* cd, std::vector<uint8_t> password);
+    void formatLuksDev(std::vector<uint8_t> password);
 
     /** @brief Unlock the device.
      *
-     *  @param[in] cd - initialized crypt_device struct for the device.
      *  @param[in] password - password to activate the LUKS device.
      */
-    void activateLuksDev(struct crypt_device* cd,
-                         std::vector<uint8_t> password);
+    void activateLuksDev(std::vector<uint8_t> password);
 
     /** @brief Create the filesystem on the LUKS device.
      *  @details The LUKS device should already be activated, i.e. unlocked.

@@ -152,6 +152,30 @@
       },
       "revId": "8a23009c3b9e2458c8705d14836e833035585f08",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d8c4b8e_36b74a40",
+        "filename": "src/erase/zero.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-04-15T21:24:12Z",
+      "side": 1,
+      "message": "Great! Looks much cleaner, thanks for cleaning up.",
+      "parentUuid": "2f50d879_e9fa4f47",
+      "range": {
+        "startLine": 46,
+        "startChar": 15,
+        "endLine": 49,
+        "endChar": 17
+      },
+      "revId": "8a23009c3b9e2458c8705d14836e833035585f08",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

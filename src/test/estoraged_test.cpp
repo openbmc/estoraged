@@ -25,7 +25,6 @@ namespace estoraged_test
 {
 
 using sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
-using sdbusplus::xyz::openbmc_project::Common::Error::ResourceNotFound;
 using sdbusplus::xyz::openbmc_project::Inventory::Item::server::Volume;
 using std::filesystem::path;
 using ::testing::_;
@@ -187,7 +186,7 @@ TEST_F(EStoragedTest, FormatNoDeviceFail)
     EXPECT_EQ(0, unlink(testFileName));
 
     EXPECT_THROW(esObject->formatLuks(password, Volume::FilesystemType::ext4),
-                 ResourceNotFound);
+                 InternalFailure);
     EXPECT_FALSE(esObject->isLocked());
 
     /* Create the test file again, so that the TearDown function works. */

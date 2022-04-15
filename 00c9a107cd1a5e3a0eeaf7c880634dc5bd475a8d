@@ -80,6 +80,24 @@
       "message": "Currently, all of the callers are explicitly checking for nullptr, so I think you should change all the callers in this commit, as well.",
       "revId": "00c9a107cd1a5e3a0eeaf7c880634dc5bd475a8d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "17e5a086_aa7ab16c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-15T17:05:51Z",
+      "side": 1,
+      "message": "Oh, I just found your other CL to do this. I thought it would all be in the same commit.",
+      "parentUuid": "34e93d7c_0e983cc0",
+      "revId": "00c9a107cd1a5e3a0eeaf7c880634dc5bd475a8d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

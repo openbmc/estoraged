@@ -187,7 +187,7 @@ TEST_F(EStoragedTest, FormatNoDeviceFail)
     EXPECT_EQ(0, unlink(testFileName));
 
     EXPECT_THROW(esObject->formatLuks(password, Volume::FilesystemType::ext4),
-                 ResourceNotFound);
+                 InternalFailure);
     EXPECT_FALSE(esObject->isLocked());
 
     /* Create the test file again, so that the TearDown function works. */

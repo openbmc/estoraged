@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "63684d45_8a68cc73",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-15T17:40:21Z",
+      "side": 1,
+      "message": "good call.\nWho even wrote that crypto erase crap ;)",
+      "parentUuid": "6cac683d_20d544da",
+      "revId": "7d3e672199203ccfd22c4f2021b70c2aa12a2910",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "829811fc_c3f67f5c",
@@ -41,6 +59,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e3f0389_f22708a7",
+        "filename": "include/cryptsetupInterface.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-15T17:40:21Z",
+      "side": 1,
+      "message": "yes, it should be.",
+      "parentUuid": "829811fc_c3f67f5c",
+      "range": {
+        "startLine": 233,
+        "startChar": 34,
+        "endLine": 233,
+        "endChar": 44
+      },
+      "revId": "7d3e672199203ccfd22c4f2021b70c2aa12a2910",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ef4443ed_2a3e6d9f",
@@ -54,6 +96,30 @@
       "writtenOn": "2022-04-15T17:03:48Z",
       "side": 1,
       "message": "If you\u0027re changing the constructor, so that *handle is never set to nullptr, is this needed?",
+      "range": {
+        "startLine": 231,
+        "startChar": 7,
+        "endLine": 236,
+        "endChar": 37
+      },
+      "revId": "7d3e672199203ccfd22c4f2021b70c2aa12a2910",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5fe52642_1529e057",
+        "filename": "include/cryptsetupInterface.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-15T17:40:21Z",
+      "side": 1,
+      "message": "I am changing the constructor so the constructor never sets handle to nullptr.\n\nClient code could call get(), and set the the handle to null, intentionally or unintentionally when a crypt operation fails. I think it is reasonable to do a null check before returning a raw pointer.",
+      "parentUuid": "ef4443ed_2a3e6d9f",
       "range": {
         "startLine": 231,
         "startChar": 7,

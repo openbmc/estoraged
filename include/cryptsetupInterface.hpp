@@ -250,7 +250,9 @@ class CryptHandle
         int retval = crypt_init(&cryptDev, device);
         if (retval < 0)
         {
-            return nullptr;
+            lg2::error("Failed to crypt_init", "REDFISH_MESSAGE_ID",
+                       std::string("OpenBMC.0.1.InitFail"));
+            throw ResourceNotFound();
         }
 
         return cryptDev;

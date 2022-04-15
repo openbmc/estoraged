@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "829811fc_c3f67f5c",
+        "filename": "include/cryptsetupInterface.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-04-15T03:44:01Z",
+      "side": 1,
+      "message": "should this be \"get\"?",
+      "range": {
+        "startLine": 233,
+        "startChar": 34,
+        "endLine": 233,
+        "endChar": 44
+      },
+      "revId": "7d3e672199203ccfd22c4f2021b70c2aa12a2910",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

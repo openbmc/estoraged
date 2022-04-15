@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b68bfab9_36077b45",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-04-15T18:14:09Z",
+      "side": 1,
+      "message": "Wouldn\u0027t it be something like this in the constructor instead? or is my understanding of stdplus::Managed simply wrong and there\u0027s some other constructor that\u0027s needed for it:\n\n```\nstruct crypt_device* cryptDev \u003d nullptr;\nint retval \u003d crypt_init(\u0026cryptDev, device);\nif (retval \u003c 0)\n{\n    lg2::error(\"Failed to crypt_init\", \"REDFISH_MESSAGE_ID\",\n               std::string(\"OpenBMC.0.1.InitFail\"));\n    throw ResourceNotFound();\n}\nhandle \u003d cryptDev;\n```\n\nAt the same time though, I think having a separate init function instead is fine too - as sometimes having too big of a constructor (although in this case it\u0027s not too big) is a hassle to read through so we don\u0027t have to change this. Just curious about the design choice here to learn.",
+      "parentUuid": "d9fc9d3a_4ddd4125",
+      "range": {
+        "startLine": 7,
+        "startChar": 19,
+        "endLine": 7,
+        "endChar": 30
+      },
+      "revId": "00c9a107cd1a5e3a0eeaf7c880634dc5bd475a8d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "776913f8_bd471e85",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1

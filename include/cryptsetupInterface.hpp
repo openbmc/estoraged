@@ -2,10 +2,16 @@
 
 #include <libcryptsetup.h>
 
+#include <phosphor-logging/lg2.hpp>
 #include <stdplus/handle/managed.hpp>
+#include <xyz/openbmc_project/Common/error.hpp>
+
+#include <string>
 
 namespace estoraged
 {
+
+using sdbusplus::xyz::openbmc_project::Common::Error::ResourceNotFound;
 
 /** @class CryptsetupInterface
  *  @brief Interface to the cryptsetup functions used to manage a LUKS device.
@@ -222,6 +228,14 @@ class CryptHandle
     /** @brief Get a pointer to the crypt_device struct. */
     struct crypt_device* get()
     {
+        if (*handle == nullptr)
+        {
+            lg2::error("Failed to get crypt device handle",
+                       "REDFISH_MESSAGE_ID",
+                       std::string("OpenBMC.0.1.HandleGetFail"));
+            throw ResourceNotFound();
+        }
+
         return *handle;
     }
 

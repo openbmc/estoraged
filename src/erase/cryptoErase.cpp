@@ -27,12 +27,6 @@ void CryptErase::doErase()
 {
     /* get cryptHandle */
     CryptHandle cryptHandle(std::string(devPath).c_str());
-    if (cryptHandle.get() == nullptr)
-    {
-        lg2::error("Failed to initialize crypt device", "REDFISH_MESSAGE_ID",
-                   std::string("OpenBMC.0.1.EraseFailure"));
-        throw ResourceNotFound();
-    }
     /* cryptLoad */
     if (cryptIface->cryptLoad(cryptHandle.get(), CRYPT_LUKS2, nullptr) != 0)
     {

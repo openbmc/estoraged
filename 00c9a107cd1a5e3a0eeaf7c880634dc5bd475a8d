@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b53a67f5_a21d5fb7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-04-15T03:42:36Z",
+      "side": 1,
+      "message": "I was going to say you\u0027re not changing the constructor.. until I saw that you were calling the init in the initializer list. That\u0027s pretty funky, I must have missed that in my initial review. Just curious, what was the reasoning behind that instead of just having the constructor?",
+      "range": {
+        "startLine": 7,
+        "startChar": 19,
+        "endLine": 7,
+        "endChar": 30
+      },
+      "revId": "00c9a107cd1a5e3a0eeaf7c880634dc5bd475a8d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "776913f8_bd471e85",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-04-15T03:42:36Z",
+      "side": 1,
+      "message": "nit: new line",
+      "revId": "00c9a107cd1a5e3a0eeaf7c880634dc5bd475a8d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

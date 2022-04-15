@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c389484a_b3d63496",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-15T23:12:14Z",
+      "side": 0,
+      "message": "This might not be much of a concern, but the downside to changing this is that now CryptHandle needs to be created and destroyed twice.",
+      "range": {
+        "startLine": 105,
+        "startChar": 3,
+        "endLine": 105,
+        "endChar": 45
+      },
+      "revId": "b39f88954dd64fbc8cb6a289019f53e7947e750c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

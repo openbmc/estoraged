@@ -27,7 +27,6 @@ namespace estoraged
 {
 
 using sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
-using sdbusplus::xyz::openbmc_project::Common::Error::ResourceNotFound;
 using sdbusplus::xyz::openbmc_project::Common::Error::UnsupportedRequest;
 using sdbusplus::xyz::openbmc_project::Inventory::Item::server::Volume;
 
@@ -104,12 +103,6 @@ void EStoraged::formatLuks(const std::vector<uint8_t>& password,
     }
 
     CryptHandle cryptHandle(devPath.c_str());
-    if (cryptHandle.get() == nullptr)
-    {
-        lg2::error("Failed to initialize crypt device", "REDFISH_MESSAGE_ID",
-                   std::string("OpenBMC.0.1.FormatFail"));
-        throw ResourceNotFound();
-    }
 
     formatLuksDev(cryptHandle.get(), password);
     activateLuksDev(cryptHandle.get(), password);
@@ -195,12 +188,6 @@ void EStoraged::unlock(std::vector<uint8_t> password)
     lg2::info("Starting unlock", "REDFISH_MESSAGE_ID", msg);
 
     CryptHandle cryptHandle(devPath.c_str());
-    if (cryptHandle.get() == nullptr)
-    {
-        lg2::error("Failed to initialize crypt device", "REDFISH_MESSAGE_ID",
-                   std::string("OpenBMC.0.1.UnlockFail"));
-        throw ResourceNotFound();
-    }
 
     activateLuksDev(cryptHandle.get(), std::move(password));
     mountFilesystem();

@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7009ab5_e87fe1c0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-16T00:13:12Z",
+      "side": 1,
+      "message": "yeah, good call. Fixed",
+      "parentUuid": "49c70252_f7f14041",
+      "range": {
+        "startLine": 7,
+        "startChar": 23,
+        "endLine": 7,
+        "endChar": 33
+      },
+      "revId": "79cab39daf11c562fe3770b73318a6bbbbd44a2d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "52113b2b_e365e63c",
@@ -37,6 +61,24 @@
       "writtenOn": "2022-04-15T18:06:09Z",
       "side": 1,
       "message": "Tested: footer if applicable to do a sanity check to make sure we didn\u0027t break anything",
+      "revId": "79cab39daf11c562fe3770b73318a6bbbbd44a2d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a7f112e_2be9387b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-16T00:13:12Z",
+      "side": 1,
+      "message": "Added the testing footer",
+      "parentUuid": "52113b2b_e365e63c",
       "revId": "79cab39daf11c562fe3770b73318a6bbbbd44a2d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "85604616_ce57fc20",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-18T17:35:37Z",
+      "side": 1,
+      "message": "Feel free to experiment with this, but I think handle has to be in the initializer list, to avoid calling handle\u0027s default constructor.",
+      "parentUuid": "b68bfab9_36077b45",
+      "range": {
+        "startLine": 7,
+        "startChar": 19,
+        "endLine": 7,
+        "endChar": 30
+      },
+      "revId": "00c9a107cd1a5e3a0eeaf7c880634dc5bd475a8d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "776913f8_bd471e85",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1

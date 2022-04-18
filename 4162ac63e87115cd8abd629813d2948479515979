@@ -16,6 +16,52 @@
       "message": "Looks like only \"Tested\" section missing",
       "revId": "4162ac63e87115cd8abd629813d2948479515979",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b7e81b9_98f23e72",
+        "filename": "include/cryptsetupInterface.hpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-18T22:11:44Z",
+      "side": 1,
+      "message": "Seems like this defeats the purpose of a string_view. Can you use device.data(), rather than creating a new string?",
+      "range": {
+        "startLine": 251,
+        "startChar": 43,
+        "endLine": 251,
+        "endChar": 70
+      },
+      "revId": "4162ac63e87115cd8abd629813d2948479515979",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a220a2ae_8ab7d8be",
+        "filename": "src/erase/cryptoErase.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-18T22:11:44Z",
+      "side": 1,
+      "message": "Can you just use devPath directly, rather than create a new string?",
+      "range": {
+        "startLine": 29,
+        "startChar": 28,
+        "endLine": 29,
+        "endChar": 49
+      },
+      "revId": "4162ac63e87115cd8abd629813d2948479515979",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

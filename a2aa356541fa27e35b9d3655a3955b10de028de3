@@ -176,6 +176,30 @@
       },
       "revId": "a2aa356541fa27e35b9d3655a3955b10de028de3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f28d2ecb_0ac5d540",
+        "filename": "include/cryptsetupInterface.hpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1000885
+      },
+      "writtenOn": "2022-04-18T19:53:12Z",
+      "side": 1,
+      "message": "shouldn\u0027t this just be string_view instead? unless crypt_init might have issue with it.",
+      "parentUuid": "73a00ad7_5af12053",
+      "range": {
+        "startLine": 251,
+        "startChar": 43,
+        "endLine": 251,
+        "endChar": 51
+      },
+      "revId": "a2aa356541fa27e35b9d3655a3955b10de028de3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

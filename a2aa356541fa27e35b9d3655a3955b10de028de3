@@ -128,6 +128,30 @@
       },
       "revId": "a2aa356541fa27e35b9d3655a3955b10de028de3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73a00ad7_5af12053",
+        "filename": "include/cryptsetupInterface.hpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-04-18T18:18:57Z",
+      "side": 1,
+      "message": "I think we have a misunderstanding. I\u0027m just saying we can probably skip assigning to const char* that we use once, and instead just call device.c_str() directly in the param:\n\n```\nint retval \u003d crypt_init(\u0026cryptDev, device.c_str());\n```",
+      "parentUuid": "80a9dd79_641f1f32",
+      "range": {
+        "startLine": 251,
+        "startChar": 43,
+        "endLine": 251,
+        "endChar": 51
+      },
+      "revId": "a2aa356541fa27e35b9d3655a3955b10de028de3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

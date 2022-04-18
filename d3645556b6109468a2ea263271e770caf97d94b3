@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "056fc6bf_3fd9f9e3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-18T18:04:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bee68869_4f705e3b",
+      "range": {
+        "startLine": 11,
+        "startChar": 22,
+        "endLine": 11,
+        "endChar": 28
+      },
+      "revId": "d3645556b6109468a2ea263271e770caf97d94b3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e05904c4_bcd47977",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-04-15T23:12:14Z",
       "side": 1,
       "message": "sp",
+      "range": {
+        "startLine": 12,
+        "startChar": 26,
+        "endLine": 12,
+        "endChar": 30
+      },
+      "revId": "d3645556b6109468a2ea263271e770caf97d94b3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "57284f26_dc7f0563",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-18T18:04:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e05904c4_bcd47977",
       "range": {
         "startLine": 12,
         "startChar": 26,
@@ -104,6 +152,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a581d839_87f5a4e3",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-18T18:04:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0a8b2c2d_16ff1fe6",
+      "range": {
+        "startLine": 225,
+        "startChar": 18,
+        "endLine": 225,
+        "endChar": 24
+      },
+      "revId": "d3645556b6109468a2ea263271e770caf97d94b3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4c6871ca_37ba75b4",
@@ -117,6 +189,30 @@
       "writtenOn": "2022-04-15T23:12:14Z",
       "side": 1,
       "message": "handle",
+      "range": {
+        "startLine": 266,
+        "startChar": 18,
+        "endLine": 266,
+        "endChar": 24
+      },
+      "revId": "d3645556b6109468a2ea263271e770caf97d94b3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cbef3bef_73c178e6",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-18T18:04:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c6871ca_37ba75b4",
       "range": {
         "startLine": 266,
         "startChar": 18,

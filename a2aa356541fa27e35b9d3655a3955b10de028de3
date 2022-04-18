@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ffa00249_45643a8c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-18T18:04:13Z",
+      "side": 1,
+      "message": "I fixed the sentence by adding a subject. But the semi colon would have worked also.",
+      "parentUuid": "6f2bd850_ea6c6b66",
+      "range": {
+        "startLine": 10,
+        "startChar": 34,
+        "endLine": 10,
+        "endChar": 38
+      },
+      "revId": "a2aa356541fa27e35b9d3655a3955b10de028de3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "59c1ec20_8e7fdec1",
@@ -41,6 +65,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9b4f9b2_93ba4f50",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-18T18:04:13Z",
+      "side": 1,
+      "message": "\"It was me, John\" that caused merged conflict",
+      "parentUuid": "59c1ec20_8e7fdec1",
+      "revId": "a2aa356541fa27e35b9d3655a3955b10de028de3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "59f3885b_551cac2f",
@@ -54,6 +96,30 @@
       "writtenOn": "2022-04-18T16:31:41Z",
       "side": 1,
       "message": "would it be simpler to just use device.c_str() directly here?",
+      "range": {
+        "startLine": 251,
+        "startChar": 43,
+        "endLine": 251,
+        "endChar": 51
+      },
+      "revId": "a2aa356541fa27e35b9d3655a3955b10de028de3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80a9dd79_641f1f32",
+        "filename": "include/cryptsetupInterface.hpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-18T18:04:13Z",
+      "side": 1,
+      "message": "When interacting with C concepts (char array) I would prefer do the conversion (from a string to a char array) as close to the C code as possible. This allows the C++ code to use C++ features.\n\nThe caller used to make the c_str() conversion, but I pushed the conversion to the bottom the call stack. It is not required, but I think it is better.\n\nOLD:\nclient(string)\u003d\u003eCryptHandle(char*)\u003d\u003e init(char*)\u003d\u003ecrypt_init(char*)\n\nNEW:\nclient(string)\u003d\u003eCryptHandle(string)\u003d\u003e init(string)\u003d\u003ecrypt_init(char*)\n\nI am not going to die on this hill. If you think it is bad, I can undo it",
+      "parentUuid": "59f3885b_551cac2f",
       "range": {
         "startLine": 251,
         "startChar": 43,

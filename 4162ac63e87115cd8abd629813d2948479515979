@@ -41,6 +41,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "55612280_0c7c31c3",
+        "filename": "include/cryptsetupInterface.hpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-19T23:36:33Z",
+      "side": 1,
+      "message": "Yes, Older versions of C++ to guarantee the null termination, but 11 does.  neat",
+      "parentUuid": "0b7e81b9_98f23e72",
+      "range": {
+        "startLine": 251,
+        "startChar": 43,
+        "endLine": 251,
+        "endChar": 70
+      },
+      "revId": "4162ac63e87115cd8abd629813d2948479515979",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a220a2ae_8ab7d8be",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-04-18T22:11:44Z",
       "side": 1,
       "message": "Can you just use devPath directly, rather than create a new string?",
+      "range": {
+        "startLine": 29,
+        "startChar": 28,
+        "endLine": 29,
+        "endChar": 49
+      },
+      "revId": "4162ac63e87115cd8abd629813d2948479515979",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55514ea8_64a2ce2d",
+        "filename": "src/erase/cryptoErase.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-19T23:36:33Z",
+      "side": 1,
+      "message": "yes, done",
+      "parentUuid": "a220a2ae_8ab7d8be",
       "range": {
         "startLine": 29,
         "startChar": 28,

@@ -200,6 +200,30 @@
       },
       "revId": "a2aa356541fa27e35b9d3655a3955b10de028de3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "176a75fb_5246e8b9",
+        "filename": "include/cryptsetupInterface.hpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-19T23:36:33Z",
+      "side": 1,
+      "message": "Thanks for explaining it. I was confused.\nAnd I switched to string_view.",
+      "parentUuid": "f28d2ecb_0ac5d540",
+      "range": {
+        "startLine": 251,
+        "startChar": 43,
+        "endLine": 251,
+        "endChar": 51
+      },
+      "revId": "a2aa356541fa27e35b9d3655a3955b10de028de3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

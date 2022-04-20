@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fb28352_0a33f94c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-20T21:49:41Z",
+      "side": 1,
+      "message": "Fixed.",
+      "parentUuid": "08447363_c31a01ac",
+      "range": {
+        "startLine": 10,
+        "startChar": 70,
+        "endLine": 11,
+        "endChar": 1
+      },
+      "revId": "9efa1bef60608c73df7e2847165197e0975724ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fce9df9f_d8a08226",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-04-20T19:59:19Z",
       "side": 1,
       "message": "might be good to have an example e-m JSON too",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 6
+      },
+      "revId": "9efa1bef60608c73df7e2847165197e0975724ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "47c0c677_1a95d3d3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-20T21:49:41Z",
+      "side": 1,
+      "message": "I added some more information about this and included an example \"Exposes\" entry. Take a look at what I have now.\n\nI wonder if this information should also be added to the README file.",
+      "parentUuid": "fce9df9f_d8a08226",
       "range": {
         "startLine": 23,
         "startChar": 0,
@@ -77,6 +125,30 @@
       "writtenOn": "2022-04-20T19:59:19Z",
       "side": 1,
       "message": "looks like this capture isn\u0027t used in the lambda",
+      "range": {
+        "startLine": 42,
+        "startChar": 47,
+        "endLine": 42,
+        "endChar": 61
+      },
+      "revId": "9efa1bef60608c73df7e2847165197e0975724ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d965320_5f1327f9",
+        "filename": "src/main.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-20T21:49:41Z",
+      "side": 1,
+      "message": "Good catch. I removed it.",
+      "parentUuid": "0cef440c_4358b9cc",
       "range": {
         "startLine": 42,
         "startChar": 47,

@@ -34,6 +34,322 @@
       "parentUuid": "05e54cb2_381531e9",
       "revId": "90be9b338b34579e195bf1be2d7f548e7199e153",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80d9eb72_4620bc74",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-20T23:02:06Z",
+      "side": 1,
+      "message": "partial review",
+      "revId": "90be9b338b34579e195bf1be2d7f548e7199e153",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d4e4538_c8b8172a",
+        "filename": "include/getConfig.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-20T23:02:06Z",
+      "side": 1,
+      "message": "This object inherits from a shared version of itself? I am not familar with this pattern, could you add some context?\n\nThat is interesting",
+      "range": {
+        "startLine": 30,
+        "startChar": 3,
+        "endLine": 31,
+        "endChar": 1
+      },
+      "revId": "90be9b338b34579e195bf1be2d7f548e7199e153",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "636e94a7_803187e7",
+        "filename": "include/getConfig.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-20T23:02:06Z",
+      "side": 1,
+      "message": "Should be private? only used by class",
+      "range": {
+        "startLine": 63,
+        "startChar": 4,
+        "endLine": 77,
+        "endChar": 59
+      },
+      "revId": "90be9b338b34579e195bf1be2d7f548e7199e153",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1327b5a_2915d4e1",
+        "filename": "src/getConfig.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-20T23:02:06Z",
+      "side": 1,
+      "message": "why are you doing this?\n\nThis creates another copy of your shared object, but your orignal shared object ownership should be enough. It is not clear to me that this function needs to own it\u0027s own version of \"this\".\n\nWhy can\u0027t you just use \"this\" for every place you use \"self\".",
+      "range": {
+        "startLine": 33,
+        "startChar": 52,
+        "endLine": 33,
+        "endChar": 68
+      },
+      "revId": "90be9b338b34579e195bf1be2d7f548e7199e153",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "934cf914_3bdbdf3c",
+        "filename": "src/getConfig.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-20T23:02:06Z",
+      "side": 1,
+      "message": "your retries might have stack issues.\n\nAbout how many retries before stacks size is greater then 4k?",
+      "range": {
+        "startLine": 76,
+        "startChar": 30,
+        "endLine": 76,
+        "endChar": 46
+      },
+      "revId": "90be9b338b34579e195bf1be2d7f548e7199e153",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "efadefe6_e4c9be7c",
+        "filename": "src/main.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-20T23:02:06Z",
+      "side": 1,
+      "message": "makes sense for multi storage system.",
+      "range": {
+        "startLine": 54,
+        "startChar": 12,
+        "endLine": 54,
+        "endChar": 15
+      },
+      "revId": "90be9b338b34579e195bf1be2d7f548e7199e153",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9497a812_f892c2a2",
+        "filename": "src/main.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-20T23:02:06Z",
+      "side": 1,
+      "message": "NIT:\nget ride of temporary that is only used once. Or use string_view\u0026",
+      "range": {
+        "startLine": 57,
+        "startChar": 13,
+        "endLine": 59,
+        "endChar": 0
+      },
+      "revId": "90be9b338b34579e195bf1be2d7f548e7199e153",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36a98dbc_235e76a4",
+        "filename": "src/main.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-20T23:02:06Z",
+      "side": 1,
+      "message": "NIT:\nget ride of temporary that is only used once. Or use string_view\u0026",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 61
+      },
+      "revId": "90be9b338b34579e195bf1be2d7f548e7199e153",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c55a1e5f_bcb06115",
+        "filename": "src/main.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-20T23:02:06Z",
+      "side": 1,
+      "message": "should be a constexpr, unless you think in the future systems storage devices will not be linux block devices.",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 64
+      },
+      "revId": "90be9b338b34579e195bf1be2d7f548e7199e153",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c70c6750_94cc2e5d",
+        "filename": "src/main.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-20T23:02:06Z",
+      "side": 1,
+      "message": "not required, first std::filesystem::path should natviely string cast. \n\nNext the findSizeOfBlockDevice should be updated to take std::filesystem::path \n( I can do that)",
+      "range": {
+        "startLine": 93,
+        "startChar": 70,
+        "endLine": 93,
+        "endChar": 76
+      },
+      "revId": "90be9b338b34579e195bf1be2d7f548e7199e153",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5068e92e_a02801b6",
+        "filename": "src/main.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-20T23:02:06Z",
+      "side": 1,
+      "message": "same as above",
+      "range": {
+        "startLine": 100,
+        "startChar": 45,
+        "endLine": 100,
+        "endChar": 53
+      },
+      "revId": "90be9b338b34579e195bf1be2d7f548e7199e153",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49899551_860a1068",
+        "filename": "src/main.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-20T23:02:06Z",
+      "side": 1,
+      "message": "I see that you plan to support multiple storage devices, but currently we don\u0027t.\n\nI would rather either support multiple storage devices, or not support them, rather then a skeleton that partially supports it.\n\nI would get feedback from other reviewers/approves before you do a major refactor.",
+      "range": {
+        "startLine": 120,
+        "startChar": 0,
+        "endLine": 122,
+        "endChar": 27
+      },
+      "revId": "90be9b338b34579e195bf1be2d7f548e7199e153",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "295da7ec_b1b81a18",
+        "filename": "src/main.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-20T23:02:06Z",
+      "side": 1,
+      "message": "we should log if we get canceled",
+      "range": {
+        "startLine": 152,
+        "startChar": 0,
+        "endLine": 152,
+        "endChar": 50
+      },
+      "revId": "90be9b338b34579e195bf1be2d7f548e7199e153",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb160e3d_099a13f2",
+        "filename": "src/main.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-20T23:02:06Z",
+      "side": 1,
+      "message": "why do you make this match?\n\nI am not very familiar with them",
+      "range": {
+        "startLine": 165,
+        "startChar": 13,
+        "endLine": 165,
+        "endChar": 18
+      },
+      "revId": "90be9b338b34579e195bf1be2d7f548e7199e153",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

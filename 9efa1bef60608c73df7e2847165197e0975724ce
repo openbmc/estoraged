@@ -47,6 +47,23 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a980b50_eb3bd7ae",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000500
+      },
+      "writtenOn": "2022-04-20T21:33:30Z",
+      "side": 1,
+      "message": "I ran the CodeChecker layer on this change, it did not generate any potential warnings/errors, except that `mmcSendExtCsd` and `mmcCmdAdtc` in src/erase/sanitize.cpp not being used (they are not part of this change though).\n\n+1 to a sample E-M json config, since \"Configuration\" is used, so it may be good to indicate which Board JSON file the EMMC is Exposed from?",
+      "revId": "9efa1bef60608c73df7e2847165197e0975724ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0cef440c_4358b9cc",

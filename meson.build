@@ -13,3 +13,4 @@ eStoraged_root = meson.current_source_dir()
 
 subdir('include')
 subdir('src')
+subdir('service_files')

@@ -22,6 +22,30 @@
       },
       "revId": "865f5357fda411818be9056411928cb61699fbc6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9261169f_d5ff8d52",
+        "filename": "service_files/xyz.openbmc_project.eStoraged.service",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2022-04-20T22:13:27Z",
+      "side": 1,
+      "message": "Yeah +1",
+      "parentUuid": "4e007cc9_df08e2fd",
+      "range": {
+        "startLine": 9,
+        "startChar": 10,
+        "endLine": 9,
+        "endChar": 19
+      },
+      "revId": "865f5357fda411818be9056411928cb61699fbc6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

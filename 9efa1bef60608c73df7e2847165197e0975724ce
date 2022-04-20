@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08447363_c31a01ac",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000233
+      },
+      "writtenOn": "2022-04-20T19:59:19Z",
+      "side": 1,
+      "message": "nit: line wrapping",
+      "range": {
+        "startLine": 10,
+        "startChar": 70,
+        "endLine": 11,
+        "endChar": 1
+      },
+      "revId": "9efa1bef60608c73df7e2847165197e0975724ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fce9df9f_d8a08226",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000233
+      },
+      "writtenOn": "2022-04-20T19:59:19Z",
+      "side": 1,
+      "message": "might be good to have an example e-m JSON too",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 6
+      },
+      "revId": "9efa1bef60608c73df7e2847165197e0975724ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0cef440c_4358b9cc",
+        "filename": "src/main.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000233
+      },
+      "writtenOn": "2022-04-20T19:59:19Z",
+      "side": 1,
+      "message": "looks like this capture isn\u0027t used in the lambda",
+      "range": {
+        "startLine": 42,
+        "startChar": 47,
+        "endLine": 42,
+        "endChar": 61
+      },
+      "revId": "9efa1bef60608c73df7e2847165197e0975724ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

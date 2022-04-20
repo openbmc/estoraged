@@ -78,6 +78,12 @@ EStoraged::EStoraged(sdbusplus::asio::object_server& server,
     driveInterface->register_property("Capacity", size);
     driveInterface->register_property("PredictedMediaLifeLeftPercent",
                                       lifeTime);
+    driveInterface->register_property_r(
+        "Locked", lockedProperty, sdbusplus::vtable::property_::emits_change,
+        [this](bool& value) {
+            value = this->isLocked();
+            return value;
+        });
 
     volumeInterface->initialize();
     driveInterface->initialize();

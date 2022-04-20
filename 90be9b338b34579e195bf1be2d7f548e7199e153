@@ -16,6 +16,24 @@
       "message": "I\u0027m a little suspicious of the fact that we need a timer + retry logic. It should just set up a match for `xyz.openbmc_project.Configuration.EmmcDevice` and then query existing `xyz.openbmc_project.Configuration.EmmcDevice` once. Any new devices from that point onward would be discovered.",
       "revId": "90be9b338b34579e195bf1be2d7f548e7199e153",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "800de2c6_cf507d03",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-20T22:19:25Z",
+      "side": 1,
+      "message": "The reason I included the retry logic was because dbus-sensors does it. From my testing, I haven\u0027t seen eStoraged actually do any retries, though. I don\u0027t know why dbus-sensors has the retry logic.\n\nWould you prefer that I just remove the retries?",
+      "parentUuid": "05e54cb2_381531e9",
+      "revId": "90be9b338b34579e195bf1be2d7f548e7199e153",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

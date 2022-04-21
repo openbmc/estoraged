@@ -63,6 +63,30 @@
       },
       "revId": "865f5357fda411818be9056411928cb61699fbc6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "78daf348_4a460325",
+        "filename": "service_files/xyz.openbmc_project.eStoraged.service",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-21T17:24:08Z",
+      "side": 1,
+      "message": "Alright, I changed it accordingly. Take a look at what I have now.",
+      "parentUuid": "9261169f_d5ff8d52",
+      "range": {
+        "startLine": 9,
+        "startChar": 10,
+        "endLine": 9,
+        "endChar": 19
+      },
+      "revId": "865f5357fda411818be9056411928cb61699fbc6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

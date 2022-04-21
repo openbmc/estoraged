@@ -99,6 +99,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bdba4975_5eefd7d8",
+        "filename": "include/getConfig.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-21T17:23:27Z",
+      "side": 1,
+      "message": "I changed this to make the callback private, but the others still need to be public, since they are accessed via the \"self\" shared pointer.",
+      "parentUuid": "636e94a7_803187e7",
+      "range": {
+        "startLine": 63,
+        "startChar": 4,
+        "endLine": 77,
+        "endChar": 59
+      },
+      "revId": "90be9b338b34579e195bf1be2d7f548e7199e153",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a1327b5a_2915d4e1",
@@ -122,6 +146,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "98f61a56_1b4e8755",
+        "filename": "src/getConfig.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-21T17:23:27Z",
+      "side": 1,
+      "message": "This is how it\u0027s done in dbus-sensors. The intent is to protect against the possibility of the GetStorageConfiguration object getting destroyed before the callback runs. Since the callback runs later after the async_method_call, it\u0027s entirely possible for the GetStorageConfiguration object to get destroyed earlier.",
+      "parentUuid": "a1327b5a_2915d4e1",
+      "range": {
+        "startLine": 33,
+        "startChar": 52,
+        "endLine": 33,
+        "endChar": 68
+      },
+      "revId": "90be9b338b34579e195bf1be2d7f548e7199e153",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "934cf914_3bdbdf3c",
@@ -135,6 +183,30 @@
       "writtenOn": "2022-04-20T23:02:06Z",
       "side": 1,
       "message": "your retries might have stack issues.\n\nAbout how many retries before stacks size is greater then 4k?",
+      "range": {
+        "startLine": 76,
+        "startChar": 30,
+        "endLine": 76,
+        "endChar": 46
+      },
+      "revId": "90be9b338b34579e195bf1be2d7f548e7199e153",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6217020_b968d05a",
+        "filename": "src/getConfig.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-21T17:23:27Z",
+      "side": 1,
+      "message": "A similar question came up in this past review: https://gerrit.openbmc-project.xyz/c/openbmc/dbus-sensors/+/35336/5..9/include/Utils.hpp#b173\n\nBut there\u0027s a chance I\u0027ll just remove the retries. I\u0027m trying to figure out why they exist in dbus-sensors.",
+      "parentUuid": "934cf914_3bdbdf3c",
       "range": {
         "startLine": 76,
         "startChar": 30,
@@ -191,6 +263,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "07d532e5_d65dd4b5",
+        "filename": "src/main.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-21T17:23:27Z",
+      "side": 1,
+      "message": "I changed it to \"const std::string\u0026\", which I think should accomplish the same thing. I just want an alias to the string that already exists.",
+      "parentUuid": "9497a812_f892c2a2",
+      "range": {
+        "startLine": 57,
+        "startChar": 13,
+        "endLine": 59,
+        "endChar": 0
+      },
+      "revId": "90be9b338b34579e195bf1be2d7f548e7199e153",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "36a98dbc_235e76a4",
@@ -204,6 +300,30 @@
       "writtenOn": "2022-04-20T23:02:06Z",
       "side": 1,
       "message": "NIT:\nget ride of temporary that is only used once. Or use string_view\u0026",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 61
+      },
+      "revId": "90be9b338b34579e195bf1be2d7f548e7199e153",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de3118b5_dd201e07",
+        "filename": "src/main.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-21T17:23:27Z",
+      "side": 1,
+      "message": "I changed it to \"const estoraged::StorageData\u0026\".",
+      "parentUuid": "36a98dbc_235e76a4",
       "range": {
         "startLine": 70,
         "startChar": 0,
@@ -237,6 +357,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8dcc40d_482fb76d",
+        "filename": "src/main.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-21T17:23:27Z",
+      "side": 1,
+      "message": "I changed it to const. constexpr didn\u0027t work because it complained about it not being a literal.",
+      "parentUuid": "c55a1e5f_bcb06115",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 64
+      },
+      "revId": "90be9b338b34579e195bf1be2d7f548e7199e153",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c70c6750_94cc2e5d",
@@ -260,6 +404,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf0fc33f_c617d613",
+        "filename": "src/main.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-21T17:23:27Z",
+      "side": 1,
+      "message": "Interesting, I thought I had to explicitly convert this. Done.",
+      "parentUuid": "c70c6750_94cc2e5d",
+      "range": {
+        "startLine": 93,
+        "startChar": 70,
+        "endLine": 93,
+        "endChar": 76
+      },
+      "revId": "90be9b338b34579e195bf1be2d7f548e7199e153",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5068e92e_a02801b6",
@@ -273,6 +441,30 @@
       "writtenOn": "2022-04-20T23:02:06Z",
       "side": 1,
       "message": "same as above",
+      "range": {
+        "startLine": 100,
+        "startChar": 45,
+        "endLine": 100,
+        "endChar": 53
+      },
+      "revId": "90be9b338b34579e195bf1be2d7f548e7199e153",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5190ef2_8363369b",
+        "filename": "src/main.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-21T17:23:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5068e92e_a02801b6",
       "range": {
         "startLine": 100,
         "startChar": 45,
@@ -308,6 +500,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0e6988d6_9c20c311",
+        "filename": "src/main.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-21T17:23:27Z",
+      "side": 1,
+      "message": "Yeah, as you can see, I was trying to structure things to be easily scalable.\n\nBut I also don\u0027t think it makes much of a difference either way. For example, currently createStorageObjects() has a for loop which is going iterate either 0 times or once. Alternatively, we could remove the for loop and add a check at the beginning to see if there\u0027s 0 config objects before processing the config object.",
+      "parentUuid": "49899551_860a1068",
+      "range": {
+        "startLine": 120,
+        "startChar": 0,
+        "endLine": 122,
+        "endChar": 27
+      },
+      "revId": "90be9b338b34579e195bf1be2d7f548e7199e153",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "295da7ec_b1b81a18",
         "filename": "src/main.cpp",
         "patchSetId": 4
@@ -331,6 +547,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a21c67ee_35386e43",
+        "filename": "src/main.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-21T17:23:27Z",
+      "side": 1,
+      "message": "This is similar to what dbus-sensors does. I think it intentionally didn\u0027t log anything here, in case there\u0027s a bunch of new config objects that show up within a short period of time, in which case we might cancel the timer multiple times in a row. But on the other hand, eStoraged is not expecting a bunch of config objects, so I\u0027m not sure if I should just remove the timer logic.",
+      "parentUuid": "295da7ec_b1b81a18",
+      "range": {
+        "startLine": 152,
+        "startChar": 0,
+        "endLine": 152,
+        "endChar": 50
+      },
+      "revId": "90be9b338b34579e195bf1be2d7f548e7199e153",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "eb160e3d_099a13f2",
         "filename": "src/main.cpp",
         "patchSetId": 4
@@ -342,6 +582,30 @@
       "writtenOn": "2022-04-20T23:02:06Z",
       "side": 1,
       "message": "why do you make this match?\n\nI am not very familiar with them",
+      "range": {
+        "startLine": 165,
+        "startChar": 13,
+        "endLine": 165,
+        "endChar": 18
+      },
+      "revId": "90be9b338b34579e195bf1be2d7f548e7199e153",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5654794f_9ff6f8a1",
+        "filename": "src/main.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-21T17:23:27Z",
+      "side": 1,
+      "message": "The purpose of this is to monitor the bus for any new config objects. So, if the config object isn\u0027t ready when eStoraged starts up, we will still see it show up later. From my testing, I can see that this is actually being used.",
+      "parentUuid": "eb160e3d_099a13f2",
       "range": {
         "startLine": 165,
         "startChar": 13,

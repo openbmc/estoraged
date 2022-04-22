@@ -26,13 +26,15 @@
 namespace estoraged
 {
 
+using Association = std::tuple<std::string, std::string, std::string>;
 using sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
 using sdbusplus::xyz::openbmc_project::Common::Error::UnsupportedRequest;
 using sdbusplus::xyz::openbmc_project::Inventory::Item::server::Volume;
 
 EStoraged::EStoraged(sdbusplus::asio::object_server& server,
-                     const std::string& devPath, const std::string& luksName,
-                     uint64_t size, uint8_t lifeTime,
+                     const std::string& configPath, const std::string& devPath,
+                     const std::string& luksName, uint64_t size,
+                     uint8_t lifeTime,
                      std::unique_ptr<CryptsetupInterface> cryptInterface,
                      std::unique_ptr<FilesystemInterface> fsInterface) :
     devPath(devPath),
@@ -43,11 +45,12 @@ EStoraged::EStoraged(sdbusplus::asio::object_server& server,
     /* Get the filename of the device (without "/dev/"). */
     std::string deviceName = std::filesystem::path(devPath).filename().string();
     /* DBus object path */
-    std::string path = "/xyz/openbmc_project/inventory/storage/" + deviceName;
+    std::string objectPath =
+        "/xyz/openbmc_project/inventory/storage/" + deviceName;
 
     /* Add Volume interface. */
     volumeInterface = objectServer.add_interface(
-        path, "xyz.openbmc_project.Inventory.Item.Volume");
+        objectPath, "xyz.openbmc_project.Inventory.Item.Volume");
     volumeInterface->register_method(
         "FormatLuks", [this](const std::vector<uint8_t>& password,
                              Volume::FilesystemType type) {
@@ -74,19 +77,30 @@ EStoraged::EStoraged(sdbusplus::asio::object_server& server,
 
     /* Add Drive interface. */
     driveInterface = objectServer.add_interface(
-        path, "xyz.openbmc_project.Inventory.Item.Drive");
+        objectPath, "xyz.openbmc_project.Inventory.Item.Drive");
     driveInterface->register_property("Capacity", size);
     driveInterface->register_property("PredictedMediaLifeLeftPercent",
                                       lifeTime);
 
     volumeInterface->initialize();
     driveInterface->initialize();
+
+    /* Set up the association between chassis and drive. */
+    association = objectServer.add_interface(
+        objectPath, "xyz.openbmc_project.Association.Definitions");
+
+    std::vector<Association> associations;
+    associations.emplace_back("chassis", "drive",
+                              std::filesystem::path(configPath).parent_path());
+    association->register_property("Associations", associations);
+    association->initialize();
 }
 
 EStoraged::~EStoraged()
 {
     objectServer.remove_interface(volumeInterface);
     objectServer.remove_interface(driveInterface);
+    objectServer.remove_interface(association);
 }
 
 void EStoraged::formatLuks(const std::vector<uint8_t>& password,

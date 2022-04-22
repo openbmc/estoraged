@@ -593,6 +593,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c2a8aa2_bc72b18f",
+        "filename": "src/main.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-22T16:38:26Z",
+      "side": 1,
+      "message": "Thanks for pointing that out, Benjamin. In that case, I think this timer logic makes sense the way it is, and logging any canceled timers would just add noise to the log.",
+      "parentUuid": "ae493352_c002187a",
+      "range": {
+        "startLine": 152,
+        "startChar": 0,
+        "endLine": 152,
+        "endChar": 50
+      },
+      "revId": "90be9b338b34579e195bf1be2d7f548e7199e153",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eb160e3d_099a13f2",

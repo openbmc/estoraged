@@ -38,13 +38,11 @@ class EStoragedTest : public testing::Test
   public:
     const char* testFileName = "testfile";
     const char* testLuksDevName = "testfile_luksDev";
+    const std::string testConfigPath =
+        "/xyz/openbmc_project/inventory/system/board/test_board/test_emmc";
     const uint64_t testSize = 24;
     const uint8_t testLifeTime = 25;
     std::ofstream testFile;
-    const char* testPath = "/test/openbmc_project/storage/test_dev";
-    const char* estoragedInterface =
-        "xyz.openbmc_project.Inventory.Item.Volume";
-    const char* driveInterface = "xyz.openbmc_project.Inventory.Item.Drive";
     std::string passwordString;
     std::vector<uint8_t> password;
     MockCryptsetupInterface* mockCryptIface{};
@@ -83,8 +81,8 @@ class EStoragedTest : public testing::Test
         objectServer = std::make_unique<sdbusplus::asio::object_server>(conn);
 
         esObject = std::make_unique<estoraged::EStoraged>(
-            *objectServer, testFileName, testLuksDevName, testSize,
-            testLifeTime, std::move(cryptIface), std::move(fsIface));
+            *objectServer, testConfigPath, testFileName, testLuksDevName,
+            testSize, testLifeTime, std::move(cryptIface), std::move(fsIface));
     }
 
     void TearDown() override

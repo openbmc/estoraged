@@ -35,6 +35,7 @@ class EStoraged
     /** @brief Constructor for eStoraged
      *
      *  @param[in] server - sdbusplus asio object server
+     *  @param[in] configPath - path of the config object from Entity Manager
      *  @param[in] devPath - path to device file, e.g. /dev/mmcblk0
      *  @param[in] luksName - name for the LUKS container
      *  @param[in] size - size of the drive in bytes
@@ -45,8 +46,8 @@ class EStoraged
      *    object
      */
     EStoraged(sdbusplus::asio::object_server& server,
-              const std::string& devPath, const std::string& luksName,
-              uint64_t size, uint8_t lifeTime,
+              const std::string& configPath, const std::string& devPath,
+              const std::string& luksName, uint64_t size, uint8_t lifeTime,
               std::unique_ptr<CryptsetupInterface> cryptInterface =
                   std::make_unique<Cryptsetup>(),
               std::unique_ptr<FilesystemInterface> fsInterface =
@@ -129,6 +130,9 @@ class EStoraged
 
     /** @brief D-Bus interface for the physical drive. */
     std::shared_ptr<sdbusplus::asio::dbus_interface> driveInterface;
+
+    /** @brief Association between chassis and drive. */
+    std::shared_ptr<sdbusplus::asio::dbus_interface> association;
 
     /** @brief Format LUKS encrypted device.
      *

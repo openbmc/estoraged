@@ -96,7 +96,7 @@ void createStorageObjects(
                         sysfsDir);
                 /* Create the storage object. */
                 storageObjects[path] = std::make_unique<estoraged::EStoraged>(
-                    objectServer, deviceFile, luksName, size, lifeleft);
+                    objectServer, path, deviceFile, luksName, size, lifeleft);
                 lg2::info("Created eStoraged object for path {PATH}", "PATH",
                           path, "REDFISH_MESSAGE_ID",
                           std::string("OpenBMC.0.1.CreateStorageObjects"));

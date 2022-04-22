@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "25339ff3_aa663f55",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-22T00:30:07Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "1a1a6ee6_9fdca1ea",
+      "revId": "bcdf26261fb6fc2a6ac5ec4a48941e2d15c7c71a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5964d163_ebf1ea23",
         "filename": "src/estoraged.cpp",
         "patchSetId": 1
@@ -31,6 +49,30 @@
       "writtenOn": "2022-04-21T01:04:15Z",
       "side": 1,
       "message": "Noticed that Volume also has Locked property - just wanted to make sure this is expected and we didn\u0027t confuse the interfaces",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 11
+      },
+      "revId": "bcdf26261fb6fc2a6ac5ec4a48941e2d15c7c71a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "566ff2dd_1b37e966",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-22T00:30:07Z",
+      "side": 1,
+      "message": "Both interfaces do have a Locked property, and that was intentional when designing the interface, since it\u0027s possible to lock a drive at the device level and \"lock\" a logical volume using encryption.\n\nBut as you can see, we\u0027re not actually making that distinction here. It\u0027s not ideal, but maybe we can change this later when we do eventually enable device-level locking.\n\nThe goal here is to expose the Locked property via bmcweb, so that client software can tell when the data is accessible. And my understanding is that when bmcweb looks for drives, it will only access properties exposed by the Drives interface.\n\nMaybe we can at least add a comment about this.",
+      "parentUuid": "5964d163_ebf1ea23",
       "range": {
         "startLine": 69,
         "startChar": 0,

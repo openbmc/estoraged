@@ -123,6 +123,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b081ffbb_c1296e2f",
+        "filename": "include/getConfig.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-22T18:28:48Z",
+      "side": 1,
+      "message": "sounds good",
+      "parentUuid": "bdba4975_5eefd7d8",
+      "range": {
+        "startLine": 63,
+        "startChar": 4,
+        "endLine": 77,
+        "endChar": 59
+      },
+      "revId": "90be9b338b34579e195bf1be2d7f548e7199e153",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a1327b5a_2915d4e1",
@@ -219,6 +243,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "31f1b9dd_b4bad850",
+        "filename": "src/getConfig.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-22T18:28:48Z",
+      "side": 1,
+      "message": "nice, you can set a max number of retries. (Either dynamically or at build)",
+      "parentUuid": "a6217020_b968d05a",
+      "range": {
+        "startLine": 76,
+        "startChar": 30,
+        "endLine": 76,
+        "endChar": 46
+      },
+      "revId": "90be9b338b34579e195bf1be2d7f548e7199e153",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "efadefe6_e4c9be7c",
         "filename": "src/main.cpp",
         "patchSetId": 4
@@ -230,6 +278,30 @@
       "writtenOn": "2022-04-20T23:02:06Z",
       "side": 1,
       "message": "makes sense for multi storage system.",
+      "range": {
+        "startLine": 54,
+        "startChar": 12,
+        "endLine": 54,
+        "endChar": 15
+      },
+      "revId": "90be9b338b34579e195bf1be2d7f548e7199e153",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6022dfe_04fbdf25",
+        "filename": "src/main.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-22T18:28:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "efadefe6_e4c9be7c",
       "range": {
         "startLine": 54,
         "startChar": 12,
@@ -287,6 +359,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1c18d7e_f6d98e13",
+        "filename": "src/main.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-22T18:28:48Z",
+      "side": 1,
+      "message": "sounds good, it is pretty common do use these temporaries.",
+      "parentUuid": "07d532e5_d65dd4b5",
+      "range": {
+        "startLine": 57,
+        "startChar": 13,
+        "endLine": 59,
+        "endChar": 0
+      },
+      "revId": "90be9b338b34579e195bf1be2d7f548e7199e153",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "36a98dbc_235e76a4",
@@ -324,6 +420,30 @@
       "side": 1,
       "message": "I changed it to \"const estoraged::StorageData\u0026\".",
       "parentUuid": "36a98dbc_235e76a4",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 61
+      },
+      "revId": "90be9b338b34579e195bf1be2d7f548e7199e153",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d52227f_048210e0",
+        "filename": "src/main.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-22T18:28:48Z",
+      "side": 1,
+      "message": "sg",
+      "parentUuid": "de3118b5_dd201e07",
       "range": {
         "startLine": 70,
         "startChar": 0,
@@ -522,6 +642,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8bdfb6ae_91cd6081",
+        "filename": "src/main.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-22T18:28:48Z",
+      "side": 1,
+      "message": "yeah, it sounds like your scalable approach is well liked. It is a bit awkward because we don\u0027t need it yet, but I suppose that is always true of scalable  designs.\n\nLooks good",
+      "parentUuid": "0e6988d6_9c20c311",
+      "range": {
+        "startLine": 120,
+        "startChar": 0,
+        "endLine": 122,
+        "endChar": 27
+      },
+      "revId": "90be9b338b34579e195bf1be2d7f548e7199e153",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "295da7ec_b1b81a18",
@@ -617,6 +761,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ff33ba5_06fc7530",
+        "filename": "src/main.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-22T18:28:48Z",
+      "side": 1,
+      "message": "Gotcha, I understand now. \nThank you",
+      "parentUuid": "5c2a8aa2_bc72b18f",
+      "range": {
+        "startLine": 152,
+        "startChar": 0,
+        "endLine": 152,
+        "endChar": 50
+      },
+      "revId": "90be9b338b34579e195bf1be2d7f548e7199e153",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eb160e3d_099a13f2",
@@ -654,6 +822,30 @@
       "side": 1,
       "message": "The purpose of this is to monitor the bus for any new config objects. So, if the config object isn\u0027t ready when eStoraged starts up, we will still see it show up later. From my testing, I can see that this is actually being used.",
       "parentUuid": "eb160e3d_099a13f2",
+      "range": {
+        "startLine": 165,
+        "startChar": 13,
+        "endLine": 165,
+        "endChar": 18
+      },
+      "revId": "90be9b338b34579e195bf1be2d7f548e7199e153",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ae35e74_08c21267",
+        "filename": "src/main.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-22T18:28:48Z",
+      "side": 1,
+      "message": "Thanks for the explanation, I have never created a matcher",
+      "parentUuid": "5654794f_9ff6f8a1",
       "range": {
         "startLine": 165,
         "startChar": 13,

@@ -571,6 +571,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ae493352_c002187a",
+        "filename": "src/main.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1000233
+      },
+      "writtenOn": "2022-04-22T00:42:07Z",
+      "side": 1,
+      "message": "This\u0027ll also happen if more than 1 property is instantiated in the interface - the match will trigger for each individual property rather than just after the interface is fully populated",
+      "parentUuid": "a21c67ee_35386e43",
+      "range": {
+        "startLine": 152,
+        "startChar": 0,
+        "endLine": 152,
+        "endChar": 50
+      },
+      "revId": "90be9b338b34579e195bf1be2d7f548e7199e153",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "eb160e3d_099a13f2",
         "filename": "src/main.cpp",
         "patchSetId": 4

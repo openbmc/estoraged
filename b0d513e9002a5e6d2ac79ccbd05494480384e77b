@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0fab19be_c4bad59d",
+        "filename": "src/util.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-22T23:10:20Z",
+      "side": 1,
+      "message": "I\u0027m pretty sure they are also called device files.\n\nIf we wanted a programmatic way to find a device node the corresponds to a sysfs path, I came across the function sd_device_get_devname(). See the documentation here:\nhttps://www.freedesktop.org/software/systemd/man/sd_device_get_syspath.html#\n\nConverting from /sys/block/\u003cdevice\u003e to /dev/\u003cdevice\u003e seems simple enough without that function, but I can use it if people want. Note that I would need to put that function inside a class, to allow for mocking during unit tests.",
+      "parentUuid": "5206fc9a_17106c6a",
+      "range": {
+        "startLine": 96,
+        "startChar": 45,
+        "endLine": 96,
+        "endChar": 49
+      },
+      "revId": "b0d513e9002a5e6d2ac79ccbd05494480384e77b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b7730bed_d344e287",
         "filename": "src/util.cpp",
         "patchSetId": 5
@@ -54,6 +78,30 @@
       "writtenOn": "2022-04-22T22:06:20Z",
       "side": 1,
       "message": "Are there any other types of exception that could be thrown above?",
+      "range": {
+        "startLine": 106,
+        "startChar": 11,
+        "endLine": 106,
+        "endChar": 50
+      },
+      "revId": "b0d513e9002a5e6d2ac79ccbd05494480384e77b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "47d94d75_56ec1437",
+        "filename": "src/util.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-22T23:10:20Z",
+      "side": 1,
+      "message": "According to the documentation, this is the only exception the at() function can throw: https://www.boost.org/doc/libs/1_79_0/doc/html/boost/container/flat_map.html",
+      "parentUuid": "b7730bed_d344e287",
       "range": {
         "startLine": 106,
         "startChar": 11,
@@ -87,6 +135,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "daeae947_94dc52c8",
+        "filename": "src/util.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-22T23:10:20Z",
+      "side": 1,
+      "message": "It doesn\u0027t work when you try to do that. The compiler complains about std::filesystem::path not having a member function called starts_with().",
+      "parentUuid": "f5bd8f67_c8dfbdbd",
+      "range": {
+        "startLine": 130,
+        "startChar": 21,
+        "endLine": 130,
+        "endChar": 31
+      },
+      "revId": "b0d513e9002a5e6d2ac79ccbd05494480384e77b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2ada77dc_8c4158ec",
@@ -100,6 +172,30 @@
       "writtenOn": "2022-04-22T22:06:20Z",
       "side": 1,
       "message": "Nit\nPreference to remove, and use the implicitly conversion",
+      "range": {
+        "startLine": 138,
+        "startChar": 43,
+        "endLine": 138,
+        "endChar": 49
+      },
+      "revId": "b0d513e9002a5e6d2ac79ccbd05494480384e77b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6bb0aadf_f218c30c",
+        "filename": "src/util.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-22T23:10:20Z",
+      "side": 1,
+      "message": "This also doesn\u0027t work without the explicit conversion. It complains about there being no matching \u0027+\u0027 operator.",
+      "parentUuid": "2ada77dc_8c4158ec",
       "range": {
         "startLine": 138,
         "startChar": 43,

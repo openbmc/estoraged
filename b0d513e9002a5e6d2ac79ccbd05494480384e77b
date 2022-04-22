@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d29b1abb_5dc62514",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-22T22:06:20Z",
+      "side": 1,
+      "message": "looks fine",
+      "revId": "b0d513e9002a5e6d2ac79ccbd05494480384e77b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5206fc9a_17106c6a",
+        "filename": "src/util.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-22T22:06:20Z",
+      "side": 1,
+      "message": "super nit:\nThe entries in /dev are not files, they are \"nodes\"\n\nAlso, maybe the reviewers know, is there a programmatic way to find a dev node, from a sysfs device?",
+      "range": {
+        "startLine": 96,
+        "startChar": 45,
+        "endLine": 96,
+        "endChar": 49
+      },
+      "revId": "b0d513e9002a5e6d2ac79ccbd05494480384e77b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7730bed_d344e287",
+        "filename": "src/util.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-22T22:06:20Z",
+      "side": 1,
+      "message": "Are there any other types of exception that could be thrown above?",
+      "range": {
+        "startLine": 106,
+        "startChar": 11,
+        "endLine": 106,
+        "endChar": 50
+      },
+      "revId": "b0d513e9002a5e6d2ac79ccbd05494480384e77b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5bd8f67_c8dfbdbd",
+        "filename": "src/util.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-22T22:06:20Z",
+      "side": 1,
+      "message": "Nit\nPreference to remove, and use the implicitly conversion",
+      "range": {
+        "startLine": 130,
+        "startChar": 21,
+        "endLine": 130,
+        "endChar": 31
+      },
+      "revId": "b0d513e9002a5e6d2ac79ccbd05494480384e77b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ada77dc_8c4158ec",
+        "filename": "src/util.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-22T22:06:20Z",
+      "side": 1,
+      "message": "Nit\nPreference to remove, and use the implicitly conversion",
+      "range": {
+        "startLine": 138,
+        "startChar": 43,
+        "endLine": 138,
+        "endChar": 49
+      },
+      "revId": "b0d513e9002a5e6d2ac79ccbd05494480384e77b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

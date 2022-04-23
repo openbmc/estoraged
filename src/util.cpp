@@ -22,7 +22,7 @@ namespace util
 using ::sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
 using ::stdplus::fd::ManagedFd;
 
-uint64_t findSizeOfBlockDevice(const std::string& devPath)
+uint64_t findSizeOfBlockDevice(const std::filesystem::path& devPath)
 {
     ManagedFd fd;
     uint64_t bytes = 0;
@@ -43,7 +43,8 @@ uint64_t findSizeOfBlockDevice(const std::string& devPath)
     return bytes;
 }
 
-uint8_t findPredictedMediaLifeLeftPercent(const std::string& sysfsPath)
+uint8_t
+    findPredictedMediaLifeLeftPercent(const std::filesystem::path& sysfsPath)
 {
     // The eMMC spec defines two estimates for the life span of the device
     // in the extended CSD field 269 and 268, named estimate A and estimate B.

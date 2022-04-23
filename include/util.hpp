@@ -13,13 +13,14 @@ namespace util
  *  @param[in] devpath - the name of the linux block device
  *  @return size of a block device using the devPath
  */
-uint64_t findSizeOfBlockDevice(const std::string& devPath);
+uint64_t findSizeOfBlockDevice(const std::filesystem::path& devPath);
 
 /** @brief finds the predicted life left for a eMMC device
  *  @param[in] sysfsPath - The path to the linux sysfs interface
  *  @return the life remaing for the emmc, as a percentage.
  */
-uint8_t findPredictedMediaLifeLeftPercent(const std::string& sysfsPath);
+uint8_t
+    findPredictedMediaLifeLeftPercent(const std::filesystem::path& sysfsPath);
 
 /** @brief Look for the device described by the provided StorageData.
  *  @details Currently, this function assumes that there's only one eMMC.

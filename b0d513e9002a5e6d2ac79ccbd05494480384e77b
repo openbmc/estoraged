@@ -65,6 +65,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f157cf70_73bcf688",
+        "filename": "src/util.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-23T00:34:27Z",
+      "side": 1,
+      "message": "Very cool, how would you get the systemd device object to use for the function call?\n\n I don\u0027t want to block this change for some future work\nresolved",
+      "parentUuid": "0fab19be_c4bad59d",
+      "range": {
+        "startLine": 96,
+        "startChar": 45,
+        "endLine": 96,
+        "endChar": 49
+      },
+      "revId": "b0d513e9002a5e6d2ac79ccbd05494480384e77b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b7730bed_d344e287",

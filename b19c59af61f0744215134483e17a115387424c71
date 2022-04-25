@@ -16,6 +16,23 @@
       "message": "nit: new line",
       "revId": "b19c59af61f0744215134483e17a115387424c71",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14648136_30e91eb3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-25T16:39:44Z",
+      "side": 1,
+      "message": "I don\u0027t know if you meant to change anything in the unit tests. They are still passing strings into findPredictedMediaLifeLeftPercent() and implicitly creating path objects.",
+      "revId": "b19c59af61f0744215134483e17a115387424c71",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

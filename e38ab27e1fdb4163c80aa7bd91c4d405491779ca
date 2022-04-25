@@ -1,6 +1,46 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b618597_e0fe26bb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-25T21:33:37Z",
+      "side": 1,
+      "message": "looks good to me",
+      "revId": "e38ab27e1fdb4163c80aa7bd91c4d405491779ca",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe8b8858_b0f0e45e",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-25T21:33:37Z",
+      "side": 1,
+      "message": "nit: \nMixed feelings about converting a dbus path to a filesystem path, to use this clean function. It is clean, But I worry the rules for file system path and dbus paths are not the same, and this could create issues.",
+      "range": {
+        "startLine": 94,
+        "startChar": 30,
+        "endLine": 94,
+        "endChar": 63
+      },
+      "revId": "e38ab27e1fdb4163c80aa7bd91c4d405491779ca",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ec245642_ec94f29e",

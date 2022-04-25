@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec245642_ec94f29e",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-04-25T18:19:23Z",
+      "side": 1,
+      "message": "I remember there were some debates on how to set up associations properly with bmcweb - is this now the correct way to set it up? Do you happen to have other examples that you took this from (just so that I have a reference to compare)",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 30
+      },
+      "revId": "e38ab27e1fdb4163c80aa7bd91c4d405491779ca",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

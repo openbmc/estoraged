@@ -55,6 +55,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "53ba67b8_4863966f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-25T21:46:00Z",
+      "side": 1,
+      "message": "I talked to Ed about the retries. He says that ObjectMapper wasn\u0027t always reliable, and that the retries might not be needed anymore.\n\nFrom looking around in dbus-sensors, I noticed that only the fan sensors make use of the retries, whereas all the other sensor types do not.\n\nSo, I removed the retry logic from this CL. I don\u0027t think it\u0027s needed.",
+      "parentUuid": "800de2c6_cf507d03",
+      "revId": "90be9b338b34579e195bf1be2d7f548e7199e153",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "3d4e4538_c8b8172a",
         "filename": "include/getConfig.hpp",
         "patchSetId": 4
@@ -255,6 +273,30 @@
       "side": 1,
       "message": "nice, you can set a max number of retries. (Either dynamically or at build)",
       "parentUuid": "a6217020_b968d05a",
+      "range": {
+        "startLine": 76,
+        "startChar": 30,
+        "endLine": 76,
+        "endChar": 46
+      },
+      "revId": "90be9b338b34579e195bf1be2d7f548e7199e153",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "600a64aa_4f9cdbd7",
+        "filename": "src/getConfig.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-25T21:46:00Z",
+      "side": 1,
+      "message": "I removed the retry logic.",
+      "parentUuid": "31f1b9dd_b4bad850",
       "range": {
         "startLine": 76,
         "startChar": 30,

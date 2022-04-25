@@ -41,6 +41,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e22c5d3_2ff73405",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-25T21:49:29Z",
+      "side": 1,
+      "message": "FWIW, dbus-sensors also does this: https://github.com/openbmc/dbus-sensors/blob/74cffa8846cae2b083713cbf612d43f4b7f35432/src/Utils.cpp#L494",
+      "parentUuid": "fe8b8858_b0f0e45e",
+      "range": {
+        "startLine": 94,
+        "startChar": 30,
+        "endLine": 94,
+        "endChar": 63
+      },
+      "revId": "e38ab27e1fdb4163c80aa7bd91c4d405491779ca",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ec245642_ec94f29e",

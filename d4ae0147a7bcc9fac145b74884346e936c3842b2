@@ -22,6 +22,30 @@
       },
       "revId": "d4ae0147a7bcc9fac145b74884346e936c3842b2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96d1de50_ab56eb19",
+        "filename": "src/test/estoraged_test.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-25T20:51:57Z",
+      "side": 0,
+      "message": "Yeah, this really should have been removed in this commit: https://github.com/openbmc/estoraged/commit/67a474468daf76a774db8c4ed8479d47f2aac5fe\n\nI missed it at the time.\n\nLet me know if you prefer that I remove this in a separate commit.",
+      "parentUuid": "55896b2a_4a806316",
+      "range": {
+        "startLine": 44,
+        "startChar": 1,
+        "endLine": 47,
+        "endChar": 76
+      },
+      "revId": "d4ae0147a7bcc9fac145b74884346e936c3842b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

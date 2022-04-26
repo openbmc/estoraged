@@ -65,6 +65,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf2ae495_57ce36d0",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-26T18:32:03Z",
+      "side": 1,
+      "message": "Sounds good.\n\nsdbusplus::message::object_path was suggested as an alternative, but std::filesystem::path also works for me.",
+      "parentUuid": "5e22c5d3_2ff73405",
+      "range": {
+        "startLine": 94,
+        "startChar": 30,
+        "endLine": 94,
+        "endChar": 63
+      },
+      "revId": "e38ab27e1fdb4163c80aa7bd91c4d405491779ca",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ec245642_ec94f29e",

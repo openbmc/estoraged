@@ -143,6 +143,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e888dda_4b33042e",
+        "filename": "src/getConfig.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-04-27T21:38:09Z",
+      "side": 1,
+      "message": "Totally missed that we\u0027re inheriting that class oops.",
+      "parentUuid": "2633276a_a9a42a3a",
+      "range": {
+        "startLine": 32,
+        "startChar": 51,
+        "endLine": 32,
+        "endChar": 52
+      },
+      "revId": "58175dd12f82c8a14f875e82a54b25ab99ecb7f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d81a6a27_b48cd5ed",

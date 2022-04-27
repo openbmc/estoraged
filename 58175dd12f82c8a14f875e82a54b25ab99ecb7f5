@@ -95,6 +95,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f36da6dc_22c6e561",
+        "filename": "src/getConfig.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-04-27T21:27:07Z",
+      "side": 1,
+      "message": "oh wow that\u0027s really interesting",
+      "parentUuid": "83dcbb8f_1103c550",
+      "range": {
+        "startLine": 32,
+        "startChar": 51,
+        "endLine": 32,
+        "endChar": 52
+      },
+      "revId": "58175dd12f82c8a14f875e82a54b25ab99ecb7f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d81a6a27_b48cd5ed",
@@ -179,6 +203,30 @@
       "side": 1,
       "message": "I don\u0027t think that\u0027s the case (unless you know something I don\u0027t).\n\nIf we don\u0027t do this clean up, I can see that the files will still sit around in the build directory. In fact, there\u0027s a bunch of files from other unit test not getting removed.\n\njohnwedig@johnwedig:~/gbmc_work/upstream_estoraged/estoraged/build$ ls\nbuild.ninja            meson-private      testFile\ncompile_commands.json  notDivisible       testfile_notDivisible\ninclude                patternPass        testfile_notZeroEnd\nlife_time              patternsDontMatch  testfile_notZeroStart\nmeson-info             service_files      testfile_pass\nmeson-logs             src\n\nThose file may not be doing much harm, but in my case, one of the test cases (findDeviceNotFoundFail) will fail if the file mmcblk0 exists. So, the clean up is important here.\n\nBy the way, the estoraged_test was a little different because the test framework class was set up to remove the file automatically: https://github.com/openbmc/estoraged/blob/master/src/test/estoraged_test.cpp#L92",
       "parentUuid": "74855933_c6dcfb82",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 52
+      },
+      "revId": "58175dd12f82c8a14f875e82a54b25ab99ecb7f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3326e202_658c851b",
+        "filename": "src/test/util_test.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-04-27T21:27:07Z",
+      "side": 1,
+      "message": "I see - I guess the files created are not cleaned up and persist vs. the tests / classes do not.",
+      "parentUuid": "1c326b0f_bef9bab6",
       "range": {
         "startLine": 92,
         "startChar": 0,

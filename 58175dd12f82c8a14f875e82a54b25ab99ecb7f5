@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fbb596e_3bf75938",
+        "filename": "include/util.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-04-27T18:44:52Z",
+      "side": 1,
+      "message": "nit: double in",
+      "range": {
+        "startLine": 26,
+        "startChar": 75,
+        "endLine": 26,
+        "endChar": 77
+      },
+      "revId": "58175dd12f82c8a14f875e82a54b25ab99ecb7f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61e351b4_aa587826",
+        "filename": "src/getConfig.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-04-27T18:44:52Z",
+      "side": 1,
+      "message": "minor nit: std::shared_from_this() for here and below?",
+      "range": {
+        "startLine": 32,
+        "startChar": 51,
+        "endLine": 32,
+        "endChar": 52
+      },
+      "revId": "58175dd12f82c8a14f875e82a54b25ab99ecb7f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d81a6a27_b48cd5ed",
+        "filename": "src/main.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-04-27T18:44:52Z",
+      "side": 1,
+      "message": "I\u0027m not too familiar with deadline_timer (I should probably look this up) but if this is true, could it be possible that if there are events that happen every 0.9 seconds for an hour (let\u0027s say), we won\u0027t actually call the processing handler below for an hour?",
+      "range": {
+        "startLine": 138,
+        "startChar": 16,
+        "endLine": 144,
+        "endChar": 76
+      },
+      "revId": "58175dd12f82c8a14f875e82a54b25ab99ecb7f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74855933_c6dcfb82",
+        "filename": "src/test/util_test.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-04-27T18:44:52Z",
+      "side": 1,
+      "message": "Interesting, I thought we didn\u0027t need to \"Clean up\" in gtest",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 52
+      },
+      "revId": "58175dd12f82c8a14f875e82a54b25ab99ecb7f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

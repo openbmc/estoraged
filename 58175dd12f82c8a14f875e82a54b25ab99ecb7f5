@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "95b4f8eb_4bf647e2",
+        "filename": "include/util.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-27T21:09:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3fbb596e_3bf75938",
+      "range": {
+        "startLine": 26,
+        "startChar": 75,
+        "endLine": 26,
+        "endChar": 77
+      },
+      "revId": "58175dd12f82c8a14f875e82a54b25ab99ecb7f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "61e351b4_aa587826",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-04-27T18:44:52Z",
       "side": 1,
       "message": "minor nit: std::shared_from_this() for here and below?",
+      "range": {
+        "startLine": 32,
+        "startChar": 51,
+        "endLine": 32,
+        "endChar": 52
+      },
+      "revId": "58175dd12f82c8a14f875e82a54b25ab99ecb7f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "83dcbb8f_1103c550",
+        "filename": "src/getConfig.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-27T21:09:59Z",
+      "side": 1,
+      "message": "That doesn\u0027t seem to work.\n\n\u003e error: ‘shared_from_this’ is not a member of ‘std’; did you mean ‘enable_shared_from_this’",
+      "parentUuid": "61e351b4_aa587826",
       "range": {
         "startLine": 32,
         "startChar": 51,
@@ -70,6 +118,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "adcbc53f_d93a6646",
+        "filename": "src/main.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-27T21:09:59Z",
+      "side": 1,
+      "message": "That\u0027s basically correct. But strictly speaking, the handler will still get called when you cancel the timer, with the operation_aborted error code. So you would have an opportunity to do some processing, if you wanted.\n\nI\u0027m obviously not expecting to receive a steady stream of events for that long.\n\ndocumentation here: https://www.boost.org/doc/libs/1_79_0/doc/html/boost_asio/reference/basic_deadline_timer/expires_from_now/overload2.html",
+      "parentUuid": "d81a6a27_b48cd5ed",
+      "range": {
+        "startLine": 138,
+        "startChar": 16,
+        "endLine": 144,
+        "endChar": 76
+      },
+      "revId": "58175dd12f82c8a14f875e82a54b25ab99ecb7f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "74855933_c6dcfb82",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-04-27T18:44:52Z",
       "side": 1,
       "message": "Interesting, I thought we didn\u0027t need to \"Clean up\" in gtest",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 52
+      },
+      "revId": "58175dd12f82c8a14f875e82a54b25ab99ecb7f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c326b0f_bef9bab6",
+        "filename": "src/test/util_test.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-04-27T21:09:59Z",
+      "side": 1,
+      "message": "I don\u0027t think that\u0027s the case (unless you know something I don\u0027t).\n\nIf we don\u0027t do this clean up, I can see that the files will still sit around in the build directory. In fact, there\u0027s a bunch of files from other unit test not getting removed.\n\njohnwedig@johnwedig:~/gbmc_work/upstream_estoraged/estoraged/build$ ls\nbuild.ninja            meson-private      testFile\ncompile_commands.json  notDivisible       testfile_notDivisible\ninclude                patternPass        testfile_notZeroEnd\nlife_time              patternsDontMatch  testfile_notZeroStart\nmeson-info             service_files      testfile_pass\nmeson-logs             src\n\nThose file may not be doing much harm, but in my case, one of the test cases (findDeviceNotFoundFail) will fail if the file mmcblk0 exists. So, the clean up is important here.\n\nBy the way, the estoraged_test was a little different because the test framework class was set up to remove the file automatically: https://github.com/openbmc/estoraged/blob/master/src/test/estoraged_test.cpp#L92",
+      "parentUuid": "74855933_c6dcfb82",
       "range": {
         "startLine": 92,
         "startChar": 0,

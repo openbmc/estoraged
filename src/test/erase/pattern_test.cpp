@@ -130,17 +130,17 @@ TEST(pattern, shortReadWritePass)
 
     // test read pattern
     EXPECT_CALL(mock, read(_))
-        .WillOnce(Invoke([](nonstd::span<std::byte> x) {
+        .WillOnce(Invoke([](std::span<std::byte> x) {
             std::copy_n(shortData1.begin(), shortData1.size(), x.data());
-            nonstd::span ret(shortData1);
+            std::span ret(shortData1);
             return ret;
         }))
         .RetiresOnSaturation();
 
     EXPECT_CALL(mock, read(_))
-        .WillOnce(Invoke([](nonstd::span<std::byte> x) {
+        .WillOnce(Invoke([](std::span<std::byte> x) {
             std::copy_n(restOfData.begin(), restOfData.size(), x.data());
-            nonstd::span ret(restOfData);
+            std::span ret(restOfData);
             return ret;
         }))
         .RetiresOnSaturation();

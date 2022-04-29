@@ -51,6 +51,24 @@
       "message": "You should add \u003cspan\u003e to the includes.",
       "revId": "28e7de582badaa00a85dd8bc1081bee1f9db5926",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "30d41005_7c57fe38",
+        "filename": "src/test/erase/pattern_test.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-04-29T02:41:49Z",
+      "side": 1,
+      "message": "done.",
+      "parentUuid": "79be06ea_310c2fe0",
+      "revId": "28e7de582badaa00a85dd8bc1081bee1f9db5926",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

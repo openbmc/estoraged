@@ -29,6 +29,7 @@ namespace estoraged
 using Association = std::tuple<std::string, std::string, std::string>;
 using sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
 using sdbusplus::xyz::openbmc_project::Common::Error::UnsupportedRequest;
+using sdbusplus::xyz::openbmc_project::Inventory::Item::server::Drive;
 using sdbusplus::xyz::openbmc_project::Inventory::Item::server::Volume;
 
 EStoraged::EStoraged(sdbusplus::asio::object_server& server,
@@ -81,6 +82,9 @@ EStoraged::EStoraged(sdbusplus::asio::object_server& server,
     driveInterface->register_property("Capacity", size);
     driveInterface->register_property("PredictedMediaLifeLeftPercent",
                                       lifeTime);
+
+    driveInterface->register_property("EncryptionStatus",
+                                      findEncryptionStatus());
 
     volumeInterface->initialize();
     driveInterface->initialize();
@@ -272,13 +276,42 @@ void EStoraged::formatLuksDev(std::vector<uint8_t> password)
               std::string("OpenBMC.0.1.FormatLuksDevSuccess"));
 }
 
+CryptHandle EStoraged::checkLuksHeader()
+{
+
+    CryptHandle cryptHandle(devPath);
+
+    int retval = cryptIface->cryptLoad(cryptHandle.get(), CRYPT_LUKS2, nullptr);
+    if (retval < 0)
+    {
+        lg2::error("Failed to load LUKS header: {RETVAL}", "RETVAL", retval,
+                   "REDFISH_MESSAGE_ID",
+                   std::string("OpenBMC.0.1.ActivateLuksDevFail"));
+        throw InternalFailure();
+    }
+    return cryptHandle;
+}
+
+Drive::DriveEncryptionState EStoraged::findEncryptionStatus()
+{
+    try
+    {
+        checkLuksHeader();
+        return Drive::DriveEncryptionState::Encrypted;
+    }
+    catch (...)
+    {
+        return Drive::DriveEncryptionState::Unknown;
+    }
+}
+
 void EStoraged::activateLuksDev(std::vector<uint8_t> password)
 {
     lg2::info("Activating LUKS dev {DEV}", "DEV", devPath, "REDFISH_MESSAGE_ID",
               std::string("OpenBMC.0.1.ActivateLuksDev"));
 
     /* Create the handle. */
-    CryptHandle cryptHandle(devPath);
+    CryptHandle cryptHandle = checkLuksHeader();
 
     int retval = cryptIface->cryptLoad(cryptHandle.get(), CRYPT_LUKS2, nullptr);
     if (retval < 0)

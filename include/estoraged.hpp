@@ -24,6 +24,7 @@ namespace estoraged
 {
 using estoraged::Cryptsetup;
 using estoraged::Filesystem;
+using sdbusplus::xyz::openbmc_project::Inventory::Item::server::Drive;
 using sdbusplus::xyz::openbmc_project::Inventory::Item::server::Volume;
 
 /** @class eStoraged
@@ -140,10 +141,19 @@ class EStoraged
      */
     void formatLuksDev(std::vector<uint8_t> password);
 
+    /** @breif check the LUKS header, for devPath
+     *
+     *  @returns a CryptHandle to the LUKS drive
+     */
+    CryptHandle checkLuksHeader();
+
     /** @brief Unlock the device.
      *
      *  @param[in] password - password to activate the LUKS device.
      */
+
+    Drive::DriveEncryptionState findEncryptionStatus();
+
     void activateLuksDev(std::vector<uint8_t> password);
 
     /** @brief Create the filesystem on the LUKS device.

@@ -24,6 +24,7 @@ namespace estoraged
 {
 using estoraged::Cryptsetup;
 using estoraged::Filesystem;
+using sdbusplus::xyz::openbmc_project::Inventory::Item::server::Drive;
 using sdbusplus::xyz::openbmc_project::Inventory::Item::server::Volume;
 
 /** @class eStoraged
@@ -48,6 +49,7 @@ class EStoraged
     EStoraged(sdbusplus::asio::object_server& server,
               const std::string& configPath, const std::string& devPath,
               const std::string& luksName, uint64_t size, uint8_t lifeTime,
+              Drive::DriveEncryptionState /*encryptionState*/,
               std::unique_ptr<CryptsetupInterface> cryptInterface =
                   std::make_unique<Cryptsetup>(),
               std::unique_ptr<FilesystemInterface> fsInterface =

@@ -29,12 +29,14 @@ namespace estoraged
 using Association = std::tuple<std::string, std::string, std::string>;
 using sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
 using sdbusplus::xyz::openbmc_project::Common::Error::UnsupportedRequest;
+using sdbusplus::xyz::openbmc_project::Inventory::Item::server::Drive;
 using sdbusplus::xyz::openbmc_project::Inventory::Item::server::Volume;
 
 EStoraged::EStoraged(sdbusplus::asio::object_server& server,
                      const std::string& configPath, const std::string& devPath,
                      const std::string& luksName, uint64_t size,
                      uint8_t lifeTime,
+                     Drive::DriveEncryptionState encryptionState,
                      std::unique_ptr<CryptsetupInterface> cryptInterface,
                      std::unique_ptr<FilesystemInterface> fsInterface) :
     devPath(devPath),
@@ -81,6 +83,7 @@ EStoraged::EStoraged(sdbusplus::asio::object_server& server,
     driveInterface->register_property("Capacity", size);
     driveInterface->register_property("PredictedMediaLifeLeftPercent",
                                       lifeTime);
+    driveInterface->register_property("EncryptionStatus", encryptionState);
 
     volumeInterface->initialize();
     driveInterface->initialize();

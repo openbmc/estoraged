@@ -26,6 +26,7 @@ namespace estoraged_test
 
 using sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
 using sdbusplus::xyz::openbmc_project::Common::Error::ResourceNotFound;
+using sdbusplus::xyz::openbmc_project::Inventory::Item::server::Drive;
 using sdbusplus::xyz::openbmc_project::Inventory::Item::server::Volume;
 using std::filesystem::path;
 using ::testing::_;
@@ -82,7 +83,8 @@ class EStoragedTest : public testing::Test
 
         esObject = std::make_unique<estoraged::EStoraged>(
             *objectServer, testConfigPath, testFileName, testLuksDevName,
-            testSize, testLifeTime, std::move(cryptIface), std::move(fsIface));
+            testSize, testLifeTime, Drive::DriveEncryptionState::Unknown,
+            std::move(cryptIface), std::move(fsIface));
     }
 
     void TearDown() override

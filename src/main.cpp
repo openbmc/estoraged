@@ -36,6 +36,7 @@ void createStorageObjects(
         std::string, std::unique_ptr<estoraged::EStoraged>>& storageObjects,
     std::shared_ptr<sdbusplus::asio::connection>& dbusConnection)
 {
+    using sdbusplus::xyz::openbmc_project::Inventory::Item::server::Drive;
     auto getter = std::make_shared<estoraged::GetStorageConfiguration>(
         dbusConnection,
         [&io, &objectServer, &storageObjects](
@@ -94,9 +95,12 @@ void createStorageObjects(
                 uint8_t lifeleft =
                     estoraged::util::findPredictedMediaLifeLeftPercent(
                         sysfsDir);
+                Drive::DriveEncryptionState encryptionState =
+                    Drive::DriveEncryptionState::Unknown;
                 /* Create the storage object. */
                 storageObjects[path] = std::make_unique<estoraged::EStoraged>(
-                    objectServer, path, deviceFile, luksName, size, lifeleft);
+                    objectServer, path, deviceFile, luksName, size, lifeleft,
+                    encryptionState);
                 lg2::info("Created eStoraged object for path {PATH}", "PATH",
                           path, "REDFISH_MESSAGE_ID",
                           std::string("OpenBMC.0.1.CreateStorageObjects"));

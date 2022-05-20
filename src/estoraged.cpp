@@ -29,6 +29,7 @@ namespace estoraged
 using Association = std::tuple<std::string, std::string, std::string>;
 using sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
 using sdbusplus::xyz::openbmc_project::Common::Error::UnsupportedRequest;
+using sdbusplus::xyz::openbmc_project::Inventory::Item::server::Drive;
 using sdbusplus::xyz::openbmc_project::Inventory::Item::server::Volume;
 
 EStoraged::EStoraged(sdbusplus::asio::object_server& server,
@@ -40,7 +41,8 @@ EStoraged::EStoraged(sdbusplus::asio::object_server& server,
     devPath(devPath),
     containerName(luksName), mountPoint("/mnt/" + luksName + "_fs"),
     lockedProperty(false), cryptIface(std::move(cryptInterface)),
-    fsIface(std::move(fsInterface)), objectServer(server)
+    fsIface(std::move(fsInterface)), objectServer(server),
+    encryptionStatus(Drive::DriveEncryptionState::Unknown)
 {
     /* Get the filename of the device (without "/dev/"). */
     std::string deviceName = std::filesystem::path(devPath).filename().string();
@@ -81,6 +83,14 @@ EStoraged::EStoraged(sdbusplus::asio::object_server& server,
     driveInterface->register_property("Capacity", size);
     driveInterface->register_property("PredictedMediaLifeLeftPercent",
                                       lifeTime);
+
+    driveInterface->register_property_r(
+        "EncryptionStatus", encryptionStatus,
+        sdbusplus::vtable::property_::emits_change,
+        [this](Drive::DriveEncryptionState& value) {
+            value = this->findEncryptionStatus();
+            return value;
+        });
 
     volumeInterface->initialize();
     driveInterface->initialize();
@@ -272,12 +282,9 @@ void EStoraged::formatLuksDev(std::vector<uint8_t> password)
               std::string("OpenBMC.0.1.FormatLuksDevSuccess"));
 }
 
-void EStoraged::activateLuksDev(std::vector<uint8_t> password)
+CryptHandle EStoraged::loadLuksHeader()
 {
-    lg2::info("Activating LUKS dev {DEV}", "DEV", devPath, "REDFISH_MESSAGE_ID",
-              std::string("OpenBMC.0.1.ActivateLuksDev"));
 
-    /* Create the handle. */
     CryptHandle cryptHandle(devPath);
 
     int retval = cryptIface->cryptLoad(cryptHandle.get(), CRYPT_LUKS2, nullptr);
@@ -288,8 +295,31 @@ void EStoraged::activateLuksDev(std::vector<uint8_t> password)
                    std::string("OpenBMC.0.1.ActivateLuksDevFail"));
         throw InternalFailure();
     }
+    return cryptHandle;
+}
 
-    retval = cryptIface->cryptActivateByPassphrase(
+Drive::DriveEncryptionState EStoraged::findEncryptionStatus()
+{
+    try
+    {
+        loadLuksHeader();
+        return Drive::DriveEncryptionState::Encrypted;
+    }
+    catch (...)
+    {
+        return Drive::DriveEncryptionState::Unknown;
+    }
+}
+
+void EStoraged::activateLuksDev(std::vector<uint8_t> password)
+{
+    lg2::info("Activating LUKS dev {DEV}", "DEV", devPath, "REDFISH_MESSAGE_ID",
+              std::string("OpenBMC.0.1.ActivateLuksDev"));
+
+    /* Create the handle. */
+    CryptHandle cryptHandle = loadLuksHeader();
+
+    int retval = cryptIface->cryptActivateByPassphrase(
         cryptHandle.get(), containerName.c_str(), CRYPT_ANY_SLOT,
         reinterpret_cast<const char*>(password.data()), password.size(), 0);
 

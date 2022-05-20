@@ -36,6 +36,7 @@ void createStorageObjects(
         std::string, std::unique_ptr<estoraged::EStoraged>>& storageObjects,
     std::shared_ptr<sdbusplus::asio::connection>& dbusConnection)
 {
+    using sdbusplus::xyz::openbmc_project::Inventory::Item::server::Drive;
     auto getter = std::make_shared<estoraged::GetStorageConfiguration>(
         dbusConnection,
         [&io, &objectServer, &storageObjects](

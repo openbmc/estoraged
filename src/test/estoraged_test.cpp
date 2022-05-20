@@ -99,7 +99,7 @@ TEST_F(EStoragedTest, FormatPass)
     EXPECT_CALL(*mockCryptIface, cryptKeyslotAddByVolumeKey(_, _, _, _, _, _))
         .Times(1);
 
-    EXPECT_CALL(*mockCryptIface, cryptLoad(_, _, _)).Times(1);
+    EXPECT_CALL(*mockCryptIface, cryptLoad(_, _, _)).Times(2);
 
     EXPECT_CALL(*mockCryptIface, cryptActivateByPassphrase(_, _, _, _, _, _))
         .Times(1);
@@ -144,7 +144,7 @@ TEST_F(EStoragedTest, MountPointExistsPass)
     EXPECT_CALL(*mockCryptIface, cryptKeyslotAddByVolumeKey(_, _, _, _, _, _))
         .Times(1);
 
-    EXPECT_CALL(*mockCryptIface, cryptLoad(_, _, _)).Times(1);
+    EXPECT_CALL(*mockCryptIface, cryptLoad(_, _, _)).Times(2);
 
     EXPECT_CALL(*mockCryptIface, cryptActivateByPassphrase(_, _, _, _, _, _))
         .Times(1);
@@ -226,7 +226,7 @@ TEST_F(EStoragedTest, LoadLuksHeaderFail)
     EXPECT_CALL(*mockCryptIface, cryptKeyslotAddByVolumeKey(_, _, _, _, _, _))
         .Times(1);
 
-    EXPECT_CALL(*mockCryptIface, cryptLoad(_, _, _)).WillOnce(Return(-1));
+    EXPECT_CALL(*mockCryptIface, cryptLoad(_, _, _)).WillRepeatedly(Return(-1));
 
     EXPECT_THROW(esObject->formatLuks(password, Volume::FilesystemType::ext4),
                  InternalFailure);
@@ -241,7 +241,7 @@ TEST_F(EStoragedTest, ActivateFail)
     EXPECT_CALL(*mockCryptIface, cryptKeyslotAddByVolumeKey(_, _, _, _, _, _))
         .Times(1);
 
-    EXPECT_CALL(*mockCryptIface, cryptLoad(_, _, _)).Times(1);
+    EXPECT_CALL(*mockCryptIface, cryptLoad(_, _, _)).Times(2);
 
     EXPECT_CALL(*mockCryptIface, cryptActivateByPassphrase(_, _, _, _, _, _))
         .WillOnce(Return(-1));
@@ -259,7 +259,7 @@ TEST_F(EStoragedTest, CreateFilesystemFail)
     EXPECT_CALL(*mockCryptIface, cryptKeyslotAddByVolumeKey(_, _, _, _, _, _))
         .Times(1);
 
-    EXPECT_CALL(*mockCryptIface, cryptLoad(_, _, _)).Times(1);
+    EXPECT_CALL(*mockCryptIface, cryptLoad(_, _, _)).Times(2);
 
     EXPECT_CALL(*mockCryptIface, cryptActivateByPassphrase(_, _, _, _, _, _))
         .Times(1);
@@ -279,7 +279,7 @@ TEST_F(EStoragedTest, CreateMountPointFail)
     EXPECT_CALL(*mockCryptIface, cryptKeyslotAddByVolumeKey(_, _, _, _, _, _))
         .Times(1);
 
-    EXPECT_CALL(*mockCryptIface, cryptLoad(_, _, _)).Times(1);
+    EXPECT_CALL(*mockCryptIface, cryptLoad(_, _, _)).Times(2);
 
     EXPECT_CALL(*mockCryptIface, cryptActivateByPassphrase(_, _, _, _, _, _))
         .Times(1);
@@ -305,7 +305,7 @@ TEST_F(EStoragedTest, MountFail)
     EXPECT_CALL(*mockCryptIface, cryptKeyslotAddByVolumeKey(_, _, _, _, _, _))
         .Times(1);
 
-    EXPECT_CALL(*mockCryptIface, cryptLoad(_, _, _)).Times(1);
+    EXPECT_CALL(*mockCryptIface, cryptLoad(_, _, _)).Times(2);
 
     EXPECT_CALL(*mockCryptIface, cryptActivateByPassphrase(_, _, _, _, _, _))
         .Times(1);
@@ -339,7 +339,7 @@ TEST_F(EStoragedTest, UnmountFail)
     EXPECT_CALL(*mockCryptIface, cryptKeyslotAddByVolumeKey(_, _, _, _, _, _))
         .Times(1);
 
-    EXPECT_CALL(*mockCryptIface, cryptLoad(_, _, _)).Times(1);
+    EXPECT_CALL(*mockCryptIface, cryptLoad(_, _, _)).Times(2);
 
     EXPECT_CALL(*mockCryptIface, cryptActivateByPassphrase(_, _, _, _, _, _))
         .Times(1);
@@ -375,7 +375,7 @@ TEST_F(EStoragedTest, RemoveMountPointFail)
     EXPECT_CALL(*mockCryptIface, cryptKeyslotAddByVolumeKey(_, _, _, _, _, _))
         .Times(1);
 
-    EXPECT_CALL(*mockCryptIface, cryptLoad(_, _, _)).Times(1);
+    EXPECT_CALL(*mockCryptIface, cryptLoad(_, _, _)).Times(2);
 
     EXPECT_CALL(*mockCryptIface, cryptActivateByPassphrase(_, _, _, _, _, _))
         .Times(1);
@@ -415,7 +415,7 @@ TEST_F(EStoragedTest, DeactivateFail)
     EXPECT_CALL(*mockCryptIface, cryptKeyslotAddByVolumeKey(_, _, _, _, _, _))
         .Times(1);
 
-    EXPECT_CALL(*mockCryptIface, cryptLoad(_, _, _)).Times(1);
+    EXPECT_CALL(*mockCryptIface, cryptLoad(_, _, _)).Times(2);
 
     EXPECT_CALL(*mockCryptIface, cryptActivateByPassphrase(_, _, _, _, _, _))
         .Times(1);

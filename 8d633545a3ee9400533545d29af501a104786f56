@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6db2ae33_72061911",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-06-06T22:45:52Z",
+      "side": 1,
+      "message": "Tested",
+      "parentUuid": "4667b4fb_26b86323",
+      "revId": "8d633545a3ee9400533545d29af501a104786f56",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "03f9871d_a2a157cf",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-06-03T16:51:22Z",
       "side": 1,
       "message": "Note that if the LUKS header gets wiped, your EncryptionStatus property will still say it\u0027s encrypted. If you want this property to change as the LUKS header gets added or removed, you need to set up this property with a lambda function, like what we have for the Locked property.",
+      "range": {
+        "startLine": 86,
+        "startChar": 4,
+        "endLine": 87,
+        "endChar": 62
+      },
+      "revId": "8d633545a3ee9400533545d29af501a104786f56",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e50bd90_18a22276",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-06-06T22:45:52Z",
+      "side": 1,
+      "message": "sounds good, I changed it to use a lambda a read the header every time.",
+      "parentUuid": "03f9871d_a2a157cf",
       "range": {
         "startLine": 86,
         "startChar": 4,
@@ -64,6 +106,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3145a2dc_d30f2a88",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-06-06T22:45:52Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "e718a35d_61b9d49c",
+      "range": {
+        "startLine": 314,
+        "startChar": 30,
+        "endLine": 314,
+        "endChar": 35
+      },
+      "revId": "8d633545a3ee9400533545d29af501a104786f56",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ca833ecf_ddd3e052",
@@ -77,6 +143,30 @@
       "writtenOn": "2022-06-03T16:51:22Z",
       "side": 1,
       "message": "This code is now repeating what the checkLuksHeader() function just did.",
+      "range": {
+        "startLine": 316,
+        "startChar": 4,
+        "endLine": 323,
+        "endChar": 5
+      },
+      "revId": "8d633545a3ee9400533545d29af501a104786f56",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0a2f841_d3c34c7e",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-06-06T22:45:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ca833ecf_ddd3e052",
       "range": {
         "startLine": 316,
         "startChar": 4,

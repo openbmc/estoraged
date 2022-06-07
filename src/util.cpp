@@ -126,17 +126,47 @@ bool findDevice(const StorageData& data, const std::filesystem::path& searchDir,
     /* Look for the eMMC in the specified searchDir directory. */
     for (auto const& dirEntry : std::filesystem::directory_iterator{searchDir})
     {
-        std::filesystem::path curDevice(dirEntry.path().filename());
-        if (curDevice.string().starts_with("mmcblk"))
+        /*
+         * We will look at the 'type' file to determine if this is an MMC
+         * device.
+         */
+        std::filesystem::path curPath(dirEntry.path());
+        curPath /= "device/type";
+        if (!std::filesystem::exists(curPath))
         {
-            sysfsDir = dirEntry.path();
-            sysfsDir /= "device";
+            /* The 'type' file doesn't exist. This must not be an eMMC. */
+            continue;
+        }
 
-            deviceFile = "/dev";
-            deviceFile /= curDevice;
+        try
+        {
+            std::ifstream typeFile(curPath, std::ios_base::in);
+            std::string devType;
+            typeFile >> devType;
+            if (devType.compare("MMC") == 0)
+            {
+                /* Found it. Get the sysfs directory and device file. */
+                std::filesystem::path deviceName(dirEntry.path().filename());
 
-            luksName = "luks-" + curDevice.string();
-            return true;
+                sysfsDir = dirEntry.path();
+                sysfsDir /= "device";
+
+                deviceFile = "/dev";
+                deviceFile /= deviceName;
+
+                luksName = "luks-" + deviceName.string();
+                return true;
+            }
+        }
+        catch (...)
+        {
+            lg2::error("Failed to read device type for {PATH}", "PATH", curPath,
+                       "REDFISH_MESSAGE_ID",
+                       std::string("OpenBMC.0.1.FindDeviceFail"));
+            /*
+             * We will still continue searching, though. Maybe this wasn't the
+             * device we were looking for, anyway.
+             */
         }
     }
 

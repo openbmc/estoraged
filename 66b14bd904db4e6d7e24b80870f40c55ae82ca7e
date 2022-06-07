@@ -41,6 +41,23 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "14f3c4f0_7fdaaf22",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-06-07T23:27:43Z",
+      "side": 1,
+      "message": "agree with nits that John Wedig posted",
+      "revId": "66b14bd904db4e6d7e24b80870f40c55ae82ca7e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6e432643_5f2b258c",

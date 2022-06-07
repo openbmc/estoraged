@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a5c4b24_0f450832",
+        "filename": "src/test/util_test.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-06-07T23:26:58Z",
+      "side": 1,
+      "message": "nit: Could we flip the order of these device creation or otherwise somehow ensure that we\u0027re correctly parsing over the abc/device, and not simply exiting out early when mmcblk0 is found first",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 26
+      },
+      "revId": "37f0e06a9d3006b7385d17c22f8463c6af65bf85",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

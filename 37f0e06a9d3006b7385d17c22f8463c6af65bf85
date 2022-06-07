@@ -46,6 +46,30 @@
       },
       "revId": "37f0e06a9d3006b7385d17c22f8463c6af65bf85",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "46f16ede_430ed6fd",
+        "filename": "src/test/util_test.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-06-07T23:55:25Z",
+      "side": 1,
+      "message": "To be fair, I\u0027m not 100% sure if just the order here is enough to order the search properly but hopefully it helps 😊",
+      "parentUuid": "c63a5e3a_ed28abdc",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 26
+      },
+      "revId": "37f0e06a9d3006b7385d17c22f8463c6af65bf85",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

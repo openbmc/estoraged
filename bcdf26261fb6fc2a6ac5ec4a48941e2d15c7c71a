@@ -36,6 +36,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fb8ac9b_576b5b4e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-06-07T21:01:18Z",
+      "side": 1,
+      "message": "added the tested",
+      "parentUuid": "25339ff3_aa663f55",
+      "revId": "bcdf26261fb6fc2a6ac5ec4a48941e2d15c7c71a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5964d163_ebf1ea23",
@@ -73,6 +91,30 @@
       "side": 1,
       "message": "Both interfaces do have a Locked property, and that was intentional when designing the interface, since it\u0027s possible to lock a drive at the device level and \"lock\" a logical volume using encryption.\n\nBut as you can see, we\u0027re not actually making that distinction here. It\u0027s not ideal, but maybe we can change this later when we do eventually enable device-level locking.\n\nThe goal here is to expose the Locked property via bmcweb, so that client software can tell when the data is accessible. And my understanding is that when bmcweb looks for drives, it will only access properties exposed by the Drives interface.\n\nMaybe we can at least add a comment about this.",
       "parentUuid": "5964d163_ebf1ea23",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 11
+      },
+      "revId": "bcdf26261fb6fc2a6ac5ec4a48941e2d15c7c71a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e90f0b6_507931e0",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-06-07T21:01:18Z",
+      "side": 1,
+      "message": "I added a comment about this, it would be better to have a distinction between locking the volume, vs locking the drive, but for the time, we can use volume locking as drive locking.\n\nI added a comment, let me know if more detail is needed.",
+      "parentUuid": "566ff2dd_1b37e966",
       "range": {
         "startLine": 69,
         "startChar": 0,

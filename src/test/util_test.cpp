@@ -1,7 +1,5 @@
 #include "getConfig.hpp"
 
-#include <unistd.h>
-
 #include <boost/container/flat_map.hpp>
 #include <util.hpp>
 
@@ -65,18 +63,22 @@ TEST(utilTest, findDevicePass)
                  estoraged::BasicVariantType("EmmcDevice"));
     data.emplace(std::string("Name"), estoraged::BasicVariantType("emmc"));
 
-    /* Create a dummy device file. */
-    const std::string testDevName("mmcblk0");
-    std::ofstream testFile;
-    testFile.open(testDevName,
-                  std::ios::out | std::ios::binary | std::ios::trunc);
-    testFile.close();
+    /* Create a dummy eMMC device. */
+    std::filesystem::create_directories("mmcblk0/device");
+    const std::string typeFileName("mmcblk0/device/type");
+    std::ofstream typeFile(typeFileName, std::ios::out | std::ios::trunc);
+    typeFile << "MMC";
+    typeFile.close();
 
-    /* Create another dummy file. */
-    const std::string testDummyFilename("abc");
-    testFile.open(testDummyFilename,
-                  std::ios::out | std::ios::binary | std::ios::trunc);
-    testFile.close();
+    /* Create another dummy device. */
+    std::filesystem::create_directories("abc/device");
+    const std::string dummyTypeFileName("abc/device/type");
+    std::ofstream dummyTypeFile(dummyTypeFileName, std::ios::out | std::ios::trunc);
+    dummyTypeFile << "SSD";
+    dummyTypeFile.close();
+
+    /* Another device. */
+    std::filesystem::create_directories("def/device");
 
     /* Look for the device file. */
     std::filesystem::path deviceFile, sysfsDir;
@@ -90,8 +92,9 @@ TEST(utilTest, findDevicePass)
     EXPECT_EQ("luks-mmcblk0", luksName);
 
     /* Delete the dummy files. */
-    EXPECT_EQ(0, unlink(testDevName.c_str()));
-    EXPECT_EQ(0, unlink(testDummyFilename.c_str()));
+    EXPECT_EQ(3, std::filesystem::remove_all("mmcblk0"));
+    EXPECT_EQ(3, std::filesystem::remove_all("abc"));
+    EXPECT_EQ(2, std::filesystem::remove_all("def"));
 }
 
 /* Test case where the "Type" property doesn't exist. */
@@ -102,18 +105,22 @@ TEST(utilTest, findDeviceNoTypeFail)
     /* Set up the map of properties (with the "Type" property missing). */
     data.emplace(std::string("Name"), estoraged::BasicVariantType("emmc"));
 
-    /* Create a dummy device file. */
-    const std::string testDevName("mmcblk0");
-    std::ofstream testFile;
-    testFile.open(testDevName,
-                  std::ios::out | std::ios::binary | std::ios::trunc);
-    testFile.close();
+    /* Create a dummy eMMC device. */
+    std::filesystem::create_directories("mmcblk0/device");
+    const std::string typeFileName("mmcblk0/device/type");
+    std::ofstream typeFile(typeFileName, std::ios::out | std::ios::trunc);
+    typeFile << "MMC";
+    typeFile.close();
 
-    /* Create another dummy file. */
-    const std::string testDummyFilename("abc");
-    testFile.open(testDummyFilename,
-                  std::ios::out | std::ios::binary | std::ios::trunc);
-    testFile.close();
+    /* Create another dummy device. */
+    std::filesystem::create_directories("abc/device");
+    const std::string dummyTypeFileName("abc/device/type");
+    std::ofstream dummyTypeFile(dummyTypeFileName, std::ios::out | std::ios::trunc);
+    dummyTypeFile << "SSD";
+    dummyTypeFile.close();
+
+    /* Another device. */
+    std::filesystem::create_directories("def/device");
 
     /* Look for the device file. */
     std::filesystem::path deviceFile, sysfsDir;
@@ -122,8 +129,9 @@ TEST(utilTest, findDeviceNoTypeFail)
                                              deviceFile, sysfsDir, luksName));
 
     /* Delete the dummy files. */
-    EXPECT_EQ(0, unlink(testDevName.c_str()));
-    EXPECT_EQ(0, unlink(testDummyFilename.c_str()));
+    EXPECT_EQ(3, std::filesystem::remove_all("mmcblk0"));
+    EXPECT_EQ(3, std::filesystem::remove_all("abc"));
+    EXPECT_EQ(2, std::filesystem::remove_all("def"));
 }
 
 /* Test case where the device type is not supported. */
@@ -136,18 +144,22 @@ TEST(utilTest, findDeviceUnsupportedTypeFail)
     data.emplace(std::string("Name"),
                  estoraged::BasicVariantType("some_drive"));
 
-    /* Create a dummy device file. */
-    const std::string testDevName("mmcblk0");
-    std::ofstream testFile;
-    testFile.open(testDevName,
-                  std::ios::out | std::ios::binary | std::ios::trunc);
-    testFile.close();
+    /* Create a dummy eMMC device. */
+    std::filesystem::create_directories("mmcblk0/device");
+    const std::string typeFileName("mmcblk0/device/type");
+    std::ofstream typeFile(typeFileName, std::ios::out | std::ios::trunc);
+    typeFile << "MMC";
+    typeFile.close();
 
-    /* Create another dummy file. */
-    const std::string testDummyFilename("abc");
-    testFile.open(testDummyFilename,
-                  std::ios::out | std::ios::binary | std::ios::trunc);
-    testFile.close();
+    /* Create another dummy device. */
+    std::filesystem::create_directories("abc/device");
+    const std::string dummyTypeFileName("abc/device/type");
+    std::ofstream dummyTypeFile(dummyTypeFileName, std::ios::out | std::ios::trunc);
+    dummyTypeFile << "SSD";
+    dummyTypeFile.close();
+
+    /* Another device. */
+    std::filesystem::create_directories("def/device");
 
     /* Look for the device file. */
     std::filesystem::path deviceFile, sysfsDir;
@@ -156,8 +168,9 @@ TEST(utilTest, findDeviceUnsupportedTypeFail)
                                              deviceFile, sysfsDir, luksName));
 
     /* Delete the dummy files. */
-    EXPECT_EQ(0, unlink(testDevName.c_str()));
-    EXPECT_EQ(0, unlink(testDummyFilename.c_str()));
+    EXPECT_EQ(3, std::filesystem::remove_all("mmcblk0"));
+    EXPECT_EQ(3, std::filesystem::remove_all("abc"));
+    EXPECT_EQ(2, std::filesystem::remove_all("def"));
 }
 
 /* Test case where we can't find the device file. */
@@ -170,12 +183,15 @@ TEST(utilTest, findDeviceNotFoundFail)
                  estoraged::BasicVariantType("EmmcDevice"));
     data.emplace(std::string("Name"), estoraged::BasicVariantType("emmc"));
 
-    /* Create a dummy file. */
-    const std::string testDummyFilename("abc");
-    std::ofstream testFile;
-    testFile.open(testDummyFilename,
-                  std::ios::out | std::ios::binary | std::ios::trunc);
-    testFile.close();
+    /* Create a dummy device. */
+    std::filesystem::create_directories("abc/device");
+    const std::string dummyTypeFileName("abc/device/type");
+    std::ofstream dummyTypeFile(dummyTypeFileName, std::ios::out | std::ios::trunc);
+    dummyTypeFile << "SSD";
+    dummyTypeFile.close();
+
+    /* Another device. */
+    std::filesystem::create_directories("def/device");
 
     /* Look for the device file. */
     std::filesystem::path deviceFile, sysfsDir;
@@ -183,8 +199,9 @@ TEST(utilTest, findDeviceNotFoundFail)
     EXPECT_FALSE(estoraged::util::findDevice(data, std::filesystem::path("./"),
                                              deviceFile, sysfsDir, luksName));
 
-    /* Delete the dummy file. */
-    EXPECT_EQ(0, unlink(testDummyFilename.c_str()));
+    /* Delete the dummy files. */
+    EXPECT_EQ(3, std::filesystem::remove_all("abc"));
+    EXPECT_EQ(2, std::filesystem::remove_all("def"));
 }
 
 } // namespace estoraged_test

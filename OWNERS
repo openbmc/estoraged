@@ -34,9 +34,9 @@
 owners:
 - brandonkim@google.com
 - wak@google.com
+- jebr@google.com
 
 reviewers:
-- jebr@google.com
 - johnwedig@google.com
 
 openbmc:

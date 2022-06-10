@@ -93,9 +93,9 @@ TEST(utilTest, findDevicePass)
     EXPECT_EQ("luks-mmcblk0", luksName);
 
     /* Delete the dummy files. */
-    EXPECT_EQ(3, std::filesystem::remove_all("mmcblk0"));
-    EXPECT_EQ(3, std::filesystem::remove_all("abc"));
-    EXPECT_EQ(2, std::filesystem::remove_all("def"));
+    EXPECT_EQ(3U, std::filesystem::remove_all("mmcblk0"));
+    EXPECT_EQ(3U, std::filesystem::remove_all("abc"));
+    EXPECT_EQ(2U, std::filesystem::remove_all("def"));
 }
 
 /* Test case where the "Type" property doesn't exist. */
@@ -131,9 +131,9 @@ TEST(utilTest, findDeviceNoTypeFail)
                                              deviceFile, sysfsDir, luksName));
 
     /* Delete the dummy files. */
-    EXPECT_EQ(3, std::filesystem::remove_all("mmcblk0"));
-    EXPECT_EQ(3, std::filesystem::remove_all("abc"));
-    EXPECT_EQ(2, std::filesystem::remove_all("def"));
+    EXPECT_EQ(3U, std::filesystem::remove_all("mmcblk0"));
+    EXPECT_EQ(3U, std::filesystem::remove_all("abc"));
+    EXPECT_EQ(2U, std::filesystem::remove_all("def"));
 }
 
 /* Test case where the device type is not supported. */
@@ -171,9 +171,9 @@ TEST(utilTest, findDeviceUnsupportedTypeFail)
                                              deviceFile, sysfsDir, luksName));
 
     /* Delete the dummy files. */
-    EXPECT_EQ(3, std::filesystem::remove_all("mmcblk0"));
-    EXPECT_EQ(3, std::filesystem::remove_all("abc"));
-    EXPECT_EQ(2, std::filesystem::remove_all("def"));
+    EXPECT_EQ(3U, std::filesystem::remove_all("mmcblk0"));
+    EXPECT_EQ(3U, std::filesystem::remove_all("abc"));
+    EXPECT_EQ(2U, std::filesystem::remove_all("def"));
 }
 
 /* Test case where we can't find the device file. */
@@ -204,8 +204,8 @@ TEST(utilTest, findDeviceNotFoundFail)
                                              deviceFile, sysfsDir, luksName));
 
     /* Delete the dummy files. */
-    EXPECT_EQ(3, std::filesystem::remove_all("abc"));
-    EXPECT_EQ(2, std::filesystem::remove_all("def"));
+    EXPECT_EQ(3U, std::filesystem::remove_all("abc"));
+    EXPECT_EQ(2U, std::filesystem::remove_all("def"));
 }
 
 } // namespace estoraged_test

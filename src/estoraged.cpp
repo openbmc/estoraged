@@ -100,6 +100,11 @@ EStoraged::EStoraged(sdbusplus::asio::object_server& server,
             return value;
         });
 
+    locationInterface = objectServer.add_interface(
+        objectPath, "xyz.openbmc_project.Inventory.Decorator.LocationCode");
+    locationInterface->register_property("LocationCode",
+                                         std::string("Embedded"));
+
     volumeInterface->initialize();
     driveInterface->initialize();
 

@@ -40,9 +40,8 @@ EStoraged::EStoraged(sdbusplus::asio::object_server& server,
                      std::unique_ptr<FilesystemInterface> fsInterface) :
     devPath(devPath),
     containerName(luksName), mountPoint("/mnt/" + luksName + "_fs"),
-    lockedProperty(false), cryptIface(std::move(cryptInterface)),
-    fsIface(std::move(fsInterface)), objectServer(server),
-    encryptionStatus(Drive::DriveEncryptionState::Unknown)
+    cryptIface(std::move(cryptInterface)), fsIface(std::move(fsInterface)),
+    objectServer(server)
 {
     /* Get the filename of the device (without "/dev/"). */
     std::string deviceName = std::filesystem::path(devPath).filename().string();

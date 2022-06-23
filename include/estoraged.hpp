@@ -111,7 +111,7 @@ class EStoraged
     std::string mountPoint;
 
     /** @brief Indicates whether the LUKS device is currently locked. */
-    bool lockedProperty;
+    bool lockedProperty{false};
 
     /** @brief Pointer to cryptsetup interface object.
      *  @details This is used to mock out the cryptsetup functions.
@@ -139,7 +139,8 @@ class EStoraged
     std::shared_ptr<sdbusplus::asio::dbus_interface> association;
 
     /** @brief Indicates whether the LUKS header is on the disk. */
-    Drive::DriveEncryptionState encryptionStatus;
+    Drive::DriveEncryptionState encryptionStatus{
+        Drive::DriveEncryptionState::Unknown};
 
     /** @brief Format LUKS encrypted device.
      *

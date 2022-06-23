@@ -133,7 +133,7 @@ class EStoraged
     std::shared_ptr<sdbusplus::asio::dbus_interface> driveInterface;
 
     /** @brief D-Bus interface for the location of the drive. */
-    std::shared_ptr<sdbusplus::asio::dbus_interface> locationInterface;
+    std::shared_ptr<sdbusplus::asio::dbus_interface> embeddedLocationInterface;
 
     /** @brief Association between chassis and drive. */
     std::shared_ptr<sdbusplus::asio::dbus_interface> association;

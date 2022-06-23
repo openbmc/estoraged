@@ -100,14 +100,12 @@ EStoraged::EStoraged(sdbusplus::asio::object_server& server,
             return value;
         });
 
-    locationInterface = objectServer.add_interface(
-        objectPath, "xyz.openbmc_project.Inventory.Decorator.LocationCode");
-    locationInterface->register_property("LocationCode",
-                                         std::string("Embedded"));
+    embeddedLocationInterface = objectServer.add_interface(
+        objectPath, "xyz.openbmc_project.Inventory.Connector.Embedded");
 
     volumeInterface->initialize();
     driveInterface->initialize();
-    locationInterface->initialize();
+    embeddedLocationInterface->initialize();
 
     /* Set up the association between chassis and drive. */
     association = objectServer.add_interface(
@@ -124,7 +122,7 @@ EStoraged::~EStoraged()
 {
     objectServer.remove_interface(volumeInterface);
     objectServer.remove_interface(driveInterface);
-    objectServer.remove_interface(locationInterface);
+    objectServer.remove_interface(embeddedLocationInterface);
     objectServer.remove_interface(association);
 }
 

@@ -94,9 +94,14 @@ void createStorageObjects(
                 uint8_t lifeleft =
                     estoraged::util::findPredictedMediaLifeLeftPercent(
                         sysfsDir);
+                std::string partNumber =
+                    estoraged::util::getPartNumber(sysfsDir);
+                std::string serialNumber =
+                    estoraged::util::getSerialNumber(sysfsDir);
                 /* Create the storage object. */
                 storageObjects[path] = std::make_unique<estoraged::EStoraged>(
-                    objectServer, path, deviceFile, luksName, size, lifeleft);
+                    objectServer, path, deviceFile, luksName, size, lifeleft,
+                    partNumber, serialNumber);
                 lg2::info("Created eStoraged object for path {PATH}", "PATH",
                           path, "REDFISH_MESSAGE_ID",
                           std::string("OpenBMC.0.1.CreateStorageObjects"));

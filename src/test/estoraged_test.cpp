@@ -42,6 +42,8 @@ class EStoragedTest : public testing::Test
         "/xyz/openbmc_project/inventory/system/board/test_board/test_emmc";
     const uint64_t testSize = 24;
     const uint8_t testLifeTime = 25;
+    const std::string testPartNumber = "12345678";
+    const std::string testSerialNumber = "ABCDEF1234";
     std::ofstream testFile;
     std::string passwordString;
     std::vector<uint8_t> password;
@@ -82,7 +84,8 @@ class EStoragedTest : public testing::Test
 
         esObject = std::make_unique<estoraged::EStoraged>(
             *objectServer, testConfigPath, testFileName, testLuksDevName,
-            testSize, testLifeTime, std::move(cryptIface), std::move(fsIface));
+            testSize, testLifeTime, testPartNumber, testSerialNumber,
+            std::move(cryptIface), std::move(fsIface));
     }
 
     void TearDown() override

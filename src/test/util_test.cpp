@@ -13,6 +13,8 @@
 namespace estoraged_test
 {
 using estoraged::util::findPredictedMediaLifeLeftPercent;
+using estoraged::util::getPartNumber;
+using estoraged::util::getSerialNumber;
 
 TEST(utilTest, passFindPredictedMediaLife)
 {
@@ -24,6 +26,7 @@ TEST(utilTest, passFindPredictedMediaLife)
     testFile << "0x07 0x04";
     testFile.close();
     EXPECT_EQ(findPredictedMediaLifeLeftPercent(prefixName), 40);
+    EXPECT_TRUE(std::filesystem::remove(testFileName));
 }
 
 TEST(utilTest, estimatesSame)
@@ -38,6 +41,7 @@ TEST(utilTest, estimatesSame)
     testFile.close();
 
     EXPECT_EQ(findPredictedMediaLifeLeftPercent(prefixName), 70);
+    EXPECT_TRUE(std::filesystem::remove(testFileName));
 }
 
 TEST(utilTest, estimatesNotAvailable)
@@ -51,6 +55,49 @@ TEST(utilTest, estimatesNotAvailable)
     testFile.close();
 
     EXPECT_EQ(findPredictedMediaLifeLeftPercent(prefixName), 255);
+    EXPECT_TRUE(std::filesystem::remove(testFileName));
+}
+
+TEST(utilTest, getPartNumberFail)
+{
+    std::string prefixName = ".";
+    std::string testFileName = prefixName + "/name";
+    /* The part name file won't exist for this test. */
+    EXPECT_EQ(getPartNumber(prefixName), "unknown");
+}
+
+TEST(utilTest, getPartNumberPass)
+{
+    std::string prefixName = ".";
+    std::string testFileName = prefixName + "/name";
+    std::ofstream testFile;
+    testFile.open(testFileName,
+                  std::ios::out | std::ios::binary | std::ios::trunc);
+    testFile << "ABCD1234";
+    testFile.close();
+    EXPECT_EQ(getPartNumber(prefixName), "ABCD1234");
+    EXPECT_TRUE(std::filesystem::remove(testFileName));
+}
+
+TEST(utilTest, getSerialNumberFail)
+{
+    std::string prefixName = ".";
+    std::string testFileName = prefixName + "/serial";
+    /* The serial number file won't exist for this test. */
+    EXPECT_EQ(getSerialNumber(prefixName), "unknown");
+}
+
+TEST(utilTest, getSerialNumberPass)
+{
+    std::string prefixName = ".";
+    std::string testFileName = prefixName + "/serial";
+    std::ofstream testFile;
+    testFile.open(testFileName,
+                  std::ios::out | std::ios::binary | std::ios::trunc);
+    testFile << "0x12345678";
+    testFile.close();
+    EXPECT_EQ(getSerialNumber(prefixName), "305419896");
+    EXPECT_TRUE(std::filesystem::remove(testFileName));
 }
 
 /* Test case where we successfully find the device file. */

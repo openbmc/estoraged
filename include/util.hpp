@@ -21,6 +21,18 @@ uint64_t findSizeOfBlockDevice(const std::string& devPath);
  */
 uint8_t findPredictedMediaLifeLeftPercent(const std::string& sysfsPath);
 
+/** @brief Get the part number (aka part name) for the storage device
+ *  @param[in] sysfsPath - The path to the linux sysfs interface.
+ *  @return part name as a string (or "unknown" if it couldn't be retrieved)
+ */
+std::string getPartNumber(const std::string& sysfsPath);
+
+/** @brief Get the serial number for the storage device
+ *  @param[in] sysfsPath - The path to the linux sysfs interface.
+ *  @return serial name as a string (or "unknown" if it couldn't be retrieved)
+ */
+std::string getSerialNumber(const std::string& sysfsPath);
+
 /** @brief Look for the device described by the provided StorageData.
  *  @details Currently, this function assumes that there's only one eMMC.
  *    When we need to support multiple eMMCs, we will put more information in

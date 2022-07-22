@@ -35,7 +35,8 @@ using sdbusplus::xyz::openbmc_project::Inventory::Item::server::Volume;
 EStoraged::EStoraged(sdbusplus::asio::object_server& server,
                      const std::string& configPath, const std::string& devPath,
                      const std::string& luksName, uint64_t size,
-                     uint8_t lifeTime,
+                     uint8_t lifeTime, const std::string& partNumber,
+                     const std::string& serialNumber,
                      std::unique_ptr<CryptsetupInterface> cryptInterface,
                      std::unique_ptr<FilesystemInterface> fsInterface) :
     devPath(devPath),
@@ -102,9 +103,16 @@ EStoraged::EStoraged(sdbusplus::asio::object_server& server,
     embeddedLocationInterface = objectServer.add_interface(
         objectPath, "xyz.openbmc_project.Inventory.Connector.Embedded");
 
+    /* Add Asset interface. */
+    assetInterface = objectServer.add_interface(
+        objectPath, "xyz.openbmc_project.Inventory.Decorator.Asset");
+    assetInterface->register_property("PartNumber", partNumber);
+    assetInterface->register_property("SerialNumber", serialNumber);
+
     volumeInterface->initialize();
     driveInterface->initialize();
     embeddedLocationInterface->initialize();
+    assetInterface->initialize();
 
     /* Set up the association between chassis and drive. */
     association = objectServer.add_interface(

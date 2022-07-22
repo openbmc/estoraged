@@ -92,6 +92,56 @@ uint8_t findPredictedMediaLifeLeftPercent(const std::string& sysfsPath)
     return static_cast<uint8_t>(11 - maxLifeUsed) * 10;
 }
 
+std::string getPartNumber(const std::filesystem::path& sysfsPath)
+{
+    std::ifstream partNameFile;
+    std::string partName;
+    try
+    {
+        std::filesystem::path namePath(sysfsPath);
+        namePath /= "name";
+        partNameFile.open(namePath, std::ios_base::in);
+        partNameFile >> partName;
+    }
+    catch (...)
+    {
+        lg2::error("Unable to read sysfs", "REDFISH_MESSAGE_ID",
+                   std::string("OpenBMC.0.1.PartNumberFailure"));
+    }
+    partNameFile.close();
+    if (partName.empty())
+    {
+        partName = "unknown";
+    }
+
+    return partName;
+}
+
+std::string getSerialNumber(const std::filesystem::path& sysfsPath)
+{
+    std::ifstream serialNumberFile;
+    std::string serialNumber;
+    try
+    {
+        std::filesystem::path serialPath(sysfsPath);
+        serialPath /= "serial";
+        serialNumberFile.open(serialPath, std::ios_base::in);
+        serialNumberFile >> serialNumber;
+    }
+    catch (...)
+    {
+        lg2::error("Unable to read sysfs", "REDFISH_MESSAGE_ID",
+                   std::string("OpenBMC.0.1.SerialNumberFailure"));
+    }
+    serialNumberFile.close();
+    if (serialNumber.empty())
+    {
+        serialNumber = "unknown";
+    }
+
+    return serialNumber;
+}
+
 bool findDevice(const StorageData& data, const std::filesystem::path& searchDir,
                 std::filesystem::path& deviceFile,
                 std::filesystem::path& sysfsDir, std::string& luksName)

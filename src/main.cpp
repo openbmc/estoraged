@@ -128,8 +128,8 @@ int main(void)
          * that show up later.
          */
         boost::asio::deadline_timer filterTimer(io);
-        std::function<void(sdbusplus::message::message&)> eventHandler =
-            [&](sdbusplus::message::message& message) {
+        std::function<void(sdbusplus::message_t&)> eventHandler =
+            [&](sdbusplus::message_t& message) {
                 if (message.is_method_error())
                 {
                     lg2::error("eventHandler callback method error");
@@ -159,8 +159,8 @@ int main(void)
                     });
             };
 
-        auto match = std::make_unique<sdbusplus::bus::match::match>(
-            static_cast<sdbusplus::bus::bus&>(*conn),
+        auto match = std::make_unique<sdbusplus::bus::match_t>(
+            static_cast<sdbusplus::bus_t&>(*conn),
             "type='signal',member='PropertiesChanged',path_namespace='" +
                 std::string("/xyz/openbmc_project/inventory") +
                 "',arg0namespace='" + estoraged::emmcConfigInterface + "'",

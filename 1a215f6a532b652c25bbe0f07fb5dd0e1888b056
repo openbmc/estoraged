@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "805cd0a3_936e64c8",
+        "filename": "src/test/util_test.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-07-23T00:14:22Z",
+      "side": 1,
+      "message": "same issue as before. I understand serial numbers are suppose to simply be number increasing by one for every part made. However, often none numeric symbole are introduced to encode extra information.\n\nI would want getSerialNumberPass to provide a string, exactly as the device provides. (And not switched to base 10.)\n\nBased on the wget, I fear bmcweb is converting your base 10, to a base 16 number, which I find gross",
+      "range": {
+        "startLine": 97,
+        "startChar": 0,
+        "endLine": 99,
+        "endChar": 56
+      },
+      "revId": "1a215f6a532b652c25bbe0f07fb5dd0e1888b056",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "736dc5d9_63b8b5dc",
+        "filename": "src/util.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-07-23T00:14:22Z",
+      "side": 1,
+      "message": "nit:\nstd::filesystem::path\u0026, if you want. The code above does not do that.",
+      "range": {
+        "startLine": 95,
+        "startChar": 26,
+        "endLine": 95,
+        "endChar": 44
+      },
+      "revId": "1a215f6a532b652c25bbe0f07fb5dd0e1888b056",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "647d4f96_2c7376a9",
+        "filename": "src/util.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-07-23T00:14:22Z",
+      "side": 1,
+      "message": "nit:\nstd::filesystem::path\u0026",
+      "range": {
+        "startLine": 118,
+        "startChar": 28,
+        "endLine": 118,
+        "endChar": 46
+      },
+      "revId": "1a215f6a532b652c25bbe0f07fb5dd0e1888b056",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd70a054_bd539752",
+        "filename": "src/util.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-07-23T00:14:22Z",
+      "side": 1,
+      "message": "I don\u0027t think it is a safe assumption that a serial number will always be hex (or numeric in general). It does sound strange to say, serial number are not necessarily numbers.",
+      "range": {
+        "startLine": 126,
+        "startChar": 28,
+        "endLine": 126,
+        "endChar": 36
+      },
+      "revId": "1a215f6a532b652c25bbe0f07fb5dd0e1888b056",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

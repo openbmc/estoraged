@@ -1,0 +1,7 @@
+Verified+1: OpenBMC CI <openbmcbump-ci@yahoo.com>
+Code-Review+2: William A. Kennington III <wak@google.com>
+Submitted-by: Patrick Williams <patrick@stwcx.xyz>
+Submitted-at: Sat, 23 Jul 2022 10:14:30 +0000
+Reviewed-on: https://gerrit.openbmc.org/c/openbmc/estoraged/+/55813
+Project: openbmc/estoraged
+Branch: refs/heads/master

@@ -80,6 +80,30 @@
       },
       "revId": "80847f339ebc2fffd311cf46b878c1929c8bf4d4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "04ee7008_9b1684fa",
+        "filename": "include/util.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000885
+      },
+      "writtenOn": "2022-08-01T22:56:16Z",
+      "side": 1,
+      "message": "yeah, I think Model is more human readable. and should be one to many mapping from model to part number. I guess one model can have different part number that support it.\n\nI guess its fine if we don\u0027t need it.",
+      "parentUuid": "b1e6e951_1887ffb2",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 58
+      },
+      "revId": "80847f339ebc2fffd311cf46b878c1929c8bf4d4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

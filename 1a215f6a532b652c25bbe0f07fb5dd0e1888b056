@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "808aaf79_c8d242cb",
+        "filename": "src/test/util_test.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-08-01T22:46:44Z",
+      "side": 1,
+      "message": "I changed it.",
+      "parentUuid": "805cd0a3_936e64c8",
+      "range": {
+        "startLine": 97,
+        "startChar": 0,
+        "endLine": 99,
+        "endChar": 56
+      },
+      "revId": "1a215f6a532b652c25bbe0f07fb5dd0e1888b056",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "736dc5d9_63b8b5dc",
         "filename": "src/util.cpp",
         "patchSetId": 2
@@ -49,6 +73,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "fea88a48_6dca61d0",
+        "filename": "src/util.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-08-01T22:46:44Z",
+      "side": 1,
+      "message": "I made this change.",
+      "parentUuid": "736dc5d9_63b8b5dc",
+      "range": {
+        "startLine": 95,
+        "startChar": 26,
+        "endLine": 95,
+        "endChar": 44
+      },
+      "revId": "1a215f6a532b652c25bbe0f07fb5dd0e1888b056",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "647d4f96_2c7376a9",
         "filename": "src/util.cpp",
         "patchSetId": 2
@@ -60,6 +108,30 @@
       "writtenOn": "2022-07-23T00:14:22Z",
       "side": 1,
       "message": "nit:\nstd::filesystem::path\u0026",
+      "range": {
+        "startLine": 118,
+        "startChar": 28,
+        "endLine": 118,
+        "endChar": 46
+      },
+      "revId": "1a215f6a532b652c25bbe0f07fb5dd0e1888b056",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31dbdb63_b7bd370e",
+        "filename": "src/util.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-08-01T22:46:44Z",
+      "side": 1,
+      "message": "I made this change.",
+      "parentUuid": "647d4f96_2c7376a9",
       "range": {
         "startLine": 118,
         "startChar": 28,
@@ -107,6 +179,30 @@
       "side": 1,
       "message": "+1",
       "parentUuid": "bd70a054_bd539752",
+      "range": {
+        "startLine": 126,
+        "startChar": 28,
+        "endLine": 126,
+        "endChar": 36
+      },
+      "revId": "1a215f6a532b652c25bbe0f07fb5dd0e1888b056",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4859dfac_65f3ff13",
+        "filename": "src/util.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-08-01T22:46:44Z",
+      "side": 1,
+      "message": "I changed it to simply report the string exactly as read from sysfs, with the \"0x\" included.",
+      "parentUuid": "052cb033_8370a80f",
       "range": {
         "startLine": 126,
         "startChar": 28,

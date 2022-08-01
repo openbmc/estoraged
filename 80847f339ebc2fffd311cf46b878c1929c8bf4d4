@@ -56,6 +56,30 @@
       },
       "revId": "80847f339ebc2fffd311cf46b878c1929c8bf4d4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1e6e951_1887ffb2",
+        "filename": "include/util.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-08-01T22:46:44Z",
+      "side": 1,
+      "message": "From looking at the CID register, the manufacturer ID is available, but I don\u0027t see a \"model\" field. By the way, I don\u0027t know what the difference is between model and part number.\n\nCID register info can be found here: https://linux.codingbelief.com/zh/storage/flash_memory/emmc/emmc_device_registers.html\n\nBut at any rate, I\u0027m only interested in the part number and serial number. Let me know if you think I should add the manufacturer ID, anyway.",
+      "parentUuid": "8337f9de_481a3135",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 58
+      },
+      "revId": "80847f339ebc2fffd311cf46b878c1929c8bf4d4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

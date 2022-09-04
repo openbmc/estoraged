@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc288ac5_23c19566",
+        "filename": "include/cryptsetupInterface.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2022-09-04T22:20:52Z",
+      "side": 1,
+      "message": "This should not return a pointer if it can\u0027t be null, always return references to avoid these issues.",
+      "revId": "2b5454d316b564e63b6f5afa5e0018a014d81365",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e4ebabb_b041ba28",
+        "filename": "include/cryptsetupInterface.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2022-09-04T22:20:52Z",
+      "side": 1,
+      "message": "Avoid code in headers that isn\u0027t marked inline, otherwise it can get compiled into multiple translation units.",
+      "revId": "2b5454d316b564e63b6f5afa5e0018a014d81365",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

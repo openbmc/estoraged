@@ -227,7 +227,7 @@ class CryptHandle
     {}
 
     /** @brief Get a pointer to the crypt_device struct. */
-    struct crypt_device* get()
+    struct crypt_device& get()
     {
         if (*handle == nullptr)
         {
@@ -237,7 +237,8 @@ class CryptHandle
             throw ResourceNotFound();
         }
 
-        return *handle;
+        struct crypt_device ret(*handle);
+        return ret;
     }
 
   private:

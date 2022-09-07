@@ -28,7 +28,8 @@ void CryptErase::doErase()
     /* get cryptHandle */
     CryptHandle cryptHandle{devPath};
     /* cryptLoad */
-    if (cryptIface->cryptLoad(cryptHandle.get(), CRYPT_LUKS2, nullptr) != 0)
+    struct crypt_device handle = cryptHandle.get();
+    if (cryptIface->cryptLoad(&handle, CRYPT_LUKS2, nullptr) != 0)
     {
         lg2::error("Failed to load the key slots for destruction",
                    "REDFISH_MESSAGE_ID",
@@ -56,12 +57,12 @@ void CryptErase::doErase()
     bool keySlotIssue = false;
     for (int i = 0; i < nKeySlots; i++)
     {
-        crypt_keyslot_info ki =
-            cryptIface->cryptKeySlotStatus(cryptHandle.get(), i);
+        struct crypt_device handle = cryptHandle.get();
+        crypt_keyslot_info ki = cryptIface->cryptKeySlotStatus(&handle, i);
 
         if (ki == CRYPT_SLOT_ACTIVE || ki == CRYPT_SLOT_ACTIVE_LAST)
         {
-            if (cryptIface->cryptKeyslotDestroy(cryptHandle.get(), i) != 0)
+            if (cryptIface->cryptKeyslotDestroy(&handle, i) != 0)
             {
                 lg2::error(
                     "Estoraged erase failed to destroy keyslot, continuing",

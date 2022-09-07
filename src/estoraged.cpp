@@ -271,8 +271,9 @@ void EStoraged::formatLuksDev(std::vector<uint8_t> password)
     CryptHandle cryptHandle(devPath);
 
     /* Format the LUKS encrypted device. */
+    struct crypt_device handle = cryptHandle.get();
     int retval = cryptIface->cryptFormat(
-        cryptHandle.get(), CRYPT_LUKS2, "aes", "xts-plain64", nullptr,
+        &handle, CRYPT_LUKS2, "aes", "xts-plain64", nullptr,
         reinterpret_cast<const char*>(volumeKey.data()), volumeKey.size(),
         nullptr);
     if (retval < 0)
@@ -288,7 +289,7 @@ void EStoraged::formatLuksDev(std::vector<uint8_t> password)
 
     /* Set the password. */
     retval = cryptIface->cryptKeyslotAddByVolumeKey(
-        cryptHandle.get(), CRYPT_ANY_SLOT, nullptr, 0,
+        &handle, CRYPT_ANY_SLOT, nullptr, 0,
         reinterpret_cast<const char*>(password.data()), password.size());
 
     if (retval < 0)
@@ -307,8 +308,9 @@ CryptHandle EStoraged::loadLuksHeader()
 {
 
     CryptHandle cryptHandle(devPath);
+    struct crypt_device handle = cryptHandle.get();
 
-    int retval = cryptIface->cryptLoad(cryptHandle.get(), CRYPT_LUKS2, nullptr);
+    int retval = cryptIface->cryptLoad(&handle, CRYPT_LUKS2, nullptr);
     if (retval < 0)
     {
         lg2::error("Failed to load LUKS header: {RETVAL}", "RETVAL", retval,
@@ -339,9 +341,10 @@ void EStoraged::activateLuksDev(std::vector<uint8_t> password)
 
     /* Create the handle. */
     CryptHandle cryptHandle = loadLuksHeader();
+    struct crypt_device handle = cryptHandle.get();
 
     int retval = cryptIface->cryptActivateByPassphrase(
-        cryptHandle.get(), containerName.c_str(), CRYPT_ANY_SLOT,
+        &handle, containerName.c_str(), CRYPT_ANY_SLOT,
         reinterpret_cast<const char*>(password.data()), password.size(), 0);
 
     if (retval < 0)

@@ -160,56 +160,29 @@ class Cryptsetup : public CryptsetupInterface
     int cryptFormat(struct crypt_device* cd, const char* type,
                     const char* cipher, const char* cipherMode,
                     const char* uuid, const char* volumeKey,
-                    size_t volumeKeySize, void* params) override
-    {
-        return crypt_format(cd, type, cipher, cipherMode, uuid, volumeKey,
-                            volumeKeySize, params);
-    }
+                    size_t volumeKeySize, void* params) override;
 
     int cryptKeyslotAddByVolumeKey(struct crypt_device* cd, int keyslot,
                                    const char* volumeKey, size_t volumeKeySize,
                                    const char* passphrase,
-                                   size_t passphraseSize) override
-    {
-        return crypt_keyslot_add_by_volume_key(
-            cd, keyslot, volumeKey, volumeKeySize, passphrase, passphraseSize);
-    }
+                                   size_t passphraseSize) override;
 
     int cryptLoad(struct crypt_device* cd, const char* requestedType,
-                  void* params) override
-    {
-        return crypt_load(cd, requestedType, params);
-    }
+                  void* params) override;
 
     int cryptActivateByPassphrase(struct crypt_device* cd, const char* name,
                                   int keyslot, const char* passphrase,
                                   size_t passphraseSize,
-                                  uint32_t flags) override
-    {
-        return crypt_activate_by_passphrase(cd, name, keyslot, passphrase,
-                                            passphraseSize, flags);
-    }
+                                  uint32_t flags) override;
 
-    int cryptDeactivate(struct crypt_device* cd, const char* name) override
-    {
-        return crypt_deactivate(cd, name);
-    }
+    int cryptDeactivate(struct crypt_device* cd, const char* name) override;
 
-    int cryptKeyslotDestroy(struct crypt_device* cd, const int keyslot) override
-    {
-        return crypt_keyslot_destroy(cd, keyslot);
-    }
+    int cryptKeyslotDestroy(struct crypt_device* cd, int keyslot) override;
 
-    int cryptKeySlotMax(const char* type) override
-    {
-        return crypt_keyslot_max(type);
-    }
+    int cryptKeySlotMax(const char* type) override;
 
     crypt_keyslot_info cryptKeySlotStatus(struct crypt_device* cd,
-                                          int keyslot) override
-    {
-        return crypt_keyslot_status(cd, keyslot);
-    }
+                                          int keyslot) override;
 };
 
 /** @class CryptHandle
@@ -227,46 +200,20 @@ class CryptHandle
     {}
 
     /** @brief Get a pointer to the crypt_device struct. */
-    struct crypt_device* get()
-    {
-        if (*handle == nullptr)
-        {
-            lg2::error("Failed to get crypt device handle",
-                       "REDFISH_MESSAGE_ID",
-                       std::string("OpenBMC.0.1.HandleGetFail"));
-            throw ResourceNotFound();
-        }
-
-        return *handle;
-    }
+    struct crypt_device* get();
 
   private:
     /** @brief Allocate and initialize the crypt_device struct
      *
      *  @param[in] device - path to device file
      */
-    struct crypt_device* init(const std::string_view& device)
-    {
-        struct crypt_device* cryptDev = nullptr;
-        int retval = crypt_init(&cryptDev, device.data());
-        if (retval < 0)
-        {
-            lg2::error("Failed to crypt_init", "REDFISH_MESSAGE_ID",
-                       std::string("OpenBMC.0.1.InitFail"));
-            throw ResourceNotFound();
-        }
-
-        return cryptDev;
-    }
+    struct crypt_device* init(const std::string_view& device);
 
     /** @brief Free the crypt_device struct
      *
      *  @param[in] cd - pointer to crypt_device*, to be freed
      */
-    static void cryptFree(struct crypt_device*&& cd)
-    {
-        crypt_free(cd);
-    }
+    static void cryptFree(struct crypt_device*&& cd);
 
     /** @brief Managed handle to crypt_device struct */
     stdplus::Managed<struct crypt_device*>::Handle<cryptFree> handle;

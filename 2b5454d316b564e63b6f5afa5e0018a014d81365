@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "acb2d2cc_6eeabd61",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-09-08T02:24:04Z",
+      "side": 1,
+      "message": "Thanks for find this.\n\nWhat bought you to review this? Was there a automated tool that found this, or was someone using this as example code, or just random?",
+      "revId": "2b5454d316b564e63b6f5afa5e0018a014d81365",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bc288ac5_23c19566",
@@ -20,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0cce8563_6d71f224",
+        "filename": "include/cryptsetupInterface.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-09-08T02:24:04Z",
+      "side": 1,
+      "message": "On principle I agree with you.\n\nHowever, the underlying cryptsetup library makes it difficult to declare a  crypt_device, presumably to provide encapsulation.\n \nDeclared here:\nhttps://gitlab.com/cryptsetup/cryptsetup/-/blob/b4863897fe2c0d6de08ab54c96681c90d99dafa6/lib/libcryptsetup.h#L48\n\ndefined here:\nhttps://gitlab.com/cryptsetup/cryptsetup/-/blob/b4863897fe2c0d6de08ab54c96681c90d99dafa6/lib/setup.c#L45\n\nI don\u0027t think I should #include setup.c .Maybe I am misunderstanding the intentions of cryptsetup designers, or something more generally.\n\nBefore I knew this I stated on the change below. https://gerrit.openbmc.org/c/openbmc/estoraged/+/57004",
+      "parentUuid": "bc288ac5_23c19566",
+      "revId": "2b5454d316b564e63b6f5afa5e0018a014d81365",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3e4ebabb_b041ba28",
         "filename": "include/cryptsetupInterface.hpp",
         "patchSetId": 4
@@ -31,6 +66,24 @@
       "writtenOn": "2022-09-04T22:20:52Z",
       "side": 1,
       "message": "Avoid code in headers that isn\u0027t marked inline, otherwise it can get compiled into multiple translation units.",
+      "revId": "2b5454d316b564e63b6f5afa5e0018a014d81365",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78846046_395438f1",
+        "filename": "include/cryptsetupInterface.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-09-08T02:24:04Z",
+      "side": 1,
+      "message": "Agree, started\n\nhttps://gerrit.openbmc.org/c/openbmc/estoraged/+/57016",
+      "parentUuid": "3e4ebabb_b041ba28",
       "revId": "2b5454d316b564e63b6f5afa5e0018a014d81365",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

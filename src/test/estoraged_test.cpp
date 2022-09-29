@@ -452,4 +452,46 @@ TEST_F(EStoragedTest, DeactivateFail)
     EXPECT_FALSE(esObject->isLocked());
 }
 
+/* Test case where we successfully change the password. */
+TEST_F(EStoragedTest, ChangePasswordSuccess)
+{
+    std::string newPasswordString("newPassword");
+    std::vector<uint8_t> newPassword(newPasswordString.begin(),
+                                     newPasswordString.end());
+
+    EXPECT_CALL(*mockCryptIface, cryptLoad(_, _, _)).Times(1);
+
+    EXPECT_CALL(*mockCryptIface,
+                cryptKeyslotChangeByPassphrase(
+                    _, _, _, reinterpret_cast<const char*>(password.data()),
+                    password.size(),
+                    reinterpret_cast<const char*>(newPassword.data()),
+                    newPassword.size()))
+        .WillOnce(Return(0));
+
+    /* Change the password for the LUKS-encrypted device. */
+    esObject->changePassword(password, newPassword);
+}
+
+/* Test case where we fail to change the password. */
+TEST_F(EStoragedTest, ChangePasswordFail)
+{
+    std::string newPasswordString("newPassword");
+    std::vector<uint8_t> newPassword(newPasswordString.begin(),
+                                     newPasswordString.end());
+
+    EXPECT_CALL(*mockCryptIface, cryptLoad(_, _, _)).Times(1);
+
+    EXPECT_CALL(*mockCryptIface,
+                cryptKeyslotChangeByPassphrase(
+                    _, _, _, reinterpret_cast<const char*>(password.data()),
+                    password.size(),
+                    reinterpret_cast<const char*>(newPassword.data()),
+                    newPassword.size()))
+        .WillOnce(Return(-1));
+
+    EXPECT_THROW(esObject->changePassword(password, newPassword),
+                 InternalFailure);
+}
+
 } // namespace estoraged_test

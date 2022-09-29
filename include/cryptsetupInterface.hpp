@@ -28,6 +28,7 @@ class CryptsetupInterface
 
     CryptsetupInterface(CryptsetupInterface&&) = delete;
     CryptsetupInterface& operator=(CryptsetupInterface&&) = delete;
+
     /** @brief Wrapper around crypt_format.
      *  @details Used for mocking purposes.
      *
@@ -48,6 +49,26 @@ class CryptsetupInterface
                             const char* cipher, const char* cipherMode,
                             const char* uuid, const char* volumeKey,
                             size_t volumeKeySize, void* params) = 0;
+
+    /** @brief Wrapper around crypt_keyslot_change_by_passphrase.
+     *  @details Used for mocking purposes.
+     *
+     *  @param[in] cd - crypt device handle.
+     *  @param[in] keyslotOld - old keyslot or CRYPT_ANY_SLOT.
+     *  @param[in] keyslotNew - new keyslot or CRYPT_ANY_SLOT.
+     *  @param[in] passphrase - passphrase for new keyslot.
+     *  @param[in] passphraseSize - size of passphrase.
+     *  @param[in] newPassphrase - new passphrase for the specified keyslot
+     *  @param[in] newPassphraseSize - size of newPassphrase (in bytes).
+     *
+     *  @returns allocated key slot number or negative errno otherwise.
+     */
+    virtual int cryptKeyslotChangeByPassphrase(struct crypt_device* cd,
+                                               int keyslotOld, int keyslotNew,
+                                               const char* passphrase,
+                                               size_t passphraseSize,
+                                               const char* newPassphrase,
+                                               size_t newPassphraseSize) = 0;
 
     /** @brief Wrapper around crypt_keyslot_add_by_volume_key.
      *  @details Used for mocking purposes.
@@ -164,6 +185,19 @@ class Cryptsetup : public CryptsetupInterface
     {
         return crypt_format(cd, type, cipher, cipherMode, uuid, volumeKey,
                             volumeKeySize, params);
+    }
+
+    int cryptKeyslotChangeByPassphrase(struct crypt_device* cd, int keyslotOld,
+                                       int keyslotNew,
+                                       const char* passphrase,
+                                       size_t passphraseSize,
+                                       const char* newPassphrase,
+                                       size_t newPassphraseSize) override
+    {
+        return crypt_keyslot_change_by_passphrase(cd, keyslotOld, keyslotNew,
+                                                  passphrase,
+                                                  passphraseSize, newPassphrase,
+                                                  newPassphraseSize);
     }
 
     int cryptKeyslotAddByVolumeKey(struct crypt_device* cd, int keyslot,

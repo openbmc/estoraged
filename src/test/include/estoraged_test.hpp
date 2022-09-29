@@ -59,6 +59,12 @@ class MockCryptsetupInterface : public estoraged::CryptsetupInterface
                  void* params),
                 (override));
 
+    MOCK_METHOD(int, cryptKeyslotChangeByPassphrase,
+                (struct crypt_device * cd, int keyslotOld, int keyslotNew,
+                 const char* passphrase, size_t passphraseSize,
+                 const char* newPassphrase, size_t newPassphraseSize),
+                (override));
+
     MOCK_METHOD(int, cryptActivateByPassphrase,
                 (struct crypt_device * cd, const char* name, int keyslot,
                  const char* passphrase, size_t passphrase_size,

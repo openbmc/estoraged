@@ -234,12 +234,28 @@ void EStoraged::unlock(std::vector<uint8_t> password)
     mountFilesystem();
 }
 
-void EStoraged::changePassword(const std::vector<uint8_t>& /*oldPassword*/,
-                               const std::vector<uint8_t>& /*newPassword*/)
+void EStoraged::changePassword(const std::vector<uint8_t>& oldPassword,
+                               const std::vector<uint8_t>& newPassword)
 {
-    std::cerr << "Changing password for encrypted eMMC" << std::endl;
     lg2::info("Starting change password", "REDFISH_MESSAGE_ID",
               std::string("OpenBMC.0.1.DrivePasswordChanged"));
+
+    CryptHandle cryptHandle = loadLuksHeader();
+
+    int retval = cryptIface->cryptKeyslotChangeByPassphrase(
+        cryptHandle.get(), CRYPT_ANY_SLOT, CRYPT_ANY_SLOT,
+        reinterpret_cast<const char*>(oldPassword.data()), oldPassword.size(),
+        reinterpret_cast<const char*>(newPassword.data()), newPassword.size());
+    if (retval < 0)
+    {
+        lg2::error("Failed to change password", "REDFISH_MESSAGE_ID",
+                   std::string("OpenBMC.0.1.DrivePasswordChangeFail"));
+        throw InternalFailure();
+    }
+
+    lg2::info("Successfully changed password for {DEV}", "DEV", devPath,
+              "REDFISH_MESSAGE_ID",
+              std::string("OpenBMC.0.1.DrivePasswordChangeSuccess"));
 }
 
 bool EStoraged::isLocked() const

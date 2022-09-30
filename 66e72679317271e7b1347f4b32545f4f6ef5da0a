@@ -22,6 +22,23 @@
       },
       "revId": "66e72679317271e7b1347f4b32545f4f6ef5da0a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96a5d812_f60a4a56",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-09-30T22:47:56Z",
+      "side": 1,
+      "message": "Ah, it looks like we\u0027re failing with the clang-tidy issue that Patrick mentioned in discord + emailed in the mailing list - we\u0027ll probably need a clean up commit before this",
+      "revId": "66e72679317271e7b1347f4b32545f4f6ef5da0a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

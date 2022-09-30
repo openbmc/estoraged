@@ -168,25 +168,27 @@ TEST(Zeros, shortReadWriteFail)
     auto shortData = std::vector<std::byte>(shortSize, std::byte{0});
     auto restOfData =
         std::vector<std::byte>(size - shortSize * 3, std::byte{0});
+    std::span shortDataSpan{shortData};
+    std::span restOfDataSpan{restOfData};
     // open the file and write none to it
 
     stdplus::fd::FdMock mock;
 
     // test writes
     EXPECT_CALL(mock, write(_))
-        .WillOnce(Return(shortData))
-        .WillOnce(Return(shortData))
-        .WillOnce(Return(restOfData))
-        .WillOnce(Return(restOfData)); // return too much data!
+        .WillOnce(Return(shortDataSpan))
+        .WillOnce(Return(shortDataSpan))
+        .WillOnce(Return(restOfDataSpan))
+        .WillOnce(Return(restOfDataSpan)); // return too much data!
 
     EXPECT_THROW(tryPattern.writePattern(size, mock), InternalFailure);
 
     // test reads
     EXPECT_CALL(mock, read(_))
-        .WillOnce(Return(shortData))
-        .WillOnce(Return(shortData))
-        .WillOnce(Return(restOfData))
-        .WillOnce(Return(restOfData)); // return too much data!
+        .WillOnce(Return(shortDataSpan))
+        .WillOnce(Return(shortDataSpan))
+        .WillOnce(Return(restOfDataSpan))
+        .WillOnce(Return(restOfDataSpan)); // return too much data!
 
     EXPECT_THROW(tryPattern.verifyPattern(size, mock), InternalFailure);
 }
@@ -204,7 +206,7 @@ TEST(pattern, driveIsSmaller)
     // test writes
     EXPECT_CALL(mocks, write(_))
         .Times(33)
-        .WillRepeatedly(Return(std::vector<std::byte>{}))
+        .WillRepeatedly(Return(std::span<std::byte>{}))
         .RetiresOnSaturation();
 
     EXPECT_THROW(tryPattern.writePattern(size, mocks), InternalFailure);
@@ -212,7 +214,7 @@ TEST(pattern, driveIsSmaller)
     // test reads
     EXPECT_CALL(mocks, read(_))
         .Times(33)
-        .WillRepeatedly(Return(std::vector<std::byte>{}))
+        .WillRepeatedly(Return(std::span<std::byte>{}))
         .RetiresOnSaturation();
 
     EXPECT_THROW(tryPattern.verifyPattern(size, mocks), InternalFailure);

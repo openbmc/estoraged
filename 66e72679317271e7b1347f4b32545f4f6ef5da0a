@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d39638e_3f4efd3f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-09-30T23:51:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7f7f43f1_ffdf9442",
+      "range": {
+        "startLine": 10,
+        "startChar": 65,
+        "endLine": 10,
+        "endChar": 74
+      },
+      "revId": "66e72679317271e7b1347f4b32545f4f6ef5da0a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "96a5d812_f60a4a56",
@@ -37,6 +61,24 @@
       "writtenOn": "2022-09-30T22:47:56Z",
       "side": 1,
       "message": "Ah, it looks like we\u0027re failing with the clang-tidy issue that Patrick mentioned in discord + emailed in the mailing list - we\u0027ll probably need a clean up commit before this",
+      "revId": "66e72679317271e7b1347f4b32545f4f6ef5da0a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd40e0f0_41694df1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2022-09-30T23:51:38Z",
+      "side": 1,
+      "message": "The first patchset failed due to clang-tidy issues, but then the second patchset failed because zero_test and pattern_test didn\u0027t compile. See the parent commit that I just uploaded where I cleaned that up. I\u0027m guessing the version of gtest might have changed recently.",
+      "parentUuid": "96a5d812_f60a4a56",
       "revId": "66e72679317271e7b1347f4b32545f4f6ef5da0a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

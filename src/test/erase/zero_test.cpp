@@ -128,23 +128,25 @@ TEST(Zeros, shortReadWritePass)
     auto shortData = std::vector<std::byte>(shortSize, std::byte{0});
     auto restOfData =
         std::vector<std::byte>(size - shortSize * 3, std::byte{0});
+    std::span shortDataSpan{shortData};
+    std::span restOfDataSpan{restOfData};
     stdplus::fd::FdMock mock;
 
     // test write zeros with short blocks
     EXPECT_CALL(mock, write(_))
-        .WillOnce(Return(shortData))
-        .WillOnce(Return(shortData))
-        .WillOnce(Return(restOfData))
-        .WillOnce(Return(shortData));
+        .WillOnce(Return(shortDataSpan))
+        .WillOnce(Return(shortDataSpan))
+        .WillOnce(Return(restOfDataSpan))
+        .WillOnce(Return(shortDataSpan));
 
     EXPECT_NO_THROW(pass.writeZero(size, mock));
 
     // test read zeros with short blocks
     EXPECT_CALL(mock, read(_))
-        .WillOnce(Return(shortData))
-        .WillOnce(Return(shortData))
-        .WillOnce(Return(restOfData))
-        .WillOnce(Return(shortData));
+        .WillOnce(Return(shortDataSpan))
+        .WillOnce(Return(shortDataSpan))
+        .WillOnce(Return(restOfDataSpan))
+        .WillOnce(Return(shortDataSpan));
 
     EXPECT_NO_THROW(pass.verifyZero(size, mock));
 }
@@ -159,25 +161,27 @@ TEST(Zeros, shortReadWriteFail)
     auto shortData = std::vector<std::byte>(shortSize, std::byte{0});
     auto restOfData =
         std::vector<std::byte>(size - shortSize * 3, std::byte{0});
+    std::span shortDataSpan{shortData};
+    std::span restOfDataSpan{restOfData};
     // open the file and write none zero to it
 
     stdplus::fd::FdMock mock;
 
     // test writes
     EXPECT_CALL(mock, write(_))
-        .WillOnce(Return(shortData))
-        .WillOnce(Return(shortData))
-        .WillOnce(Return(restOfData))
-        .WillOnce(Return(restOfData)); // return too much data!
+        .WillOnce(Return(shortDataSpan))
+        .WillOnce(Return(shortDataSpan))
+        .WillOnce(Return(restOfDataSpan))
+        .WillOnce(Return(restOfDataSpan)); // return too much data!
 
     EXPECT_THROW(tryZero.writeZero(size, mock), InternalFailure);
 
     // test reads
     EXPECT_CALL(mock, read(_))
-        .WillOnce(Return(shortData))
-        .WillOnce(Return(shortData))
-        .WillOnce(Return(restOfData))
-        .WillOnce(Return(restOfData)); // return too much data!
+        .WillOnce(Return(shortDataSpan))
+        .WillOnce(Return(shortDataSpan))
+        .WillOnce(Return(restOfDataSpan))
+        .WillOnce(Return(restOfDataSpan)); // return too much data!
 
     EXPECT_THROW(tryZero.verifyZero(size, mock), InternalFailure);
 }
@@ -195,13 +199,13 @@ TEST(Zeros, driveIsSmaller)
     // test writes
     EXPECT_CALL(mocks, write(_))
         .Times(33)
-        .WillRepeatedly(Return(std::vector<std::byte>{}))
+        .WillRepeatedly(Return(std::span<std::byte>{}))
         .RetiresOnSaturation();
     EXPECT_THROW(tryZero.writeZero(size, mocks), InternalFailure);
     // test reads
     EXPECT_CALL(mocks, read(_))
         .Times(33)
-        .WillRepeatedly(Return(std::vector<std::byte>{}))
+        .WillRepeatedly(Return(std::span<std::byte>{}))
         .RetiresOnSaturation();
     EXPECT_THROW(tryZero.verifyZero(size, mocks), InternalFailure);
 }

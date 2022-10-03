@@ -16,6 +16,29 @@
       "message": "sounds good",
       "revId": "be47c8fe9272715c12a8bbe346778cdd742f80e6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28621a8d_075ef023",
+        "filename": "src/test/erase/pattern_test.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-10-03T16:41:41Z",
+      "side": 1,
+      "message": "nit: Could we just initialize shortData as std::span from the beginning?",
+      "range": {
+        "startLine": 168,
+        "startChar": 0,
+        "endLine": 172,
+        "endChar": 41
+      },
+      "revId": "be47c8fe9272715c12a8bbe346778cdd742f80e6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

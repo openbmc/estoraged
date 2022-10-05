@@ -205,7 +205,7 @@ void EStoraged::erase(Volume::EraseMethod inEraseMethod)
         }
         case Volume::EraseMethod::SecuredLocked:
         {
-            if (isLocked())
+            if (!isLocked())
             {
                 lock();
             }

@@ -46,6 +46,30 @@
       },
       "revId": "44989a6ee6ce1368b9deef3656e83bf593e6d82b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13a20d78_1e7ac3f8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2023-03-17T22:01:23Z",
+      "side": 1,
+      "message": "Very good. Thanks for fixing this issue, and thanks for updating the commit message.\n\n(and good work compiler checks for finding this.)",
+      "parentUuid": "669360e8_31f3a1ce",
+      "range": {
+        "startLine": 10,
+        "startChar": 7,
+        "endLine": 10,
+        "endChar": 39
+      },
+      "revId": "44989a6ee6ce1368b9deef3656e83bf593e6d82b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

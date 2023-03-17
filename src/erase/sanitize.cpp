@@ -21,7 +21,6 @@ namespace
 {
 
 constexpr uint32_t mmcSwitch = 6;
-constexpr uint32_t mmcSendExtCsd = 8;
 constexpr uint32_t mmcSwitchModeWriteByte = 0x03;
 constexpr uint32_t extCsdSanitizeStart = 165;
 constexpr uint32_t extCsdCmdSetNormal = (1 << 0);
@@ -32,7 +31,6 @@ constexpr uint32_t mmcRspBusy = (1 << 3);
 constexpr uint32_t mmcRspOpcode = (1 << 4);
 
 constexpr uint32_t mmcCmdAc = (0 << 5);
-constexpr uint32_t mmcCmdAdtc = (1 << 5);
 
 constexpr uint32_t mmcRspSpiS1 = (1 << 7);
 constexpr uint32_t mmcRspSpiBusy = (1 << 10);

@@ -63,7 +63,7 @@ class EStoraged
     EStoraged& operator=(const EStoraged&) = delete;
     EStoraged(const EStoraged&) = delete;
     EStoraged(EStoraged&&) = default;
-    EStoraged& operator=(EStoraged&&) = default;
+    EStoraged& operator=(EStoraged&&) = delete;
 
     /** @brief Format the LUKS encrypted device and create empty filesystem.
      *

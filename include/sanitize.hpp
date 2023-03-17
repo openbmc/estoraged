@@ -17,8 +17,6 @@
 namespace estoraged
 {
 
-using stdplus::fd::ManagedFd;
-
 class IOCTLWrapperInterface
 {
   public:

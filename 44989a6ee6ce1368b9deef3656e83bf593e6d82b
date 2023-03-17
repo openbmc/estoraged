@@ -22,6 +22,30 @@
       },
       "revId": "44989a6ee6ce1368b9deef3656e83bf593e6d82b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "669360e8_31f3a1ce",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2023-03-17T21:55:12Z",
+      "side": 1,
+      "message": "Actually, the move operator was invalid because of the objectServer variable, which is of reference type. I clarified that in the commit message.\n\nThis was the original warning:\n\n```\n../include/estoraged.hpp:66:16: error: explicitly defaulted move assignment operator is implicitly deleted [-Werror,-Wdefaulted-function-deleted]\n    EStoraged\u0026 operator\u003d(EStoraged\u0026\u0026) \u003d default;\n               ^\n../include/estoraged.hpp:136:37: note: move assignment operator of \u0027EStoraged\u0027 is implicitly deleted because field \u0027objectServer\u0027 is of reference type \u0027sdbusplus::asio::object_server \u0026\u0027\n    sdbusplus::asio::object_server\u0026 objectServer;\n    ```",
+      "parentUuid": "60ae1606_9e988056",
+      "range": {
+        "startLine": 10,
+        "startChar": 7,
+        "endLine": 10,
+        "endChar": 39
+      },
+      "revId": "44989a6ee6ce1368b9deef3656e83bf593e6d82b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

@@ -140,7 +140,7 @@ class CryptsetupInterface
      */
     virtual int cryptKeyslotDestroy(struct crypt_device* cd, int keyslot) = 0;
 
-    /** @breif Wapper around crypt_keyslot_max
+    /** @brief Wrapper around crypt_keyslot_max
      *  @details Used for mocking purposes.
      *
      * @param type crypt device type
@@ -150,7 +150,7 @@ class CryptsetupInterface
      */
     virtual int cryptKeySlotMax(const char* type) = 0;
 
-    /** @breif Wapper around crypt_keyslot_status
+    /** @brief Wrapper around crypt_keyslot_status
      *  @details Used for mocking purposes.
      *  Get information about particular key slot.
      *
@@ -158,10 +158,16 @@ class CryptsetupInterface
      * @param keyslot requested keyslot to check or CRYPT_ANY_SLOT
      *
      * @return value defined by crypt_keyslot_info
-     *
      */
     virtual crypt_keyslot_info cryptKeySlotStatus(struct crypt_device* cd,
                                                   int keyslot) = 0;
+
+    /** @brief Wrapper around crypt_get_dir.
+     *  @details Used for mocking purposes.
+     *
+     *  @returns the directory where mapped crypt devices are created.
+     */
+    virtual std::string cryptGetDir() = 0;
 };
 
 /** @class Cryptsetup
@@ -241,6 +247,11 @@ class Cryptsetup : public CryptsetupInterface
                                           int keyslot) override
     {
         return crypt_keyslot_status(cd, keyslot);
+    }
+
+    std::string cryptGetDir() override
+    {
+        return {crypt_get_dir()};
     }
 };
 

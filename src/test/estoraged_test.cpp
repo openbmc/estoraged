@@ -29,7 +29,6 @@ using sdbusplus::xyz::openbmc_project::Common::Error::ResourceNotFound;
 using sdbusplus::xyz::openbmc_project::Inventory::Item::server::Volume;
 using std::filesystem::path;
 using ::testing::_;
-using ::testing::ContainsRegex;
 using ::testing::Return;
 using ::testing::StrEq;
 
@@ -38,6 +37,7 @@ class EStoragedTest : public testing::Test
   public:
     const char* testFileName = "testfile";
     const char* testLuksDevName = "testfile_luksDev";
+    const char* testCryptDir = "/tmp";
     const std::string testConfigPath =
         "/xyz/openbmc_project/inventory/system/board/test_board/test_emmc";
     const uint64_t testSize = 24;
@@ -77,6 +77,9 @@ class EStoragedTest : public testing::Test
             std::make_unique<MockFilesystemInterface>();
         mockFsIface = fsIface.get();
 
+        /* Set up location of dummy mapped crypt file. */
+        EXPECT_CALL(*cryptIface, cryptGetDir).WillOnce(Return(testCryptDir));
+
         conn = std::make_shared<sdbusplus::asio::connection>(io);
         // request D-Bus server name.
         conn->request_name("xyz.openbmc_project.eStoraged.test");
@@ -94,6 +97,29 @@ class EStoragedTest : public testing::Test
     }
 };
 
+const char* mappedDevicePath = "/tmp/testfile_luksDev";
+std::ofstream mappedDevice;
+
+int createMappedDev()
+{
+    mappedDevice.open(mappedDevicePath,
+                      std::ios::out | std::ios::binary | std::ios::trunc);
+    mappedDevice.close();
+    if (mappedDevice.fail())
+    {
+        throw std::runtime_error("Failed to open test mapped device");
+    }
+
+    return 0;
+}
+
+int removeMappedDev()
+{
+    EXPECT_EQ(0, unlink(mappedDevicePath));
+
+    return 0;
+}
+
 /* Test case to format and then lock the LUKS device. */
 TEST_F(EStoragedTest, FormatPass)
 {
@@ -105,7 +131,7 @@ TEST_F(EStoragedTest, FormatPass)
     EXPECT_CALL(*mockCryptIface, cryptLoad(_, _, _)).Times(1);
 
     EXPECT_CALL(*mockCryptIface, cryptActivateByPassphrase(_, _, _, _, _, _))
-        .Times(1);
+        .WillOnce(&createMappedDev);
 
     EXPECT_CALL(*mockFsIface, runMkfs(testLuksDevName)).WillOnce(Return(0));
 
@@ -116,7 +142,7 @@ TEST_F(EStoragedTest, FormatPass)
         .WillOnce(Return(true));
 
     EXPECT_CALL(*mockFsIface,
-                doMount(ContainsRegex("/dev/mapper/"),
+                doMount(StrEq(esObject->getCryptDevicePath()),
                         StrEq(esObject->getMountPoint()), _, _, _))
         .WillOnce(Return(0));
 
@@ -126,7 +152,8 @@ TEST_F(EStoragedTest, FormatPass)
     EXPECT_CALL(*mockFsIface, removeDirectory(path(esObject->getMountPoint())))
         .WillOnce(Return(true));
 
-    EXPECT_CALL(*mockCryptIface, cryptDeactivate(_, _)).Times(1);
+    EXPECT_CALL(*mockCryptIface, cryptDeactivate(_, _))
+        .WillOnce(&removeMappedDev);
 
     /* Format the encrypted device. */
     esObject->formatLuks(password, Volume::FilesystemType::ext4);
@@ -150,7 +177,7 @@ TEST_F(EStoragedTest, MountPointExistsPass)
     EXPECT_CALL(*mockCryptIface, cryptLoad(_, _, _)).Times(1);
 
     EXPECT_CALL(*mockCryptIface, cryptActivateByPassphrase(_, _, _, _, _, _))
-        .Times(1);
+        .WillOnce(&createMappedDev);
 
     EXPECT_CALL(*mockFsIface, runMkfs(testLuksDevName)).WillOnce(Return(0));
 
@@ -161,7 +188,7 @@ TEST_F(EStoragedTest, MountPointExistsPass)
         .Times(0);
 
     EXPECT_CALL(*mockFsIface,
-                doMount(ContainsRegex("/dev/mapper/"),
+                doMount(StrEq(esObject->getCryptDevicePath()),
                         StrEq(esObject->getMountPoint()), _, _, _))
         .WillOnce(Return(0));
 
@@ -171,7 +198,8 @@ TEST_F(EStoragedTest, MountPointExistsPass)
     EXPECT_CALL(*mockFsIface, removeDirectory(path(esObject->getMountPoint())))
         .WillOnce(Return(true));
 
-    EXPECT_CALL(*mockCryptIface, cryptDeactivate(_, _)).Times(1);
+    EXPECT_CALL(*mockCryptIface, cryptDeactivate(_, _))
+        .WillOnce(&removeMappedDev);
 
     /* Format the encrypted device. */
     esObject->formatLuks(password, Volume::FilesystemType::ext4);
@@ -189,7 +217,7 @@ TEST_F(EStoragedTest, FormatNoDeviceFail)
 
     EXPECT_THROW(esObject->formatLuks(password, Volume::FilesystemType::ext4),
                  ResourceNotFound);
-    EXPECT_FALSE(esObject->isLocked());
+    EXPECT_TRUE(esObject->isLocked());
 
     /* Create the test file again, so that the TearDown function works. */
     testFile.open(testFileName,
@@ -205,7 +233,7 @@ TEST_F(EStoragedTest, FormatFail)
 
     EXPECT_THROW(esObject->formatLuks(password, Volume::FilesystemType::ext4),
                  InternalFailure);
-    EXPECT_FALSE(esObject->isLocked());
+    EXPECT_TRUE(esObject->isLocked());
 }
 
 /* Test case where we fail to set the password for the LUKS device. */
@@ -265,13 +293,15 @@ TEST_F(EStoragedTest, CreateFilesystemFail)
     EXPECT_CALL(*mockCryptIface, cryptLoad(_, _, _)).Times(1);
 
     EXPECT_CALL(*mockCryptIface, cryptActivateByPassphrase(_, _, _, _, _, _))
-        .Times(1);
+        .WillOnce(&createMappedDev);
 
     EXPECT_CALL(*mockFsIface, runMkfs(testLuksDevName)).WillOnce(Return(-1));
 
     EXPECT_THROW(esObject->formatLuks(password, Volume::FilesystemType::ext4),
                  InternalFailure);
     EXPECT_FALSE(esObject->isLocked());
+
+    EXPECT_EQ(0, removeMappedDev());
 }
 
 /* Test case where we fail to create the mount point. */
@@ -285,7 +315,7 @@ TEST_F(EStoragedTest, CreateMountPointFail)
     EXPECT_CALL(*mockCryptIface, cryptLoad(_, _, _)).Times(1);
 
     EXPECT_CALL(*mockCryptIface, cryptActivateByPassphrase(_, _, _, _, _, _))
-        .Times(1);
+        .WillOnce(&createMappedDev);
 
     EXPECT_CALL(*mockFsIface, runMkfs(testLuksDevName)).WillOnce(Return(0));
 
@@ -298,6 +328,8 @@ TEST_F(EStoragedTest, CreateMountPointFail)
     EXPECT_THROW(esObject->formatLuks(password, Volume::FilesystemType::ext4),
                  InternalFailure);
     EXPECT_FALSE(esObject->isLocked());
+
+    EXPECT_EQ(0, removeMappedDev());
 }
 
 /* Test case where we fail to mount the filesystem. */
@@ -311,7 +343,7 @@ TEST_F(EStoragedTest, MountFail)
     EXPECT_CALL(*mockCryptIface, cryptLoad(_, _, _)).Times(1);
 
     EXPECT_CALL(*mockCryptIface, cryptActivateByPassphrase(_, _, _, _, _, _))
-        .Times(1);
+        .WillOnce(&createMappedDev);
 
     EXPECT_CALL(*mockFsIface, runMkfs(testLuksDevName)).WillOnce(Return(0));
 
@@ -322,7 +354,7 @@ TEST_F(EStoragedTest, MountFail)
         .WillOnce(Return(true));
 
     EXPECT_CALL(*mockFsIface,
-                doMount(ContainsRegex("/dev/mapper/"),
+                doMount(StrEq(esObject->getCryptDevicePath()),
                         StrEq(esObject->getMountPoint()), _, _, _))
         .WillOnce(Return(-1));
 
@@ -332,6 +364,8 @@ TEST_F(EStoragedTest, MountFail)
     EXPECT_THROW(esObject->formatLuks(password, Volume::FilesystemType::ext4),
                  InternalFailure);
     EXPECT_FALSE(esObject->isLocked());
+
+    EXPECT_EQ(0, removeMappedDev());
 }
 
 /* Test case where we fail to unmount the filesystem. */
@@ -345,7 +379,7 @@ TEST_F(EStoragedTest, UnmountFail)
     EXPECT_CALL(*mockCryptIface, cryptLoad(_, _, _)).Times(1);
 
     EXPECT_CALL(*mockCryptIface, cryptActivateByPassphrase(_, _, _, _, _, _))
-        .Times(1);
+        .WillOnce(&createMappedDev);
 
     EXPECT_CALL(*mockFsIface, runMkfs(testLuksDevName)).WillOnce(Return(0));
 
@@ -356,7 +390,7 @@ TEST_F(EStoragedTest, UnmountFail)
         .WillOnce(Return(true));
 
     EXPECT_CALL(*mockFsIface,
-                doMount(ContainsRegex("/dev/mapper/"),
+                doMount(StrEq(esObject->getCryptDevicePath()),
                         StrEq(esObject->getMountPoint()), _, _, _))
         .WillOnce(Return(0));
 
@@ -368,6 +402,8 @@ TEST_F(EStoragedTest, UnmountFail)
 
     EXPECT_THROW(esObject->lock(), InternalFailure);
     EXPECT_FALSE(esObject->isLocked());
+
+    EXPECT_EQ(0, removeMappedDev());
 }
 
 /* Test case where we fail to remove the mount point. */
@@ -381,7 +417,8 @@ TEST_F(EStoragedTest, RemoveMountPointFail)
     EXPECT_CALL(*mockCryptIface, cryptLoad(_, _, _)).Times(1);
 
     EXPECT_CALL(*mockCryptIface, cryptActivateByPassphrase(_, _, _, _, _, _))
-        .Times(1);
+        .WillOnce(&createMappedDev);
+    ;
 
     EXPECT_CALL(*mockFsIface, runMkfs(testLuksDevName)).WillOnce(Return(0));
 
@@ -392,7 +429,7 @@ TEST_F(EStoragedTest, RemoveMountPointFail)
         .WillOnce(Return(true));
 
     EXPECT_CALL(*mockFsIface,
-                doMount(ContainsRegex("/dev/mapper/"),
+                doMount(StrEq(esObject->getCryptDevicePath()),
                         StrEq(esObject->getMountPoint()), _, _, _))
         .WillOnce(Return(0));
 
@@ -408,6 +445,8 @@ TEST_F(EStoragedTest, RemoveMountPointFail)
     /* This will fail to remove the mount point. */
     EXPECT_THROW(esObject->lock(), InternalFailure);
     EXPECT_FALSE(esObject->isLocked());
+
+    EXPECT_EQ(0, removeMappedDev());
 }
 
 /* Test case where we fail to deactivate the LUKS device. */
@@ -421,7 +460,7 @@ TEST_F(EStoragedTest, DeactivateFail)
     EXPECT_CALL(*mockCryptIface, cryptLoad(_, _, _)).Times(1);
 
     EXPECT_CALL(*mockCryptIface, cryptActivateByPassphrase(_, _, _, _, _, _))
-        .Times(1);
+        .WillOnce(&createMappedDev);
 
     EXPECT_CALL(*mockFsIface, runMkfs(testLuksDevName)).WillOnce(Return(0));
 
@@ -432,7 +471,7 @@ TEST_F(EStoragedTest, DeactivateFail)
         .WillOnce(Return(true));
 
     EXPECT_CALL(*mockFsIface,
-                doMount(ContainsRegex("/dev/mapper/"),
+                doMount(StrEq(esObject->getCryptDevicePath()),
                         StrEq(esObject->getMountPoint()), _, _, _))
         .WillOnce(Return(0));
 
@@ -450,6 +489,8 @@ TEST_F(EStoragedTest, DeactivateFail)
 
     EXPECT_THROW(esObject->lock(), InternalFailure);
     EXPECT_FALSE(esObject->isLocked());
+
+    EXPECT_EQ(0, removeMappedDev());
 }
 
 /* Test case where we successfully change the password. */

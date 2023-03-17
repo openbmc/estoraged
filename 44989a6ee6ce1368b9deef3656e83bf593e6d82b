@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60ae1606_9e988056",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2023-03-17T21:46:56Z",
+      "side": 1,
+      "message": "Nit: I have been operating with the assumption below. \n```\nThe move operator should be \"delete\" if the move operation is unsafe or does not work.\n\nIf the move operation would work, it should be left as default. (if unsure delete)\n\nRegardless of if is used or not.\n\n```\nBut I will ask, if there is better or starndared way",
+      "range": {
+        "startLine": 10,
+        "startChar": 7,
+        "endLine": 10,
+        "endChar": 39
+      },
+      "revId": "44989a6ee6ce1368b9deef3656e83bf593e6d82b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

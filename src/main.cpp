@@ -31,14 +31,14 @@
  * more types of storage devices.
  */
 void createStorageObjects(
-    boost::asio::io_context& io, sdbusplus::asio::object_server& objectServer,
+    sdbusplus::asio::object_server& objectServer,
     boost::container::flat_map<
         std::string, std::unique_ptr<estoraged::EStoraged>>& storageObjects,
     std::shared_ptr<sdbusplus::asio::connection>& dbusConnection)
 {
     auto getter = std::make_shared<estoraged::GetStorageConfiguration>(
         dbusConnection,
-        [&io, &objectServer, &storageObjects](
+        [&objectServer, &storageObjects](
             const estoraged::ManagedStorageType& storageConfigurations) {
             size_t numConfigObj = storageConfigurations.size();
             if (numConfigObj > 1)
@@ -125,7 +125,7 @@ int main(void)
             storageObjects;
 
         boost::asio::post(io, [&]() {
-            createStorageObjects(io, server, storageObjects, conn);
+            createStorageObjects(server, storageObjects, conn);
         });
 
         /*
@@ -160,7 +160,7 @@ int main(void)
                             lg2::error("timer error");
                             return;
                         }
-                        createStorageObjects(io, server, storageObjects, conn);
+                        createStorageObjects(server, storageObjects, conn);
                     });
             };
 

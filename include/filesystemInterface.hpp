@@ -27,11 +27,11 @@ class FilesystemInterface
     /** @brief Runs the mkfs command to create the filesystem.
      *  @details Used for mocking purposes.
      *
-     *  @param[in] logicalVolume - name of the mapped LUKS device.
+     *  @param[in] logicalVolumePath - path to the mapped LUKS device.
      *
      *  @returns 0 on success, nonzero on failure.
      */
-    virtual int runMkfs(const std::string& logicalVolume) = 0;
+    virtual int runMkfs(const std::string& logicalVolumePath) = 0;
 
     /** @brief Wrapper around mount().
      *  @details Used for mocking purposes.
@@ -101,9 +101,9 @@ class Filesystem : public FilesystemInterface
     Filesystem(Filesystem&&) = delete;
     Filesystem& operator=(Filesystem&&) = delete;
 
-    int runMkfs(const std::string& logicalVolume) override
+    int runMkfs(const std::string& logicalVolumePath) override
     {
-        std::string mkfsCommand("mkfs.ext4 /dev/mapper/" + logicalVolume);
+        std::string mkfsCommand("mkfs.ext4 " + logicalVolumePath);
         // calling 'system' uses a command processor //NOLINTNEXTLINE
         return system(mkfsCommand.c_str());
     }

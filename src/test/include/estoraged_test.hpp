@@ -19,7 +19,7 @@ namespace estoraged_test
 class MockFilesystemInterface : public estoraged::FilesystemInterface
 {
   public:
-    MOCK_METHOD(int, runMkfs, (const std::string& logicalVolume), (override));
+    MOCK_METHOD(int, runMkfs, (const std::string& logicalVolumePath), (override));
 
     MOCK_METHOD(int, doMount,
                 (const char* source, const char* target,
@@ -81,6 +81,8 @@ class MockCryptsetupInterface : public estoraged::CryptsetupInterface
 
     MOCK_METHOD(crypt_keyslot_info, cryptKeySlotStatus,
                 (struct crypt_device * cd, int keyslot), (override));
+
+    MOCK_METHOD(std::string, cryptGetDir, (), (override));
 };
 
 } // namespace estoraged_test

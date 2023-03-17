@@ -103,6 +103,9 @@ class EStoraged
     /** @brief Get the mount point for the filesystem on the LUKS device. */
     std::string_view getMountPoint() const;
 
+    /** @brief Get the path to the mapped crypt device. */
+    std::string_view getCryptDevicePath() const;
+
   private:
     /** @brief Full path of the device file, e.g. /dev/mmcblk0. */
     std::string devPath;
@@ -125,6 +128,9 @@ class EStoraged
      *  @details This is used to mock out filesystem operations.
      */
     std::unique_ptr<FilesystemInterface> fsIface;
+
+    /** @brief Path where the mapped crypt device gets created. */
+    const std::string cryptDevicePath;
 
     /** @brief D-Bus object server. */
     sdbusplus::asio::object_server& objectServer;
@@ -187,12 +193,6 @@ class EStoraged
 
     /** @brief Unmount the filesystem. */
     void unmountFilesystem();
-
-    /** @brief Set the locked property.
-     *
-     *  @param[in] isLocked - indicates whether the LUKS device is locked.
-     */
-    void locked(bool isLocked);
 };
 
 } // namespace estoraged

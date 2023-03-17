@@ -81,6 +81,8 @@ class MockCryptsetupInterface : public estoraged::CryptsetupInterface
 
     MOCK_METHOD(crypt_keyslot_info, cryptKeySlotStatus,
                 (struct crypt_device * cd, int keyslot), (override));
+
+    MOCK_METHOD(const char*, cryptGetDir, (), (override));
 };
 
 } // namespace estoraged_test

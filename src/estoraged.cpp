@@ -42,8 +42,10 @@ EStoraged::EStoraged(sdbusplus::asio::object_server& server,
     devPath(devPath),
     containerName(luksName), mountPoint("/mnt/" + luksName + "_fs"),
     cryptIface(std::move(cryptInterface)), fsIface(std::move(fsInterface)),
+    cryptDevicePath(std::string(cryptIface->cryptGetDir()) + "/" + luksName),
     objectServer(server)
 {
+    lg2::info("cryptDevicePath is {PATH}", "PATH", cryptDevicePath);
     /* Get the filename of the device (without "/dev/"). */
     std::string deviceName = std::filesystem::path(devPath).filename().string();
     /* DBus object path */
@@ -260,7 +262,23 @@ void EStoraged::changePassword(const std::vector<uint8_t>& oldPassword,
 
 bool EStoraged::isLocked() const
 {
-    return lockedProperty;
+    /*
+     * Check if the mapped virtual device exists. If it exists, the LUKS volume
+     * is unlocked.
+     */
+    try
+    {
+        std::filesystem::path mappedDevicePath(cryptDevicePath);
+        return !std::filesystem::exists(mappedDevicePath);
+    }
+    catch (const std::exception& e)
+    {
+        lg2::error("Failed to query locked status: {EXCEPT}", "EXCEPT",
+                   e.what(), "REDFISH_MESSAGE_ID",
+                   std::string("OpenBMC.0.1.IsLockedFail"));
+        /* If we couldn't query the filesystem path, assume unlocked. */
+        return false;
+    }
 }
 
 std::string_view EStoraged::getMountPoint() const
@@ -298,9 +316,6 @@ void EStoraged::formatLuksDev(std::vector<uint8_t> password)
                    std::string("OpenBMC.0.1.FormatLuksDevFail"));
         throw InternalFailure();
     }
-
-    /* Device is now encrypted. */
-    locked(true);
 
     /* Set the password. */
     retval = cryptIface->cryptKeyslotAddByVolumeKey(
@@ -368,9 +383,6 @@ void EStoraged::activateLuksDev(std::vector<uint8_t> password)
         throw InternalFailure();
     }
 
-    /* Device is now unlocked. */
-    locked(false);
-
     lg2::info("Successfully activated LUKS dev {DEV}", "DEV", devPath,
               "REDFISH_MESSAGE_ID",
               std::string("OpenBMC.0.1.ActivateLuksDevSuccess"));
@@ -413,8 +425,7 @@ void EStoraged::mountFilesystem()
     }
 
     /* Run the command to mount the filesystem. */
-    std::string luksContainer("/dev/mapper/" + containerName);
-    int retval = fsIface->doMount(luksContainer.c_str(), mountPoint.c_str(),
+    int retval = fsIface->doMount(cryptDevicePath.c_str(), mountPoint.c_str(),
                                   "ext4", 0, nullptr);
     if (retval != 0)
     {
@@ -478,17 +489,14 @@ void EStoraged::deactivateLuksDev()
         throw InternalFailure();
     }
 
-    /* Device is now locked. */
-    locked(true);
-
     lg2::info("Successfully deactivated LUKS device {DEV}", "DEV", devPath,
               "REDFISH_MESSAGE_ID",
               std::string("OpenBMC.0.1.DeactivateLuksDevSuccess"));
 }
 
-void EStoraged::locked(bool isLocked)
+std::string_view EStoraged::getCryptDevicePath() const
 {
-    lockedProperty = isLocked;
+    return cryptDevicePath;
 }
 
 } // namespace estoraged

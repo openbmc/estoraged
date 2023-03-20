@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "046398e0_81bfe042",
+        "filename": "include/cryptsetupInterface.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2023-03-20T18:14:23Z",
+      "side": 1,
+      "message": "recommend switch to a `const string` here.\n\nYou don\u0027t need a pointer, and after you validate it you can use it safely every time. \n- if you did need a pointer, you should use a smart pointer, and validate before use,\n   - unique, only requires one validation\n   - shared requires requires validation everytime.\n- if you needed to use a raw pointer, you could null check and validate before every use.\n\nor that is what I would do.",
+      "range": {
+        "startLine": 254,
+        "startChar": 15,
+        "endLine": 254,
+        "endChar": 28
+      },
+      "revId": "98c5ecb390a3cdf25446cc4ff12bec7d4b2baf03",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "54ebc699_c4a6a761",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2023-03-20T18:14:23Z",
+      "side": 1,
+      "message": "nit: preferance for \n```\n(std::filesystem::exists(mappedDevicePath)\u003d\u003d true)\n```\nso I don\u0027t have to look up the types, and it more clear.\nBut it is fine.",
+      "range": {
+        "startLine": 271,
+        "startChar": 15,
+        "endLine": 271,
+        "endChar": 16
+      },
+      "revId": "98c5ecb390a3cdf25446cc4ff12bec7d4b2baf03",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

@@ -93,6 +93,30 @@
       },
       "revId": "98c5ecb390a3cdf25446cc4ff12bec7d4b2baf03",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "930b8f12_376cac57",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2023-03-20T20:41:46Z",
+      "side": 1,
+      "message": "right, makes sense.",
+      "parentUuid": "2827ff1d_c1186ab9",
+      "range": {
+        "startLine": 271,
+        "startChar": 15,
+        "endLine": 271,
+        "endChar": 16
+      },
+      "revId": "98c5ecb390a3cdf25446cc4ff12bec7d4b2baf03",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

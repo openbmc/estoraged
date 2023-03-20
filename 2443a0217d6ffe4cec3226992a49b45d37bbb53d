@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84ac202c_01f4a08d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2023-03-20T20:40:08Z",
+      "side": 1,
+      "message": "By the way, there were a few places where \"/dev/mapper\" was still hard-coded, so I changed that in the latest patchset.",
+      "revId": "2443a0217d6ffe4cec3226992a49b45d37bbb53d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

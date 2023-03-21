@@ -1,0 +1,9 @@
+Code-Review+1: John Broadbent <jebr@google.com>
+Code-Review+2: William A. Kennington III <wak@google.com>
+Code-Review+2: Brandon Kim <brandonkim@google.com>
+Verified+1: OpenBMC CI <openbmcbump-ci@yahoo.com>
+Submitted-by: John Wedig <johnwedig@google.com>
+Submitted-at: Tue, 21 Mar 2023 16:25:55 +0000
+Reviewed-on: https://gerrit.openbmc.org/c/openbmc/estoraged/+/61724
+Project: openbmc/estoraged
+Branch: refs/heads/master

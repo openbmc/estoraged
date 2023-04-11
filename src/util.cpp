@@ -193,7 +193,7 @@ bool findDevice(const StorageData& data, const std::filesystem::path& searchDir,
             std::ifstream typeFile(curPath, std::ios_base::in);
             std::string devType;
             typeFile >> devType;
-            if (devType.compare("MMC") == 0)
+            if (devType.compare("MMC") == 0 || devType.compare("SD") == 0)
             {
                 /* Found it. Get the sysfs directory and device file. */
                 std::filesystem::path deviceName(dirEntry.path().filename());

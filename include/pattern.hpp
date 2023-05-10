@@ -21,8 +21,7 @@ class Pattern : public Erase
      *
      *  @param[in] inDevPath - the linux device path for the block device.
      */
-    Pattern(std::string_view inDevPath) : Erase(inDevPath)
-    {}
+    Pattern(std::string_view inDevPath) : Erase(inDevPath) {}
 
     /** @brief writes an uncompressible random pattern to the drive, using
      * default parameters. It also throws errors accordingly.

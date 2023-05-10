@@ -36,7 +36,7 @@ class CryptoEraseTest : public testing::Test
     void SetUp() override
     {
         /* Create an empty file that we'll pretend is a 'storage device'. */
-        testFile.open(testFileName.c_str(),
+        testFile.open(testFileName,
                       std::ios::out | std::ios::binary | std::ios::trunc);
         testFile.close();
         if (testFile.fail())
@@ -63,7 +63,7 @@ TEST_F(CryptoEraseTest, EraseCryptPass)
 
     EXPECT_CALL(*mockCryptIface, cryptKeyslotDestroy(_, 0)).Times(1);
 
-    CryptErase myCryptErase = CryptErase(testFileName.c_str(),
+    CryptErase myCryptErase = CryptErase(testFileName,
                                          std::move(mockCryptIface));
     EXPECT_NO_THROW(myCryptErase.doErase());
 }
@@ -79,7 +79,7 @@ TEST_F(CryptoEraseTest, EraseCrypMaxSlotFails)
     EXPECT_CALL(*mockCryptIface, cryptKeySlotMax(StrEq(CRYPT_LUKS2)))
         .WillOnce(Return(-1));
 
-    CryptErase myCryptErase = CryptErase(testFileName.c_str(),
+    CryptErase myCryptErase = CryptErase(testFileName,
                                          std::move(mockCryptIface));
     EXPECT_THROW(myCryptErase.doErase(), ResourceNotFound);
 }
@@ -95,7 +95,7 @@ TEST_F(CryptoEraseTest, EraseCrypMaxSlotZero)
     EXPECT_CALL(*mockCryptIface, cryptKeySlotMax(StrEq(CRYPT_LUKS2)))
         .WillOnce(Return(0));
 
-    CryptErase myCryptErase = CryptErase(testFileName.c_str(),
+    CryptErase myCryptErase = CryptErase(testFileName,
                                          std::move(mockCryptIface));
     EXPECT_THROW(myCryptErase.doErase(), ResourceNotFound);
 }
@@ -114,7 +114,7 @@ TEST_F(CryptoEraseTest, EraseCrypOnlyInvalid)
     EXPECT_CALL(*mockCryptIface, cryptKeySlotStatus(_, _))
         .WillRepeatedly(Return(CRYPT_SLOT_INVALID));
 
-    CryptErase myCryptErase = CryptErase(testFileName.c_str(),
+    CryptErase myCryptErase = CryptErase(testFileName,
                                          std::move(mockCryptIface));
     EXPECT_NO_THROW(myCryptErase.doErase());
 }
@@ -136,7 +136,7 @@ TEST_F(CryptoEraseTest, EraseCrypDestoryFails)
     EXPECT_CALL(*mockCryptIface, cryptKeyslotDestroy(_, 0))
         .WillOnce(Return(-1));
 
-    CryptErase myCryptErase = CryptErase(testFileName.c_str(),
+    CryptErase myCryptErase = CryptErase(testFileName,
                                          std::move(mockCryptIface));
     EXPECT_THROW(myCryptErase.doErase(), InternalFailure);
 }

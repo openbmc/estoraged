@@ -48,8 +48,8 @@ EStoraged::EStoraged(sdbusplus::asio::object_server& server,
     /* Get the filename of the device (without "/dev/"). */
     std::string deviceName = std::filesystem::path(devPath).filename().string();
     /* DBus object path */
-    std::string objectPath =
-        "/xyz/openbmc_project/inventory/storage/" + deviceName;
+    std::string objectPath = "/xyz/openbmc_project/inventory/storage/" +
+                             deviceName;
 
     /* Add Volume interface. */
     volumeInterface = objectServer.add_interface(
@@ -59,13 +59,15 @@ EStoraged::EStoraged(sdbusplus::asio::object_server& server,
                              Volume::FilesystemType type) {
             this->formatLuks(password, type);
         });
-    volumeInterface->register_method(
-        "Erase",
-        [this](Volume::EraseMethod eraseType) { this->erase(eraseType); });
+    volumeInterface->register_method("Erase",
+                                     [this](Volume::EraseMethod eraseType) {
+        this->erase(eraseType);
+    });
     volumeInterface->register_method("Lock", [this]() { this->lock(); });
-    volumeInterface->register_method(
-        "Unlock",
-        [this](std::vector<uint8_t>& password) { this->unlock(password); });
+    volumeInterface->register_method("Unlock",
+                                     [this](std::vector<uint8_t>& password) {
+        this->unlock(password);
+    });
     volumeInterface->register_method(
         "ChangePassword", [this](const std::vector<uint8_t>& oldPassword,
                                  const std::vector<uint8_t>& newPassword) {
@@ -74,8 +76,8 @@ EStoraged::EStoraged(sdbusplus::asio::object_server& server,
     volumeInterface->register_property_r(
         "Locked", lockedProperty, sdbusplus::vtable::property_::emits_change,
         [this](bool& value) {
-            value = this->isLocked();
-            return value;
+        value = this->isLocked();
+        return value;
         });
 
     /* Add Drive interface. */
@@ -89,16 +91,16 @@ EStoraged::EStoraged(sdbusplus::asio::object_server& server,
     driveInterface->register_property_r(
         "Locked", lockedProperty, sdbusplus::vtable::property_::emits_change,
         [this](bool& value) {
-            value = this->isLocked();
-            return value;
+        value = this->isLocked();
+        return value;
         });
 
     driveInterface->register_property_r(
         "EncryptionStatus", encryptionStatus,
         sdbusplus::vtable::property_::emits_change,
         [this](Drive::DriveEncryptionState& value) {
-            value = this->findEncryptionStatus();
-            return value;
+        value = this->findEncryptionStatus();
+        return value;
         });
 
     embeddedLocationInterface = objectServer.add_interface(
@@ -335,7 +337,6 @@ void EStoraged::formatLuksDev(std::vector<uint8_t> password)
 
 CryptHandle EStoraged::loadLuksHeader()
 {
-
     CryptHandle cryptHandle(devPath);
 
     int retval = cryptIface->cryptLoad(cryptHandle.get(), CRYPT_LUKS2, nullptr);

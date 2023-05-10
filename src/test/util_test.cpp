@@ -31,7 +31,6 @@ TEST(utilTest, passFindPredictedMediaLife)
 
 TEST(utilTest, estimatesSame)
 {
-
     std::string prefixName = ".";
     std::string testFileName = prefixName + "/life_time";
     std::ofstream testFile;
@@ -46,7 +45,6 @@ TEST(utilTest, estimatesSame)
 
 TEST(utilTest, estimatesNotAvailable)
 {
-
     std::string prefixName = ".";
     std::string testFileName = prefixName + "/life_time";
     std::ofstream testFile;

@@ -174,7 +174,7 @@ bool findDevice(const StorageData& data, const std::filesystem::path& searchDir,
     }
 
     /* Look for the eMMC in the specified searchDir directory. */
-    for (auto const& dirEntry : std::filesystem::directory_iterator{searchDir})
+    for (const auto& dirEntry : std::filesystem::directory_iterator{searchDir})
     {
         /*
          * We will look at the 'type' file to determine if this is an MMC

@@ -12,8 +12,7 @@ class Erase
     /** @brief creates an erase object
      *  @param inDevPath the linux path for the block device
      */
-    Erase(std::string_view inDevPath) : devPath(inDevPath)
-    {}
+    Erase(std::string_view inDevPath) : devPath(inDevPath) {}
 
   protected:
     /* The linux path for the block device */

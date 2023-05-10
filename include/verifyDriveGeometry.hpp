@@ -15,8 +15,7 @@ class VerifyDriveGeometry : public Erase
      *
      *  @param[in] inDevPath - the linux device path for the block device.
      */
-    VerifyDriveGeometry(std::string_view inDevPath) : Erase(inDevPath)
-    {}
+    VerifyDriveGeometry(std::string_view inDevPath) : Erase(inDevPath) {}
 
     /** @brief Test if input is in between the max and min expected sizes,
      * and throws errors accordingly.

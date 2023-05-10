@@ -20,8 +20,7 @@ class Zero : public Erase
      *
      *  @param[in] inDevPath - the linux device path for the block device.
      */
-    Zero(std::string_view inDevPath) : Erase(inDevPath)
-    {}
+    Zero(std::string_view inDevPath) : Erase(inDevPath) {}
     /** @brief writes zero to the drive
      * and throws errors accordingly.
      *  @param[in] driveSize - the size of the block device in bytes

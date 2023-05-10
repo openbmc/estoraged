@@ -76,7 +76,6 @@ void Pattern::writePattern(const uint64_t driveSize, Fd& fd)
 
 void Pattern::verifyPattern(const uint64_t driveSize, Fd& fd)
 {
-
     uint64_t currentIndex = 0;
     // random number generator seeded with a constant value will
     // generate a predictable sequence of values NOLINTNEXTLINE

@@ -166,8 +166,8 @@ TEST(Zeros, shortReadWriteFail)
     size_t shortSize = 128;
     Pattern tryPattern(testFileName);
     auto shortData = std::vector<std::byte>(shortSize, std::byte{0});
-    auto restOfData =
-        std::vector<std::byte>(size - shortSize * 3, std::byte{0});
+    auto restOfData = std::vector<std::byte>(size - shortSize * 3,
+                                             std::byte{0});
     std::span shortDataSpan{shortData};
     std::span restOfDataSpan{restOfData};
     // open the file and write none to it

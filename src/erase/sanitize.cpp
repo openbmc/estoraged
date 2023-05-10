@@ -73,7 +73,6 @@ void Sanitize::doSanitize(uint64_t driveSize)
 
 void Sanitize::emmcErase(uint64_t driveSize)
 {
-
     uint64_t sectorSize = 0x200; // default value see eMMC spec 6.6.34.
                                  // NOTE: 0x200 is only valid for eMMC greater
                                  // then 2 GB
@@ -105,7 +104,6 @@ void Sanitize::emmcErase(uint64_t driveSize)
 
 void Sanitize::emmcSanitize()
 {
-
     struct mmc_ioc_cmd idata = {};
     idata.write_flag = 1;
     idata.opcode = mmcSwitch;

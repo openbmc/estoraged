@@ -8,7 +8,7 @@
 #include <sdbusplus/asio/connection.hpp>
 #include <sdbusplus/asio/object_server.hpp>
 #include <xyz/openbmc_project/Common/error.hpp>
-#include <xyz/openbmc_project/Inventory/Item/Volume/client.hpp>
+#include <xyz/openbmc_project/Inventory/Item/Volume/server.hpp>
 
 #include <exception>
 #include <filesystem>
@@ -24,9 +24,9 @@
 namespace estoraged_test
 {
 
+using sdbusplus::server::xyz::openbmc_project::inventory::item::Volume;
 using sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
 using sdbusplus::xyz::openbmc_project::Common::Error::ResourceNotFound;
-using sdbusplus::xyz::openbmc_project::Inventory::Item::server::Volume;
 using std::filesystem::path;
 using ::testing::_;
 using ::testing::Return;

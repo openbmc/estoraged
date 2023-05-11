@@ -2,6 +2,7 @@
 # subproject directories
 /subprojects/*
 !/subprojects/*.wrap
+!/subprojects/.clang-tidy-ignore
 
 # build directory
 build*/*

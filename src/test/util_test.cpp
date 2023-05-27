@@ -107,6 +107,8 @@ TEST(utilTest, findDevicePass)
     data.emplace(std::string("Type"),
                  estoraged::BasicVariantType("EmmcDevice"));
     data.emplace(std::string("Name"), estoraged::BasicVariantType("emmc"));
+    data.emplace(std::string("LocationCode"),
+                 estoraged::BasicVariantType("U102020"));
 
     /* Create a dummy device. */
     std::filesystem::create_directories("abc/device");
@@ -128,14 +130,16 @@ TEST(utilTest, findDevicePass)
 
     /* Look for the device file. */
     std::filesystem::path deviceFile, sysfsDir;
-    std::string luksName;
+    std::string luksName, locationCode;
     EXPECT_TRUE(estoraged::util::findDevice(data, std::filesystem::path("./"),
-                                            deviceFile, sysfsDir, luksName));
+                                            deviceFile, sysfsDir, luksName,
+                                            locationCode));
 
     /* Validate the results. */
     EXPECT_EQ("/dev/mmcblk0", deviceFile.string());
     EXPECT_EQ("./mmcblk0/device", sysfsDir.string());
     EXPECT_EQ("luks-mmcblk0", luksName);
+    EXPECT_EQ("U102020", locationCode);
 
     /* Delete the dummy files. */
     EXPECT_EQ(3U, std::filesystem::remove_all("mmcblk0"));
@@ -171,9 +175,10 @@ TEST(utilTest, findDeviceNoTypeFail)
 
     /* Look for the device file. */
     std::filesystem::path deviceFile, sysfsDir;
-    std::string luksName;
+    std::string luksName, locationCode;
     EXPECT_FALSE(estoraged::util::findDevice(data, std::filesystem::path("./"),
-                                             deviceFile, sysfsDir, luksName));
+                                             deviceFile, sysfsDir, luksName,
+                                             locationCode));
 
     /* Delete the dummy files. */
     EXPECT_EQ(3U, std::filesystem::remove_all("mmcblk0"));
@@ -211,9 +216,10 @@ TEST(utilTest, findDeviceUnsupportedTypeFail)
 
     /* Look for the device file. */
     std::filesystem::path deviceFile, sysfsDir;
-    std::string luksName;
+    std::string luksName, locationCode;
     EXPECT_FALSE(estoraged::util::findDevice(data, std::filesystem::path("./"),
-                                             deviceFile, sysfsDir, luksName));
+                                             deviceFile, sysfsDir, luksName,
+                                             locationCode));
 
     /* Delete the dummy files. */
     EXPECT_EQ(3U, std::filesystem::remove_all("mmcblk0"));
@@ -244,9 +250,10 @@ TEST(utilTest, findDeviceNotFoundFail)
 
     /* Look for the device file. */
     std::filesystem::path deviceFile, sysfsDir;
-    std::string luksName;
+    std::string luksName, locationCode;
     EXPECT_FALSE(estoraged::util::findDevice(data, std::filesystem::path("./"),
-                                             deviceFile, sysfsDir, luksName));
+                                             deviceFile, sysfsDir, luksName,
+                                             locationCode));
 
     /* Delete the dummy files. */
     EXPECT_EQ(3U, std::filesystem::remove_all("abc"));

@@ -37,6 +37,7 @@ EStoraged::EStoraged(sdbusplus::asio::object_server& server,
                      const std::string& luksName, uint64_t size,
                      uint8_t lifeTime, const std::string& partNumber,
                      const std::string& serialNumber,
+                     const std::string& locationCode,
                      std::unique_ptr<CryptsetupInterface> cryptInterface,
                      std::unique_ptr<FilesystemInterface> fsInterface) :
     devPath(devPath),
@@ -106,6 +107,14 @@ EStoraged::EStoraged(sdbusplus::asio::object_server& server,
     embeddedLocationInterface = objectServer.add_interface(
         objectPath, "xyz.openbmc_project.Inventory.Connector.Embedded");
 
+    if (!locationCode.empty())
+    {
+        locationCodeInterface = objectServer.add_interface(
+            objectPath, "xyz.openbmc_project.Inventory.Decorator.LocationCode");
+        locationCodeInterface->register_property("LocationCode", locationCode);
+        locationCodeInterface->initialize();
+    }
+
     /* Add Asset interface. */
     assetInterface = objectServer.add_interface(
         objectPath, "xyz.openbmc_project.Inventory.Decorator.Asset");
@@ -135,6 +144,11 @@ EStoraged::~EStoraged()
     objectServer.remove_interface(embeddedLocationInterface);
     objectServer.remove_interface(assetInterface);
     objectServer.remove_interface(association);
+
+    if (locationCodeInterface != nullptr)
+    {
+        objectServer.remove_interface(locationCodeInterface);
+    }
 }
 
 void EStoraged::formatLuks(const std::vector<uint8_t>& password,

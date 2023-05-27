@@ -52,7 +52,8 @@ std::string getSerialNumber(const std::filesystem::path& sysfsPath);
  */
 bool findDevice(const StorageData& data, const std::filesystem::path& searchDir,
                 std::filesystem::path& deviceFile,
-                std::filesystem::path& sysfsDir, std::string& luksName);
+                std::filesystem::path& sysfsDir, std::string& luksName,
+                std::string& locationCode);
 
 } // namespace util
 

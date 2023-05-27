@@ -44,6 +44,7 @@ class EStoragedTest : public testing::Test
     const uint8_t testLifeTime = 25;
     const std::string testPartNumber = "12345678";
     const std::string testSerialNumber = "ABCDEF1234";
+    const std::string testLocationCode = "U102020";
     std::ofstream testFile;
     std::string passwordString;
     std::vector<uint8_t> password;
@@ -88,7 +89,7 @@ class EStoragedTest : public testing::Test
         esObject = std::make_unique<estoraged::EStoraged>(
             *objectServer, testConfigPath, testFileName, testLuksDevName,
             testSize, testLifeTime, testPartNumber, testSerialNumber,
-            std::move(cryptIface), std::move(fsIface));
+            testLocationCode, std::move(cryptIface), std::move(fsIface));
     }
 
     void TearDown() override

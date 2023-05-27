@@ -70,9 +70,10 @@ void createStorageObjects(
             /* Look for the device file. */
             const std::filesystem::path blockDevDir{"/sys/block"};
             std::filesystem::path deviceFile, sysfsDir;
-            std::string luksName;
-            bool found = estoraged::util::findDevice(
-                data, blockDevDir, deviceFile, sysfsDir, luksName);
+            std::string luksName, locationCode;
+            bool found = estoraged::util::findDevice(data, blockDevDir,
+                                                     deviceFile, sysfsDir,
+                                                     luksName,locationCode);
             if (!found)
             {
                 lg2::error("Device not found for path {PATH}", "PATH", path,
@@ -96,7 +97,7 @@ void createStorageObjects(
             /* Create the storage object. */
             storageObjects[path] = std::make_unique<estoraged::EStoraged>(
                 objectServer, path, deviceFile, luksName, size, lifeleft,
-                partNumber, serialNumber);
+                partNumber, serialNumber, locationCode);
             lg2::info("Created eStoraged object for path {PATH}", "PATH", path,
                       "REDFISH_MESSAGE_ID",
                       std::string("OpenBMC.0.1.CreateStorageObjects"));

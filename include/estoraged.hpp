@@ -43,6 +43,7 @@ class EStoraged
      *  @param[in] lifeTime - percent of lifetime remaining for a drive
      *  @param[in] partNumber - part number for the storage device
      *  @param[in] serialNumber - serial number for the storage device
+     *  @param[in] locationCode - location code for the storage device
      *  @param[in] cryptInterface - (optional) pointer to CryptsetupInterface
      *    object
      *  @param[in] fsInterface - (optional) pointer to FilesystemInterface
@@ -52,6 +53,7 @@ class EStoraged
               const std::string& configPath, const std::string& devPath,
               const std::string& luksName, uint64_t size, uint8_t lifeTime,
               const std::string& partNumber, const std::string& serialNumber,
+              const std::string& locationCode,
               std::unique_ptr<CryptsetupInterface> cryptInterface =
                   std::make_unique<Cryptsetup>(),
               std::unique_ptr<FilesystemInterface> fsInterface =
@@ -141,8 +143,11 @@ class EStoraged
     /** @brief D-Bus interface for the physical drive. */
     std::shared_ptr<sdbusplus::asio::dbus_interface> driveInterface;
 
-    /** @brief D-Bus interface for the location of the drive. */
+    /** @brief D-Bus interface for the location type of the drive. */
     std::shared_ptr<sdbusplus::asio::dbus_interface> embeddedLocationInterface;
+
+    /** @brief D-Bus interface for the location code of the drive. */
+    std::shared_ptr<sdbusplus::asio::dbus_interface> locationCodeInterface;
 
     /** @brief D-Bus interface for the asset information. */
     std::shared_ptr<sdbusplus::asio::dbus_interface> assetInterface;

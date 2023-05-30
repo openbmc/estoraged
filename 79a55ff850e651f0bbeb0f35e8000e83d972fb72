@@ -22,6 +22,30 @@
       },
       "revId": "79a55ff850e651f0bbeb0f35e8000e83d972fb72",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f909918b_e05d3a27",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2023-05-30T17:32:30Z",
+      "side": 1,
+      "message": "+1, everything else looks fine",
+      "parentUuid": "ab4359c7_1c25bcb3",
+      "range": {
+        "startLine": 112,
+        "startChar": 8,
+        "endLine": 112,
+        "endChar": 29
+      },
+      "revId": "79a55ff850e651f0bbeb0f35e8000e83d972fb72",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

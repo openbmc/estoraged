@@ -34,6 +34,29 @@
       "parentUuid": "0dcad950_d0c9e86f",
       "revId": "c5f28b7d41d5d32941f1551c02868785c143b075",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f2f672f_a4ea3a24",
+        "filename": "meson.build",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000233
+      },
+      "writtenOn": "2023-07-13T05:31:39Z",
+      "side": 1,
+      "message": "typo? I\u0027m assuming this should be c++23 rather than c++2b",
+      "range": {
+        "startLine": 8,
+        "startChar": 19,
+        "endLine": 8,
+        "endChar": 20
+      },
+      "revId": "c5f28b7d41d5d32941f1551c02868785c143b075",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

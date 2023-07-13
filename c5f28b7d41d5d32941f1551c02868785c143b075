@@ -57,6 +57,30 @@
       },
       "revId": "c5f28b7d41d5d32941f1551c02868785c143b075",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "004e078e_ae4088e1",
+        "filename": "meson.build",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2023-07-13T20:57:01Z",
+      "side": 1,
+      "message": "I looked it up also\n\nhttps://gcc.gnu.org/projects/cxx-status.html\n```\nC++23 features are available since GCC 11. To enable C++23 support, add the \ncommand-line parameter -std\u003dc++2b to your g++ command line. Or, to enable GNU \nextensions in addition to C++23 features, add -std\u003dgnu++2b.\n```\n\nIt looks correct to me.",
+      "parentUuid": "7f2f672f_a4ea3a24",
+      "range": {
+        "startLine": 8,
+        "startChar": 19,
+        "endLine": 8,
+        "endChar": 20
+      },
+      "revId": "c5f28b7d41d5d32941f1551c02868785c143b075",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

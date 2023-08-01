@@ -105,6 +105,30 @@
       },
       "revId": "c5f28b7d41d5d32941f1551c02868785c143b075",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "22227e52_b0557024",
+        "filename": "meson.build",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2023-08-01T18:34:58Z",
+      "side": 1,
+      "message": "gotcha, thanks for the insight.\nIt looks like Patrick switched it over to 23 (as  you suggested)",
+      "parentUuid": "5c8e4e01_eb34a48d",
+      "range": {
+        "startLine": 8,
+        "startChar": 19,
+        "endLine": 8,
+        "endChar": 20
+      },
+      "revId": "c5f28b7d41d5d32941f1551c02868785c143b075",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

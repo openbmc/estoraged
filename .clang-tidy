@@ -272,6 +272,7 @@ readability-container-size-empty,
 readability-delete-null-pointer,
 readability-deleted-default,
 readability-else-after-return,
+readability-function-size,
 readability-implicit-bool-conversion,
 readability-named-parameter,
 readability-redundant-control-flow,
@@ -296,4 +297,8 @@ CheckOptions:
   - { key: readability-identifier-naming.NamespaceCase, value: lower_case }
   - { key: readability-identifier-naming.StructCase,    value: CamelCase  }
   - { key: cppcoreguidelines-macro-usage.AllowedRegexp, value: ((ERASE_MIN_GEOMETRY)|(ERASE_MAX_GEOMETRY)|(twiddleextCsdEraseGroupDef))  }
-
+  - { key: readability-function-size.LineThreshold,     value: 100 }
+  - { key: readability-function-size.StatementThreshold,value: 50 }
+  - { key: readability-function-size.NestingThreshold,  value: 5 }
+  - { key: readability-function-size.VariableThreshold, value: 10 }
+  - { key: readability-function-size.ParameterThreshold,value: 9 }

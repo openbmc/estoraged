@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "cd5ea349_db3361fe",
+        "filename": ".clang-tidy",
+        "patchSetId": 2
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2023-10-01T12:57:16Z",
+      "side": 1,
+      "message": "you are right. This discussion should be held on the review for the openbmc/docs patch. Looking forward to your feedback there. I should not have created so many patches in gerrit without prior discussion...",
+      "parentUuid": "4e7207f0_a7eb515e",
+      "range": {
+        "startLine": 300,
+        "startChar": 37,
+        "endLine": 300,
+        "endChar": 50
+      },
+      "revId": "231e5c5fca483b8ef962daabe2616c818f2fcfaa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "af5244eb_cf7fe6a1",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 2

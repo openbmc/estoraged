@@ -58,28 +58,26 @@ EStoraged::EStoraged(sdbusplus::asio::object_server& server,
     volumeInterface->register_method(
         "FormatLuks", [this](const std::vector<uint8_t>& password,
                              Volume::FilesystemType type) {
-            this->formatLuks(password, type);
-        });
-    volumeInterface->register_method("Erase",
-                                     [this](Volume::EraseMethod eraseType) {
-        this->erase(eraseType);
+        this->formatLuks(password, type);
     });
+    volumeInterface->register_method(
+        "Erase",
+        [this](Volume::EraseMethod eraseType) { this->erase(eraseType); });
     volumeInterface->register_method("Lock", [this]() { this->lock(); });
-    volumeInterface->register_method("Unlock",
-                                     [this](std::vector<uint8_t>& password) {
-        this->unlock(password);
-    });
+    volumeInterface->register_method(
+        "Unlock",
+        [this](std::vector<uint8_t>& password) { this->unlock(password); });
     volumeInterface->register_method(
         "ChangePassword", [this](const std::vector<uint8_t>& oldPassword,
                                  const std::vector<uint8_t>& newPassword) {
-            this->changePassword(oldPassword, newPassword);
-        });
+        this->changePassword(oldPassword, newPassword);
+    });
     volumeInterface->register_property_r(
         "Locked", lockedProperty, sdbusplus::vtable::property_::emits_change,
         [this](bool& value) {
         value = this->isLocked();
         return value;
-        });
+    });
 
     /* Add Drive interface. */
     driveInterface = objectServer.add_interface(
@@ -94,7 +92,7 @@ EStoraged::EStoraged(sdbusplus::asio::object_server& server,
         [this](bool& value) {
         value = this->isLocked();
         return value;
-        });
+    });
 
     driveInterface->register_property_r(
         "EncryptionStatus", encryptionStatus,
@@ -102,7 +100,7 @@ EStoraged::EStoraged(sdbusplus::asio::object_server& server,
         [this](Drive::DriveEncryptionState& value) {
         value = this->findEncryptionStatus();
         return value;
-        });
+    });
 
     embeddedLocationInterface = objectServer.add_interface(
         objectPath, "xyz.openbmc_project.Inventory.Connector.Embedded");

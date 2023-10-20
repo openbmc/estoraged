@@ -43,7 +43,7 @@ void GetStorageConfiguration::getStorageInfo(const std::string& path,
         }
 
         self->respData[path] = std::move(data);
-        },
+    },
         owner, path, "org.freedesktop.DBus.Properties", "GetAll",
         emmcConfigInterface);
 }
@@ -75,7 +75,7 @@ void GetStorageConfiguration::getConfiguration()
                 }
             }
         }
-        },
+    },
         mapper::busName, mapper::path, mapper::interface, mapper::subtree, "/",
         0, std::vector<const char*>(1, emmcConfigInterface));
 }

@@ -112,47 +112,41 @@ TEST(pattern, shortReadWritePass)
     // test write pattern with short blocks
     EXPECT_CALL(mock, write(_))
         .WillOnce(Invoke([](std::span<const std::byte> x) {
-            std::copy_n(x.begin(), shortData1.size(), shortData1.begin());
-            return shortData1;
-        }))
-        .RetiresOnSaturation();
+        std::copy_n(x.begin(), shortData1.size(), shortData1.begin());
+        return shortData1;
+    })).RetiresOnSaturation();
     EXPECT_CALL(mock, write(_))
         .WillOnce(Invoke([](std::span<const std::byte> x) {
-            std::copy_n(x.begin(), restOfData.size(), restOfData.begin());
-            return restOfData;
-        }))
-        .RetiresOnSaturation();
+        std::copy_n(x.begin(), restOfData.size(), restOfData.begin());
+        return restOfData;
+    })).RetiresOnSaturation();
     EXPECT_CALL(mock, write(_))
         .WillOnce(Invoke([](std::span<const std::byte> x) {
-            std::copy_n(x.begin(), shortData2.size(), shortData2.begin());
-            return shortData2;
-        }))
-        .RetiresOnSaturation();
+        std::copy_n(x.begin(), shortData2.size(), shortData2.begin());
+        return shortData2;
+    })).RetiresOnSaturation();
 
     // test read pattern
     EXPECT_CALL(mock, read(_))
         .WillOnce(Invoke([](std::span<std::byte> x) {
-            std::copy_n(shortData1.begin(), shortData1.size(), x.data());
-            std::span ret(shortData1);
-            return ret;
-        }))
-        .RetiresOnSaturation();
+        std::copy_n(shortData1.begin(), shortData1.size(), x.data());
+        std::span ret(shortData1);
+        return ret;
+    })).RetiresOnSaturation();
 
     EXPECT_CALL(mock, read(_))
         .WillOnce(Invoke([](std::span<std::byte> x) {
-            std::copy_n(restOfData.begin(), restOfData.size(), x.data());
-            std::span ret(restOfData);
-            return ret;
-        }))
-        .RetiresOnSaturation();
+        std::copy_n(restOfData.begin(), restOfData.size(), x.data());
+        std::span ret(restOfData);
+        return ret;
+    })).RetiresOnSaturation();
 
     EXPECT_CALL(mock, read(_))
         .WillOnce(Invoke([](std::span<std::byte> x) {
-            std::copy_n(shortData2.begin(), shortData2.size(), x.data());
-            std::span ret(shortData2);
-            return ret;
-        }))
-        .RetiresOnSaturation();
+        std::copy_n(shortData2.begin(), shortData2.size(), x.data());
+        std::span ret(shortData2);
+        return ret;
+    })).RetiresOnSaturation();
 
     EXPECT_NO_THROW(pass.writePattern(size, mock));
     EXPECT_NO_THROW(pass.verifyPattern(size, mock));

@@ -102,7 +102,7 @@ void createStorageObjects(
                       "REDFISH_MESSAGE_ID",
                       std::string("OpenBMC.0.1.CreateStorageObjects"));
         }
-        });
+    });
     getter->getConfiguration();
 }
 

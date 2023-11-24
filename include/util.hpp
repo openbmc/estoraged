@@ -55,6 +55,23 @@ bool findDevice(const StorageData& data, const std::filesystem::path& searchDir,
                 std::filesystem::path& sysfsDir, std::string& luksName,
                 std::string& locationCode);
 
+/** @brief Get the max geometry to erase
+ *  @return unsigned integer of the max geometry from dbus if defined. Get the
+ *  pre-defined value from meson option otherwise.
+ */
+uint64_t getEraseMaxGeometry();
+
+/** @brief Get the min geometry to erase
+ *  @return unsigned integer of the min geometry from dbus if defined. Get the
+ *  pre-defined value from meson option otherwise.
+ */
+uint64_t getEraseMinGeometry();
+
+/** @brief Reset the max and min geometries
+ *  For unit test to clean up.
+ */
+void resetEraseGeometries();
+
 } // namespace util
 
 } // namespace estoraged

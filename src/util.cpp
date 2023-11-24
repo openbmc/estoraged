@@ -1,5 +1,6 @@
 #include "util.hpp"
 
+#include "estoraged_conf.hpp"
 #include "getConfig.hpp"
 
 #include <linux/fs.h>
@@ -13,6 +14,7 @@
 #include <filesystem>
 #include <fstream>
 #include <iostream>
+#include <optional>
 #include <string>
 
 namespace estoraged
@@ -21,6 +23,12 @@ namespace util
 {
 using ::sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
 using ::stdplus::fd::ManagedFd;
+
+namespace
+{
+std::optional<uint64_t> eraseMaxGeometry;
+std::optional<uint64_t> eraseMinGeometry;
+} // namespace
 
 uint64_t findSizeOfBlockDevice(const std::string& devPath)
 {
@@ -173,6 +181,32 @@ bool findDevice(const StorageData& data, const std::filesystem::path& searchDir,
         }
     }
 
+    /* Check if EraseMaxGeometry is provided. */
+    auto findEraseMaxGeometry = data.find("EraseMaxGeometry");
+    if (findEraseMaxGeometry != data.end())
+    {
+        const auto* eraseMaxGeometryPtr =
+            std::get_if<uint64_t>(&findEraseMaxGeometry->second);
+        if (eraseMaxGeometryPtr != nullptr)
+        {
+            lg2::info("eStorageD new eraseMaxGeometry found on system");
+            eraseMaxGeometry = *eraseMaxGeometryPtr;
+        }
+    }
+
+    /* Check if EraseMinGeometry is provided. */
+    auto findEraseMinGeometry = data.find("EraseMinGeometry");
+    if (findEraseMinGeometry != data.end())
+    {
+        const auto* eraseMinGeometryPtr =
+            std::get_if<uint64_t>(&findEraseMinGeometry->second);
+        if (eraseMinGeometryPtr != nullptr)
+        {
+            lg2::info("eStorageD new eraseMinGeometry found on system");
+            eraseMinGeometry = *eraseMinGeometryPtr;
+        }
+    }
+
     /*
      * Currently, we only support eMMC, so report an error for any other device
      * types.
@@ -235,6 +269,24 @@ bool findDevice(const StorageData& data, const std::filesystem::path& searchDir,
 
     /* Device wasn't found. */
     return false;
+}
+
+uint64_t getEraseMaxGeometry()
+{
+    return eraseMaxGeometry.has_value() ? *eraseMaxGeometry
+                                        : ERASE_MAX_GEOMETRY;
+}
+
+uint64_t getEraseMinGeometry()
+{
+    return eraseMinGeometry.has_value() ? *eraseMinGeometry
+                                        : ERASE_MIN_GEOMETRY;
+}
+
+void resetEraseGeometries()
+{
+    eraseMaxGeometry.reset();
+    eraseMinGeometry.reset();
 }
 
 } // namespace util

@@ -19,6 +19,7 @@
 #include <filesystem>
 #include <iostream>
 #include <memory>
+#include <optional>
 #include <string>
 
 /*
@@ -69,12 +70,8 @@ void createStorageObjects(
 
             /* Look for the device file. */
             const std::filesystem::path blockDevDir{"/sys/block"};
-            std::filesystem::path deviceFile, sysfsDir;
-            std::string luksName, locationCode;
-            bool found = estoraged::util::findDevice(data, blockDevDir,
-                                                     deviceFile, sysfsDir,
-                                                     luksName, locationCode);
-            if (!found)
+            auto deviceInfo = estoraged::util::findDevice(data, blockDevDir);
+            if (!deviceInfo)
             {
                 lg2::error("Device not found for path {PATH}", "PATH", path,
                            "REDFISH_MESSAGE_ID",
@@ -87,6 +84,14 @@ void createStorageObjects(
                 continue;
             }
 
+            std::filesystem::path deviceFile =
+                std::move(deviceInfo->deviceFile);
+            std::filesystem::path sysfsDir = std::move(deviceInfo->sysfsDir);
+            std::string luksName = std::move(deviceInfo->luksName);
+            std::string locationCode = std::move(deviceInfo->locationCode);
+            uint64_t eraseMaxGeometry = deviceInfo->eraseMaxGeometry;
+            uint64_t eraseMinGeometry = deviceInfo->eraseMinGeometry;
+
             uint64_t size = estoraged::util::findSizeOfBlockDevice(deviceFile);
 
             uint8_t lifeleft =
@@ -97,7 +102,8 @@ void createStorageObjects(
             /* Create the storage object. */
             storageObjects[path] = std::make_unique<estoraged::EStoraged>(
                 objectServer, path, deviceFile, luksName, size, lifeleft,
-                partNumber, serialNumber, locationCode);
+                partNumber, serialNumber, locationCode, eraseMaxGeometry,
+                eraseMinGeometry);
             lg2::info("Created eStoraged object for path {PATH}", "PATH", path,
                       "REDFISH_MESSAGE_ID",
                       std::string("OpenBMC.0.1.CreateStorageObjects"));

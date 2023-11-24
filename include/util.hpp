@@ -2,12 +2,32 @@
 #include "getConfig.hpp"
 
 #include <filesystem>
+#include <optional>
 #include <string>
 
 namespace estoraged
 {
 namespace util
 {
+
+struct DeviceInfo
+{
+    std::filesystem::path deviceFile;
+    std::filesystem::path sysfsDir;
+    std::string luksName;
+    std::string locationCode;
+    uint64_t eraseMaxGeometry;
+    uint64_t eraseMinGeometry;
+
+    DeviceInfo(std::filesystem::path& deviceFile,
+               std::filesystem::path& sysfsDir, std::string& luksName,
+               std::string& locationCode, uint64_t eraseMaxGeometry,
+               uint64_t eraseMinGeometry) :
+        deviceFile(deviceFile),
+        sysfsDir(sysfsDir), luksName(luksName), locationCode(locationCode),
+        eraseMaxGeometry(eraseMaxGeometry), eraseMinGeometry(eraseMinGeometry)
+    {}
+};
 
 /** @brief finds the size of the linux block device in bytes
  *  @param[in] devpath - the name of the linux block device
@@ -43,17 +63,11 @@ std::string getSerialNumber(const std::filesystem::path& sysfsPath);
  *  @param[in] data - map of properties from the config object.
  *  @param[in] searchDir - directory to search for devices in sysfs, e.g.
  *    /sys/block
- *  @param[out] deviceFile - device file that was found, e.g. /dev/mmcblk0.
- *  @param[out] sysfsDir - directory containing the sysfs entries for this
- *    device.
- *  @param[out] luksName - name of the encrypted LUKS device.
- *
- *  @return True if the device was found. False otherwise.
+ *  @return DeviceInfo - metadata for the device if device is found. Null
+ *  otherwise.
  */
-bool findDevice(const StorageData& data, const std::filesystem::path& searchDir,
-                std::filesystem::path& deviceFile,
-                std::filesystem::path& sysfsDir, std::string& luksName,
-                std::string& locationCode);
+std::optional<DeviceInfo> findDevice(const StorageData& data,
+                                     const std::filesystem::path& searchDir);
 
 } // namespace util
 

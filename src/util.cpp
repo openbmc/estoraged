@@ -1,5 +1,6 @@
 #include "util.hpp"
 
+#include "estoraged_conf.hpp"
 #include "getConfig.hpp"
 
 #include <linux/fs.h>
@@ -13,6 +14,7 @@
 #include <filesystem>
 #include <fstream>
 #include <iostream>
+#include <optional>
 #include <string>
 
 namespace estoraged
@@ -142,10 +144,8 @@ std::string getSerialNumber(const std::filesystem::path& sysfsPath)
     return serialNumber;
 }
 
-bool findDevice(const StorageData& data, const std::filesystem::path& searchDir,
-                std::filesystem::path& deviceFile,
-                std::filesystem::path& sysfsDir, std::string& luksName,
-                std::string& locationCode)
+std::optional<DeviceInfo> findDevice(const StorageData& data,
+                                     const std::filesystem::path& searchDir)
 {
     /* Check what type of storage device this is. */
     estoraged::BasicVariantType typeVariant;
@@ -158,10 +158,11 @@ bool findDevice(const StorageData& data, const std::filesystem::path& searchDir,
     {
         lg2::error("Could not read device type", "REDFISH_MESSAGE_ID",
                    std::string("OpenBMC.0.1.FindDeviceFail"));
-        return false;
+        return std::nullopt;
     }
 
     /* Check if location code/ silkscreen name is provided for the drive. */
+    std::string locationCode;
     auto findLocationCode = data.find("LocationCode");
     if (findLocationCode != data.end())
     {
@@ -170,6 +171,34 @@ bool findDevice(const StorageData& data, const std::filesystem::path& searchDir,
         if (locationCodePtr != nullptr)
         {
             locationCode = *locationCodePtr;
+        }
+    }
+
+    /* Check if EraseMaxGeometry is provided. */
+    uint64_t eraseMaxGeometry = ERASE_MAX_GEOMETRY;
+    auto findEraseMaxGeometry = data.find("EraseMaxGeometry");
+    if (findEraseMaxGeometry != data.end())
+    {
+        const auto* eraseMaxGeometryPtr =
+            std::get_if<uint64_t>(&findEraseMaxGeometry->second);
+        if (eraseMaxGeometryPtr != nullptr)
+        {
+            lg2::info("eStorageD new eraseMaxGeometry found on system");
+            eraseMaxGeometry = *eraseMaxGeometryPtr;
+        }
+    }
+
+    /* Check if EraseMinGeometry is provided. */
+    uint64_t eraseMinGeometry = ERASE_MIN_GEOMETRY;
+    auto findEraseMinGeometry = data.find("EraseMinGeometry");
+    if (findEraseMinGeometry != data.end())
+    {
+        const auto* eraseMinGeometryPtr =
+            std::get_if<uint64_t>(&findEraseMinGeometry->second);
+        if (eraseMinGeometryPtr != nullptr)
+        {
+            lg2::info("eStorageD new eraseMinGeometry found on system");
+            eraseMinGeometry = *eraseMinGeometryPtr;
         }
     }
 
@@ -183,7 +212,7 @@ bool findDevice(const StorageData& data, const std::filesystem::path& searchDir,
         lg2::error("Unsupported device type {TYPE}", "TYPE", type,
                    "REDFISH_MESSAGE_ID",
                    std::string("OpenBMC.0.1.FindDeviceFail"));
-        return false;
+        return std::nullopt;
     }
 
     /* Look for the eMMC in the specified searchDir directory. */
@@ -211,14 +240,16 @@ bool findDevice(const StorageData& data, const std::filesystem::path& searchDir,
                 /* Found it. Get the sysfs directory and device file. */
                 std::filesystem::path deviceName(dirEntry.path().filename());
 
-                sysfsDir = dirEntry.path();
+                std::filesystem::path sysfsDir = dirEntry.path();
                 sysfsDir /= "device";
 
-                deviceFile = "/dev";
+                std::filesystem::path deviceFile = "/dev";
                 deviceFile /= deviceName;
 
-                luksName = "luks-" + deviceName.string();
-                return true;
+                std::string luksName = "luks-" + deviceName.string();
+                return DeviceInfo{deviceFile,       sysfsDir,
+                                  luksName,         locationCode,
+                                  eraseMaxGeometry, eraseMinGeometry};
             }
         }
         catch (...)
@@ -234,7 +265,7 @@ bool findDevice(const StorageData& data, const std::filesystem::path& searchDir,
     }
 
     /* Device wasn't found. */
-    return false;
+    return std::nullopt;
 }
 
 } // namespace util

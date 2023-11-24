@@ -1,6 +1,7 @@
 #include "estoraged_test.hpp"
 
 #include "estoraged.hpp"
+#include "estoraged_conf.hpp"
 
 #include <unistd.h>
 
@@ -89,7 +90,8 @@ class EStoragedTest : public testing::Test
         esObject = std::make_unique<estoraged::EStoraged>(
             *objectServer, testConfigPath, testFileName, testLuksDevName,
             testSize, testLifeTime, testPartNumber, testSerialNumber,
-            testLocationCode, std::move(cryptIface), std::move(fsIface));
+            testLocationCode, ERASE_MAX_GEOMETRY, ERASE_MIN_GEOMETRY,
+            std::move(cryptIface), std::move(fsIface));
     }
 
     void TearDown() override

@@ -20,13 +20,17 @@ class VerifyDriveGeometry : public Erase
     /** @brief Test if input is in between the max and min expected sizes,
      * and throws errors accordingly.
      *
-     *  @param[in] bytes - Size of the block device
+     *  @param[in] eraseMaxGeometry - the max expected size to erase.
+     *  @param[in] eraseMinGeometry - the min expected size to erase.
+     *  @param[in] bytes - Size of the block device.
      */
-    void geometryOkay()
+    void geometryOkay(uint64_t eraseMaxGeometry, uint64_t eraseMinGemoetry)
     {
-        geometryOkay(util::findSizeOfBlockDevice(devPath));
+        geometryOkay(eraseMaxGeometry, eraseMinGemoetry,
+                     util::findSizeOfBlockDevice(devPath));
     }
-    void geometryOkay(uint64_t bytes);
+    void geometryOkay(uint64_t eraseMaxGeometry, uint64_t eraseMinGemoetry,
+                      uint64_t bytes);
 };
 
 } // namespace estoraged

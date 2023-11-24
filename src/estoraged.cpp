@@ -37,11 +37,13 @@ EStoraged::EStoraged(sdbusplus::asio::object_server& server,
                      const std::string& luksName, uint64_t size,
                      uint8_t lifeTime, const std::string& partNumber,
                      const std::string& serialNumber,
-                     const std::string& locationCode,
+                     const std::string& locationCode, uint64_t eraseMaxGeometry,
+                     uint64_t eraseMinGeometry,
                      std::unique_ptr<CryptsetupInterface> cryptInterface,
                      std::unique_ptr<FilesystemInterface> fsInterface) :
     devPath(devPath),
     containerName(luksName), mountPoint("/mnt/" + luksName + "_fs"),
+    eraseMaxGeometry(eraseMaxGeometry), eraseMinGeometry(eraseMinGeometry),
     cryptIface(std::move(cryptInterface)), fsIface(std::move(fsInterface)),
     cryptDevicePath(cryptIface->cryptGetDir() + "/" + luksName),
     objectServer(server)
@@ -185,7 +187,7 @@ void EStoraged::erase(Volume::EraseMethod inEraseMethod)
         case Volume::EraseMethod::VerifyGeometry:
         {
             VerifyDriveGeometry myVerifyGeometry(devPath);
-            myVerifyGeometry.geometryOkay();
+            myVerifyGeometry.geometryOkay(eraseMaxGeometry, eraseMinGeometry);
             break;
         }
         case Volume::EraseMethod::LogicalOverWrite:

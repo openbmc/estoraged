@@ -15,21 +15,24 @@ using sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
 TEST(VerifyGeometry, TooBigFail)
 {
     VerifyDriveGeometry maxVerify("");
-    EXPECT_THROW(maxVerify.geometryOkay(ERASE_MAX_GEOMETRY + 1),
+    EXPECT_THROW(maxVerify.geometryOkay(ERASE_MAX_GEOMETRY, ERASE_MIN_GEOMETRY,
+                                        ERASE_MAX_GEOMETRY + 1),
                  InternalFailure);
 }
 
 TEST(VerifyGeometry, TooSmallFail)
 {
     VerifyDriveGeometry minVerify("");
-    EXPECT_THROW(minVerify.geometryOkay(ERASE_MIN_GEOMETRY - 1),
+    EXPECT_THROW(minVerify.geometryOkay(ERASE_MAX_GEOMETRY, ERASE_MIN_GEOMETRY,
+                                        ERASE_MIN_GEOMETRY - 1),
                  InternalFailure);
 }
 
 TEST(VerifyGeometry, pass)
 {
     VerifyDriveGeometry passVerify("");
-    EXPECT_NO_THROW(passVerify.geometryOkay(ERASE_MIN_GEOMETRY + 1));
+    EXPECT_NO_THROW(passVerify.geometryOkay(
+        ERASE_MAX_GEOMETRY, ERASE_MIN_GEOMETRY, ERASE_MIN_GEOMETRY + 1));
 }
 
 } // namespace estoraged_test

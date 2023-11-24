@@ -1,7 +1,5 @@
 #include "verifyDriveGeometry.hpp"
 
-#include "estoraged_conf.hpp"
-
 #include <phosphor-logging/lg2.hpp>
 #include <xyz/openbmc_project/Common/error.hpp>
 
@@ -11,24 +9,26 @@ namespace estoraged
 {
 using sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
 
-void VerifyDriveGeometry::geometryOkay(uint64_t bytes)
+void VerifyDriveGeometry::geometryOkay(uint64_t eraseMaxGeometry,
+                                       uint64_t eraseMinGeometry,
+                                       uint64_t bytes)
 {
-    if (bytes > ERASE_MAX_GEOMETRY)
+    if (bytes > eraseMaxGeometry)
     {
         lg2::error("Erase verify Geometry too large", "REDFISH_MESSAGE_ID",
                    std::string("OpenBMC.0.1.DriveEraseFailure"),
                    "REDFISH_MESSAGE_ARGS",
                    std::to_string(bytes) + ">" +
-                       std::to_string(ERASE_MAX_GEOMETRY));
+                       std::to_string(eraseMaxGeometry));
         throw InternalFailure();
     }
-    if (bytes < ERASE_MIN_GEOMETRY)
+    if (bytes < eraseMinGeometry)
     {
         lg2::error(
             "eStorageD erase verify Geometry too small", "REDFISH_MESSAGE_ID",
             std::string("OpenBMC.0.1.DriveEraseFailure"),
             "REDFISH_MESSAGE_ARGS",
-            std::to_string(bytes) + "<" + std::to_string(ERASE_MIN_GEOMETRY));
+            std::to_string(bytes) + "<" + std::to_string(eraseMinGeometry));
         throw InternalFailure();
     }
 

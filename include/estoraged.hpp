@@ -44,6 +44,8 @@ class EStoraged
      *  @param[in] partNumber - part number for the storage device
      *  @param[in] serialNumber - serial number for the storage device
      *  @param[in] locationCode - location code for the storage device
+     *  @param[in] eraseMaxGeometry - max geometry to erase if it's specified
+     *  @param[in] eraseMinGeometry - min geometry to erase if it's specified
      *  @param[in] cryptInterface - (optional) pointer to CryptsetupInterface
      *    object
      *  @param[in] fsInterface - (optional) pointer to FilesystemInterface
@@ -53,7 +55,8 @@ class EStoraged
               const std::string& configPath, const std::string& devPath,
               const std::string& luksName, uint64_t size, uint8_t lifeTime,
               const std::string& partNumber, const std::string& serialNumber,
-              const std::string& locationCode,
+              const std::string& locationCode, uint64_t eraseMaxGeometry,
+              uint64_t eraseMinGeometry,
               std::unique_ptr<CryptsetupInterface> cryptInterface =
                   std::make_unique<Cryptsetup>(),
               std::unique_ptr<FilesystemInterface> fsInterface =
@@ -117,6 +120,12 @@ class EStoraged
 
     /** @brief Mount point for the filesystem. */
     std::string mountPoint;
+
+    /** @brief Max geometry to earse. */
+    uint64_t eraseMaxGeometry;
+
+    /** @brief Min geometry to earse. */
+    uint64_t eraseMinGeometry;
 
     /** @brief Indicates whether the LUKS device is currently locked. */
     bool lockedProperty{false};

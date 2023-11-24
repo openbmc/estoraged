@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb0e62ba_430db6d5",
+        "filename": "src/test/util_test.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1001253
+      },
+      "writtenOn": "2023-11-24T13:30:04Z",
+      "side": 1,
+      "message": "Make the test to be independent from other tests?",
+      "revId": "c755746d94d9379dcbc9231ad1a585f6c11960c0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

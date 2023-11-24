@@ -13,8 +13,11 @@
 namespace estoraged_test
 {
 using estoraged::util::findPredictedMediaLifeLeftPercent;
+using estoraged::util::getEraseMaxGeometry;
+using estoraged::util::getEraseMinGeometry;
 using estoraged::util::getPartNumber;
 using estoraged::util::getSerialNumber;
+using estoraged::util::resetEraseGeometries;
 
 TEST(utilTest, passFindPredictedMediaLife)
 {
@@ -96,6 +99,59 @@ TEST(utilTest, getSerialNumberPass)
     testFile.close();
     EXPECT_EQ(getSerialNumber(prefixName), "0x12345678");
     EXPECT_TRUE(std::filesystem::remove(testFileName));
+}
+
+TEST(utilTest, getEraseMaxGeometryPass)
+{
+    estoraged::StorageData data;
+    data.emplace(std::string("Type"),
+                 estoraged::BasicVariantType("EmmcDevice"));
+    data.emplace(std::string("EraseMaxGeometry"),
+                 estoraged::BasicVariantType((uint64_t)5566));
+
+    EXPECT_NE(5566, getEraseMaxGeometry());
+
+    /* EraseMaxGeometry should be set during finding device. */
+    std::filesystem::path deviceFile, sysfsDir;
+    std::string luksName, locationCode;
+    EXPECT_FALSE(estoraged::util::findDevice(data, std::filesystem::path("./"),
+                                             deviceFile, sysfsDir, luksName,
+                                             locationCode));
+
+    EXPECT_EQ(5566, getEraseMaxGeometry());
+}
+
+TEST(utilTest, getEraseMinGeometryPass)
+{
+    estoraged::StorageData data;
+    data.emplace(std::string("Type"),
+                 estoraged::BasicVariantType("EmmcDevice"));
+    data.emplace(std::string("EraseMinGeometry"),
+                 estoraged::BasicVariantType((uint64_t)5566));
+
+    EXPECT_NE(5566, getEraseMinGeometry());
+
+    /* EraseMinGeometry should be set during finding device. */
+    std::filesystem::path deviceFile, sysfsDir;
+    std::string luksName, locationCode;
+    EXPECT_FALSE(estoraged::util::findDevice(data, std::filesystem::path("./"),
+                                             deviceFile, sysfsDir, luksName,
+                                             locationCode));
+
+    EXPECT_EQ(5566, getEraseMinGeometry());
+}
+
+TEST(utilTest, resetEraseMinGeometriesPass)
+{
+    /* Geometries were set by getEraseMaxGeometryPass and
+     * getEraseMinGeometryPass. */
+    EXPECT_EQ(5566, getEraseMinGeometry());
+    EXPECT_EQ(5566, getEraseMaxGeometry());
+
+    resetEraseGeometries();
+
+    EXPECT_NE(5566, getEraseMinGeometry());
+    EXPECT_NE(5566, getEraseMaxGeometry());
 }
 
 /* Test case where we successfully find the device file. */

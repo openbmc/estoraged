@@ -16,6 +16,24 @@
       "message": "Make the test to be independent from other tests?",
       "revId": "c755746d94d9379dcbc9231ad1a585f6c11960c0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7396e9c_bc9f5d79",
+        "filename": "src/test/util_test.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1001087
+      },
+      "writtenOn": "2023-11-27T05:31:04Z",
+      "side": 1,
+      "message": "updated the unit tests to make them independent.",
+      "parentUuid": "bb0e62ba_430db6d5",
+      "revId": "c755746d94d9379dcbc9231ad1a585f6c11960c0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

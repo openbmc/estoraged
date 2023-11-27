@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "93c23f8a_8bf523ad",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2023-11-27T18:09:11Z",
+      "side": 1,
+      "message": "looks fine, thank you",
+      "revId": "3995cd9423f405a080c403fb30ec1829c2560eb9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5bbef118_38b81772",
+        "filename": "src/util.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2023-11-27T18:09:11Z",
+      "side": 1,
+      "message": "please add a log message to the effect of \n```\nlg2::info(\"eStorageD new eraseMaxGeometry found on system\")\n```",
+      "revId": "3995cd9423f405a080c403fb30ec1829c2560eb9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48fbe7e1_ea62549b",
+        "filename": "src/util.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2023-11-27T18:09:11Z",
+      "side": 1,
+      "message": "```\nlg2::info(\"eStorageD new eraseMinGeometry found on system\")\n```",
+      "revId": "3995cd9423f405a080c403fb30ec1829c2560eb9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

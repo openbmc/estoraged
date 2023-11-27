@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "95f28535_599150ad",
+        "filename": "src/util.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2023-11-27T18:58:30Z",
+      "side": 1,
+      "message": "I think these should ideally be members of the estoraged class, which would pass the values into the VerifyGeometry object. That way, if estoraged ever needs to support multiple storage devices, they can have different sizes.\n\nBut on the other hand, your implementation isn\u0027t any worse than the existing compiler flags. So, if you prefer to keep this as-is, it\u0027s probably fine for now.",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 41
+      },
+      "revId": "3995cd9423f405a080c403fb30ec1829c2560eb9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5bbef118_38b81772",
         "filename": "src/util.cpp",
         "patchSetId": 2

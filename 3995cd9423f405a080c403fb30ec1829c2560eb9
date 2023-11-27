@@ -78,6 +78,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2a540d01_3dafacb4",
+        "filename": "src/util.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2023-11-27T19:04:10Z",
+      "side": 1,
+      "message": "`findDevice` is only called one time at start up. We don\u0027t expect eStroaged to restart often. I expect this to print one time, every power cycle.\nBut it is good thing to check, we have had spam problems in the past.",
+      "parentUuid": "ec17510a_81b12289",
+      "revId": "3995cd9423f405a080c403fb30ec1829c2560eb9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "48fbe7e1_ea62549b",
         "filename": "src/util.cpp",
         "patchSetId": 2

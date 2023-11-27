@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ec17510a_81b12289",
+        "filename": "src/util.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2023-11-27T18:45:00Z",
+      "side": 1,
+      "message": "Could these logs be spammy at all? How often do these code paths get exercised?",
+      "parentUuid": "5bbef118_38b81772",
+      "revId": "3995cd9423f405a080c403fb30ec1829c2560eb9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "48fbe7e1_ea62549b",
         "filename": "src/util.cpp",
         "patchSetId": 2

@@ -67,6 +67,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "38627e6f_dfb9ae4c",
+        "filename": "src/util.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2023-11-29T17:11:39Z",
+      "side": 1,
+      "message": "Rather than passing in the entire estoraged object, I was thinking you would just pass in the min and max geometry values.",
+      "parentUuid": "995746e9_8cb383a7",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 41
+      },
+      "revId": "3995cd9423f405a080c403fb30ec1829c2560eb9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5bbef118_38b81772",
         "filename": "src/util.cpp",
         "patchSetId": 2

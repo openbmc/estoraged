@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "995746e9_8cb383a7",
+        "filename": "src/util.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1001087
+      },
+      "writtenOn": "2023-11-29T11:44:23Z",
+      "side": 1,
+      "message": "It\u0027s not hard to add these two in to eStoraged and I can do this here or in a follow-up patch. However, could you provide some feedback on how can I get the estoraged object in `VerifyDriveGeometry`? Maybe just passing `this` in https://github1s.com/openbmc/estoraged/blob/HEAD/src/estoraged.cpp#L188-L189 as an argument?",
+      "parentUuid": "95f28535_599150ad",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 41
+      },
+      "revId": "3995cd9423f405a080c403fb30ec1829c2560eb9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5bbef118_38b81772",
         "filename": "src/util.cpp",
         "patchSetId": 2
@@ -94,6 +118,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "257fd8eb_713cec77",
+        "filename": "src/util.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1001087
+      },
+      "writtenOn": "2023-11-29T11:44:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2a540d01_3dafacb4",
+      "revId": "3995cd9423f405a080c403fb30ec1829c2560eb9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "48fbe7e1_ea62549b",
@@ -107,6 +149,24 @@
       "writtenOn": "2023-11-27T18:09:11Z",
       "side": 1,
       "message": "```\nlg2::info(\"eStorageD new eraseMinGeometry found on system\")\n```",
+      "revId": "3995cd9423f405a080c403fb30ec1829c2560eb9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6e97c52_542bf874",
+        "filename": "src/util.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1001087
+      },
+      "writtenOn": "2023-11-29T11:44:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "48fbe7e1_ea62549b",
       "revId": "3995cd9423f405a080c403fb30ec1829c2560eb9",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

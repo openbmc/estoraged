@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d0b5ea4_5956d361",
+        "filename": "include/estoraged.hpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1001087
+      },
+      "writtenOn": "2023-12-01T00:31:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "75496269_0c269079",
+      "range": {
+        "startLine": 124,
+        "startChar": 31,
+        "endLine": 124,
+        "endChar": 36
+      },
+      "revId": "29a2cd628f2ee277ceb436a631de332bbcb42fc7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "844d31bb_15c7a24f",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-11-30T17:59:16Z",
       "side": 1,
       "message": "...and get the min/max geometry from the device properties.\n\n(not sure if you meant to modify the test case description)",
+      "range": {
+        "startLine": 153,
+        "startChar": 4,
+        "endLine": 153,
+        "endChar": 56
+      },
+      "revId": "29a2cd628f2ee277ceb436a631de332bbcb42fc7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c52e757_fb5fc996",
+        "filename": "src/test/util_test.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1001087
+      },
+      "writtenOn": "2023-12-01T00:31:26Z",
+      "side": 1,
+      "message": "Updated the test case decription. PTAL. Thanks!",
+      "parentUuid": "844d31bb_15c7a24f",
       "range": {
         "startLine": 153,
         "startChar": 4,

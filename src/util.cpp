@@ -203,13 +203,19 @@ std::optional<DeviceInfo> findDevice(const StorageData& data,
     }
 
     /*
-     * Currently, we only support eMMC, so report an error for any other device
-     * types.
+     * Determine the drive type to report for this device. Note that we only
+     * support eMMC currently, so report an error for any other device types.
      */
-    std::string type = std::get<std::string>(typeVariant);
-    if (type.compare("EmmcDevice") != 0)
+    std::string deviceType = std::get<std::string>(typeVariant);
+    /* drive type to report in the Item.Drive dbus interface */
+    std::string driveType;
+    if (deviceType.compare("EmmcDevice") == 0)
     {
-        lg2::error("Unsupported device type {TYPE}", "TYPE", type,
+        driveType = "SSD";
+    }
+    else
+    {
+        lg2::error("Unsupported device type {TYPE}", "TYPE", deviceType,
                    "REDFISH_MESSAGE_ID",
                    std::string("OpenBMC.0.1.FindDeviceFail"));
         return std::nullopt;
@@ -249,7 +255,8 @@ std::optional<DeviceInfo> findDevice(const StorageData& data,
                 std::string luksName = "luks-" + deviceName.string();
                 return DeviceInfo{deviceFile,       sysfsDir,
                                   luksName,         locationCode,
-                                  eraseMaxGeometry, eraseMinGeometry};
+                                  eraseMaxGeometry, eraseMinGeometry,
+                                  driveType};
             }
         }
         catch (...)

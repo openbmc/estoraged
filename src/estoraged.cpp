@@ -38,7 +38,7 @@ EStoraged::EStoraged(sdbusplus::asio::object_server& server,
                      uint8_t lifeTime, const std::string& partNumber,
                      const std::string& serialNumber,
                      const std::string& locationCode, uint64_t eraseMaxGeometry,
-                     uint64_t eraseMinGeometry,
+                     uint64_t eraseMinGeometry, const std::string& driveType,
                      std::unique_ptr<CryptsetupInterface> cryptInterface,
                      std::unique_ptr<FilesystemInterface> fsInterface) :
     devPath(devPath),
@@ -87,6 +87,9 @@ EStoraged::EStoraged(sdbusplus::asio::object_server& server,
     driveInterface->register_property("Capacity", size);
     driveInterface->register_property("PredictedMediaLifeLeftPercent",
                                       lifeTime);
+    driveInterface->register_property(
+        "Type",
+        "xyz.openbmc_project.Inventory.Item.Drive.DriveType." + driveType);
     /* This registers the Locked property for the Drives interface.
      * Now it is the same as the volume Locked property */
     driveInterface->register_property_r(

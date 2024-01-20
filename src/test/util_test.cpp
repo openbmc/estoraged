@@ -143,6 +143,7 @@ TEST(utilTest, findDevicePass)
     EXPECT_EQ("U102020", result->locationCode);
     EXPECT_EQ(ERASE_MAX_GEOMETRY, result->eraseMaxGeometry);
     EXPECT_EQ(ERASE_MIN_GEOMETRY, result->eraseMinGeometry);
+    EXPECT_EQ("SSD", result->driveType);
 
     /* Delete the dummy files. */
     EXPECT_EQ(3U, std::filesystem::remove_all("mmcblk0"));
@@ -199,6 +200,7 @@ TEST(utilTest, findDeviceWithMaxAndMinGeometryPass)
     EXPECT_EQ("U102020", result->locationCode);
     EXPECT_EQ(5566, result->eraseMaxGeometry);
     EXPECT_EQ(1234, result->eraseMinGeometry);
+    EXPECT_EQ("SSD", result->driveType);
 
     /* Delete the dummy files. */
     EXPECT_EQ(3U, std::filesystem::remove_all("mmcblk0"));

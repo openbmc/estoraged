@@ -46,6 +46,7 @@ class EStoragedTest : public testing::Test
     const std::string testPartNumber = "12345678";
     const std::string testSerialNumber = "ABCDEF1234";
     const std::string testLocationCode = "U102020";
+    const std::string testDriveType = "SSD";
     std::ofstream testFile;
     std::string passwordString;
     std::vector<uint8_t> password;
@@ -91,7 +92,7 @@ class EStoragedTest : public testing::Test
             *objectServer, testConfigPath, testFileName, testLuksDevName,
             testSize, testLifeTime, testPartNumber, testSerialNumber,
             testLocationCode, ERASE_MAX_GEOMETRY, ERASE_MIN_GEOMETRY,
-            std::move(cryptIface), std::move(fsIface));
+            testDriveType, std::move(cryptIface), std::move(fsIface));
     }
 
     void TearDown() override

@@ -1,6 +1,6 @@
 [Unit]
 Description=Storage management daemon for an encrypted storage device
-Requires=xyz.openbmc_project.EntityManager.service
+Wants=xyz.openbmc_project.EntityManager.service
 After=xyz.openbmc_project.EntityManager.service
 
 [Service]

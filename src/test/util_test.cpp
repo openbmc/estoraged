@@ -144,6 +144,7 @@ TEST(utilTest, findDevicePass)
     EXPECT_EQ(ERASE_MAX_GEOMETRY, result->eraseMaxGeometry);
     EXPECT_EQ(ERASE_MIN_GEOMETRY, result->eraseMinGeometry);
     EXPECT_EQ("SSD", result->driveType);
+    EXPECT_EQ("eMMC", result->driveProtocol);
 
     /* Delete the dummy files. */
     EXPECT_EQ(3U, std::filesystem::remove_all("mmcblk0"));
@@ -201,6 +202,7 @@ TEST(utilTest, findDeviceWithMaxAndMinGeometryPass)
     EXPECT_EQ(5566, result->eraseMaxGeometry);
     EXPECT_EQ(1234, result->eraseMinGeometry);
     EXPECT_EQ("SSD", result->driveType);
+    EXPECT_EQ("eMMC", result->driveProtocol);
 
     /* Delete the dummy files. */
     EXPECT_EQ(3U, std::filesystem::remove_all("mmcblk0"));

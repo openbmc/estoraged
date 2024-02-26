@@ -39,6 +39,7 @@ EStoraged::EStoraged(sdbusplus::asio::object_server& server,
                      const std::string& serialNumber,
                      const std::string& locationCode, uint64_t eraseMaxGeometry,
                      uint64_t eraseMinGeometry, const std::string& driveType,
+                     const std::string& driveProtocol,
                      std::unique_ptr<CryptsetupInterface> cryptInterface,
                      std::unique_ptr<FilesystemInterface> fsInterface) :
     devPath(devPath),
@@ -90,6 +91,9 @@ EStoraged::EStoraged(sdbusplus::asio::object_server& server,
     driveInterface->register_property(
         "Type",
         "xyz.openbmc_project.Inventory.Item.Drive.DriveType." + driveType);
+    driveInterface->register_property(
+        "Protocol", "xyz.openbmc_project.Inventory.Item.Drive.DriveProtocol." +
+                        driveProtocol);
     /* This registers the Locked property for the Drives interface.
      * Now it is the same as the volume Locked property */
     driveInterface->register_property_r(

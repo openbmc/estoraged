@@ -47,6 +47,7 @@ class EStoraged
      *  @param[in] eraseMaxGeometry - max geometry to erase if it's specified
      *  @param[in] eraseMinGeometry - min geometry to erase if it's specified
      *  @param[in] driveType - type of drive, e.g. HDD vs SSD
+     *  @param[in] driveProtocol - protocol used to communicate with drive
      *  @param[in] cryptInterface - (optional) pointer to CryptsetupInterface
      *    object
      *  @param[in] fsInterface - (optional) pointer to FilesystemInterface
@@ -58,6 +59,7 @@ class EStoraged
               const std::string& partNumber, const std::string& serialNumber,
               const std::string& locationCode, uint64_t eraseMaxGeometry,
               uint64_t eraseMinGeometry, const std::string& driveType,
+              const std::string& driveProtocol,
               std::unique_ptr<CryptsetupInterface> cryptInterface =
                   std::make_unique<Cryptsetup>(),
               std::unique_ptr<FilesystemInterface> fsInterface =

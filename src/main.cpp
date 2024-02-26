@@ -99,12 +99,13 @@ void createStorageObjects(
             std::string partNumber = estoraged::util::getPartNumber(sysfsDir);
             std::string serialNumber =
                 estoraged::util::getSerialNumber(sysfsDir);
-            std::string driveType = deviceInfo->driveType;
+            const std::string& driveType = deviceInfo->driveType;
+            const std::string& driveProtocol = deviceInfo->driveProtocol;
             /* Create the storage object. */
             storageObjects[path] = std::make_unique<estoraged::EStoraged>(
                 objectServer, path, deviceFile, luksName, size, lifeleft,
                 partNumber, serialNumber, locationCode, eraseMaxGeometry,
-                eraseMinGeometry, driveType);
+                eraseMinGeometry, driveType, driveProtocol);
             lg2::info("Created eStoraged object for path {PATH}", "PATH", path,
                       "REDFISH_MESSAGE_ID",
                       std::string("OpenBMC.0.1.CreateStorageObjects"));

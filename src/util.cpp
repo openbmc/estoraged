@@ -203,15 +203,18 @@ std::optional<DeviceInfo> findDevice(const StorageData& data,
     }
 
     /*
-     * Determine the drive type to report for this device. Note that we only
-     * support eMMC currently, so report an error for any other device types.
+     * Determine the drive type and protocol to report for this device. Note
+     * that we only support eMMC currently, so report an error for any other
+     * device types.
      */
     std::string deviceType = std::get<std::string>(typeVariant);
-    /* drive type to report in the Item.Drive dbus interface */
+    /* drive type and protocol to report in the Item.Drive dbus interface */
     std::string driveType;
+    std::string driveProtocol;
     if (deviceType.compare("EmmcDevice") == 0)
     {
         driveType = "SSD";
+        driveProtocol = "eMMC";
     }
     else
     {
@@ -253,9 +256,10 @@ std::optional<DeviceInfo> findDevice(const StorageData& data,
                 deviceFile /= deviceName;
 
                 std::string luksName = "luks-" + deviceName.string();
-                return DeviceInfo{
-                    deviceFile,       sysfsDir,         luksName, locationCode,
-                    eraseMaxGeometry, eraseMinGeometry, driveType};
+                return DeviceInfo{deviceFile,       sysfsDir,
+                                  luksName,         locationCode,
+                                  eraseMaxGeometry, eraseMinGeometry,
+                                  driveType,        driveProtocol};
             }
         }
         catch (...)

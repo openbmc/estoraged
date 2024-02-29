@@ -1,0 +1,7 @@
+Verified+1: OpenBMC CI <openbmcbump-ci@yahoo.com>
+Code-Review+2: Brandon Kim <brandonkim@google.com>
+Submitted-by: John Wedig <johnwedig@google.com>
+Submitted-at: Thu, 29 Feb 2024 18:26:05 +0000
+Reviewed-on: https://gerrit.openbmc.org/c/openbmc/estoraged/+/69690
+Project: openbmc/estoraged
+Branch: refs/heads/master

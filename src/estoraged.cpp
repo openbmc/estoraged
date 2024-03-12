@@ -380,7 +380,7 @@ Drive::DriveEncryptionState EStoraged::findEncryptionStatus()
     }
     catch (...)
     {
-        return Drive::DriveEncryptionState::Unknown;
+        return Drive::DriveEncryptionState::Unencrypted;
     }
 }
 

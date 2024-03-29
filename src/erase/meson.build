@@ -11,6 +11,7 @@ libeStoragedErase_lib = static_library(
     phosphor_dbus_interfaces_dep,
     phosphor_logging_dep,
     stdplus_dep,
+    boost_dep,
   ],
 )
 

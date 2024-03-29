@@ -10,13 +10,7 @@ endif
 
 stdplus_dep = dependency('stdplus')
 
-boost_dep = dependency('boost',version : '>=1.78.0', required : false, include_type: 'system')
-if not boost_dep.found()
-  subproject('boost', required: false)
-  boost_inc = include_directories('subprojects/boost_1_78_0/', is_system:true)
-  boost  = declare_dependency(include_directories : boost_inc)
-  boost = boost.as_system('system')
-endif
+boost_dep = dependency('boost',version : '>=1.78.0', include_type: 'system')
 
 subdir('erase')
 

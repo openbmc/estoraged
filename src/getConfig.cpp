@@ -75,8 +75,7 @@ void GetStorageConfiguration::getConfiguration()
                 }
             }
         }
-    },
-        mapper::busName, mapper::path, mapper::interface, mapper::subtree, "/",
+    }, mapper::busName, mapper::path, mapper::interface, mapper::subtree, "/",
         0, std::vector<const char*>(1, emmcConfigInterface));
 }
 

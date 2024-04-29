@@ -79,8 +79,7 @@ class Sanitize : public Erase
     Sanitize(std::string_view inDevPath,
              std::unique_ptr<IOCTLWrapperInterface> inIOCTL =
                  std::make_unique<IOCTLWrapperImpl>()) :
-        Erase(inDevPath),
-        ioctlWrapper(std::move(inIOCTL))
+        Erase(inDevPath), ioctlWrapper(std::move(inIOCTL))
     {}
 
     /** @brief sanitize the drive, using eMMC specifed erase commands

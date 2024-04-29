@@ -19,8 +19,7 @@ using sdbusplus::xyz::openbmc_project::Common::Error::ResourceNotFound;
 CryptErase::CryptErase(
     std::string_view devPathIn,
     std::unique_ptr<estoraged::CryptsetupInterface> inCryptIface) :
-    Erase(devPathIn),
-    cryptIface(std::move(inCryptIface))
+    Erase(devPathIn), cryptIface(std::move(inCryptIface))
 {}
 
 void CryptErase::doErase()

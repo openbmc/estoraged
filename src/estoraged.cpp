@@ -42,10 +42,10 @@ EStoraged::EStoraged(sdbusplus::asio::object_server& server,
                      const std::string& driveProtocol,
                      std::unique_ptr<CryptsetupInterface> cryptInterface,
                      std::unique_ptr<FilesystemInterface> fsInterface) :
-    devPath(devPath),
-    containerName(luksName), mountPoint("/mnt/" + luksName + "_fs"),
-    eraseMaxGeometry(eraseMaxGeometry), eraseMinGeometry(eraseMinGeometry),
-    cryptIface(std::move(cryptInterface)), fsIface(std::move(fsInterface)),
+    devPath(devPath), containerName(luksName),
+    mountPoint("/mnt/" + luksName + "_fs"), eraseMaxGeometry(eraseMaxGeometry),
+    eraseMinGeometry(eraseMinGeometry), cryptIface(std::move(cryptInterface)),
+    fsIface(std::move(fsInterface)),
     cryptDevicePath(cryptIface->cryptGetDir() + "/" + luksName),
     objectServer(server)
 {

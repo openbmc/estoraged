@@ -1,9 +1,11 @@
 
 #include "getConfig.hpp"
 
+#include <boost/asio/steady_timer.hpp>
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/asio/connection.hpp>
 
+#include <chrono>
 #include <cstdlib>
 #include <memory>
 #include <string>
@@ -27,7 +29,8 @@ using GetSubTreeType = std::vector<
               std::vector<std::pair<std::string, std::vector<std::string>>>>>;
 
 void GetStorageConfiguration::getStorageInfo(const std::string& path,
-                                             const std::string& owner)
+                                             const std::string& owner,
+                                             size_t retries)
 {
     std::shared_ptr<GetStorageConfiguration> self = shared_from_this();
     self->dbusConnection->async_method_call(
@@ -36,9 +39,24 @@ void GetStorageConfiguration::getStorageInfo(const std::string& path,
             boost::container::flat_map<std::string, BasicVariantType>& data) {
         if (ec)
         {
-            lg2::error("Error getting properties for {PATH}", "PATH", path,
-                       "REDFISH_MESSAGE_ID",
-                       std::string("OpenBMC.0.1.GetStorageInfoFail"));
+            lg2::error(
+                "Error getting properties for {PATH}: {RETRIES} retries left",
+                "PATH", path, "RETRIES", retries - 1, "REDFISH_MESSAGE_ID",
+                std::string("OpenBMC.0.1.GetStorageInfoFail"));
+
+            auto timer = std::make_shared<boost::asio::steady_timer>(
+                self->dbusConnection->get_io_context());
+            timer->expires_after(std::chrono::seconds(10));
+            timer->async_wait([self, timer, path, owner,
+                               retries](boost::system::error_code ec) {
+                if (ec)
+                {
+                    std::cerr << "Timer error!\n";
+                    return;
+                }
+                self->getStorageInfo(path, owner, retries - 1);
+            });
+
             return;
         }
 
@@ -75,8 +93,7 @@ void GetStorageConfiguration::getConfiguration()
                 }
             }
         }
-    },
-        mapper::busName, mapper::path, mapper::interface, mapper::subtree, "/",
+    }, mapper::busName, mapper::path, mapper::interface, mapper::subtree, "/",
         0, std::vector<const char*>(1, emmcConfigInterface));
 }
 

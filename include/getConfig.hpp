@@ -60,8 +60,10 @@ class GetStorageConfiguration :
      *
      *  @param[in] path - D-Bus object path of the config object.
      *  @param[in] owner - D-Bus service that owns the config object.
+     *  @param[in] retries - (optional) Number of times to retry, if needed.
      */
-    void getStorageInfo(const std::string& path, const std::string& owner);
+    void getStorageInfo(const std::string& path, const std::string& owner,
+                        size_t retries = 5);
 
     /** @brief Map containing config objects with corresponding properties. */
     ManagedStorageType respData;

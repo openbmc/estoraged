@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d602437a_3c41f541",
+        "filename": "src/getConfig.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2024-04-30T21:24:11Z",
+      "side": 1,
+      "message": "` if (retries \u003c\u003d 0) return`",
+      "range": {
+        "startLine": 45,
+        "startChar": 62,
+        "endLine": 47,
+        "endChar": 4
+      },
+      "revId": "eea1d5ad4761f07dd486cfe0598cb009d166ed8e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

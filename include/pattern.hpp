@@ -23,7 +23,7 @@ class Pattern : public Erase
      */
     Pattern(std::string_view inDevPath) : Erase(inDevPath) {}
 
-    /** @brief writes an uncompressible random pattern to the drive, using
+    /** @brief writes an incompressible random pattern to the drive, using
      * default parameters. It also throws errors accordingly.
      */
     void writePattern()
@@ -33,7 +33,7 @@ class Pattern : public Erase
         writePattern(util::findSizeOfBlockDevice(devPath), fd);
     }
 
-    /** @brief writes an uncompressible random pattern to the drive
+    /** @brief writes an incompressible random pattern to the drive
      * and throws errors accordingly.
      *
      *  @param[in] bytes - Size of the block device
@@ -41,7 +41,7 @@ class Pattern : public Erase
      */
     void writePattern(uint64_t driveSize, Fd& fd);
 
-    /** @brief verifies the uncompressible random pattern is on the drive, using
+    /** @brief verifies the incompressible random pattern is on the drive, using
      * default parameters. It also throws errors accordingly.
      */
     void verifyPattern()
@@ -51,7 +51,7 @@ class Pattern : public Erase
         verifyPattern(util::findSizeOfBlockDevice(devPath), fd);
     }
 
-    /** @brief verifies the uncompressible random pattern is on the drive
+    /** @brief verifies the incompressible random pattern is on the drive
      * and throws errors accordingly.
      *
      *  @param[in] bytes - Size of the block device

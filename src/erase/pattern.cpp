@@ -25,7 +25,7 @@ using stdplus::fd::Fd;
 
 void Pattern::writePattern(const uint64_t driveSize, Fd& fd)
 {
-    // static seed defines a fixed prng sequnce so it can be verified later,
+    // static seed defines a fixed prng sequence so it can be verified later,
     // and validated for entropy
     uint64_t currentIndex = 0;
 

@@ -52,7 +52,7 @@ void CryptErase::doErase()
         throw ResourceNotFound();
     }
 
-    /* destory working keyslots */
+    /* destroy working keyslots */
     bool keySlotIssue = false;
     for (int i = 0; i < nKeySlots; i++)
     {

@@ -43,7 +43,7 @@ TEST(Zeros, zeroPass)
 }
 
 /* This test that pattern writes the correct number of bytes even if
- * size of the drive is not divisable by the block size
+ * size of the drive is not divisible by the block size
  */
 TEST(Zeros, notDivisible)
 {

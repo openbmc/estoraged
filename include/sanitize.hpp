@@ -70,7 +70,7 @@ class IOCTLWrapperImpl : public IOCTLWrapperInterface
 class Sanitize : public Erase
 {
   public:
-    /** @breif Creates a sanitize erase object
+    /** @brief Creates a sanitize erase object
      *
      * @param[in] inDevPath - the linux device path for the block device.
      * @param[in] IOCTLWrapper - This is a ioctl wrapper, it can be used for
@@ -83,13 +83,13 @@ class Sanitize : public Erase
         ioctlWrapper(std::move(inIOCTL))
     {}
 
-    /** @brief sanitize the drive, using eMMC specifed erase commands
+    /** @brief sanitize the drive, using eMMC specified erase commands
      *
      * param[in] driveSize - size of the drive in bytes
      */
     void doSanitize(uint64_t driveSize);
 
-    /** @brief sanitize the drive, using eMMC specifed erase commands
+    /** @brief sanitize the drive, using eMMC specified erase commands
      *   This function uses the built in utils to call sanitize
      */
     void doSanitize()

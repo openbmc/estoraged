@@ -41,7 +41,7 @@ uint64_t findSizeOfBlockDevice(const std::string& devPath);
 
 /** @brief finds the predicted life left for a eMMC device
  *  @param[in] sysfsPath - The path to the linux sysfs interface
- *  @return the life remaing for the emmc, as a percentage.
+ *  @return the life remaining for the emmc, as a percentage.
  */
 uint8_t findPredictedMediaLifeLeftPercent(const std::string& sysfsPath);
 

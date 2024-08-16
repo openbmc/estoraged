@@ -26,10 +26,10 @@ struct DeviceInfo
                std::string& locationCode, uint64_t eraseMaxGeometry,
                uint64_t eraseMinGeometry, std::string& driveType,
                std::string& driveProtocol) :
-        deviceFile(deviceFile),
-        sysfsDir(sysfsDir), luksName(luksName), locationCode(locationCode),
-        eraseMaxGeometry(eraseMaxGeometry), eraseMinGeometry(eraseMinGeometry),
-        driveType(driveType), driveProtocol(driveProtocol)
+        deviceFile(deviceFile), sysfsDir(sysfsDir), luksName(luksName),
+        locationCode(locationCode), eraseMaxGeometry(eraseMaxGeometry),
+        eraseMinGeometry(eraseMinGeometry), driveType(driveType),
+        driveProtocol(driveProtocol)
     {}
 };
 

@@ -41,76 +41,83 @@ void createStorageObjects(
         dbusConnection,
         [&objectServer, &storageObjects](
             const estoraged::ManagedStorageType& storageConfigurations) {
-        size_t numConfigObj = storageConfigurations.size();
-        if (numConfigObj > 1)
-        {
-            lg2::error("eStoraged can only manage 1 eMMC device; found {NUM}",
-                       "NUM", numConfigObj, "REDFISH_MESSAGE_ID",
-                       std::string("OpenBMC.0.1.CreateStorageObjectsFail"));
-            return;
-        }
-
-        for (const std::pair<sdbusplus::message::object_path,
-                             estoraged::StorageData>& storage :
-             storageConfigurations)
-        {
-            const std::string& path = storage.first.str;
-
-            if (storageObjects.find(path) != storageObjects.end())
+            size_t numConfigObj = storageConfigurations.size();
+            if (numConfigObj > 1)
             {
-                /*
-                 * We've already created this object, or at least
-                 * attempted to.
-                 */
-                continue;
+                lg2::error(
+                    "eStoraged can only manage 1 eMMC device; found {NUM}",
+                    "NUM", numConfigObj, "REDFISH_MESSAGE_ID",
+                    std::string("OpenBMC.0.1.CreateStorageObjectsFail"));
+                return;
             }
 
-            /* Get the properties from the config object. */
-            const estoraged::StorageData& data = storage.second;
-
-            /* Look for the device file. */
-            const std::filesystem::path blockDevDir{"/sys/block"};
-            auto deviceInfo = estoraged::util::findDevice(data, blockDevDir);
-            if (!deviceInfo)
+            for (const std::pair<sdbusplus::message::object_path,
+                                 estoraged::StorageData>& storage :
+                 storageConfigurations)
             {
-                lg2::error("Device not found for path {PATH}", "PATH", path,
-                           "REDFISH_MESSAGE_ID",
-                           std::string("OpenBMC.0.1.CreateStorageObjectsFail"));
-                /*
-                 * Set a NULL pointer as a placeholder, so that we don't
-                 * try and fail again later.
-                 */
-                storageObjects[path] = nullptr;
-                continue;
+                const std::string& path = storage.first.str;
+
+                if (storageObjects.find(path) != storageObjects.end())
+                {
+                    /*
+                     * We've already created this object, or at least
+                     * attempted to.
+                     */
+                    continue;
+                }
+
+                /* Get the properties from the config object. */
+                const estoraged::StorageData& data = storage.second;
+
+                /* Look for the device file. */
+                const std::filesystem::path blockDevDir{"/sys/block"};
+                auto deviceInfo =
+                    estoraged::util::findDevice(data, blockDevDir);
+                if (!deviceInfo)
+                {
+                    lg2::error(
+                        "Device not found for path {PATH}", "PATH", path,
+                        "REDFISH_MESSAGE_ID",
+                        std::string("OpenBMC.0.1.CreateStorageObjectsFail"));
+                    /*
+                     * Set a NULL pointer as a placeholder, so that we don't
+                     * try and fail again later.
+                     */
+                    storageObjects[path] = nullptr;
+                    continue;
+                }
+
+                std::filesystem::path deviceFile =
+                    std::move(deviceInfo->deviceFile);
+                std::filesystem::path sysfsDir =
+                    std::move(deviceInfo->sysfsDir);
+                std::string luksName = std::move(deviceInfo->luksName);
+                std::string locationCode = std::move(deviceInfo->locationCode);
+                uint64_t eraseMaxGeometry = deviceInfo->eraseMaxGeometry;
+                uint64_t eraseMinGeometry = deviceInfo->eraseMinGeometry;
+
+                uint64_t size =
+                    estoraged::util::findSizeOfBlockDevice(deviceFile);
+
+                uint8_t lifeleft =
+                    estoraged::util::findPredictedMediaLifeLeftPercent(
+                        sysfsDir);
+                std::string partNumber =
+                    estoraged::util::getPartNumber(sysfsDir);
+                std::string serialNumber =
+                    estoraged::util::getSerialNumber(sysfsDir);
+                const std::string& driveType = deviceInfo->driveType;
+                const std::string& driveProtocol = deviceInfo->driveProtocol;
+                /* Create the storage object. */
+                storageObjects[path] = std::make_unique<estoraged::EStoraged>(
+                    objectServer, path, deviceFile, luksName, size, lifeleft,
+                    partNumber, serialNumber, locationCode, eraseMaxGeometry,
+                    eraseMinGeometry, driveType, driveProtocol);
+                lg2::info("Created eStoraged object for path {PATH}", "PATH",
+                          path, "REDFISH_MESSAGE_ID",
+                          std::string("OpenBMC.0.1.CreateStorageObjects"));
             }
-
-            std::filesystem::path deviceFile =
-                std::move(deviceInfo->deviceFile);
-            std::filesystem::path sysfsDir = std::move(deviceInfo->sysfsDir);
-            std::string luksName = std::move(deviceInfo->luksName);
-            std::string locationCode = std::move(deviceInfo->locationCode);
-            uint64_t eraseMaxGeometry = deviceInfo->eraseMaxGeometry;
-            uint64_t eraseMinGeometry = deviceInfo->eraseMinGeometry;
-
-            uint64_t size = estoraged::util::findSizeOfBlockDevice(deviceFile);
-
-            uint8_t lifeleft =
-                estoraged::util::findPredictedMediaLifeLeftPercent(sysfsDir);
-            std::string partNumber = estoraged::util::getPartNumber(sysfsDir);
-            std::string serialNumber =
-                estoraged::util::getSerialNumber(sysfsDir);
-            const std::string& driveType = deviceInfo->driveType;
-            const std::string& driveProtocol = deviceInfo->driveProtocol;
-            /* Create the storage object. */
-            storageObjects[path] = std::make_unique<estoraged::EStoraged>(
-                objectServer, path, deviceFile, luksName, size, lifeleft,
-                partNumber, serialNumber, locationCode, eraseMaxGeometry,
-                eraseMinGeometry, driveType, driveProtocol);
-            lg2::info("Created eStoraged object for path {PATH}", "PATH", path,
-                      "REDFISH_MESSAGE_ID",
-                      std::string("OpenBMC.0.1.CreateStorageObjects"));
-        }
-    });
+        });
     getter->getConfiguration();
 }
 
@@ -128,8 +135,9 @@ int main(void)
                                    std::unique_ptr<estoraged::EStoraged>>
             storageObjects;
 
-        boost::asio::post(
-            io, [&]() { createStorageObjects(server, storageObjects, conn); });
+        boost::asio::post(io, [&]() {
+            createStorageObjects(server, storageObjects, conn);
+        });
 
         /*
          * Set up an event handler to process any new configuration objects
@@ -138,33 +146,34 @@ int main(void)
         boost::asio::deadline_timer filterTimer(io);
         std::function<void(sdbusplus::message_t&)> eventHandler =
             [&](sdbusplus::message_t& message) {
-            if (message.is_method_error())
-            {
-                lg2::error("eventHandler callback method error");
-                return;
-            }
-            /*
-             * This implicitly cancels the timer, if it's already pending.
-             * If there's a burst of events within a short period, we want
-             * to handle them all at once. So, we will wait this long for no
-             * more events to occur, before processing them.
-             */
-            filterTimer.expires_from_now(boost::posix_time::seconds(1));
+                if (message.is_method_error())
+                {
+                    lg2::error("eventHandler callback method error");
+                    return;
+                }
+                /*
+                 * This implicitly cancels the timer, if it's already pending.
+                 * If there's a burst of events within a short period, we want
+                 * to handle them all at once. So, we will wait this long for no
+                 * more events to occur, before processing them.
+                 */
+                filterTimer.expires_from_now(boost::posix_time::seconds(1));
 
-            filterTimer.async_wait([&](const boost::system::error_code& ec) {
-                if (ec == boost::asio::error::operation_aborted)
-                {
-                    /* we were canceled */
-                    return;
-                }
-                if (ec)
-                {
-                    lg2::error("timer error");
-                    return;
-                }
-                createStorageObjects(server, storageObjects, conn);
-            });
-        };
+                filterTimer.async_wait(
+                    [&](const boost::system::error_code& ec) {
+                        if (ec == boost::asio::error::operation_aborted)
+                        {
+                            /* we were canceled */
+                            return;
+                        }
+                        if (ec)
+                        {
+                            lg2::error("timer error");
+                            return;
+                        }
+                        createStorageObjects(server, storageObjects, conn);
+                    });
+            };
 
         auto match = std::make_unique<sdbusplus::bus::match_t>(
             static_cast<sdbusplus::bus_t&>(*conn),

@@ -9,9 +9,8 @@ namespace estoraged
 {
 using sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
 
-void VerifyDriveGeometry::geometryOkay(uint64_t eraseMaxGeometry,
-                                       uint64_t eraseMinGeometry,
-                                       uint64_t bytes)
+void VerifyDriveGeometry::geometryOkay(
+    uint64_t eraseMaxGeometry, uint64_t eraseMinGeometry, uint64_t bytes)
 {
     if (bytes > eraseMaxGeometry)
     {

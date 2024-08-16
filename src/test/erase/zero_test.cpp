@@ -126,8 +126,8 @@ TEST(Zeros, shortReadWritePass)
     size_t shortSize = 128;
     Zero pass(testFileName);
     auto shortData = std::vector<std::byte>(shortSize, std::byte{0});
-    auto restOfData = std::vector<std::byte>(size - shortSize * 3,
-                                             std::byte{0});
+    auto restOfData =
+        std::vector<std::byte>(size - shortSize * 3, std::byte{0});
     std::span shortDataSpan{shortData};
     std::span restOfDataSpan{restOfData};
     stdplus::fd::FdMock mock;
@@ -159,8 +159,8 @@ TEST(Zeros, shortReadWriteFail)
     size_t shortSize = 128;
     Zero tryZero(testFileName);
     auto shortData = std::vector<std::byte>(shortSize, std::byte{0});
-    auto restOfData = std::vector<std::byte>(size - shortSize * 3,
-                                             std::byte{0});
+    auto restOfData =
+        std::vector<std::byte>(size - shortSize * 3, std::byte{0});
     std::span shortDataSpan{shortData};
     std::span restOfDataSpan{restOfData};
     // open the file and write none zero to it

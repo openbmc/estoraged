@@ -32,28 +32,27 @@ using sdbusplus::xyz::openbmc_project::Common::Error::UnsupportedRequest;
 using sdbusplus::xyz::openbmc_project::Inventory::Item::server::Drive;
 using sdbusplus::xyz::openbmc_project::Inventory::Item::server::Volume;
 
-EStoraged::EStoraged(sdbusplus::asio::object_server& server,
-                     const std::string& configPath, const std::string& devPath,
-                     const std::string& luksName, uint64_t size,
-                     uint8_t lifeTime, const std::string& partNumber,
-                     const std::string& serialNumber,
-                     const std::string& locationCode, uint64_t eraseMaxGeometry,
-                     uint64_t eraseMinGeometry, const std::string& driveType,
-                     const std::string& driveProtocol,
-                     std::unique_ptr<CryptsetupInterface> cryptInterface,
-                     std::unique_ptr<FilesystemInterface> fsInterface) :
-    devPath(devPath),
-    containerName(luksName), mountPoint("/mnt/" + luksName + "_fs"),
-    eraseMaxGeometry(eraseMaxGeometry), eraseMinGeometry(eraseMinGeometry),
-    cryptIface(std::move(cryptInterface)), fsIface(std::move(fsInterface)),
+EStoraged::EStoraged(
+    sdbusplus::asio::object_server& server, const std::string& configPath,
+    const std::string& devPath, const std::string& luksName, uint64_t size,
+    uint8_t lifeTime, const std::string& partNumber,
+    const std::string& serialNumber, const std::string& locationCode,
+    uint64_t eraseMaxGeometry, uint64_t eraseMinGeometry,
+    const std::string& driveType, const std::string& driveProtocol,
+    std::unique_ptr<CryptsetupInterface> cryptInterface,
+    std::unique_ptr<FilesystemInterface> fsInterface) :
+    devPath(devPath), containerName(luksName),
+    mountPoint("/mnt/" + luksName + "_fs"), eraseMaxGeometry(eraseMaxGeometry),
+    eraseMinGeometry(eraseMinGeometry), cryptIface(std::move(cryptInterface)),
+    fsIface(std::move(fsInterface)),
     cryptDevicePath(cryptIface->cryptGetDir() + "/" + luksName),
     objectServer(server)
 {
     /* Get the filename of the device (without "/dev/"). */
     std::string deviceName = std::filesystem::path(devPath).filename().string();
     /* DBus object path */
-    std::string objectPath = "/xyz/openbmc_project/inventory/storage/" +
-                             deviceName;
+    std::string objectPath =
+        "/xyz/openbmc_project/inventory/storage/" + deviceName;
 
     /* Add Volume interface. */
     volumeInterface = objectServer.add_interface(
@@ -61,8 +60,8 @@ EStoraged::EStoraged(sdbusplus::asio::object_server& server,
     volumeInterface->register_method(
         "FormatLuks", [this](const std::vector<uint8_t>& password,
                              Volume::FilesystemType type) {
-        this->formatLuks(password, type);
-    });
+            this->formatLuks(password, type);
+        });
     volumeInterface->register_method(
         "Erase",
         [this](Volume::EraseMethod eraseType) { this->erase(eraseType); });
@@ -73,14 +72,14 @@ EStoraged::EStoraged(sdbusplus::asio::object_server& server,
     volumeInterface->register_method(
         "ChangePassword", [this](const std::vector<uint8_t>& oldPassword,
                                  const std::vector<uint8_t>& newPassword) {
-        this->changePassword(oldPassword, newPassword);
-    });
+            this->changePassword(oldPassword, newPassword);
+        });
     volumeInterface->register_property_r(
         "Locked", lockedProperty, sdbusplus::vtable::property_::emits_change,
         [this](bool& value) {
-        value = this->isLocked();
-        return value;
-    });
+            value = this->isLocked();
+            return value;
+        });
 
     /* Add Drive interface. */
     driveInterface = objectServer.add_interface(
@@ -99,17 +98,17 @@ EStoraged::EStoraged(sdbusplus::asio::object_server& server,
     driveInterface->register_property_r(
         "Locked", lockedProperty, sdbusplus::vtable::property_::emits_change,
         [this](bool& value) {
-        value = this->isLocked();
-        return value;
-    });
+            value = this->isLocked();
+            return value;
+        });
 
     driveInterface->register_property_r(
         "EncryptionStatus", encryptionStatus,
         sdbusplus::vtable::property_::emits_change,
         [this](Drive::DriveEncryptionState& value) {
-        value = this->findEncryptionStatus();
-        return value;
-    });
+            value = this->findEncryptionStatus();
+            return value;
+        });
 
     embeddedLocationInterface = objectServer.add_interface(
         objectPath, "xyz.openbmc_project.Inventory.Connector.Embedded");

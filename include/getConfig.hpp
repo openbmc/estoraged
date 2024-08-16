@@ -39,8 +39,7 @@ class GetStorageConfiguration :
     GetStorageConfiguration(
         std::shared_ptr<sdbusplus::asio::connection> connection,
         std::function<void(ManagedStorageType& resp)>&& callbackFunc) :
-        dbusConnection(std::move(connection)),
-        callback(std::move(callbackFunc))
+        dbusConnection(std::move(connection)), callback(std::move(callbackFunc))
     {}
 
     GetStorageConfiguration& operator=(const GetStorageConfiguration&) = delete;

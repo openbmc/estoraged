@@ -132,8 +132,8 @@ TEST(utilTest, findDevicePass)
     /* Look for the device file. */
     std::filesystem::path deviceFile, sysfsDir;
     std::string luksName, locationCode;
-    auto result = estoraged::util::findDevice(data,
-                                              std::filesystem::path("./"));
+    auto result =
+        estoraged::util::findDevice(data, std::filesystem::path("./"));
     EXPECT_TRUE(result.has_value());
 
     /* Validate the results. */
@@ -190,8 +190,8 @@ TEST(utilTest, findDeviceWithMaxAndMinGeometryPass)
     /* Look for the device file. */
     std::filesystem::path deviceFile, sysfsDir;
     std::string luksName, locationCode;
-    auto result = estoraged::util::findDevice(data,
-                                              std::filesystem::path("./"));
+    auto result =
+        estoraged::util::findDevice(data, std::filesystem::path("./"));
     EXPECT_TRUE(result.has_value());
 
     /* Validate the results. */
@@ -237,8 +237,8 @@ TEST(utilTest, findDeviceNoTypeFail)
     typeFile.close();
 
     /* Look for the device file. */
-    auto result = estoraged::util::findDevice(data,
-                                              std::filesystem::path("./"));
+    auto result =
+        estoraged::util::findDevice(data, std::filesystem::path("./"));
     EXPECT_FALSE(result.has_value());
 
     /* Delete the dummy files. */
@@ -276,8 +276,8 @@ TEST(utilTest, findDeviceUnsupportedTypeFail)
     typeFile.close();
 
     /* Look for the device file. */
-    auto result = estoraged::util::findDevice(data,
-                                              std::filesystem::path("./"));
+    auto result =
+        estoraged::util::findDevice(data, std::filesystem::path("./"));
     EXPECT_FALSE(result.has_value());
 
     /* Delete the dummy files. */
@@ -308,8 +308,8 @@ TEST(utilTest, findDeviceNotFoundFail)
     std::filesystem::create_directories("def/device");
 
     /* Look for the device file. */
-    auto result = estoraged::util::findDevice(data,
-                                              std::filesystem::path("./"));
+    auto result =
+        estoraged::util::findDevice(data, std::filesystem::path("./"));
     EXPECT_FALSE(result.has_value());
 
     /* Delete the dummy files. */

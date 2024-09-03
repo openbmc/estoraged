@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8677bb6d_17cb5cca",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-09-03T18:24:13Z",
+      "side": 1,
+      "message": "All issues are resolved around clang-tidy now.\n\n@Brandon, @wak",
+      "revId": "55d960bfe72a2e94707e332b7acf8561f2a55680",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

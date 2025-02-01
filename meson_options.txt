@@ -1,3 +1,0 @@
-option ('erase_min_geometry', type : 'integer', min : 0, max : 18446744073709551615, value : 10, description : 'The min size allowed in bytes, used by the geometry check')
-option ('erase_max_geometry', type : 'integer', min : 0, max : 18446744073709551615, value : 5368709120, description : 'the max size allowed in bytes, used by the geometry check')
-option('tests', type: 'feature', value: 'enabled', description: 'Build tests')

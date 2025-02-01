@@ -8,6 +8,4 @@ conf_data = configuration_data()
 conf_data.set('ERASE_MAX_GEOMETRY', get_option('erase_max_geometry'))
 conf_data.set('ERASE_MIN_GEOMETRY', get_option('erase_min_geometry'))
 
-configure_file(
-  output: 'estoraged_conf.hpp',
-  configuration: conf_data)
+configure_file(output: 'estoraged_conf.hpp', configuration: conf_data)

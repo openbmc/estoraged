@@ -154,8 +154,8 @@ class CryptsetupInterface
      *
      * @return value defined by crypt_keyslot_info
      */
-    virtual crypt_keyslot_info
-        cryptKeySlotStatus(struct crypt_device* cd, int keyslot) = 0;
+    virtual crypt_keyslot_info cryptKeySlotStatus(struct crypt_device* cd,
+                                                  int keyslot) = 0;
 
     /** @brief Wrapper around crypt_get_dir.
      *  @details Used for mocking purposes.

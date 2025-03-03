@@ -76,7 +76,7 @@ void Sanitize::emmcErase(uint64_t driveSize)
     uint64_t sectorSize = 0x200; // default value see eMMC spec 6.6.34.
                                  // NOTE: 0x200 is only valid for eMMC greater
                                  // then 2 GB
-    struct mmc_io_multi_cmd_erase eraseCmd = {};
+    struct MmcIoMultiCmdErase eraseCmd = {};
 
     eraseCmd.num_of_cmds = 3;
     eraseCmd.cmds[0].opcode = mmcEraseGroupStart;
@@ -130,7 +130,7 @@ int IOCTLWrapperImpl::doIoctl(std::string_view devPath, unsigned long request,
 
 int IOCTLWrapperImpl::doIoctlMulti(std::string_view devPath,
                                    unsigned long request,
-                                   struct mmc_io_multi_cmd_erase data)
+                                   struct MmcIoMultiCmdErase data)
 {
     ManagedFd fd = stdplus::fd::open(std::string(devPath).c_str(),
                                      stdplus::fd::OpenAccess::ReadOnly);

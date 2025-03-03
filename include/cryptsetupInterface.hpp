@@ -36,11 +36,11 @@ class CryptsetupInterface
      *  @param[in] type - type of device (optional params struct must be of
      *    this type).
      *  @param[in] cipher - (e.g. "aes").
-     *  @params[in cipher_mode - including IV specification (e.g. "xts-plain").
+     *  @params[in cipherMode - including IV specification (e.g. "xts-plain").
      *  @params[in] uuid - requested UUID or NULL if it should be generated.
-     *  @params[in] volume_key - pre-generated volume key or NULL if it should
+     *  @params[in] volumeKey - pre-generated volume key or NULL if it should
      *    be generated (only for LUKS).
-     *  @params[in] volume_key_size - size of volume key in bytes.
+     *  @params[in] volumeKeySize - size of volume key in bytes.
      *  @params[in] params - crypt type specific parameters.
      *
      *  @returns 0 on success or negative errno value otherwise.
@@ -68,16 +68,16 @@ class CryptsetupInterface
         const char* passphrase, size_t passphraseSize,
         const char* newPassphrase, size_t newPassphraseSize) = 0;
 
-    /** @brief Wrapper around crypt_keyslot_add_by_volume_key.
+    /** @brief Wrapper around crypt_keyslot_add_by_volumeKey.
      *  @details Used for mocking purposes.
      *
      *  @param[in] cd - crypt device handle.
      *  @param[in] keyslot - requested keyslot or CRYPT_ANY_SLOT.
-     *  @param[in] volume_key - provided volume key or NULL if used after
+     *  @param[in] volumeKey - provided volume key or NULL if used after
      *    crypt_format.
-     *  @param[in] volume_key_size - size of volume_key.
+     *  @param[in] volumeKeySize - size of volumeKey.
      *  @param[in] passphrase - passphrase for new keyslot.
-     *  @param[in] passphrase_size - size of passphrase.
+     *  @param[in] passphraseSize - size of passphrase.
      *
      *  @returns allocated key slot number or negative errno otherwise.
      */
@@ -90,7 +90,7 @@ class CryptsetupInterface
      *  @details Used for mocking purposes.
      *
      *  @param[in] cd - crypt device handle.
-     *  @param[in] requested_type - crypt-type or NULL for all known.
+     *  @param[in] requestedType - crypt-type or NULL for all known.
      *  @param[in] params - crypt type specific parameters (see crypt-type).
      *
      *  @returns 0 on success or negative errno value otherwise.
@@ -106,7 +106,7 @@ class CryptsetupInterface
      *    passphrase.
      *  @param[in] keyslot - requested keyslot to check or CRYPT_ANY_SLOT.
      *  @param[in] passphrase - passphrase used to unlock volume key.
-     *  @param[in] passphrase_size - size of passphrase.
+     *  @param[in] passphraseSize - size of passphrase.
      *  @param[in] flags - activation flags.
      *
      *  @returns unlocked key slot number or negative errno otherwise.

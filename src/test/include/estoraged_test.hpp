@@ -45,18 +45,18 @@ class MockCryptsetupInterface : public estoraged::CryptsetupInterface
   public:
     MOCK_METHOD(int, cryptFormat,
                 (struct crypt_device * cd, const char* type, const char* cipher,
-                 const char* cipher_mode, const char* uuid,
-                 const char* volume_key, size_t volume_key_size, void* params),
+                 const char* cipherMode, const char* uuid,
+                 const char* volumeKey, size_t volumeKeySize, void* params),
                 (override));
 
     MOCK_METHOD(int, cryptKeyslotAddByVolumeKey,
-                (struct crypt_device * cd, int keyslot, const char* volume_key,
-                 size_t volume_key_size, const char* passphrase,
-                 size_t passphrase_size),
+                (struct crypt_device * cd, int keyslot, const char* volumeKey,
+                 size_t volumeKeySize, const char* passphrase,
+                 size_t passphraseSize),
                 (override));
 
     MOCK_METHOD(int, cryptLoad,
-                (struct crypt_device * cd, const char* requested_type,
+                (struct crypt_device * cd, const char* requestedType,
                  void* params),
                 (override));
 
@@ -68,8 +68,7 @@ class MockCryptsetupInterface : public estoraged::CryptsetupInterface
 
     MOCK_METHOD(int, cryptActivateByPassphrase,
                 (struct crypt_device * cd, const char* name, int keyslot,
-                 const char* passphrase, size_t passphrase_size,
-                 uint32_t flags),
+                 const char* passphrase, size_t passphraseSize, uint32_t flags),
                 (override));
 
     MOCK_METHOD(int, cryptDeactivate,

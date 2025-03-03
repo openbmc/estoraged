@@ -38,7 +38,7 @@ class IOCTLWrapperInterface
      * @param[in] mmc_io_mutli_cmd - many eMMC cmd
      */
     virtual int doIoctlMulti(std::string_view devPath, unsigned long request,
-                             struct mmc_io_multi_cmd_erase data) = 0;
+                             struct MmcIoMultiCmdErase data) = 0;
 
     virtual ~IOCTLWrapperInterface() = default;
     IOCTLWrapperInterface() = default;
@@ -56,7 +56,7 @@ class IOCTLWrapperImpl : public IOCTLWrapperInterface
     int doIoctl(std::string_view devPath, unsigned long request,
                 struct mmc_ioc_cmd data) override;
     int doIoctlMulti(std::string_view devPath, unsigned long request,
-                     struct mmc_io_multi_cmd_erase data) override;
+                     struct MmcIoMultiCmdErase data) override;
     ~IOCTLWrapperImpl() override = default;
     IOCTLWrapperImpl() = default;
 
@@ -113,7 +113,7 @@ class Sanitize : public Erase
 
 // can't use the real mmc_ioc_multi_cmd b/c of zero length array
 // see uapi/linux/mmc/ioctl.h
-struct mmc_io_multi_cmd_erase
+struct MmcIoMultiCmdErase
 {
     uint64_t num_of_cmds;
     struct mmc_ioc_cmd cmds[3]; // NOLINT (c arrays usage)

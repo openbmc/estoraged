@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50b09d33_ee6a4f34",
+        "filename": "include/cryptsetupInterface.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2025-03-04T23:45:36Z",
+      "side": 1,
+      "message": "Hmmm this actually seems to change the API call",
+      "range": {
+        "startLine": 206,
+        "startChar": 15,
+        "endLine": 206,
+        "endChar": 45
+      },
+      "revId": "fa6d61c287fea77ea912822732de4232a580e7a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

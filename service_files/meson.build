@@ -1,6 +1,6 @@
 systemd_dep = dependency('systemd')
 
-systemd_system_unitdir = systemd_dep.get_variable('systemdsystemunitdir')
+systemd_system_unitdir = systemd_dep.get_variable('systemd_system_unit_dir')
 
 conf_data = configuration_data()
 conf_data.set('BINDIR', get_option('prefix') / get_option('bindir'))

@@ -27,6 +27,7 @@ namespace estoraged
 {
 
 using Association = std::tuple<std::string, std::string, std::string>;
+using sdbusplus::asio::PropertyPermission;
 using sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
 using sdbusplus::xyz::openbmc_project::Common::Error::UnsupportedRequest;
 using sdbusplus::xyz::openbmc_project::Inventory::Item::server::Drive;
@@ -85,8 +86,9 @@ EStoraged::EStoraged(
     driveInterface = objectServer.add_interface(
         objectPath, "xyz.openbmc_project.Inventory.Item.Drive");
     driveInterface->register_property("Capacity", size);
-    driveInterface->register_property("PredictedMediaLifeLeftPercent",
-                                      lifeTime);
+    /* The lifetime property is read/write only for testing purposes. */
+    driveInterface->register_property("PredictedMediaLifeLeftPercent", lifeTime,
+                                      PropertyPermission::readWrite);
     driveInterface->register_property(
         "Type",
         "xyz.openbmc_project.Inventory.Item.Drive.DriveType." + driveType);

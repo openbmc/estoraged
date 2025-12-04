@@ -16,6 +16,24 @@
       "message": "Should we pass -y as well? \n\nSee: https://linux.die.net/man/8/fsck",
       "revId": "f4ef387e6eb57b68fd0fd9b671292ba354a1ab49",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6505d27e_4195a522",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2025-12-04T21:52:58Z",
+      "side": 1,
+      "message": "For ext4, it looks like you can\u0027t pass in -p and -y together, according to this documentation: https://linux.die.net/man/8/e2fsck\n\nI tried it on a machine, and got this error:\n\n```\n$ fsck -t ext4 -p /dev/mapper/luks-mmcblk0 -y\nfsck from util-linux 2.39.3\ne2fsck: Only one of the options -p/-a, -n or -y may be specified.\n```",
+      "parentUuid": "e4afcbc5_22fc5a5b",
+      "revId": "f4ef387e6eb57b68fd0fd9b671292ba354a1ab49",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

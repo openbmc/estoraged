@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4afcbc5_22fc5a5b",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 1002430
+      },
+      "writtenOn": "2025-12-04T20:37:04Z",
+      "side": 1,
+      "message": "Should we pass -y as well? \n\nSee: https://linux.die.net/man/8/fsck",
+      "revId": "f4ef387e6eb57b68fd0fd9b671292ba354a1ab49",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

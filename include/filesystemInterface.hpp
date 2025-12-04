@@ -85,6 +85,17 @@ class FilesystemInterface
      *  @returns true if the path exists and represents a directory.
      */
     virtual bool directoryExists(const std::filesystem::path& p) = 0;
+
+    /** @brief Wrapper around fsck.
+     *  @details Used for mocking purposes.
+     *
+     *  @param[in] logicalVolumePath - path to device with filesystem
+     *  @param[in] options - Other options to pass into fsck
+     *
+     *  @returns 0 on success, nonzero on failure.
+     */
+    virtual int runFsck(const std::string& logicalVolumePath,
+                        const std::string& options) = 0;
 };
 
 /** @class Filesystem
@@ -133,6 +144,14 @@ class Filesystem : public FilesystemInterface
     bool directoryExists(const std::filesystem::path& p) override
     {
         return std::filesystem::is_directory(std::filesystem::status(p));
+    }
+
+    int runFsck(const std::string& logicalVolumePath,
+                const std::string& options) override
+    {
+        std::string fsckCommand("fsck " + logicalVolumePath + " " + options);
+        // calling 'system' uses a command processor //NOLINTNEXTLINE
+        return system(fsckCommand.c_str());
     }
 };
 } // namespace estoraged

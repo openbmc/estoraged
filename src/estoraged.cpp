@@ -429,6 +429,18 @@ void EStoraged::createFilesystem()
 void EStoraged::mountFilesystem()
 {
     /*
+     * Before mounting, run fsck to check for and resolve any filesystem errors.
+     */
+    int retval = fsIface->runFsck(cryptDevicePath, "-t ext4 -p");
+    if (retval != 0)
+    {
+        lg2::error("The fsck command failed: {RETVAL}", "RETVAL", retval,
+                   "REDFISH_MESSAGE_ID",
+                   std::string("OpenBMC.0.1.FixFilesystemFail"));
+        /* We'll still try to mount the filesystem, though. */
+    }
+
+    /*
      * Create directory for the filesystem, if it's not already present. It
      * might already exist if, for example, the BMC reboots after creating the
      * directory.
@@ -447,8 +459,8 @@ void EStoraged::mountFilesystem()
     }
 
     /* Run the command to mount the filesystem. */
-    int retval = fsIface->doMount(cryptDevicePath.c_str(), mountPoint.c_str(),
-                                  "ext4", 0, nullptr);
+    retval = fsIface->doMount(cryptDevicePath.c_str(), mountPoint.c_str(),
+                              "ext4", 0, nullptr);
     if (retval != 0)
     {
         lg2::error("Failed to mount filesystem: {RETVAL}", "RETVAL", retval,

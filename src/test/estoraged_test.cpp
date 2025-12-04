@@ -142,6 +142,10 @@ TEST_F(EStoragedTest, FormatPass)
     EXPECT_CALL(*mockFsIface, runMkfs(StrEq(esObject->getCryptDevicePath())))
         .WillOnce(Return(0));
 
+    EXPECT_CALL(*mockFsIface, runFsck(StrEq(esObject->getCryptDevicePath()),
+                                      StrEq("-t ext4 -p")))
+        .WillOnce(Return(0));
+
     EXPECT_CALL(*mockFsIface, directoryExists(path(esObject->getMountPoint())))
         .WillOnce(Return(false));
 
@@ -187,6 +191,10 @@ TEST_F(EStoragedTest, MountPointExistsPass)
         .WillOnce(&createMappedDev);
 
     EXPECT_CALL(*mockFsIface, runMkfs(StrEq(esObject->getCryptDevicePath())))
+        .WillOnce(Return(0));
+
+    EXPECT_CALL(*mockFsIface, runFsck(StrEq(esObject->getCryptDevicePath()),
+                                      StrEq("-t ext4 -p")))
         .WillOnce(Return(0));
 
     EXPECT_CALL(*mockFsIface, directoryExists(path(esObject->getMountPoint())))
@@ -329,6 +337,10 @@ TEST_F(EStoragedTest, CreateMountPointFail)
     EXPECT_CALL(*mockFsIface, runMkfs(StrEq(esObject->getCryptDevicePath())))
         .WillOnce(Return(0));
 
+    EXPECT_CALL(*mockFsIface, runFsck(StrEq(esObject->getCryptDevicePath()),
+                                      StrEq("-t ext4 -p")))
+        .WillOnce(Return(0));
+
     EXPECT_CALL(*mockFsIface, directoryExists(path(esObject->getMountPoint())))
         .WillOnce(Return(false));
 
@@ -356,6 +368,10 @@ TEST_F(EStoragedTest, MountFail)
         .WillOnce(&createMappedDev);
 
     EXPECT_CALL(*mockFsIface, runMkfs(StrEq(esObject->getCryptDevicePath())))
+        .WillOnce(Return(0));
+
+    EXPECT_CALL(*mockFsIface, runFsck(StrEq(esObject->getCryptDevicePath()),
+                                      StrEq("-t ext4 -p")))
         .WillOnce(Return(0));
 
     EXPECT_CALL(*mockFsIface, directoryExists(path(esObject->getMountPoint())))
@@ -395,6 +411,10 @@ TEST_F(EStoragedTest, UnmountFail)
     EXPECT_CALL(*mockFsIface, runMkfs(StrEq(esObject->getCryptDevicePath())))
         .WillOnce(Return(0));
 
+    EXPECT_CALL(*mockFsIface, runFsck(StrEq(esObject->getCryptDevicePath()),
+                                      StrEq("-t ext4 -p")))
+        .WillOnce(Return(0));
+
     EXPECT_CALL(*mockFsIface, directoryExists(path(esObject->getMountPoint())))
         .WillOnce(Return(false));
 
@@ -432,6 +452,10 @@ TEST_F(EStoragedTest, RemoveMountPointFail)
         .WillOnce(&createMappedDev);
 
     EXPECT_CALL(*mockFsIface, runMkfs(StrEq(esObject->getCryptDevicePath())))
+        .WillOnce(Return(0));
+
+    EXPECT_CALL(*mockFsIface, runFsck(StrEq(esObject->getCryptDevicePath()),
+                                      StrEq("-t ext4 -p")))
         .WillOnce(Return(0));
 
     EXPECT_CALL(*mockFsIface, directoryExists(path(esObject->getMountPoint())))
@@ -475,6 +499,10 @@ TEST_F(EStoragedTest, DeactivateFail)
         .WillOnce(&createMappedDev);
 
     EXPECT_CALL(*mockFsIface, runMkfs(StrEq(esObject->getCryptDevicePath())))
+        .WillOnce(Return(0));
+
+    EXPECT_CALL(*mockFsIface, runFsck(StrEq(esObject->getCryptDevicePath()),
+                                      StrEq("-t ext4 -p")))
         .WillOnce(Return(0));
 
     EXPECT_CALL(*mockFsIface, directoryExists(path(esObject->getMountPoint())))

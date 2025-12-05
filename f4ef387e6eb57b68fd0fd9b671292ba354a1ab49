@@ -34,6 +34,24 @@
       "parentUuid": "e4afcbc5_22fc5a5b",
       "revId": "f4ef387e6eb57b68fd0fd9b671292ba354a1ab49",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fcc87ae_a22d2d7f",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2025-12-05T02:55:55Z",
+      "side": 1,
+      "message": "I guess we could just use -y option by itself and not use -p. The documentation seems to imply that this might do some \"unsafe\" fixes, which may or may not be a concern for us.",
+      "parentUuid": "6505d27e_4195a522",
+      "revId": "f4ef387e6eb57b68fd0fd9b671292ba354a1ab49",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

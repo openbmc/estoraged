@@ -9,6 +9,7 @@
 #include <stdplus/fd/managed.hpp>
 #include <xyz/openbmc_project/Common/error.hpp>
 
+#include <algorithm>
 #include <array>
 #include <chrono>
 #include <iostream>
@@ -51,7 +52,8 @@ void Pattern::writePattern(const uint64_t driveSize, Fd& fd)
         size_t retry = 0;
         while (written < writeSize)
         {
-            written += fd.write({randArr.data() + written, writeSize - written})
+            written += fd.write(std::span{randArr}.subspan(written,
+                                                           writeSize - written))
                            .size();
             if (written == writeSize)
             {
@@ -102,7 +104,8 @@ void Pattern::verifyPattern(const uint64_t driveSize, Fd& fd)
             while (read < readSize)
             {
                 read +=
-                    fd.read({readArr.data() + read, readSize - read}).size();
+                    fd.read(std::span{readArr}.subspan(read, readSize - read))
+                        .size();
                 if (read == readSize)
                 {
                     break;
@@ -129,8 +132,8 @@ void Pattern::verifyPattern(const uint64_t driveSize, Fd& fd)
             throw InternalFailure();
         }
 
-        if (!std::equal(randArr.begin(), randArr.begin() + readSize,
-                        readArr.begin(), readArr.begin() + readSize))
+        if (!std::ranges::equal(std::span{randArr}.subspan(0, readSize),
+                                std::span{readArr}.subspan(0, readSize)))
         {
             lg2::error("Estoraged erase pattern does not match",
                        "REDFISH_MESSAGE_ID",

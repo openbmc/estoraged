@@ -36,8 +36,8 @@ void Zero::writeZero(const uint64_t driveSize, Fd& fd)
             size_t retry = 0;
             while (written < writeSize)
             {
-                written += fd.write({blockOfZeros.data() + written,
-                                     writeSize - written})
+                written += fd.write(std::span{blockOfZeros}.subspan(
+                                        written, writeSize - written))
                                .size();
                 if (written == writeSize)
                 {
@@ -87,7 +87,8 @@ void Zero::verifyZero(uint64_t driveSize, Fd& fd)
             while (read < readSize)
             {
                 read +=
-                    fd.read({readArr.data() + read, readSize - read}).size();
+                    fd.read(std::span{readArr}.subspan(read, readSize - read))
+                        .size();
                 if (read == readSize)
                 {
                     break;

@@ -52,6 +52,24 @@
       "parentUuid": "6505d27e_4195a522",
       "revId": "f4ef387e6eb57b68fd0fd9b671292ba354a1ab49",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f124c0d7_e39b3c84",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 1002430
+      },
+      "writtenOn": "2025-12-05T16:35:42Z",
+      "side": 1,
+      "message": "I think -p is the right option here as if there are issues, we will likely just offer to wipe the whole eMMC anyway.",
+      "parentUuid": "4fcc87ae_a22d2d7f",
+      "revId": "f4ef387e6eb57b68fd0fd9b671292ba354a1ab49",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

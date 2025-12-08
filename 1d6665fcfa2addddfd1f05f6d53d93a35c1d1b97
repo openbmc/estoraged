@@ -1,0 +1,9 @@
+Code-Review+2: William A. Kennington III <wak@google.com>
+Verified+1: OpenBMC CI <openbmcbump-ci@yahoo.com>
+Code-Review+1: Rom Lemarchand <romlem@google.com>
+Submitted-by: John Wedig <johnwedig@google.com>
+Submitted-at: Mon, 08 Dec 2025 18:45:08 +0000
+Reviewed-on: https://gerrit.openbmc.org/c/openbmc/estoraged/+/85788
+Comments-Total: 4
+Project: openbmc/estoraged
+Branch: refs/heads/master

@@ -217,8 +217,9 @@ class Cryptsetup : public CryptsetupInterface
         struct crypt_device* cd, const char* name, int keyslot,
         const char* passphrase, size_t passphraseSize, uint32_t flags) override
     {
-        return crypt_activate_by_passphrase(cd, name, keyslot, passphrase,
-                                            passphraseSize, flags);
+        return crypt_activate_by_passphrase(
+            cd, name, keyslot, passphrase, passphraseSize,
+            flags | CRYPT_ACTIVATE_ALLOW_DISCARDS);
     }
 
     int cryptDeactivate(struct crypt_device* cd, const char* name) override

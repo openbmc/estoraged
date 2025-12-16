@@ -3,6 +3,8 @@
 #include <sys/mount.h>
 
 #include <filesystem>
+#include <initializer_list>
+#include <numeric>
 #include <string>
 
 namespace estoraged
@@ -31,7 +33,8 @@ class FilesystemInterface
      *
      *  @returns 0 on success, nonzero on failure.
      */
-    virtual int runMkfs(const std::string& logicalVolumePath) = 0;
+    virtual int runMkfs(const std::string& logicalVolumePath,
+                        std::initializer_list<std::string> options = {}) = 0;
 
     /** @brief Wrapper around mount().
      *  @details Used for mocking purposes.
@@ -112,9 +115,25 @@ class Filesystem : public FilesystemInterface
     Filesystem(Filesystem&&) = delete;
     Filesystem& operator=(Filesystem&&) = delete;
 
-    int runMkfs(const std::string& logicalVolumePath) override
+    int runMkfs(const std::string& logicalVolumePath,
+                std::initializer_list<std::string> options) override
     {
-        std::string mkfsCommand("mkfs.ext4 " + logicalVolumePath);
+        std::string mkfsCommand("mkfs.ext4 ");
+        mkfsCommand.reserve(
+            mkfsCommand.size() + logicalVolumePath.size() + options.size() +
+            std::accumulate(options.begin(), options.end(), 0,
+                            [](size_t sum, const std::string& s) {
+                                return sum + s.size();
+                            }));
+
+        for (const std::string& s : options)
+        {
+            mkfsCommand.append(s);
+            mkfsCommand.push_back(' ');
+        }
+
+        mkfsCommand.append(logicalVolumePath);
+
         // calling 'system' uses a command processor //NOLINTNEXTLINE
         return system(mkfsCommand.c_str());
     }

@@ -8,6 +8,7 @@
 
 #include <exception>
 #include <filesystem>
+#include <initializer_list>
 #include <string>
 
 #include <gmock/gmock.h>
@@ -19,7 +20,9 @@ namespace estoraged_test
 class MockFilesystemInterface : public estoraged::FilesystemInterface
 {
   public:
-    MOCK_METHOD(int, runMkfs, (const std::string& logicalVolumePath),
+    MOCK_METHOD(int, runMkfs,
+                (const std::string& logicalVolumePath,
+                 std::initializer_list<std::string> options),
                 (override));
 
     MOCK_METHOD(int, doMount,

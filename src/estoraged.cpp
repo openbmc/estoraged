@@ -395,7 +395,8 @@ void EStoraged::activateLuksDev(std::vector<uint8_t> password)
 
     int retval = cryptIface->cryptActivateByPassphrase(
         cryptHandle.get(), containerName.c_str(), CRYPT_ANY_SLOT,
-        reinterpret_cast<const char*>(password.data()), password.size(), 0);
+        reinterpret_cast<const char*>(password.data()), password.size(),
+        CRYPT_ACTIVATE_ALLOW_DISCARDS);
 
     if (retval < 0)
     {
@@ -413,7 +414,7 @@ void EStoraged::activateLuksDev(std::vector<uint8_t> password)
 void EStoraged::createFilesystem()
 {
     /* Run the command to create the filesystem. */
-    int retval = fsIface->runMkfs(cryptDevicePath);
+    int retval = fsIface->runMkfs(cryptDevicePath, {"-E", "discard"});
     if (retval != 0)
     {
         lg2::error("Failed to create filesystem: {RETVAL}", "RETVAL", retval,

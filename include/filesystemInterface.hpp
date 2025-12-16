@@ -114,7 +114,7 @@ class Filesystem : public FilesystemInterface
 
     int runMkfs(const std::string& logicalVolumePath) override
     {
-        std::string mkfsCommand("mkfs.ext4 " + logicalVolumePath);
+        std::string mkfsCommand("mkfs.ext4 -E discard " + logicalVolumePath);
         // calling 'system' uses a command processor //NOLINTNEXTLINE
         return system(mkfsCommand.c_str());
     }

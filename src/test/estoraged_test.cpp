@@ -11,6 +11,7 @@
 #include <xyz/openbmc_project/Common/error.hpp>
 #include <xyz/openbmc_project/Inventory/Item/Volume/server.hpp>
 
+#include <array>
 #include <exception>
 #include <filesystem>
 #include <fstream>
@@ -30,6 +31,7 @@ using sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
 using sdbusplus::xyz::openbmc_project::Common::Error::ResourceNotFound;
 using std::filesystem::path;
 using ::testing::_;
+using ::testing::ElementsAreArray;
 using ::testing::Return;
 using ::testing::StrEq;
 
@@ -52,6 +54,8 @@ class EStoragedTest : public testing::Test
     std::string passwordString;
     std::vector<uint8_t> password;
     MockCryptsetupInterface* mockCryptIface{};
+    static const constexpr std::array<const char*, 2> options = {
+        "-E", "discard"};
     MockFilesystemInterface* mockFsIface{};
     boost::asio::io_context io;
     std::shared_ptr<sdbusplus::asio::connection> conn;
@@ -139,7 +143,8 @@ TEST_F(EStoragedTest, FormatPass)
     EXPECT_CALL(*mockCryptIface, cryptActivateByPassphrase(_, _, _, _, _, _))
         .WillOnce(&createMappedDev);
 
-    EXPECT_CALL(*mockFsIface, runMkfs(StrEq(esObject->getCryptDevicePath())))
+    EXPECT_CALL(*mockFsIface, runMkfs(StrEq(esObject->getCryptDevicePath()),
+                                      ElementsAreArray(EStoragedTest::options)))
         .WillOnce(Return(0));
 
     EXPECT_CALL(*mockFsIface, runFsck(StrEq(esObject->getCryptDevicePath()),
@@ -190,7 +195,8 @@ TEST_F(EStoragedTest, MountPointExistsPass)
     EXPECT_CALL(*mockCryptIface, cryptActivateByPassphrase(_, _, _, _, _, _))
         .WillOnce(&createMappedDev);
 
-    EXPECT_CALL(*mockFsIface, runMkfs(StrEq(esObject->getCryptDevicePath())))
+    EXPECT_CALL(*mockFsIface, runMkfs(StrEq(esObject->getCryptDevicePath()),
+                                      ElementsAreArray(EStoragedTest::options)))
         .WillOnce(Return(0));
 
     EXPECT_CALL(*mockFsIface, runFsck(StrEq(esObject->getCryptDevicePath()),
@@ -311,7 +317,8 @@ TEST_F(EStoragedTest, CreateFilesystemFail)
     EXPECT_CALL(*mockCryptIface, cryptActivateByPassphrase(_, _, _, _, _, _))
         .WillOnce(&createMappedDev);
 
-    EXPECT_CALL(*mockFsIface, runMkfs(StrEq(esObject->getCryptDevicePath())))
+    EXPECT_CALL(*mockFsIface, runMkfs(StrEq(esObject->getCryptDevicePath()),
+                                      ElementsAreArray(EStoragedTest::options)))
         .WillOnce(Return(-1));
 
     EXPECT_THROW(esObject->formatLuks(password, Volume::FilesystemType::ext4),
@@ -334,7 +341,8 @@ TEST_F(EStoragedTest, CreateMountPointFail)
     EXPECT_CALL(*mockCryptIface, cryptActivateByPassphrase(_, _, _, _, _, _))
         .WillOnce(&createMappedDev);
 
-    EXPECT_CALL(*mockFsIface, runMkfs(StrEq(esObject->getCryptDevicePath())))
+    EXPECT_CALL(*mockFsIface, runMkfs(StrEq(esObject->getCryptDevicePath()),
+                                      ElementsAreArray(EStoragedTest::options)))
         .WillOnce(Return(0));
 
     EXPECT_CALL(*mockFsIface, runFsck(StrEq(esObject->getCryptDevicePath()),
@@ -367,7 +375,8 @@ TEST_F(EStoragedTest, MountFail)
     EXPECT_CALL(*mockCryptIface, cryptActivateByPassphrase(_, _, _, _, _, _))
         .WillOnce(&createMappedDev);
 
-    EXPECT_CALL(*mockFsIface, runMkfs(StrEq(esObject->getCryptDevicePath())))
+    EXPECT_CALL(*mockFsIface, runMkfs(StrEq(esObject->getCryptDevicePath()),
+                                      ElementsAreArray(EStoragedTest::options)))
         .WillOnce(Return(0));
 
     EXPECT_CALL(*mockFsIface, runFsck(StrEq(esObject->getCryptDevicePath()),
@@ -408,7 +417,8 @@ TEST_F(EStoragedTest, UnmountFail)
     EXPECT_CALL(*mockCryptIface, cryptActivateByPassphrase(_, _, _, _, _, _))
         .WillOnce(&createMappedDev);
 
-    EXPECT_CALL(*mockFsIface, runMkfs(StrEq(esObject->getCryptDevicePath())))
+    EXPECT_CALL(*mockFsIface, runMkfs(StrEq(esObject->getCryptDevicePath()),
+                                      ElementsAreArray(EStoragedTest::options)))
         .WillOnce(Return(0));
 
     EXPECT_CALL(*mockFsIface, runFsck(StrEq(esObject->getCryptDevicePath()),
@@ -451,7 +461,8 @@ TEST_F(EStoragedTest, RemoveMountPointFail)
     EXPECT_CALL(*mockCryptIface, cryptActivateByPassphrase(_, _, _, _, _, _))
         .WillOnce(&createMappedDev);
 
-    EXPECT_CALL(*mockFsIface, runMkfs(StrEq(esObject->getCryptDevicePath())))
+    EXPECT_CALL(*mockFsIface, runMkfs(StrEq(esObject->getCryptDevicePath()),
+                                      ElementsAreArray(EStoragedTest::options)))
         .WillOnce(Return(0));
 
     EXPECT_CALL(*mockFsIface, runFsck(StrEq(esObject->getCryptDevicePath()),
@@ -498,7 +509,8 @@ TEST_F(EStoragedTest, DeactivateFail)
     EXPECT_CALL(*mockCryptIface, cryptActivateByPassphrase(_, _, _, _, _, _))
         .WillOnce(&createMappedDev);
 
-    EXPECT_CALL(*mockFsIface, runMkfs(StrEq(esObject->getCryptDevicePath())))
+    EXPECT_CALL(*mockFsIface, runMkfs(StrEq(esObject->getCryptDevicePath()),
+                                      ElementsAreArray(EStoragedTest::options)))
         .WillOnce(Return(0));
 
     EXPECT_CALL(*mockFsIface, runFsck(StrEq(esObject->getCryptDevicePath()),

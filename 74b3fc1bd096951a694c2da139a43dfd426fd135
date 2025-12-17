@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f631eecc_16fe94cb",
+        "filename": "include/cryptsetupInterface.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1002430
+      },
+      "writtenOn": "2025-12-17T21:48:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2fd090cf_545de554",
+      "range": {
+        "startLine": 222,
+        "startChar": 20,
+        "endLine": 222,
+        "endChar": 49
+      },
+      "revId": "74b3fc1bd096951a694c2da139a43dfd426fd135",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "db25863f_7c0e55be",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-12-17T19:41:02Z",
       "side": 1,
       "message": "Also here, it might sense to add an argument to runMkfs(), to allow the caller to add arguments like this.",
+      "range": {
+        "startLine": 117,
+        "startChar": 43,
+        "endLine": 117,
+        "endChar": 53
+      },
+      "revId": "74b3fc1bd096951a694c2da139a43dfd426fd135",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a97f0964_f68ffff3",
+        "filename": "include/filesystemInterface.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1002430
+      },
+      "writtenOn": "2025-12-17T21:48:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db25863f_7c0e55be",
       "range": {
         "startLine": 117,
         "startChar": 43,

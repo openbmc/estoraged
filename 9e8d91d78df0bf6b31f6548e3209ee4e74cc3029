@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02e112b2_8231b858",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000885
+      },
+      "writtenOn": "2025-12-18T08:33:38Z",
+      "side": 1,
+      "message": "need to see how to manage this properly.",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 65
+      },
+      "revId": "9e8d91d78df0bf6b31f6548e3209ee4e74cc3029",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c09f21fc_02d80f93",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 590,
+      "author": {
+        "id": 1000885
+      },
+      "writtenOn": "2025-12-18T08:33:38Z",
+      "side": 1,
+      "message": "this will throw right now in unit test and fail. Need to see how to handle it better.",
+      "range": {
+        "startLine": 588,
+        "startChar": 0,
+        "endLine": 590,
+        "endChar": 68
+      },
+      "revId": "9e8d91d78df0bf6b31f6548e3209ee4e74cc3029",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

@@ -10,6 +10,8 @@
 #include <sdbusplus/bus.hpp>
 #include <sdbusplus/exception.hpp>
 #include <sdbusplus/server/object.hpp>
+#include <stdplus/fd/create.hpp>
+#include <stdplus/fd/managed.hpp>
 #include <util.hpp>
 #include <xyz/openbmc_project/Inventory/Item/Drive/server.hpp>
 #include <xyz/openbmc_project/Inventory/Item/Volume/server.hpp>
@@ -35,6 +37,7 @@ class EStoraged
   public:
     /** @brief Constructor for eStoraged
      *
+     *  @param[in] fd - mmc ioc fd
      *  @param[in] server - sdbusplus asio object server
      *  @param[in] configPath - path of the config object from Entity Manager
      *  @param[in] devPath - path to device file, e.g. /dev/mmcblk0
@@ -53,7 +56,8 @@ class EStoraged
      *  @param[in] fsInterface - (optional) pointer to FilesystemInterface
      *    object
      */
-    EStoraged(sdbusplus::asio::object_server& server,
+    EStoraged(std::unique_ptr<stdplus::Fd> fd,
+              sdbusplus::asio::object_server& server,
               const std::string& configPath, const std::string& devPath,
               const std::string& luksName, uint64_t size, uint8_t lifeTime,
               const std::string& partNumber, const std::string& serialNumber,
@@ -210,6 +214,14 @@ class EStoraged
 
     /** @brief Unmount the filesystem. */
     void unmountFilesystem();
+
+    /** @brief Enable eMMC background operations
+     *  @param[in] fd - mmc ioc fd
+     *
+     *  @details This enables the BKOPS flag on the eMMC device and set it to
+     * manual mode.
+     */
+    void enableBackgroundOperation(std::unique_ptr<stdplus::Fd> fd);
 };
 
 } // namespace estoraged

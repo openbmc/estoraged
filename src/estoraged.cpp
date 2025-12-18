@@ -9,10 +9,16 @@
 #include "zero.hpp"
 
 #include <libcryptsetup.h>
+#include <linux/mmc/core.h>
+#include <linux/mmc/ioctl.h>
+#include <linux/mmc/mmc.h>
 #include <openssl/rand.h>
+#include <sys/ioctl.h>
 
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/asio/object_server.hpp>
+#include <stdplus/fd/create.hpp>
+#include <stdplus/fd/managed.hpp>
 #include <xyz/openbmc_project/Common/error.hpp>
 
 #include <cstdlib>
@@ -34,12 +40,13 @@ using sdbusplus::xyz::openbmc_project::Inventory::Item::server::Drive;
 using sdbusplus::xyz::openbmc_project::Inventory::Item::server::Volume;
 
 EStoraged::EStoraged(
-    sdbusplus::asio::object_server& server, const std::string& configPath,
-    const std::string& devPath, const std::string& luksName, uint64_t size,
-    uint8_t lifeTime, const std::string& partNumber,
-    const std::string& serialNumber, const std::string& locationCode,
-    uint64_t eraseMaxGeometry, uint64_t eraseMinGeometry,
-    const std::string& driveType, const std::string& driveProtocol,
+    std::unique_ptr<stdplus::Fd> fd, sdbusplus::asio::object_server& server,
+    const std::string& configPath, const std::string& devPath,
+    const std::string& luksName, uint64_t size, uint8_t lifeTime,
+    const std::string& partNumber, const std::string& serialNumber,
+    const std::string& locationCode, uint64_t eraseMaxGeometry,
+    uint64_t eraseMinGeometry, const std::string& driveType,
+    const std::string& driveProtocol,
     std::unique_ptr<CryptsetupInterface> cryptInterface,
     std::unique_ptr<FilesystemInterface> fsInterface) :
     devPath(devPath), containerName(luksName),
@@ -49,6 +56,16 @@ EStoraged::EStoraged(
     cryptDevicePath(cryptIface->cryptGetDir() + "/" + luksName),
     objectServer(server)
 {
+    try
+    {
+        enableBackgroundOperation(std::move(fd));
+    }
+    catch (const std::system_error& e)
+    {
+        lg2::error("Failed to enable background operation for {PATH}: {ERROR}",
+                   "PATH", devPath, "ERROR", e.what());
+    }
+
     /* Get the filename of the device (without "/dev/"). */
     std::string deviceName = std::filesystem::path(devPath).filename().string();
     /* DBus object path */
@@ -532,6 +549,57 @@ void EStoraged::deactivateLuksDev()
 std::string_view EStoraged::getCryptDevicePath() const
 {
     return cryptDevicePath;
+}
+
+void EStoraged::enableBackgroundOperation(std::unique_ptr<stdplus::Fd> fd)
+{
+    struct mmc_ioc_cmd idata;
+    memset(&idata, 0, sizeof(idata));
+    // Extended Device Specific Data. Contains information about the Device
+    // capabilities and selected modes.
+    std::array<uint8_t, /*EXT_CSD*/ 512> extCsd;
+    idata.write_flag = 0;
+    idata.opcode = MMC_SEND_EXT_CSD;
+    idata.arg = 0;
+    idata.flags = MMC_RSP_SPI_R1 | MMC_RSP_R1 | MMC_CMD_ADTC;
+    idata.blksz = extCsd.size();
+    idata.blocks = 1;
+    mmc_ioc_cmd_set_data(idata, extCsd.data());
+    if (fd->ioctl(MMC_IOC_CMD, &idata))
+    {
+        lg2::error("Failed to get Extended Device Specific Data for {DEV}",
+                   "DEV", devPath);
+    }
+
+    if (!(extCsd[EXT_CSD_BKOPS_SUPPORT] & 0x1))
+    {
+        lg2::info("BKOPS is not supported for {DEV}", "DEV", devPath);
+        return;
+    }
+    lg2::info("BKOPS is supported for {DEV}", "DEV", devPath);
+
+    if (extCsd[EXT_CSD_BKOPS_EN] &
+        (EXT_CSD_MANUAL_BKOPS_MASK | EXT_CSD_AUTO_BKOPS_MASK))
+    {
+        lg2::info("BKOPS is already enabled for {DEV}: Mode: {MODE}", "DEV",
+                  devPath, "MODE", extCsd[EXT_CSD_BKOPS_EN]);
+        return;
+    }
+
+    // Clear the input data.
+    memset(&idata, 0, sizeof(idata));
+    idata.write_flag = 1;
+    idata.opcode = MMC_SWITCH;
+    idata.arg = (MMC_SWITCH_MODE_WRITE_BYTE << 24) | (EXT_CSD_BKOPS_EN << 16) |
+                (EXT_CSD_MANUAL_BKOPS_MASK << 8) | EXT_CSD_CMD_SET_NORMAL;
+    idata.flags = MMC_RSP_SPI_R1B | MMC_RSP_R1B | MMC_CMD_AC;
+    if (fd->ioctl(MMC_IOC_CMD, &idata))
+    {
+        lg2::error("Failed to enable BKOPS for {DEV}", "DEV", devPath);
+        return;
+    }
+
+    lg2::info("Successfully enable BKOPS for {DEV}", "DEV", devPath);
 }
 
 } // namespace estoraged

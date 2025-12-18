@@ -3,6 +3,9 @@
 #include "estoraged.hpp"
 #include "estoraged_conf.hpp"
 
+#include <linux/mmc/core.h>
+#include <linux/mmc/ioctl.h>
+#include <linux/mmc/mmc.h>
 #include <unistd.h>
 
 #include <boost/asio/io_context.hpp>
@@ -17,6 +20,7 @@
 #include <fstream>
 #include <iterator>
 #include <memory>
+#include <span>
 #include <string>
 #include <vector>
 
@@ -34,6 +38,51 @@ using ::testing::_;
 using ::testing::ElementsAreArray;
 using ::testing::Return;
 using ::testing::StrEq;
+
+class MockFd : public stdplus::Fd
+{
+  public:
+    MOCK_METHOD(int, ioctl, (unsigned long id, void* data), (override));
+    MOCK_METHOD(int, constIoctl, (unsigned long id, void* data),
+                (const, override));
+    MOCK_METHOD(std::span<std::byte>, read, (std::span<std::byte>), (override));
+    MOCK_METHOD(std::span<std::byte>, recv,
+                (std::span<std::byte>, stdplus::fd::RecvFlags), (override));
+    MOCK_METHOD((std::tuple<std::span<std::byte>, std::span<std::byte>>),
+                recvfrom,
+                (std::span<std::byte>, stdplus::fd::RecvFlags,
+                 std::span<std::byte>),
+                (override));
+    MOCK_METHOD(std::span<const std::byte>, write, (std::span<const std::byte>),
+                (override));
+    MOCK_METHOD(std::span<const std::byte>, send,
+                (std::span<const std::byte>, stdplus::fd::SendFlags),
+                (override));
+    MOCK_METHOD(std::span<const std::byte>, sendto,
+                (std::span<const std::byte>, stdplus::fd::SendFlags,
+                 std::span<const std::byte>),
+                (override));
+    MOCK_METHOD(size_t, lseek, (off_t, stdplus::fd::Whence), (override));
+    MOCK_METHOD(void, truncate, (off_t), (override));
+    MOCK_METHOD(void, bind, (std::span<const std::byte>), (override));
+    MOCK_METHOD(void, connect, (std::span<const std::byte>), (override));
+    MOCK_METHOD(void, listen, (int), (override));
+    MOCK_METHOD((std::optional<std::tuple<int, std::span<std::byte>>>), accept,
+                (std::span<std::byte> sockaddr), (override));
+    MOCK_METHOD(void, setsockopt,
+                (stdplus::fd::SockLevel, stdplus::fd::SockOpt,
+                 std::span<const std::byte>),
+                (override));
+    MOCK_METHOD(void, fcntlSetfd, (stdplus::fd::FdFlags), (override));
+    MOCK_METHOD(stdplus::fd::FdFlags, fcntlGetfd, (), (const, override));
+    MOCK_METHOD(void, fcntlSetfl, (stdplus::fd::FileFlags), (override));
+    MOCK_METHOD(stdplus::fd::FileFlags, fcntlGetfl, (), (const override));
+    MOCK_METHOD(std::span<std::byte>, mmap,
+                (std::byte*, std::size_t, stdplus::fd::ProtFlags,
+                 stdplus::fd::MMapFlags, off_t),
+                (override));
+    MOCK_METHOD(void, munmap, (std::span<std::byte>), (override));
+};
 
 class EStoragedTest : public testing::Test
 {
@@ -93,12 +142,13 @@ class EStoragedTest : public testing::Test
         conn->request_name("xyz.openbmc_project.eStoraged.test");
         objectServer = std::make_unique<sdbusplus::asio::object_server>(conn);
 
+        std::unique_ptr<MockFd> mockFd = std::make_unique<MockFd>();
         esObject = std::make_unique<estoraged::EStoraged>(
-            *objectServer, testConfigPath, testFileName, testLuksDevName,
-            testSize, testLifeTime, testPartNumber, testSerialNumber,
-            testLocationCode, ERASE_MAX_GEOMETRY, ERASE_MIN_GEOMETRY,
-            testDriveType, testDriveProtocol, std::move(cryptIface),
-            std::move(fsIface));
+            std::move(mockFd), *objectServer, testConfigPath, testFileName,
+            testLuksDevName, testSize, testLifeTime, testPartNumber,
+            testSerialNumber, testLocationCode, ERASE_MAX_GEOMETRY,
+            ERASE_MIN_GEOMETRY, testDriveType, testDriveProtocol,
+            std::move(cryptIface), std::move(fsIface));
     }
 
     void TearDown() override
@@ -586,6 +636,109 @@ TEST_F(EStoragedTest, ChangePasswordFail)
 
     EXPECT_THROW(esObject->changePassword(password, newPassword),
                  InternalFailure);
+}
+
+TEST(EMMCBackgroundOperation, IoCtlFailure)
+{
+    std::unique_ptr<MockFd> mockFd = std::make_unique<MockFd>();
+
+    EXPECT_CALL(*mockFd, ioctl(MMC_IOC_CMD, testing::_)).WillOnce(Return(1));
+    EXPECT_THROW(estoraged::EStoraged::enableBackgroundOperation(
+                     std::move(mockFd), "/dev/test"),
+                 estoraged::BkopsIoctlFailure);
+}
+
+TEST(EMMCBackgroundOperation, BkOpsNotSupported)
+{
+    std::unique_ptr<MockFd> mockFd = std::make_unique<MockFd>();
+
+    EXPECT_CALL(*mockFd, ioctl(MMC_IOC_CMD, testing::_)).WillOnce(Return(0));
+    EXPECT_FALSE(estoraged::EStoraged::enableBackgroundOperation(
+        std::move(mockFd), "/dev/test"));
+}
+
+TEST(EMMCBackgroundOperation, EnableFailure)
+{
+    std::unique_ptr<MockFd> mockFd = std::make_unique<MockFd>();
+
+    EXPECT_CALL(*mockFd, ioctl(MMC_IOC_CMD, testing::_))
+        .WillOnce(testing::Invoke([](unsigned long, void* data) {
+            struct mmc_ioc_cmd* idata = static_cast<struct mmc_ioc_cmd*>(data);
+            EXPECT_EQ(idata->opcode, MMC_SEND_EXT_CSD);
+            EXPECT_EQ(idata->blksz, 512);
+            EXPECT_EQ(idata->flags, MMC_RSP_SPI_R1 | MMC_RSP_R1 | MMC_CMD_ADTC);
+
+            // Set specific bytes to simulate a hardware state
+            // NOLINTNEXTLINE(performance-no-int-to-ptr)
+            *reinterpret_cast<uint8_t*>(idata->data_ptr + 502) =
+                0x01; // BKOPS_SUPPORT = Supported
+            // NOLINTNEXTLINE(performance-no-int-to-ptr)
+            *reinterpret_cast<uint8_t*>(idata->data_ptr + 163) =
+                0x00; // BKOPS_EN = Disabled
+            return 0; // Success
+        }))
+        .WillOnce(Return(1));
+    EXPECT_THROW(estoraged::EStoraged::enableBackgroundOperation(
+                     std::move(mockFd), "/dev/test"),
+                 estoraged::BkopsEnableFailure);
+}
+
+TEST(EMMCBackgroundOperation, AlreadyEnabled)
+{
+    std::unique_ptr<MockFd> mockFd = std::make_unique<MockFd>();
+
+    EXPECT_CALL(*mockFd, ioctl(MMC_IOC_CMD, testing::_))
+        .WillOnce(testing::Invoke([](unsigned long, void* data) {
+            struct mmc_ioc_cmd* idata = static_cast<struct mmc_ioc_cmd*>(data);
+            EXPECT_EQ(idata->opcode, MMC_SEND_EXT_CSD);
+            EXPECT_EQ(idata->blksz, 512);
+            EXPECT_EQ(idata->flags, MMC_RSP_SPI_R1 | MMC_RSP_R1 | MMC_CMD_ADTC);
+
+            // Set specific bytes to simulate a hardware state
+            // NOLINTNEXTLINE(performance-no-int-to-ptr)
+            *reinterpret_cast<uint8_t*>(idata->data_ptr + 502) =
+                0x01; // BKOPS_SUPPORT = Supported
+            // NOLINTNEXTLINE(performance-no-int-to-ptr)
+            *reinterpret_cast<uint8_t*>(idata->data_ptr + 163) =
+                EXT_CSD_MANUAL_BKOPS_MASK; // BKOPS_EN = Manual Mode
+            return 0;                      // Success
+        }));
+    EXPECT_FALSE(estoraged::EStoraged::enableBackgroundOperation(
+        std::move(mockFd), "/dev/test"));
+}
+
+TEST(EMMCBackgroundOperation, EnableSuccess)
+{
+    std::unique_ptr<MockFd> mockFd = std::make_unique<MockFd>();
+
+    EXPECT_CALL(*mockFd, ioctl(MMC_IOC_CMD, testing::_))
+        .WillOnce(testing::Invoke([](unsigned long, void* data) {
+            struct mmc_ioc_cmd* idata = static_cast<struct mmc_ioc_cmd*>(data);
+            EXPECT_EQ(idata->opcode, MMC_SEND_EXT_CSD);
+            EXPECT_EQ(idata->blksz, 512);
+            EXPECT_EQ(idata->flags, MMC_RSP_SPI_R1 | MMC_RSP_R1 | MMC_CMD_ADTC);
+
+            // Set specific bytes to simulate a hardware state
+            // NOLINTNEXTLINE(performance-no-int-to-ptr)
+            *reinterpret_cast<uint8_t*>(idata->data_ptr + 502) =
+                0x01; // BKOPS_SUPPORT = Supported
+            // NOLINTNEXTLINE(performance-no-int-to-ptr)
+            *reinterpret_cast<uint8_t*>(idata->data_ptr + 163) =
+                0x00; // BKOPS_EN = Disabled
+            return 0; // Success
+        }))
+        .WillOnce(testing::Invoke([](unsigned long, void* data) {
+            struct mmc_ioc_cmd* idata = static_cast<struct mmc_ioc_cmd*>(data);
+            EXPECT_EQ(idata->opcode, MMC_SWITCH);
+            EXPECT_EQ(idata->arg, (MMC_SWITCH_MODE_WRITE_BYTE << 24) |
+                                      (EXT_CSD_BKOPS_EN << 16) |
+                                      (EXT_CSD_MANUAL_BKOPS_MASK << 8) |
+                                      EXT_CSD_CMD_SET_NORMAL);
+            EXPECT_EQ(idata->flags, MMC_RSP_SPI_R1B | MMC_RSP_R1B | MMC_CMD_AC);
+            return 0; // Success
+        }));
+    EXPECT_TRUE(estoraged::EStoraged::enableBackgroundOperation(
+        std::move(mockFd), "/dev/test"));
 }
 
 } // namespace estoraged_test

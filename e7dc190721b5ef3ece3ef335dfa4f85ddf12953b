@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cabbdd54_cd622a42",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 577,
+      "author": {
+        "id": 1002430
+      },
+      "writtenOn": "2025-12-18T22:55:24Z",
+      "side": 1,
+      "message": "You probably just want to return false here - older eMMCs don\u0027t support bkops and that\u0027s considered normal.",
+      "revId": "e7dc190721b5ef3ece3ef335dfa4f85ddf12953b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

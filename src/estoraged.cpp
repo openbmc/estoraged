@@ -9,10 +9,14 @@
 #include "zero.hpp"
 
 #include <libcryptsetup.h>
+#include <linux/mmc/ioctl.h>
 #include <openssl/rand.h>
+#include <sys/ioctl.h>
 
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/asio/object_server.hpp>
+#include <stdplus/fd/create.hpp>
+#include <stdplus/fd/managed.hpp>
 #include <xyz/openbmc_project/Common/error.hpp>
 
 #include <cstdlib>
@@ -25,6 +29,49 @@
 
 namespace estoraged
 {
+
+#define MMC_SWITCH 6       /* ac   [31:0] See below   R1b */
+#define MMC_SEND_EXT_CSD 8 /* adtc                    R1  */
+#define EXT_CSD_SIZE 512
+/*
+ * EXT_CSD fields
+ */
+#define EXT_CSD_BKOPS_EN 163      /* R/W */
+#define EXT_CSD_BKOPS_START 164   /* W */
+#define EXT_CSD_BKOPS_STATUS 246  /* RO */
+#define EXT_CSD_BKOPS_SUPPORT 502 /* RO */
+
+/*
+ * BKOPS modes
+ */
+#define EXT_CSD_MANUAL_BKOPS_MASK 0x01
+#define EXT_CSD_AUTO_BKOPS_MASK 0x02
+
+/* From kernel linux/mmc/core.h */
+#define MMC_RSP_PRESENT (1 << 0)
+#define MMC_RSP_136 (1 << 1)    /* 136 bit response */
+#define MMC_RSP_CRC (1 << 2)    /* expect valid crc */
+#define MMC_RSP_BUSY (1 << 3)   /* card may send busy */
+#define MMC_RSP_OPCODE (1 << 4) /* response contains opcode */
+#define MMC_CMD_AC (0 << 5)
+#define MMC_CMD_ADTC (1 << 5)
+#define MMC_RSP_SPI_S1 (1 << 7)    /* one status byte */
+#define MMC_RSP_SPI_BUSY (1 << 10) /* card may send busy */
+#define MMC_RSP_SPI_R1 (MMC_RSP_SPI_S1)
+#define MMC_RSP_SPI_R1B (MMC_RSP_SPI_S1 | MMC_RSP_SPI_BUSY)
+#define MMC_RSP_R1 (MMC_RSP_PRESENT | MMC_RSP_CRC | MMC_RSP_OPCODE)
+#define MMC_RSP_R1B                                                            \
+    (MMC_RSP_PRESENT | MMC_RSP_CRC | MMC_RSP_OPCODE | MMC_RSP_BUSY)
+
+/*
+ * EXT_CSD field definitions
+ */
+#define EXT_CSD_CMD_SET_NORMAL (1 << 0)
+
+/*
+ * MMC_SWITCH access modes
+ */
+#define MMC_SWITCH_MODE_WRITE_BYTE 0x03 /* Set target to value */
 
 using Association = std::tuple<std::string, std::string, std::string>;
 using sdbusplus::asio::PropertyPermission;
@@ -49,6 +96,8 @@ EStoraged::EStoraged(
     cryptDevicePath(cryptIface->cryptGetDir() + "/" + luksName),
     objectServer(server)
 {
+    enableBackgroundOperation();
+
     /* Get the filename of the device (without "/dev/"). */
     std::string deviceName = std::filesystem::path(devPath).filename().string();
     /* DBus object path */
@@ -532,6 +581,60 @@ void EStoraged::deactivateLuksDev()
 std::string_view EStoraged::getCryptDevicePath() const
 {
     return cryptDevicePath;
+}
+
+void EStoraged::enableBackgroundOperation()
+{
+    stdplus::ManagedFd devFd = stdplus::fd::open(
+        devPath.c_str(),
+        stdplus::fd::OpenFlags(stdplus::fd::OpenAccess::ReadWrite));
+
+    struct mmc_ioc_cmd idata;
+    memset(&idata, 0, sizeof(idata));
+    // Extended Device Specific Data. Contains information about the Device
+    // capabilities and selected modes.
+    std::array<uint8_t, /*EXT_CSD*/ EXT_CSD_SIZE> extCsd;
+    idata.write_flag = 0;
+    idata.opcode = MMC_SEND_EXT_CSD;
+    idata.arg = 0;
+    idata.flags = MMC_RSP_SPI_R1 | MMC_RSP_R1 | MMC_CMD_ADTC;
+    idata.blksz = EXT_CSD_SIZE;
+    idata.blocks = 1;
+    mmc_ioc_cmd_set_data(idata, extCsd.data());
+    if (devFd.ioctl(MMC_IOC_CMD, &idata))
+    {
+        lg2::error("Failed to get Extended Device Specific Data for {DEV}",
+                   "DEV", devPath);
+    }
+
+    if (!(extCsd[EXT_CSD_BKOPS_SUPPORT] & 0x1))
+    {
+        lg2::info("BKOPS is not supported for {DEV}", "DEV", devPath);
+        return;
+    }
+    lg2::info("BKOPS is supported for {DEV}", "DEV", devPath);
+
+    if (extCsd[EXT_CSD_BKOPS_EN] & 0x3)
+    {
+        lg2::info("BKOPS is already enabled for {DEV}: Mode: {MODE}", "DEV",
+                  devPath, "MODE", extCsd[EXT_CSD_BKOPS_EN]);
+        return;
+    }
+
+    // Clear the input data.
+    memset(&idata, 0, sizeof(idata));
+    idata.write_flag = 1;
+    idata.opcode = MMC_SWITCH;
+    idata.arg = (MMC_SWITCH_MODE_WRITE_BYTE << 24) | (EXT_CSD_BKOPS_EN << 16) |
+                (EXT_CSD_MANUAL_BKOPS_MASK << 8) | EXT_CSD_CMD_SET_NORMAL;
+    idata.flags = MMC_RSP_SPI_R1B | MMC_RSP_R1B | MMC_CMD_AC;
+    if (devFd.ioctl(MMC_IOC_CMD, &idata))
+    {
+        lg2::error("Failed to enable BKOPS for {DEV}", "DEV", devPath);
+        return;
+    }
+
+    lg2::info("Successfully enable BKOPS for {DEV}", "DEV", devPath);
 }
 
 } // namespace estoraged

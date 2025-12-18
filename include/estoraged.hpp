@@ -210,6 +210,12 @@ class EStoraged
 
     /** @brief Unmount the filesystem. */
     void unmountFilesystem();
+
+    /** @brief Enable eMMC background operations
+     *  @details This enables the BKOPS flag on the eMMC device and set it to
+     * manual mode.
+     */
+    void enableBackgroundOperation();
 };
 
 } // namespace estoraged

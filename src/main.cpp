@@ -109,10 +109,25 @@ void createStorageObjects(
                 const std::string& driveType = deviceInfo->driveType;
                 const std::string& driveProtocol = deviceInfo->driveProtocol;
                 /* Create the storage object. */
+                std::unique_ptr<stdplus::Fd> fd;
+                try
+                {
+                    fd = std::make_unique<stdplus::ManagedFd>(stdplus::fd::open(
+                        deviceFile.c_str(),
+                        stdplus::fd::OpenFlags(
+                            stdplus::fd::OpenAccess::ReadWrite)));
+                }
+                catch (const std::system_error& e)
+                {
+                    lg2::error("Failed to open {PATH}: {ERROR}", "PATH",
+                               deviceFile, "ERROR", e.what());
+                }
+
                 storageObjects[path] = std::make_unique<estoraged::EStoraged>(
-                    objectServer, path, deviceFile, luksName, size, lifeleft,
-                    partNumber, serialNumber, locationCode, eraseMaxGeometry,
-                    eraseMinGeometry, driveType, driveProtocol);
+                    std::move(fd), objectServer, path, deviceFile, luksName,
+                    size, lifeleft, partNumber, serialNumber, locationCode,
+                    eraseMaxGeometry, eraseMinGeometry, driveType,
+                    driveProtocol);
                 lg2::info("Created eStoraged object for path {PATH}", "PATH",
                           path, "REDFISH_MESSAGE_ID",
                           std::string("OpenBMC.0.1.CreateStorageObjects"));

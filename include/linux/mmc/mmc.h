@@ -38,14 +38,22 @@
 
 #define EXT_CSD_BKOPS_EN		163	/* R/W */
 #define EXT_CSD_BKOPS_START		164	/* W */
+#define EXT_CSD_HS_TIMING		185	/* R/W */
 #define EXT_CSD_BKOPS_STATUS		246	/* RO */
 #define EXT_CSD_BKOPS_SUPPORT		502	/* RO */
+
+
 
 /*
  * EXT_CSD field definitions
  */
 
 #define EXT_CSD_CMD_SET_NORMAL		(1<<0)
+
+#define EXT_CSD_TIMING_BC	0	/* Backwards compatility */
+#define EXT_CSD_TIMING_HS	1	/* High speed */
+#define EXT_CSD_TIMING_HS200	2	/* HS200 */
+#define EXT_CSD_TIMING_HS400	3	/* HS400 */
 
 /*
  * BKOPS modes

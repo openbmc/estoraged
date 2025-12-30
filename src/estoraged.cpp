@@ -1,8 +1,8 @@
-
 #include "estoraged.hpp"
 
 #include "cryptErase.hpp"
 #include "cryptsetupInterface.hpp"
+#include "estoraged_conf.hpp"
 #include "pattern.hpp"
 #include "sanitize.hpp"
 #include "verifyDriveGeometry.hpp"
@@ -26,6 +26,7 @@
 #include <iostream>
 #include <string>
 #include <string_view>
+#include <unordered_set>
 #include <utility>
 #include <vector>
 
@@ -56,6 +57,15 @@ EStoraged::EStoraged(
     cryptDevicePath(cryptIface->cryptGetDir() + "/" + luksName),
     objectServer(server)
 {
+    try
+    {
+        changeHsTimingIfNeeded(fd.get(), devPath, partNumber);
+    }
+    catch (const HsModeError& e)
+    {
+        lg2::error(e.what());
+    }
+
     try
     {
         enableBackgroundOperation(std::move(fd), devPath);
@@ -601,6 +611,41 @@ bool EStoraged::enableBackgroundOperation(std::unique_ptr<stdplus::Fd> fd,
 
     lg2::info("Successfully enable BKOPS for {DEV}", "DEV", devPath);
     return true;
+}
+
+bool EStoraged::changeHsTiming(stdplus::Fd* fd, std::string_view devPath)
+{
+    if (fd == nullptr)
+    {
+        return false;
+    }
+    struct mmc_ioc_cmd cmd = {};
+    cmd.write_flag = 1;
+    cmd.opcode = MMC_SWITCH;
+    cmd.arg = (MMC_SWITCH_MODE_WRITE_BYTE << 24) | (EXT_CSD_HS_TIMING << 16) |
+              (0x11 << 8); // Change value to 0x11
+    cmd.flags = MMC_RSP_R1B | MMC_CMD_AC;
+    if (fd->ioctl(MMC_IOC_CMD, &cmd) != 0)
+    {
+        throw HsModeError(devPath);
+    }
+    return true;
+}
+
+bool EStoraged::changeHsTimingIfNeeded(
+    stdplus::Fd* fd, std::string_view devPath, std::string_view partNumber)
+{
+    if (fd == nullptr)
+    {
+        return false;
+    }
+    if (highSpeedMMC.count(partNumber))
+    {
+        lg2::info("Change HS_TIMING for {DEV} with {PARTNUMBER}", "DEV",
+                  devPath, "PARTNUMBER", partNumber);
+        return changeHsTiming(fd, devPath);
+    }
+    return false;
 }
 
 } // namespace estoraged

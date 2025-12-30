@@ -1,0 +1,10 @@
+#pragma once
+#include <string_view>
+#include <unordered_set>
+
+#define ERASE_MAX_GEOMETRY @ERASE_MAX_GEOMETRY@
+
+#define ERASE_MIN_GEOMETRY @ERASE_MIN_GEOMETRY@
+
+static const std::unordered_set<std::string_view> highSpeedMMC = {
+    @HIGHSPEED_PARTS@};

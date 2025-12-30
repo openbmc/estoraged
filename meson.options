@@ -14,4 +14,10 @@ option(
     value: 5368709120,
     description: 'the max size allowed in bytes, used by the geometry check',
 )
+option(
+    'highspeed_parts',
+    type: 'array',
+    value: [],
+    description: 'A list of part number to enable Highspeed Timing modes for the MMC',
+)
 option('tests', type: 'feature', value: 'enabled', description: 'Build tests')

@@ -38,6 +38,7 @@
 
 #define EXT_CSD_BKOPS_EN		163	/* R/W */
 #define EXT_CSD_BKOPS_START		164	/* W */
+#define EXT_CSD_HS_TIMING		185	/* R/W */
 #define EXT_CSD_BKOPS_STATUS		246	/* RO */
 #define EXT_CSD_BKOPS_SUPPORT		502	/* RO */
 

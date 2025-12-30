@@ -52,6 +52,14 @@ class BkopsIoctlFailure : public BkopsError
     {}
 };
 
+class HsModeError : public std::runtime_error
+{
+  public:
+    HsModeError(std::string_view dev) :
+        std::runtime_error(std::format("Failed to set HS mode on {}", dev))
+    {}
+};
+
 /** @class eStoraged
  *  @brief eStoraged object to manage a LUKS encrypted storage device.
  */
@@ -155,6 +163,35 @@ class EStoraged
      */
     static bool enableBackgroundOperation(std::unique_ptr<stdplus::Fd> fd,
                                           std::string_view devPath);
+
+    /** @brief Enable eMMC HS Timeing Mode
+     *  @param[in] fd - mmc ioc fd
+     *  @param[in] devPath - mmc device path
+     *
+     *  @details This enables the the High-Speed (HS) Timing modes and Drive
+     * Strength settings, allowing the card to operate at faster interfaces
+     *
+     * @throw HsModeError HS timing mode is not set properly
+     *
+     * @returns true if we enabled the HS timing mode on the MMC
+     */
+    static bool changeHsTiming(stdplus::Fd* fd, std::string_view devPath);
+
+    /** @brief Enable eMMC HS Timeing Mode if it is the applied parts
+     *  @param[in] fd - mmc ioc fd
+     *  @param[in] devPath - mmc device path
+     *  @param[in] partNumber - part number to check if this feature shuold be
+     * enabled
+     *
+     * @throw HsModeError HS timing mode is not set properly
+     *
+     *  @details This checks the part number to see if we want to enable the HS
+     * timing mode.
+     *
+     * @returns true if we enabled the HS timeing mode on the MMC
+     */
+    static bool changeHsTimingIfNeeded(
+        stdplus::Fd* fd, std::string_view devPath, std::string_view partNumber);
 
   private:
     /** @brief Full path of the device file, e.g. /dev/mmcblk0. */

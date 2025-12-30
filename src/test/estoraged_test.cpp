@@ -698,4 +698,43 @@ TEST(EMMCBackgroundOperation, EnableSuccess)
         std::move(mockFd), "/dev/test"));
 }
 
+TEST(HSMode, HeModeError)
+{
+    std::unique_ptr<FdMock> mockFd = std::make_unique<FdMock>();
+    EXPECT_CALL(*mockFd, ioctl(MMC_IOC_CMD, testing::_)).WillOnce(Return(1));
+    EXPECT_THROW(estoraged::EStoraged::changeHsTimingIfNeeded(
+                     mockFd.get(), "/dev/test", "TestPart"),
+                 estoraged::HsModeError);
+}
+
+TEST(HSMode, EnableSuccess)
+{
+    std::unique_ptr<FdMock> mockFd = std::make_unique<FdMock>();
+
+    EXPECT_CALL(*mockFd, ioctl(MMC_IOC_CMD, testing::_))
+        .WillOnce(testing::Invoke([](unsigned long, void* data) {
+            struct mmc_ioc_cmd* idata = static_cast<struct mmc_ioc_cmd*>(data);
+            EXPECT_EQ(idata->opcode, MMC_SWITCH);
+            EXPECT_EQ(idata->arg, (MMC_SWITCH_MODE_WRITE_BYTE << 24) |
+                                      (EXT_CSD_HS_TIMING << 16) | (0x11 << 8));
+            EXPECT_EQ(idata->flags, MMC_RSP_R1B | MMC_CMD_AC);
+            return 0; // Success
+        }));
+    EXPECT_TRUE(estoraged::EStoraged::changeHsTimingIfNeeded(
+        mockFd.get(), "/dev/test", "TestPart"));
+}
+
+TEST(HSMode, InvalidPart)
+{
+    std::unique_ptr<FdMock> mockFd = std::make_unique<FdMock>();
+    EXPECT_FALSE(estoraged::EStoraged::changeHsTimingIfNeeded(
+        mockFd.get(), "/dev/test", "InvalidPart"));
+}
+
+TEST(HSMode, Null)
+{
+    EXPECT_FALSE(estoraged::EStoraged::changeHsTimingIfNeeded(
+        nullptr, "/dev/test", "TestPart"));
+}
+
 } // namespace estoraged_test

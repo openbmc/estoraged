@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "406eae82_8f5b165d",
+        "filename": "include/meson.build",
+        "patchSetId": 6
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1001087
+      },
+      "writtenOn": "2025-12-31T11:57:32Z",
+      "side": 1,
+      "message": "nit: no need this empty line?",
+      "revId": "83f785b54a556366413c720ca7af560f7abdb010",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

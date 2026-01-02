@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f2bd949b_9a6e22d2",
+        "filename": "include/estoraged.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2026-01-02T21:58:32Z",
+      "side": 1,
+      "message": "Copy/paste typo?",
+      "range": {
+        "startLine": 174,
+        "startChar": 5,
+        "endLine": 175,
+        "endChar": 66
+      },
+      "revId": "83f785b54a556366413c720ca7af560f7abdb010",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "406eae82_8f5b165d",
         "filename": "include/meson.build",
         "patchSetId": 6
@@ -14,6 +37,29 @@
       "writtenOn": "2025-12-31T11:57:32Z",
       "side": 1,
       "message": "nit: no need this empty line?",
+      "revId": "83f785b54a556366413c720ca7af560f7abdb010",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "910e67b2_c504826f",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 642,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2026-01-02T21:58:32Z",
+      "side": 1,
+      "message": "nit: the contains() function would make more sense.",
+      "range": {
+        "startLine": 642,
+        "startChar": 21,
+        "endLine": 642,
+        "endChar": 26
+      },
       "revId": "83f785b54a556366413c720ca7af560f7abdb010",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

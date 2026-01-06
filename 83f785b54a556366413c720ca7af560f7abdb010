@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5a89a66_9d1c4bbf",
+        "filename": "include/estoraged.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1000885
+      },
+      "writtenOn": "2026-01-06T19:08:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f2bd949b_9a6e22d2",
+      "range": {
+        "startLine": 174,
+        "startChar": 5,
+        "endLine": 175,
+        "endChar": 66
+      },
+      "revId": "83f785b54a556366413c720ca7af560f7abdb010",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "406eae82_8f5b165d",
@@ -41,6 +65,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dfe6af47_c4963cb5",
+        "filename": "include/meson.build",
+        "patchSetId": 6
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1000885
+      },
+      "writtenOn": "2026-01-06T19:08:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "406eae82_8f5b165d",
+      "revId": "83f785b54a556366413c720ca7af560f7abdb010",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "910e67b2_c504826f",
@@ -54,6 +96,30 @@
       "writtenOn": "2026-01-02T21:58:32Z",
       "side": 1,
       "message": "nit: the contains() function would make more sense.",
+      "range": {
+        "startLine": 642,
+        "startChar": 21,
+        "endLine": 642,
+        "endChar": 26
+      },
+      "revId": "83f785b54a556366413c720ca7af560f7abdb010",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "29dfce94_6c464627",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 642,
+      "author": {
+        "id": 1000885
+      },
+      "writtenOn": "2026-01-06T19:08:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "910e67b2_c504826f",
       "range": {
         "startLine": 642,
         "startChar": 21,

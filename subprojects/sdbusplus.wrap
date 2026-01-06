@@ -4,4 +4,3 @@ revision = HEAD
 
 [provide]
 sdbusplus = sdbusplus_dep
-program_names = sdbus++, sdbus++-gen-meson

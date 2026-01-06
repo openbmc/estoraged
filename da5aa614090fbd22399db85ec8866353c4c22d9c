@@ -16,6 +16,24 @@
       "message": "https://github.com/openbmc/stdplus/blob/master/include-fd/stdplus/fd/gmock.hpp?",
       "revId": "da5aa614090fbd22399db85ec8866353c4c22d9c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9454e497_f693a1ea",
+        "filename": "src/test/estoraged_test.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000885
+      },
+      "writtenOn": "2026-01-06T19:08:34Z",
+      "side": 1,
+      "message": "oops. I was looking for it and missed it somehow. Thanks. Will update it now. I was like there is no way that\u0027s not already there but still missed it.\n\nUpdated it in https://gerrit.openbmc.org/c/openbmc/estoraged/+/86407",
+      "parentUuid": "41e41293_223e1505",
+      "revId": "da5aa614090fbd22399db85ec8866353c4c22d9c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ],
   "submitRequirementResults": []

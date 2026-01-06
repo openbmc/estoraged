@@ -11,6 +11,7 @@
 #include <boost/asio/io_context.hpp>
 #include <sdbusplus/asio/connection.hpp>
 #include <sdbusplus/asio/object_server.hpp>
+#include <stdplus/fd/gmock.hpp>
 #include <xyz/openbmc_project/Common/error.hpp>
 #include <xyz/openbmc_project/Inventory/Item/Volume/server.hpp>
 
@@ -34,55 +35,11 @@ using sdbusplus::server::xyz::openbmc_project::inventory::item::Volume;
 using sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
 using sdbusplus::xyz::openbmc_project::Common::Error::ResourceNotFound;
 using std::filesystem::path;
+using stdplus::fd::FdMock;
 using ::testing::_;
 using ::testing::ElementsAreArray;
 using ::testing::Return;
 using ::testing::StrEq;
-
-class MockFd : public stdplus::Fd
-{
-  public:
-    MOCK_METHOD(int, ioctl, (unsigned long id, void* data), (override));
-    MOCK_METHOD(int, constIoctl, (unsigned long id, void* data),
-                (const, override));
-    MOCK_METHOD(std::span<std::byte>, read, (std::span<std::byte>), (override));
-    MOCK_METHOD(std::span<std::byte>, recv,
-                (std::span<std::byte>, stdplus::fd::RecvFlags), (override));
-    MOCK_METHOD((std::tuple<std::span<std::byte>, std::span<std::byte>>),
-                recvfrom,
-                (std::span<std::byte>, stdplus::fd::RecvFlags,
-                 std::span<std::byte>),
-                (override));
-    MOCK_METHOD(std::span<const std::byte>, write, (std::span<const std::byte>),
-                (override));
-    MOCK_METHOD(std::span<const std::byte>, send,
-                (std::span<const std::byte>, stdplus::fd::SendFlags),
-                (override));
-    MOCK_METHOD(std::span<const std::byte>, sendto,
-                (std::span<const std::byte>, stdplus::fd::SendFlags,
-                 std::span<const std::byte>),
-                (override));
-    MOCK_METHOD(size_t, lseek, (off_t, stdplus::fd::Whence), (override));
-    MOCK_METHOD(void, truncate, (off_t), (override));
-    MOCK_METHOD(void, bind, (std::span<const std::byte>), (override));
-    MOCK_METHOD(void, connect, (std::span<const std::byte>), (override));
-    MOCK_METHOD(void, listen, (int), (override));
-    MOCK_METHOD((std::optional<std::tuple<int, std::span<std::byte>>>), accept,
-                (std::span<std::byte> sockaddr), (override));
-    MOCK_METHOD(void, setsockopt,
-                (stdplus::fd::SockLevel, stdplus::fd::SockOpt,
-                 std::span<const std::byte>),
-                (override));
-    MOCK_METHOD(void, fcntlSetfd, (stdplus::fd::FdFlags), (override));
-    MOCK_METHOD(stdplus::fd::FdFlags, fcntlGetfd, (), (const, override));
-    MOCK_METHOD(void, fcntlSetfl, (stdplus::fd::FileFlags), (override));
-    MOCK_METHOD(stdplus::fd::FileFlags, fcntlGetfl, (), (const override));
-    MOCK_METHOD(std::span<std::byte>, mmap,
-                (std::byte*, std::size_t, stdplus::fd::ProtFlags,
-                 stdplus::fd::MMapFlags, off_t),
-                (override));
-    MOCK_METHOD(void, munmap, (std::span<std::byte>), (override));
-};
 
 class EStoragedTest : public testing::Test
 {
@@ -142,7 +99,7 @@ class EStoragedTest : public testing::Test
         conn->request_name("xyz.openbmc_project.eStoraged.test");
         objectServer = std::make_unique<sdbusplus::asio::object_server>(conn);
 
-        std::unique_ptr<MockFd> mockFd = std::make_unique<MockFd>();
+        std::unique_ptr<FdMock> mockFd = std::make_unique<FdMock>();
         esObject = std::make_unique<estoraged::EStoraged>(
             std::move(mockFd), *objectServer, testConfigPath, testFileName,
             testLuksDevName, testSize, testLifeTime, testPartNumber,
@@ -640,7 +597,7 @@ TEST_F(EStoragedTest, ChangePasswordFail)
 
 TEST(EMMCBackgroundOperation, IoCtlFailure)
 {
-    std::unique_ptr<MockFd> mockFd = std::make_unique<MockFd>();
+    std::unique_ptr<FdMock> mockFd = std::make_unique<FdMock>();
 
     EXPECT_CALL(*mockFd, ioctl(MMC_IOC_CMD, testing::_)).WillOnce(Return(1));
     EXPECT_THROW(estoraged::EStoraged::enableBackgroundOperation(
@@ -650,7 +607,7 @@ TEST(EMMCBackgroundOperation, IoCtlFailure)
 
 TEST(EMMCBackgroundOperation, BkOpsNotSupported)
 {
-    std::unique_ptr<MockFd> mockFd = std::make_unique<MockFd>();
+    std::unique_ptr<FdMock> mockFd = std::make_unique<FdMock>();
 
     EXPECT_CALL(*mockFd, ioctl(MMC_IOC_CMD, testing::_)).WillOnce(Return(0));
     EXPECT_FALSE(estoraged::EStoraged::enableBackgroundOperation(
@@ -659,7 +616,7 @@ TEST(EMMCBackgroundOperation, BkOpsNotSupported)
 
 TEST(EMMCBackgroundOperation, EnableFailure)
 {
-    std::unique_ptr<MockFd> mockFd = std::make_unique<MockFd>();
+    std::unique_ptr<FdMock> mockFd = std::make_unique<FdMock>();
 
     EXPECT_CALL(*mockFd, ioctl(MMC_IOC_CMD, testing::_))
         .WillOnce(testing::Invoke([](unsigned long, void* data) {
@@ -685,7 +642,7 @@ TEST(EMMCBackgroundOperation, EnableFailure)
 
 TEST(EMMCBackgroundOperation, AlreadyEnabled)
 {
-    std::unique_ptr<MockFd> mockFd = std::make_unique<MockFd>();
+    std::unique_ptr<FdMock> mockFd = std::make_unique<FdMock>();
 
     EXPECT_CALL(*mockFd, ioctl(MMC_IOC_CMD, testing::_))
         .WillOnce(testing::Invoke([](unsigned long, void* data) {
@@ -709,7 +666,7 @@ TEST(EMMCBackgroundOperation, AlreadyEnabled)
 
 TEST(EMMCBackgroundOperation, EnableSuccess)
 {
-    std::unique_ptr<MockFd> mockFd = std::make_unique<MockFd>();
+    std::unique_ptr<FdMock> mockFd = std::make_unique<FdMock>();
 
     EXPECT_CALL(*mockFd, ioctl(MMC_IOC_CMD, testing::_))
         .WillOnce(testing::Invoke([](unsigned long, void* data) {

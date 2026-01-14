@@ -119,6 +119,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "63e3e88b_28cda1c1",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1000885
+      },
+      "writtenOn": "2026-01-14T00:24:05Z",
+      "side": 1,
+      "message": "`changeHsTimingIfNeeded` will fail silently if it is not logged. I have reduced the number of logs in the function to only log once on pass/fail.",
+      "parentUuid": "43a8e44f_3f019283",
+      "range": {
+        "startLine": 66,
+        "startChar": 19,
+        "endLine": 66,
+        "endChar": 29
+      },
+      "revId": "9804db4f9946f26f939cf1d95a151c0d0d50c032",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c62e8eef_c18cf358",

@@ -1,0 +1,8 @@
+Code-Review+2: Brandon Kim <brandonkim@google.com>
+Verified+1: OpenBMC CI <openbmcbump-ci@yahoo.com>
+Submitted-by: Willy Tu <wltu@google.com>
+Submitted-at: Fri, 16 Jan 2026 05:41:59 +0000
+Reviewed-on: https://gerrit.openbmc.org/c/openbmc/estoraged/+/86279
+Comments-Total: 16
+Project: openbmc/estoraged
+Branch: refs/heads/master

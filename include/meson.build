@@ -1,16 +1,20 @@
 
 eStoraged_headers = include_directories('.')
 
-highspeed_parts_content = get_option('highspeed_parts')
-
-highspeed_parts_entries = []
-foreach item : highspeed_parts_content
-    highspeed_parts_entries += '"@0@"'.format(item)
-endforeach
-highspeed_parts = ', '.join(highspeed_parts_entries)
-
 if get_option('tests').allowed()
     highspeed_parts = '"TestPart"'
+else
+    highspeed_parts_content = get_option('highspeed_parts')
+
+    if highspeed_parts_content.length() == 0
+        highspeed_parts = '"EmptyPart"'
+    else
+        highspeed_parts_entries = []
+        foreach item : highspeed_parts_content
+            highspeed_parts_entries += '"@0@"'.format(item)
+        endforeach
+        highspeed_parts = ', '.join(highspeed_parts_entries)
+    endif
 endif
 
 conf_data = configuration_data()

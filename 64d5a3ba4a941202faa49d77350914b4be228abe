@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "37631559_f58e920d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000885
+      },
+      "writtenOn": "2026-01-21T01:16:52Z",
+      "side": 1,
+      "message": "We have covered all three possible cases now.\n\n- test enabled -\u003e {\"TestPart\"}\n- test disabled + empty parts -\u003e {\"EmptyPart\"}\n- test disabled + nonempty parts -\u003e {\"A\", \"B\"}",
+      "parentUuid": "0dfa688c_8c0fe60d",
+      "revId": "64d5a3ba4a941202faa49d77350914b4be228abe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4d2b641d_74677fc6",
@@ -31,6 +49,30 @@
       "writtenOn": "2026-01-20T21:54:38Z",
       "side": 1,
       "message": "is this treated as a special string?",
+      "range": {
+        "startLine": 10,
+        "startChar": 28,
+        "endLine": 10,
+        "endChar": 37
+      },
+      "revId": "64d5a3ba4a941202faa49d77350914b4be228abe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7f766ac_ad114a79",
+        "filename": "include/meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000885
+      },
+      "writtenOn": "2026-01-21T01:16:52Z",
+      "side": 1,
+      "message": "This is just used to make sure that there is no empty array when it generate the `std::to_array\u003cstd::string_view\u003e`. This can technically fail if some MMC part\u0027s name matches this, but that\u0027s unlikely.",
+      "parentUuid": "4d2b641d_74677fc6",
       "range": {
         "startLine": 10,
         "startChar": 28,

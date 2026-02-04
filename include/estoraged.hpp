@@ -287,6 +287,15 @@ class EStoraged
      */
     void mountFilesystem();
 
+    /** @brief Mount the filesystem, unify exceptions, and lock on error.
+     *  @param[in] lockOnError - lock device if filesystem is invalid or on
+     *    filesystem mount failure
+     *
+     *  @details The filesystem should already exist and the LUKS device should
+     *  be unlocked already.
+     */
+    void mountFilesystemLockOnError(bool lockOnError);
+
     /** @brief Unmount the filesystem. */
     void unmountFilesystem();
 };

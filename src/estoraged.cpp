@@ -285,7 +285,17 @@ void EStoraged::unlock(std::vector<uint8_t> password)
     lg2::info("Starting unlock", "REDFISH_MESSAGE_ID", msg);
 
     activateLuksDev(std::move(password));
-    mountFilesystem();
+    try
+    {
+        mountFilesystem();
+    }
+    catch (...)
+    {
+        /* Need to lock the partition otherwise recovery actions will fail */
+        deactivateLuksDev();
+        /* Forward the exception */
+        throw;
+    }
 }
 
 void EStoraged::changePassword(const std::vector<uint8_t>& oldPassword,

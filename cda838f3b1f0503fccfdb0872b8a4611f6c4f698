@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e937f894_3d52468b",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1002430
+      },
+      "writtenOn": "2026-02-20T23:46:42Z",
+      "side": 1,
+      "message": "You need to differentiate between different types of errors - so throw different types of exceptions and/or pass different parameters to them: we want to reformat if fsck failed or if mount fails, but we probably don\u0027t want to if we only failed to create the mount directory. - all this code is in mountFilesystem",
+      "revId": "cda838f3b1f0503fccfdb0872b8a4611f6c4f698",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e15b1420_6dd0f5a5",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 480,
+      "author": {
+        "id": 1002430
+      },
+      "writtenOn": "2026-02-20T23:46:42Z",
+      "side": 1,
+      "message": "Should be updated here - don\u0027t try to mount the filesystem if the fsck failed and instead throw an exception.",
+      "revId": "cda838f3b1f0503fccfdb0872b8a4611f6c4f698",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

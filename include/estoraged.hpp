@@ -164,7 +164,7 @@ class EStoraged
     static bool enableBackgroundOperation(std::unique_ptr<stdplus::Fd> fd,
                                           std::string_view devPath);
 
-    /** @brief Enable eMMC HS Timeing Mode
+    /** @brief Enable eMMC HS Timing Mode
      *  @param[in] fd - mmc ioc fd
      *  @param[in] devPath - mmc device path
      *
@@ -177,7 +177,7 @@ class EStoraged
      */
     static bool changeHsTiming(stdplus::Fd* fd, std::string_view devPath);
 
-    /** @brief Enable eMMC HS Timeing Mode if it is the applied parts
+    /** @brief Enable eMMC HS Timing Mode if it is the applied parts
      *  @param[in] fd - mmc ioc fd
      *  @param[in] devPath - mmc device path
      *  @param[in] partNumber - part number to check if this feature shuold be
@@ -188,7 +188,7 @@ class EStoraged
      *  @details This checks the part number to see if we want to enable the HS
      * timing mode.
      *
-     * @returns true if we enabled the HS timeing mode on the MMC
+     * @returns true if we enabled the HS timing mode on the MMC
      */
     static bool changeHsTimingIfNeeded(
         stdplus::Fd* fd, std::string_view devPath, std::string_view partNumber);

@@ -3,7 +3,7 @@
 #include "getConfig.hpp"
 #include "util.hpp"
 
-#include <boost/asio/deadline_timer.hpp>
+#include <boost/asio/system_timer.hpp>
 #include <boost/asio/io_context.hpp>
 #include <boost/asio/post.hpp>
 #include <boost/container/flat_map.hpp>
@@ -158,7 +158,7 @@ int main(void)
          * Set up an event handler to process any new configuration objects
          * that show up later.
          */
-        boost::asio::deadline_timer filterTimer(io);
+        boost::asio::system_timer filterTimer(io);
         std::function<void(sdbusplus::message_t&)> eventHandler =
             [&](sdbusplus::message_t& message) {
                 if (message.is_method_error())
@@ -172,7 +172,7 @@ int main(void)
                  * to handle them all at once. So, we will wait this long for no
                  * more events to occur, before processing them.
                  */
-                filterTimer.expires_from_now(boost::posix_time::seconds(1));
+                filterTimer.expires_after(std::chrono::seconds(1));
 
                 filterTimer.async_wait(
                     [&](const boost::system::error_code& ec) {

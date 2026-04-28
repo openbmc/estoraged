@@ -1,4 +1,6 @@
 
+#include "config.h"
+
 #include "estoraged.hpp"
 
 #include "cryptErase.hpp"
@@ -492,7 +494,7 @@ void EStoraged::mountFilesystem()
 
     /* Run the command to mount the filesystem. */
     retval = fsIface->doMount(cryptDevicePath.c_str(), mountPoint.c_str(),
-                              "ext4", 0, nullptr);
+                              "ext4", 0, ENABLE_TRIM ? "discard" : nullptr);
     if (retval != 0)
     {
         lg2::error("Failed to mount filesystem: {RETVAL}", "RETVAL", retval,

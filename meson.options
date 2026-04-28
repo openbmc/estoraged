@@ -20,4 +20,10 @@ option(
     value: [],
     description: 'A list of part number to enable Highspeed Timing modes for the MMC',
 )
+
+option(
+    'enable_trim',
+    type: 'feature',
+    description: 'Enable TRIM for eMMC devices',
+)
 option('tests', type: 'feature', value: 'enabled', description: 'Build tests')

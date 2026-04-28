@@ -18,12 +18,19 @@ libeStoraged_deps = [
     boost_dep,
 ]
 
+conf_data = configuration_data()
+conf_data.set('ENABLE_TRIM', get_option('enable_trim').enabled() ? '1' : '0')
+configure_file(
+    output: 'config.h',
+    configuration: conf_data,
+)
+
 libeStoraged_lib = static_library(
     'eStoraged-lib',
     'estoraged.cpp',
     'util.cpp',
     'getConfig.cpp',
-    include_directories: eStoraged_headers,
+    include_directories: [eStoraged_headers, include_directories('.')],
     implicit_include_directories: false,
     dependencies: [libeStoraged_deps, libeStoragedErase_dep],
 )

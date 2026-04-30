@@ -12,3 +12,8 @@ configure_file(
     install: true,
     install_dir: systemd_system_unitdir,
 )
+
+install_data(
+    'mmc-bkops-enabled.target',
+    install_dir: systemd_system_unitdir,
+)

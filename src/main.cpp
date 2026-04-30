@@ -39,7 +39,7 @@ void createStorageObjects(
 {
     auto getter = std::make_shared<estoraged::GetStorageConfiguration>(
         dbusConnection,
-        [&objectServer, &storageObjects](
+        [&objectServer, &storageObjects, dbusConnection](
             const estoraged::ManagedStorageType& storageConfigurations) {
             size_t numConfigObj = storageConfigurations.size();
             if (numConfigObj > 1)
@@ -124,10 +124,10 @@ void createStorageObjects(
                 }
 
                 storageObjects[path] = std::make_unique<estoraged::EStoraged>(
-                    std::move(fd), objectServer, path, deviceFile, luksName,
-                    size, lifeleft, partNumber, serialNumber, locationCode,
-                    eraseMaxGeometry, eraseMinGeometry, driveType,
-                    driveProtocol);
+                    std::move(fd), dbusConnection, objectServer, path,
+                    deviceFile, luksName, size, lifeleft, partNumber,
+                    serialNumber, locationCode, eraseMaxGeometry,
+                    eraseMinGeometry, driveType, driveProtocol);
                 lg2::info("Created eStoraged object for path {PATH}", "PATH",
                           path, "REDFISH_MESSAGE_ID",
                           std::string("OpenBMC.0.1.CreateStorageObjects"));

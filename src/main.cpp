@@ -3,9 +3,9 @@
 #include "getConfig.hpp"
 #include "util.hpp"
 
-#include <boost/asio/deadline_timer.hpp>
 #include <boost/asio/io_context.hpp>
 #include <boost/asio/post.hpp>
+#include <boost/asio/system_timer.hpp>
 #include <boost/container/flat_map.hpp>
 #include <boost/container/throw_exception.hpp>
 #include <phosphor-logging/lg2.hpp>
@@ -158,7 +158,7 @@ int main(void)
          * Set up an event handler to process any new configuration objects
          * that show up later.
          */
-        boost::asio::deadline_timer filterTimer(io);
+        boost::asio::system_timer filterTimer(io);
         std::function<void(sdbusplus::message_t&)> eventHandler =
             [&](sdbusplus::message_t& message) {
                 if (message.is_method_error())

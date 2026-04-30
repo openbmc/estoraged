@@ -101,11 +101,11 @@ class EStoragedTest : public testing::Test
 
         std::unique_ptr<FdMock> mockFd = std::make_unique<FdMock>();
         esObject = std::make_unique<estoraged::EStoraged>(
-            std::move(mockFd), *objectServer, testConfigPath, testFileName,
-            testLuksDevName, testSize, testLifeTime, testPartNumber,
-            testSerialNumber, testLocationCode, ERASE_MAX_GEOMETRY,
-            ERASE_MIN_GEOMETRY, testDriveType, testDriveProtocol,
-            std::move(cryptIface), std::move(fsIface));
+            std::move(mockFd), conn, *objectServer, testConfigPath,
+            testFileName, testLuksDevName, testSize, testLifeTime,
+            testPartNumber, testSerialNumber, testLocationCode,
+            ERASE_MAX_GEOMETRY, ERASE_MIN_GEOMETRY, testDriveType,
+            testDriveProtocol, std::move(cryptIface), std::move(fsIface));
     }
 
     void TearDown() override

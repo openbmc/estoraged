@@ -69,6 +69,7 @@ class EStoraged
     /** @brief Constructor for eStoraged
      *
      *  @param[in] fd - mmc ioc fd
+     *  @param[in] connection - sdbusplus asio connection
      *  @param[in] server - sdbusplus asio object server
      *  @param[in] configPath - path of the config object from Entity Manager
      *  @param[in] devPath - path to device file, e.g. /dev/mmcblk0
@@ -88,6 +89,7 @@ class EStoraged
      *    object
      */
     EStoraged(std::unique_ptr<stdplus::Fd> fd,
+              std::shared_ptr<sdbusplus::asio::connection> connection,
               sdbusplus::asio::object_server& server,
               const std::string& configPath, const std::string& devPath,
               const std::string& luksName, uint64_t size, uint8_t lifeTime,

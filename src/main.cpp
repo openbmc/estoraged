@@ -51,7 +51,7 @@ void createStorageObjects(
                 return;
             }
 
-            for (const std::pair<sdbusplus::message::object_path,
+            for (const std::pair<sdbusplus::object_path,
                                  estoraged::StorageData>& storage :
                  storageConfigurations)
             {

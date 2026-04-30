@@ -1,0 +1,9 @@
+Verified+1: OpenBMC CI <openbmcbump-ci@yahoo.com>
+Code-Review+1: Ed Tanous <ed@tanous.net>
+Code-Review+2: William A. Kennington III <wak@google.com>
+Submitted-by: William A. Kennington III <wak@google.com>
+Submitted-at: Thu, 30 Apr 2026 17:45:45 +0000
+Reviewed-on: https://gerrit.openbmc.org/c/openbmc/estoraged/+/89667
+Comments-Total: 4
+Project: openbmc/estoraged
+Branch: refs/heads/master

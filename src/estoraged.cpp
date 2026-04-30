@@ -43,13 +43,14 @@ const char* fsRecoveryError = "Failed to recover filesystem";
 const char* fsMountError = "Failed to mount filesystem";
 
 EStoraged::EStoraged(
-    std::unique_ptr<stdplus::Fd> fd, sdbusplus::asio::object_server& server,
-    const std::string& configPath, const std::string& devPath,
-    const std::string& luksName, uint64_t size, uint8_t lifeTime,
-    const std::string& partNumber, const std::string& serialNumber,
-    const std::string& locationCode, uint64_t eraseMaxGeometry,
-    uint64_t eraseMinGeometry, const std::string& driveType,
-    const std::string& driveProtocol,
+    std::unique_ptr<stdplus::Fd> fd,
+    std::shared_ptr<sdbusplus::asio::connection> connection,
+    sdbusplus::asio::object_server& server, const std::string& configPath,
+    const std::string& devPath, const std::string& luksName, uint64_t size,
+    uint8_t lifeTime, const std::string& partNumber,
+    const std::string& serialNumber, const std::string& locationCode,
+    uint64_t eraseMaxGeometry, uint64_t eraseMinGeometry,
+    const std::string& driveType, const std::string& driveProtocol,
     std::unique_ptr<CryptsetupInterface> cryptInterface,
     std::unique_ptr<FilesystemInterface> fsInterface) :
     devPath(devPath), containerName(luksName),
@@ -72,7 +73,21 @@ EStoraged::EStoraged(
 
     try
     {
-        enableBackgroundOperation(std::move(fd), devPath);
+        if (enableBackgroundOperation(std::move(fd), devPath))
+        {
+            connection->async_method_call(
+                [devPath](const boost::system::error_code& ec) {
+                    if (ec)
+                    {
+                        lg2::error(
+                            "Failed to signal enable background operation for {PATH}: {ERROR}",
+                            "PATH", devPath, "ERROR", ec.message());
+                    }
+                },
+                "org.freedesktop.systemd1", "/org/freedesktop/systemd1",
+                "org.freedesktop.systemd1.Manager", "StartUnit",
+                "mmc-bkops-enabled.target", "replace");
+        }
     }
     catch (const BkopsError& e)
     {

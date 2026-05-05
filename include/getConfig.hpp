@@ -17,7 +17,7 @@ using BasicVariantType =
 /* Map of properties for the config interface. */
 using StorageData = boost::container::flat_map<std::string, BasicVariantType>;
 using ManagedStorageType =
-    boost::container::flat_map<sdbusplus::message::object_path, StorageData>;
+    boost::container::flat_map<sdbusplus::object_path, StorageData>;
 
 const constexpr char* emmcConfigInterface =
     "xyz.openbmc_project.Configuration.EmmcDevice";

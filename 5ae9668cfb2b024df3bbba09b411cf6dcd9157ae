@@ -16,6 +16,24 @@
       "message": "Patrick Williams already has a CL for this: https://gerrit.openbmc.org/c/openbmc/estoraged/+/89667",
       "revId": "5ae9668cfb2b024df3bbba09b411cf6dcd9157ae",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "44e8b301_d5d81f32",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000885
+      },
+      "writtenOn": "2026-05-11T18:55:25Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "5a74e70d_0fd02238",
+      "revId": "5ae9668cfb2b024df3bbba09b411cf6dcd9157ae",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

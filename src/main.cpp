@@ -190,7 +190,7 @@ int main(void)
                     });
             };
 
-        auto match = std::make_unique<sdbusplus::bus::match_t>(
+        auto match = std::make_unique<sdbusplus::match>(
             static_cast<sdbusplus::bus_t&>(*conn),
             "type='signal',member='PropertiesChanged',path_namespace='" +
                 std::string("/xyz/openbmc_project/inventory") +

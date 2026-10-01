@@ -6,6 +6,7 @@
 #include <initializer_list>
 #include <numeric>
 #include <string>
+#include <string_view>
 
 namespace estoraged
 {
@@ -92,13 +93,11 @@ class FilesystemInterface
     /** @brief Wrapper around fsck.
      *  @details Used for mocking purposes.
      *
-     *  @param[in] logicalVolumePath - path to device with filesystem
-     *  @param[in] options - Other options to pass into fsck
+     *  @param[in] args - Arguments to pass into fsck.
      *
      *  @returns 0 on success, nonzero on failure.
      */
-    virtual int runFsck(const std::string& logicalVolumePath,
-                        const std::string& options) = 0;
+    virtual int runFsck(std::initializer_list<std::string_view> args) = 0;
 };
 
 /** @class Filesystem
@@ -165,10 +164,22 @@ class Filesystem : public FilesystemInterface
         return std::filesystem::is_directory(std::filesystem::status(p));
     }
 
-    int runFsck(const std::string& logicalVolumePath,
-                const std::string& options) override
+    int runFsck(std::initializer_list<std::string_view> args) override
     {
-        std::string fsckCommand("fsck " + logicalVolumePath + " " + options);
+        std::string fsckCommand("fsck");
+        fsckCommand.reserve(
+            fsckCommand.size() + args.size() +
+            std::accumulate(args.begin(), args.end(), 0,
+                            [](size_t sum, std::string_view arg) {
+                                return sum + arg.size();
+                            }));
+
+        for (std::string_view arg : args)
+        {
+            fsckCommand.push_back(' ');
+            fsckCommand.append(arg);
+        }
+
         // calling 'system' uses a command processor //NOLINTNEXTLINE
         return system(fsckCommand.c_str());
     }

@@ -466,12 +466,18 @@ void EStoraged::mountFilesystem()
      * Before mounting, run fsck to check for and resolve any filesystem errors.
      */
     int retval = fsIface->runFsck({"-t", "ext4", "-y", cryptDevicePath});
-    if (retval != 0)
+    if (retval < 0 || retval >= 4)
     {
         lg2::error("The fsck command failed: {RETVAL}", "RETVAL", retval,
                    "REDFISH_MESSAGE_ID",
                    std::string("OpenBMC.0.1.FixFilesystemFail"));
         throw std::runtime_error(fsRecoveryError);
+    }
+    if (retval > 0)
+    {
+        lg2::warning("The fsck command repaired filesystem errors: {RETVAL}",
+                     "RETVAL", retval, "REDFISH_MESSAGE_ID",
+                     std::string("OpenBMC.0.1.FilesystemRepair"));
     }
 
     /*

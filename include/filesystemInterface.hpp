@@ -1,12 +1,14 @@
 #pragma once
 
+#include "execvpe.hpp"
+
 #include <sys/mount.h>
 
 #include <filesystem>
 #include <initializer_list>
-#include <numeric>
 #include <string>
 #include <string_view>
+#include <vector>
 
 namespace estoraged
 {
@@ -115,21 +117,12 @@ class Filesystem : public FilesystemInterface
 
     int runMkfs(std::initializer_list<std::string_view> args) override
     {
-        std::string mkfsCommand("mkfs.ext4 ");
-        mkfsCommand.reserve(mkfsCommand.size() + args.size() +
-                            std::accumulate(args.begin(), args.end(), 0,
-                                            [](size_t sum, std::string_view s) {
-                                                return sum + s.size();
-                                            }));
+        std::vector<std::string_view> argv;
+        argv.reserve(args.size() + 1);
+        argv.emplace_back("mkfs.ext4");
+        argv.insert(argv.end(), args.begin(), args.end());
 
-        for (const auto& arg : args)
-        {
-            mkfsCommand.append(arg);
-            mkfsCommand.push_back(' ');
-        }
-
-        // calling 'system' uses a command processor //NOLINTNEXTLINE
-        return system(mkfsCommand.c_str());
+        return execvpe(argv);
     }
 
     int doMount(const char* source, const char* target,
@@ -161,22 +154,12 @@ class Filesystem : public FilesystemInterface
 
     int runFsck(std::initializer_list<std::string_view> args) override
     {
-        std::string fsckCommand("fsck");
-        fsckCommand.reserve(
-            fsckCommand.size() + args.size() +
-            std::accumulate(args.begin(), args.end(), 0,
-                            [](size_t sum, std::string_view arg) {
-                                return sum + arg.size();
-                            }));
+        std::vector<std::string_view> argv;
+        argv.reserve(args.size() + 1);
+        argv.emplace_back("fsck");
+        argv.insert(argv.end(), args.begin(), args.end());
 
-        for (std::string_view arg : args)
-        {
-            fsckCommand.push_back(' ');
-            fsckCommand.append(arg);
-        }
-
-        // calling 'system' uses a command processor //NOLINTNEXTLINE
-        return system(fsckCommand.c_str());
+        return execvpe(argv);
     }
 };
 } // namespace estoraged

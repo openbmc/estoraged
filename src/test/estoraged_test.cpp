@@ -48,7 +48,7 @@ using ::testing::StrEq;
 
 static auto fsckDevpathIs(const auto& devPath)
 {
-    return ElementsAre("-t", "ext4", "-p", devPath);
+    return ElementsAre("-t", "ext4", "-y", devPath);
 }
 
 /*
@@ -1028,7 +1028,7 @@ TEST_F(FilesystemTest, RunMkfsAndRunFsckSuccess)
     estoraged::Filesystem fs;
     std::string imgStr = imgPath.string();
     EXPECT_EQ(fs.runMkfs({"-F", "-E", "discard", imgStr}), 0);
-    EXPECT_EQ(fs.runFsck({"-t", "ext4", "-p", imgStr}), 0);
+    EXPECT_EQ(fs.runFsck({"-t", "ext4", "-y", imgStr}), 0);
 }
 
 TEST_F(FilesystemTest, RunMkfsFailure)

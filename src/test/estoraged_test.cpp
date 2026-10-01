@@ -25,6 +25,7 @@
 #include <string>
 #include <vector>
 
+#include <gmock/gmock-matchers.h>
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
@@ -37,6 +38,7 @@ using sdbusplus::xyz::openbmc_project::Common::Error::ResourceNotFound;
 using std::filesystem::path;
 using stdplus::fd::FdMock;
 using ::testing::_;
+using ::testing::ElementsAre;
 using ::testing::ElementsAreArray;
 using ::testing::Return;
 using ::testing::StrEq;
@@ -121,6 +123,8 @@ int createMappedDev()
 {
     mappedDevice.open(mappedDevicePath,
                       std::ios::out | std::ios::binary | std::ios::trunc);
+    mappedDevice.seekp(10 * 1024 * 1024 - 1);
+    mappedDevice.write("", 1);
     mappedDevice.close();
     if (mappedDevice.fail())
     {
@@ -157,6 +161,64 @@ TEST_F(EStoragedTest, FormatPass)
     EXPECT_CALL(*mockFsIface, runFsck(StrEq(esObject->getCryptDevicePath()),
                                       StrEq("-t ext4 -p")))
         .WillOnce(Return(0));
+
+    EXPECT_CALL(*mockFsIface, directoryExists(path(esObject->getMountPoint())))
+        .WillOnce(Return(false));
+
+    EXPECT_CALL(*mockFsIface, createDirectory(path(esObject->getMountPoint())))
+        .WillOnce(Return(true));
+
+    EXPECT_CALL(*mockFsIface,
+                doMount(StrEq(esObject->getCryptDevicePath()),
+                        StrEq(esObject->getMountPoint()), _, _, _))
+        .WillOnce(Return(0));
+
+    EXPECT_CALL(*mockFsIface, doUnmount(StrEq(esObject->getMountPoint())))
+        .WillOnce(Return(0));
+
+    EXPECT_CALL(*mockFsIface, removeDirectory(path(esObject->getMountPoint())))
+        .WillOnce(Return(true));
+
+    EXPECT_CALL(*mockCryptIface, cryptDeactivate(_, _))
+        .WillOnce(&removeMappedDev);
+
+    /* Format the encrypted device. */
+    esObject->formatLuks(password, Volume::FilesystemType::ext4);
+    EXPECT_FALSE(esObject->isLocked());
+
+    esObject->lock();
+    EXPECT_TRUE(esObject->isLocked());
+}
+
+/* Test case to format and then lock the LUKS device using real Filesystem for
+ * runMkfs and runFsck. */
+TEST_F(EStoragedTest, FormatWithRealFilesystem)
+{
+    estoraged::Filesystem realFs;
+
+    EXPECT_CALL(*mockCryptIface, cryptFormat(_, _, _, _, _, _, _, _)).Times(1);
+
+    EXPECT_CALL(*mockCryptIface, cryptKeyslotAddByVolumeKey(_, _, _, _, _, _))
+        .Times(1);
+
+    EXPECT_CALL(*mockCryptIface, cryptLoad(_, _, _)).Times(1);
+
+    EXPECT_CALL(*mockCryptIface, cryptActivateByPassphrase(_, _, _, _, _, _))
+        .WillOnce(&createMappedDev);
+
+    EXPECT_CALL(*mockFsIface, runMkfs(StrEq(esObject->getCryptDevicePath()),
+                                      ElementsAre("-E", "discard")))
+        .WillOnce([&realFs](const std::string& logicalVolumePath,
+                            std::initializer_list<std::string> options) {
+            return realFs.runMkfs(logicalVolumePath, options);
+        });
+
+    EXPECT_CALL(*mockFsIface, runFsck(StrEq(esObject->getCryptDevicePath()),
+                                      StrEq("-t ext4 -p")))
+        .WillOnce([&realFs](const std::string& logicalVolumePath,
+                            const std::string& options) {
+            return realFs.runFsck(logicalVolumePath, options);
+        });
 
     EXPECT_CALL(*mockFsIface, directoryExists(path(esObject->getMountPoint())))
         .WillOnce(Return(false));
@@ -817,6 +879,79 @@ TEST(HSMode, Null)
 {
     EXPECT_FALSE(estoraged::EStoraged::changeHsTimingIfNeeded(
         nullptr, "/dev/test", "TestPart"));
+}
+
+class FilesystemTest : public testing::Test
+{
+  protected:
+    const std::filesystem::path imgPath = "/tmp/estoraged_test_fs.img";
+    const std::filesystem::path testDir = "/tmp/estoraged_test_dir";
+
+    void SetUp() override
+    {
+        std::error_code ec;
+        std::filesystem::remove(imgPath, ec);
+        std::filesystem::remove_all(testDir, ec);
+    }
+
+    void TearDown() override
+    {
+        std::error_code ec;
+        std::filesystem::remove(imgPath, ec);
+        std::filesystem::remove_all(testDir, ec);
+    }
+};
+
+TEST_F(FilesystemTest, RunMkfsAndRunFsckSuccess)
+{
+    /* Create a 10MB sparse file for filesystem operations. */
+    std::ofstream imgFile(imgPath,
+                          std::ios::out | std::ios::binary | std::ios::trunc);
+    imgFile.seekp(10 * 1024 * 1024 - 1);
+    imgFile.write("", 1);
+    imgFile.close();
+    ASSERT_TRUE(std::filesystem::exists(imgPath));
+
+    estoraged::Filesystem fs;
+    std::string imgStr = imgPath.string();
+    EXPECT_EQ(fs.runMkfs(imgStr, {"-F", "-E", "discard"}), 0);
+    EXPECT_EQ(fs.runFsck(imgStr, "-t ext4 -p"), 0);
+}
+
+TEST_F(FilesystemTest, RunMkfsFailure)
+{
+    estoraged::Filesystem fs;
+    EXPECT_NE(fs.runMkfs("/dev/null", {"--invalid-option-xyz"}), 0);
+}
+
+TEST_F(FilesystemTest, RunFsckFailure)
+{
+    estoraged::Filesystem fs;
+    EXPECT_NE(fs.runFsck("/dev/null", "--invalid-option-xyz"), 0);
+}
+
+TEST_F(FilesystemTest, DirectoryOperations)
+{
+    estoraged::Filesystem fs;
+    EXPECT_FALSE(fs.directoryExists(testDir));
+    EXPECT_TRUE(fs.createDirectory(testDir));
+    EXPECT_TRUE(fs.directoryExists(testDir));
+    EXPECT_TRUE(fs.removeDirectory(testDir));
+    EXPECT_FALSE(fs.directoryExists(testDir));
+}
+
+TEST_F(FilesystemTest, MountFailure)
+{
+    estoraged::Filesystem fs;
+    EXPECT_EQ(fs.doMount("/dev/null", "/nonexistent_path_xyz", "ext4", 0,
+                         nullptr),
+              -1);
+}
+
+TEST_F(FilesystemTest, UnmountFailure)
+{
+    estoraged::Filesystem fs;
+    EXPECT_EQ(fs.doUnmount("/nonexistent_path_xyz"), -1);
 }
 
 } // namespace estoraged_test

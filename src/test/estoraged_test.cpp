@@ -33,6 +33,18 @@
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
+namespace stdplus
+{
+// TODO: move this into <stdplus/zstring_view.hpp>.
+template <typename CharT, typename Traits>
+constexpr bool operator==(basic_zstring_view<CharT, Traits> lhs,
+                          basic_zstring_view<CharT, Traits> rhs) noexcept
+{
+    return static_cast<std::basic_string_view<CharT, Traits>>(lhs) ==
+           static_cast<std::basic_string_view<CharT, Traits>>(rhs);
+}
+} // namespace stdplus
+
 namespace estoraged_test
 {
 
@@ -46,6 +58,11 @@ using ::testing::ElementsAre;
 using ::testing::ElementsAreArray;
 using ::testing::Return;
 using ::testing::StrEq;
+
+static auto fsckDevpathIs(const auto& devPath)
+{
+    return ElementsAre("-t", "ext4", "-p", devPath);
+}
 
 /*
  * Per-process scratch directory. It is created with mkdtemp() so that test
@@ -249,8 +266,8 @@ TEST_F(EStoragedTest, FormatPass)
                                       ElementsAreArray(EStoragedTest::options)))
         .WillOnce(Return(0));
 
-    EXPECT_CALL(*mockFsIface, runFsck(StrEq(esObject->getCryptDevicePath()),
-                                      StrEq("-t ext4 -p")))
+    EXPECT_CALL(*mockFsIface,
+                runFsck(fsckDevpathIs(esObject->getCryptDevicePath())))
         .WillOnce(Return(0));
 
     EXPECT_CALL(*mockFsIface, directoryExists(path(esObject->getMountPoint())))
@@ -309,11 +326,10 @@ TEST_F(EStoragedTest, FormatWithRealFilesystem)
             return realFs.runMkfs(logicalVolumePath, options);
         });
 
-    EXPECT_CALL(*mockFsIface, runFsck(StrEq(esObject->getCryptDevicePath()),
-                                      StrEq("-t ext4 -p")))
-        .WillOnce([&realFs](const std::string& logicalVolumePath,
-                            const std::string& options) {
-            return realFs.runFsck(logicalVolumePath, options);
+    EXPECT_CALL(*mockFsIface,
+                runFsck(fsckDevpathIs(esObject->getCryptDevicePath())))
+        .WillOnce([&realFs](std::initializer_list<stdplus::zstring_view> args) {
+            return realFs.runFsck(args);
         });
 
     EXPECT_CALL(*mockFsIface, directoryExists(path(esObject->getMountPoint())))
@@ -364,8 +380,8 @@ TEST_F(EStoragedTest, MountPointExistsPass)
                                       ElementsAreArray(EStoragedTest::options)))
         .WillOnce(Return(0));
 
-    EXPECT_CALL(*mockFsIface, runFsck(StrEq(esObject->getCryptDevicePath()),
-                                      StrEq("-t ext4 -p")))
+    EXPECT_CALL(*mockFsIface,
+                runFsck(fsckDevpathIs(esObject->getCryptDevicePath())))
         .WillOnce(Return(0));
 
     EXPECT_CALL(*mockFsIface, directoryExists(path(esObject->getMountPoint())))
@@ -510,8 +526,8 @@ TEST_F(EStoragedTest, CreateMountPointFail)
                                       ElementsAreArray(EStoragedTest::options)))
         .WillOnce(Return(0));
 
-    EXPECT_CALL(*mockFsIface, runFsck(StrEq(esObject->getCryptDevicePath()),
-                                      StrEq("-t ext4 -p")))
+    EXPECT_CALL(*mockFsIface,
+                runFsck(fsckDevpathIs(esObject->getCryptDevicePath())))
         .WillOnce(Return(0));
 
     EXPECT_CALL(*mockFsIface, directoryExists(path(esObject->getMountPoint())))
@@ -544,8 +560,8 @@ TEST_F(EStoragedTest, FormatMountFail)
                                       ElementsAreArray(EStoragedTest::options)))
         .WillOnce(Return(0));
 
-    EXPECT_CALL(*mockFsIface, runFsck(StrEq(esObject->getCryptDevicePath()),
-                                      StrEq("-t ext4 -p")))
+    EXPECT_CALL(*mockFsIface,
+                runFsck(fsckDevpathIs(esObject->getCryptDevicePath())))
         .WillOnce(Return(0));
 
     EXPECT_CALL(*mockFsIface, directoryExists(path(esObject->getMountPoint())))
@@ -607,8 +623,8 @@ TEST_F(EStoragedTest, UnlockMountFail)
      * unlock: mountFilesystem
      * formatLuks: mountFilesystem
      */
-    EXPECT_CALL(*mockFsIface, runFsck(StrEq(esObject->getCryptDevicePath()),
-                                      StrEq("-t ext4 -p")))
+    EXPECT_CALL(*mockFsIface,
+                runFsck(fsckDevpathIs(esObject->getCryptDevicePath())))
         .WillOnce(Return(-1))
         .WillOnce(Return(0));
 
@@ -667,8 +683,8 @@ TEST_F(EStoragedTest, UnmountFail)
                                       ElementsAreArray(EStoragedTest::options)))
         .WillOnce(Return(0));
 
-    EXPECT_CALL(*mockFsIface, runFsck(StrEq(esObject->getCryptDevicePath()),
-                                      StrEq("-t ext4 -p")))
+    EXPECT_CALL(*mockFsIface,
+                runFsck(fsckDevpathIs(esObject->getCryptDevicePath())))
         .WillOnce(Return(0));
 
     EXPECT_CALL(*mockFsIface, directoryExists(path(esObject->getMountPoint())))
@@ -711,8 +727,8 @@ TEST_F(EStoragedTest, RemoveMountPointFail)
                                       ElementsAreArray(EStoragedTest::options)))
         .WillOnce(Return(0));
 
-    EXPECT_CALL(*mockFsIface, runFsck(StrEq(esObject->getCryptDevicePath()),
-                                      StrEq("-t ext4 -p")))
+    EXPECT_CALL(*mockFsIface,
+                runFsck(fsckDevpathIs(esObject->getCryptDevicePath())))
         .WillOnce(Return(0));
 
     EXPECT_CALL(*mockFsIface, directoryExists(path(esObject->getMountPoint())))
@@ -759,8 +775,8 @@ TEST_F(EStoragedTest, DeactivateFail)
                                       ElementsAreArray(EStoragedTest::options)))
         .WillOnce(Return(0));
 
-    EXPECT_CALL(*mockFsIface, runFsck(StrEq(esObject->getCryptDevicePath()),
-                                      StrEq("-t ext4 -p")))
+    EXPECT_CALL(*mockFsIface,
+                runFsck(fsckDevpathIs(esObject->getCryptDevicePath())))
         .WillOnce(Return(0));
 
     EXPECT_CALL(*mockFsIface, directoryExists(path(esObject->getMountPoint())))
@@ -1018,7 +1034,7 @@ TEST_F(FilesystemTest, RunMkfsAndRunFsckSuccess)
     estoraged::Filesystem fs;
     std::string imgStr = imgPath.string();
     EXPECT_EQ(fs.runMkfs(imgStr, {"-F", "-E", "discard"}), 0);
-    EXPECT_EQ(fs.runFsck(imgStr, "-t ext4 -p"), 0);
+    EXPECT_EQ(fs.runFsck({"-t", "ext4", "-p", imgStr}), 0);
 }
 
 TEST_F(FilesystemTest, RunMkfsFailure)
@@ -1040,7 +1056,7 @@ TEST_F(FilesystemTest, RunFsckFailure)
     }
 
     estoraged::Filesystem fs;
-    EXPECT_NE(fs.runFsck("/dev/null", "--invalid-option-xyz"), 0);
+    EXPECT_NE(fs.runFsck({"/dev/null", "--invalid-option-xyz"}), 0);
 }
 
 TEST_F(FilesystemTest, DirectoryOperations)

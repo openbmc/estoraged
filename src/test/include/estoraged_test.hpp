@@ -10,6 +10,7 @@
 #include <filesystem>
 #include <initializer_list>
 #include <string>
+#include <string_view>
 
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
@@ -43,8 +44,7 @@ class MockFilesystemInterface : public estoraged::FilesystemInterface
                 (override));
 
     MOCK_METHOD(int, runFsck,
-                (const std::string& logicalVolumePath,
-                 const std::string& options),
+                (std::initializer_list<stdplus::zstring_view> args),
                 (override));
 };
 

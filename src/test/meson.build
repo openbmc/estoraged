@@ -9,6 +9,7 @@ tests = [
     'erase/sanitize_test',
     'estoraged_test',
     'util_test',
+    'execvpe_test',
 ]
 
 test_eStoraged_headers = include_directories('include')

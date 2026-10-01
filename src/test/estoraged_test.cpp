@@ -16,6 +16,8 @@
 #include <xyz/openbmc_project/Inventory/Item/Volume/server.hpp>
 
 #include <array>
+#include <cerrno>
+#include <cstdlib>
 #include <exception>
 #include <filesystem>
 #include <fstream>
@@ -23,8 +25,11 @@
 #include <memory>
 #include <span>
 #include <string>
+#include <string_view>
+#include <system_error>
 #include <vector>
 
+#include <gmock/gmock-matchers.h>
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
@@ -37,16 +42,99 @@ using sdbusplus::xyz::openbmc_project::Common::Error::ResourceNotFound;
 using std::filesystem::path;
 using stdplus::fd::FdMock;
 using ::testing::_;
+using ::testing::ElementsAre;
 using ::testing::ElementsAreArray;
 using ::testing::Return;
 using ::testing::StrEq;
 
+/*
+ * Per-process scratch directory. It is created with mkdtemp() so that test
+ * runs that execute concurrently on the same host do not interfere with each
+ * other. The directory and its contents are removed when the test program
+ * exits.
+ */
+class TestTmpDir
+{
+  public:
+    TestTmpDir()
+    {
+        std::string tmpl =
+            (std::filesystem::temp_directory_path() / "estoraged_test.XXXXXX")
+                .string();
+        if (mkdtemp(tmpl.data()) == nullptr)
+        {
+            throw std::system_error(errno, std::generic_category(),
+                                    "mkdtemp(" + tmpl + ")");
+        }
+        dir = tmpl;
+    }
+
+    ~TestTmpDir()
+    {
+        std::error_code ec;
+        std::filesystem::remove_all(dir, ec);
+    }
+
+    TestTmpDir(const TestTmpDir&) = delete;
+    TestTmpDir& operator=(const TestTmpDir&) = delete;
+    TestTmpDir(TestTmpDir&&) = delete;
+    TestTmpDir& operator=(TestTmpDir&&) = delete;
+
+    const std::filesystem::path& get() const
+    {
+        return dir;
+    }
+
+  private:
+    std::filesystem::path dir;
+};
+
+static const std::filesystem::path& testTmpDir()
+{
+    static const TestTmpDir tmpDir;
+    return tmpDir.get();
+}
+
+/*
+ * Returns true if an executable called @name can be found in $PATH. Uses the
+ * same search rules as execvpe(), including the fallback search path if PATH
+ * has not been set.
+ */
+static bool inPath(std::string_view name)
+{
+    const char* pathEnv = getenv("PATH");
+    std::string_view dirs = pathEnv != nullptr ? pathEnv : "/bin:/usr/bin";
+    while (true)
+    {
+        const size_t colon = dirs.find(':');
+        std::string_view dir = dirs.substr(0, colon);
+        /* An empty PATH entry means the current working directory. */
+        const std::filesystem::path candidate =
+            std::filesystem::path(dir.empty() ? "." : dir) / name;
+        if (access(candidate.c_str(), X_OK) == 0)
+        {
+            return true;
+        }
+        if (colon == std::string_view::npos)
+        {
+            return false;
+        }
+        dirs.remove_prefix(colon + 1);
+    }
+}
+
+/* Whether the tools invoked by estoraged::Filesystem are available. */
+static bool haveFilesystemTools()
+{
+    return inPath("mkfs.ext4") && inPath("fsck");
+}
+
 class EStoragedTest : public testing::Test
 {
   public:
-    const char* testFileName = "testfile";
+    const std::string testFileName = (testTmpDir() / "testfile").string();
     const char* testLuksDevName = "testfile_luksDev";
-    const char* testCryptDir = "/tmp";
+    const std::string testCryptDir = testTmpDir().string();
     const std::string testConfigPath =
         "/xyz/openbmc_project/inventory/system/board/test_board/test_emmc";
     const uint64_t testSize = 24;
@@ -110,17 +198,24 @@ class EStoragedTest : public testing::Test
 
     void TearDown() override
     {
-        EXPECT_EQ(0, unlink(testFileName));
+        EXPECT_EQ(0, unlink(testFileName.c_str()));
     }
 };
 
-const char* mappedDevicePath = "/tmp/testfile_luksDev";
+/* Must match EStoragedTest::testCryptDir and EStoragedTest::testLuksDevName. */
+static std::filesystem::path mappedDevicePath()
+{
+    return testTmpDir() / "testfile_luksDev";
+}
+
 std::ofstream mappedDevice;
 
 int createMappedDev()
 {
-    mappedDevice.open(mappedDevicePath,
+    mappedDevice.open(mappedDevicePath(),
                       std::ios::out | std::ios::binary | std::ios::trunc);
+    mappedDevice.seekp(10 * 1024 * 1024 - 1);
+    mappedDevice.write("", 1);
     mappedDevice.close();
     if (mappedDevice.fail())
     {
@@ -132,7 +227,7 @@ int createMappedDev()
 
 int removeMappedDev()
 {
-    EXPECT_EQ(0, unlink(mappedDevicePath));
+    EXPECT_EQ(0, unlink(mappedDevicePath().c_str()));
 
     return 0;
 }
@@ -157,6 +252,69 @@ TEST_F(EStoragedTest, FormatPass)
     EXPECT_CALL(*mockFsIface, runFsck(StrEq(esObject->getCryptDevicePath()),
                                       StrEq("-t ext4 -p")))
         .WillOnce(Return(0));
+
+    EXPECT_CALL(*mockFsIface, directoryExists(path(esObject->getMountPoint())))
+        .WillOnce(Return(false));
+
+    EXPECT_CALL(*mockFsIface, createDirectory(path(esObject->getMountPoint())))
+        .WillOnce(Return(true));
+
+    EXPECT_CALL(*mockFsIface,
+                doMount(StrEq(esObject->getCryptDevicePath()),
+                        StrEq(esObject->getMountPoint()), _, _, _))
+        .WillOnce(Return(0));
+
+    EXPECT_CALL(*mockFsIface, doUnmount(StrEq(esObject->getMountPoint())))
+        .WillOnce(Return(0));
+
+    EXPECT_CALL(*mockFsIface, removeDirectory(path(esObject->getMountPoint())))
+        .WillOnce(Return(true));
+
+    EXPECT_CALL(*mockCryptIface, cryptDeactivate(_, _))
+        .WillOnce(&removeMappedDev);
+
+    /* Format the encrypted device. */
+    esObject->formatLuks(password, Volume::FilesystemType::ext4);
+    EXPECT_FALSE(esObject->isLocked());
+
+    esObject->lock();
+    EXPECT_TRUE(esObject->isLocked());
+}
+
+/* Test case to format and then lock the LUKS device using real Filesystem for
+ * runMkfs and runFsck. */
+TEST_F(EStoragedTest, FormatWithRealFilesystem)
+{
+    if (!haveFilesystemTools())
+    {
+        GTEST_SKIP() << "mkfs.ext4 and/or fsck not found in PATH";
+    }
+
+    estoraged::Filesystem realFs;
+
+    EXPECT_CALL(*mockCryptIface, cryptFormat(_, _, _, _, _, _, _, _)).Times(1);
+
+    EXPECT_CALL(*mockCryptIface, cryptKeyslotAddByVolumeKey(_, _, _, _, _, _))
+        .Times(1);
+
+    EXPECT_CALL(*mockCryptIface, cryptLoad(_, _, _)).Times(1);
+
+    EXPECT_CALL(*mockCryptIface, cryptActivateByPassphrase(_, _, _, _, _, _))
+        .WillOnce(&createMappedDev);
+
+    EXPECT_CALL(*mockFsIface, runMkfs(StrEq(esObject->getCryptDevicePath()),
+                                      ElementsAre("-E", "discard")))
+        .WillOnce([&realFs](const std::string& logicalVolumePath,
+                            std::initializer_list<std::string> options) {
+            return realFs.runMkfs(logicalVolumePath, options);
+        });
+
+    EXPECT_CALL(*mockFsIface, runFsck(StrEq(esObject->getCryptDevicePath()),
+                                      StrEq("-t ext4 -p")))
+        .WillOnce([&realFs](const std::string& logicalVolumePath,
+                            const std::string& options) {
+            return realFs.runFsck(logicalVolumePath, options);
+        });
 
     EXPECT_CALL(*mockFsIface, directoryExists(path(esObject->getMountPoint())))
         .WillOnce(Return(false));
@@ -242,7 +400,7 @@ TEST_F(EStoragedTest, MountPointExistsPass)
 TEST_F(EStoragedTest, FormatNoDeviceFail)
 {
     /* Delete the test file. */
-    EXPECT_EQ(0, unlink(testFileName));
+    EXPECT_EQ(0, unlink(testFileName.c_str()));
 
     EXPECT_THROW(esObject->formatLuks(password, Volume::FilesystemType::ext4),
                  ResourceNotFound);
@@ -817,6 +975,96 @@ TEST(HSMode, Null)
 {
     EXPECT_FALSE(estoraged::EStoraged::changeHsTimingIfNeeded(
         nullptr, "/dev/test", "TestPart"));
+}
+
+class FilesystemTest : public testing::Test
+{
+  protected:
+    const std::filesystem::path imgPath =
+        testTmpDir() / "estoraged_test_fs.img";
+    const std::filesystem::path testDir = testTmpDir() / "estoraged_test_dir";
+
+    void SetUp() override
+    {
+        std::error_code ec;
+        std::filesystem::remove(imgPath, ec);
+        std::filesystem::remove_all(testDir, ec);
+    }
+
+    void TearDown() override
+    {
+        std::error_code ec;
+        std::filesystem::remove(imgPath, ec);
+        std::filesystem::remove_all(testDir, ec);
+    }
+};
+
+TEST_F(FilesystemTest, RunMkfsAndRunFsckSuccess)
+{
+    if (!haveFilesystemTools())
+    {
+        GTEST_SKIP() << "mkfs.ext4 and/or fsck not found in PATH";
+    }
+
+    /* Create a 10MB sparse file for filesystem operations. */
+    std::ofstream imgFile(imgPath,
+                          std::ios::out | std::ios::binary | std::ios::trunc);
+    imgFile.seekp(10 * 1024 * 1024 - 1);
+    imgFile.write("", 1);
+    imgFile.close();
+    ASSERT_TRUE(imgFile.good());
+    ASSERT_TRUE(std::filesystem::exists(imgPath));
+
+    estoraged::Filesystem fs;
+    std::string imgStr = imgPath.string();
+    EXPECT_EQ(fs.runMkfs(imgStr, {"-F", "-E", "discard"}), 0);
+    EXPECT_EQ(fs.runFsck(imgStr, "-t ext4 -p"), 0);
+}
+
+TEST_F(FilesystemTest, RunMkfsFailure)
+{
+    if (!haveFilesystemTools())
+    {
+        GTEST_SKIP() << "mkfs.ext4 and/or fsck not found in PATH";
+    }
+
+    estoraged::Filesystem fs;
+    EXPECT_NE(fs.runMkfs("/dev/null", {"--invalid-option-xyz"}), 0);
+}
+
+TEST_F(FilesystemTest, RunFsckFailure)
+{
+    if (!haveFilesystemTools())
+    {
+        GTEST_SKIP() << "mkfs.ext4 and/or fsck not found in PATH";
+    }
+
+    estoraged::Filesystem fs;
+    EXPECT_NE(fs.runFsck("/dev/null", "--invalid-option-xyz"), 0);
+}
+
+TEST_F(FilesystemTest, DirectoryOperations)
+{
+    estoraged::Filesystem fs;
+    EXPECT_FALSE(fs.directoryExists(testDir));
+    EXPECT_TRUE(fs.createDirectory(testDir));
+    EXPECT_TRUE(fs.directoryExists(testDir));
+    EXPECT_TRUE(fs.removeDirectory(testDir));
+    EXPECT_FALSE(fs.directoryExists(testDir));
+}
+
+TEST_F(FilesystemTest, MountFailure)
+{
+    estoraged::Filesystem fs;
+    EXPECT_EQ(fs.doMount("/dev/null", "/nonexistent_path_xyz", "ext4", 0,
+                         nullptr),
+              -1);
+}
+
+TEST_F(FilesystemTest, UnmountFailure)
+{
+    estoraged::Filesystem fs;
+    EXPECT_EQ(fs.doUnmount("/nonexistent_path_xyz"), -1);
 }
 
 } // namespace estoraged_test

@@ -32,12 +32,11 @@ class FilesystemInterface
     /** @brief Runs the mkfs command to create the filesystem.
      *  @details Used for mocking purposes.
      *
-     *  @param[in] logicalVolumePath - path to the mapped LUKS device.
+     *  @param[in] args - Arguments to pass into mkfs.
      *
      *  @returns 0 on success, nonzero on failure.
      */
-    virtual int runMkfs(const std::string& logicalVolumePath,
-                        std::initializer_list<std::string> options = {}) = 0;
+    virtual int runMkfs(std::initializer_list<stdplus::zstring_view> args) = 0;
 
     /** @brief Wrapper around mount().
      *  @details Used for mocking purposes.
@@ -116,24 +115,20 @@ class Filesystem : public FilesystemInterface
     Filesystem(Filesystem&&) = delete;
     Filesystem& operator=(Filesystem&&) = delete;
 
-    int runMkfs(const std::string& logicalVolumePath,
-                std::initializer_list<std::string> options) override
+    int runMkfs(std::initializer_list<stdplus::zstring_view> args) override
     {
         std::string mkfsCommand("mkfs.ext4 ");
-        mkfsCommand.reserve(
-            mkfsCommand.size() + logicalVolumePath.size() + options.size() +
-            std::accumulate(options.begin(), options.end(), 0,
-                            [](size_t sum, const std::string& s) {
-                                return sum + s.size();
-                            }));
+        mkfsCommand.reserve(mkfsCommand.size() + args.size() +
+                            std::accumulate(args.begin(), args.end(), 0,
+                                            [](size_t sum, std::string_view s) {
+                                                return sum + s.size();
+                                            }));
 
-        for (const std::string& s : options)
+        for (const auto& arg : args)
         {
-            mkfsCommand.append(s);
+            mkfsCommand.append(arg);
             mkfsCommand.push_back(' ');
         }
-
-        mkfsCommand.append(logicalVolumePath);
 
         // calling 'system' uses a command processor //NOLINTNEXTLINE
         return system(mkfsCommand.c_str());

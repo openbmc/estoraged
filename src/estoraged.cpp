@@ -465,7 +465,7 @@ void EStoraged::mountFilesystem()
     /*
      * Before mounting, run fsck to check for and resolve any filesystem errors.
      */
-    int retval = fsIface->runFsck(cryptDevicePath, "-t ext4 -p");
+    int retval = fsIface->runFsck({cryptDevicePath, "-t", "ext4", "-p"});
     if (retval != 0)
     {
         lg2::error("The fsck command failed: {RETVAL}", "RETVAL", retval,

@@ -447,7 +447,7 @@ void EStoraged::activateLuksDev(std::vector<uint8_t> password)
 void EStoraged::createFilesystem()
 {
     /* Run the command to create the filesystem. */
-    int retval = fsIface->runMkfs(cryptDevicePath, {"-E", "discard"});
+    int retval = fsIface->runMkfs({"-E", "discard", cryptDevicePath});
     if (retval != 0)
     {
         lg2::error("Failed to create filesystem: {RETVAL}", "RETVAL", retval,

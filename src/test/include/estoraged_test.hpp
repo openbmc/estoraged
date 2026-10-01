@@ -22,8 +22,7 @@ class MockFilesystemInterface : public estoraged::FilesystemInterface
 {
   public:
     MOCK_METHOD(int, runMkfs,
-                (const std::string& logicalVolumePath,
-                 std::initializer_list<std::string> options),
+                (std::initializer_list<stdplus::zstring_view> args),
                 (override));
 
     MOCK_METHOD(int, doMount,

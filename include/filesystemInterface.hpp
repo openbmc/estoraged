@@ -96,7 +96,18 @@ class FilesystemInterface
      *
      *  @param[in] args - Arguments to pass into fsck.
      *
-     *  @returns 0 on success, nonzero on failure.
+     *  @returns
+     *    - -1 if no child process could be created.
+     *    - 127 if fsck could not be started.
+     *    - 128 + signal if fsck has been interrupted by a signal.
+     *    - If fsck has been started, the sum of:
+     *      - 0    - No errors
+     *      - 1    - File system errors corrected
+     *      - 2    - File system errors corrected, system should be rebooted
+     *      - 4    - File system errors left uncorrected
+     *      - 8    - Operational error
+     *      - 16   - Usage or syntax error
+     *      - 32   - Checking canceled by user request
      */
     virtual int runFsck(std::initializer_list<std::string_view> args) = 0;
 };

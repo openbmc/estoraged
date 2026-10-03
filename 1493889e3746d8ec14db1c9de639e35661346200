@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ddf69ec3_82fd1f4c",
+        "filename": "include/execvpe.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2026-10-03T20:28:31Z",
+      "side": 1,
+      "message": "We should probably rename these because they do a fork too. Maybe `systemvpe` or something. I don\u0027t have a specifically good name.",
+      "revId": "1493889e3746d8ec14db1c9de639e35661346200",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25c73f99_55289656",
+        "filename": "src/execvpe.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2026-10-03T20:28:31Z",
+      "side": 1,
+      "message": "BTW you could avoid this by passing stdplus::zstring / stdplus::zstring_view and then you have null terminated views that convert to char*",
+      "revId": "1493889e3746d8ec14db1c9de639e35661346200",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18cfae5c_c71b55fe",
+        "filename": "src/execvpe.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2026-10-03T20:28:31Z",
+      "side": 1,
+      "message": "Will we want to pipe stdin / stdout / stderr so it can be captured? Probably you don\u0027t want to pass the existing stdin.",
+      "revId": "1493889e3746d8ec14db1c9de639e35661346200",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ad21979_dde07302",
+        "filename": "src/execvpe.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2026-10-03T20:28:31Z",
+      "side": 1,
+      "message": "Should we just depend on people doing a proper CLOEXEC? I guess we don\u0027t need to pass FDs in this program generally.",
+      "revId": "1493889e3746d8ec14db1c9de639e35661346200",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

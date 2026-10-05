@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6c46a17_f1776e04",
+        "filename": "src/test/estoraged_test.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 913,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2026-10-05T16:43:01Z",
+      "side": 1,
+      "message": "nit: `ASSERT_TRUE(imgFile.good())`\n```suggestion\n    ASSERT_TRUE(std::filesystem::exists(imgPath));\n    ASSERT_TRUE(imgFile.good());\n```",
+      "range": {
+        "startLine": 913,
+        "startChar": 0,
+        "endLine": 913,
+        "endChar": 50
+      },
+      "revId": "40e34a961737ea1fd46512678261e0417cc126ed",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

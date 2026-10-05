@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d16a18b_dc1f183e",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2026-10-05T16:45:10Z",
+      "side": 1,
+      "message": "nit: Putting options before positional device path ({\"-t\", \"ext4\", \"-p\", cryptDevicePath}) is cleaner and doesn\u0027t rely on GNU getopt\n\nIt seems you fixed this as part of https://gerrit.openbmc.org/c/openbmc/estoraged/+/95176 - should we unify while we\u0027re at it?",
+      "range": {
+        "startLine": 468,
+        "startChar": 0,
+        "endLine": 468,
+        "endChar": 73
+      },
+      "revId": "592eb2bb3b2c74481db322e09d1b09161671d67b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

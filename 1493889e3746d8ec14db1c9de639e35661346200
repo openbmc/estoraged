@@ -67,6 +67,29 @@
       "message": "Should we just depend on people doing a proper CLOEXEC? I guess we don\u0027t need to pass FDs in this program generally.",
       "revId": "1493889e3746d8ec14db1c9de639e35661346200",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7022d8e_c922e04c",
+        "filename": "src/test/execvpe_test.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2026-10-05T16:47:01Z",
+      "side": 1,
+      "message": "nit: probably better to unify between bash and sh (just use sh instead across?)",
+      "range": {
+        "startLine": 72,
+        "startChar": 33,
+        "endLine": 84,
+        "endChar": 40
+      },
+      "revId": "1493889e3746d8ec14db1c9de639e35661346200",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

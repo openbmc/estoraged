@@ -16,6 +16,24 @@
       "message": "consider adding a check to log repair actions:\n\n```\nif (retval \u003e 0)\n{\n    lg2::info(\"The fsck command repaired filesystem errors: {RETVAL}\",\n              \"RETVAL\", retval);\n}\n```",
       "revId": "8afa0294802026559dbf0ef69c67df76dc33e2df",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "51792fb3_d2737948",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 476,
+      "author": {
+        "id": 1003197
+      },
+      "writtenOn": "2026-10-06T18:49:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6f78dd75_c9f9bb26",
+      "revId": "8afa0294802026559dbf0ef69c67df76dc33e2df",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

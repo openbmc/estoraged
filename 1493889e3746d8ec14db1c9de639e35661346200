@@ -71,6 +71,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "80694efc_06639c5e",
+        "filename": "src/execvpe.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1003197
+      },
+      "writtenOn": "2026-10-06T20:28:40Z",
+      "side": 1,
+      "message": "The creation of std::string objects can\u0027t be avoided because the caller passes const strings and execvpe() may modify the strings passed via the second argument.",
+      "parentUuid": "0fe6eaf9_092612cf",
+      "revId": "1493889e3746d8ec14db1c9de639e35661346200",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "18cfae5c_c71b55fe",

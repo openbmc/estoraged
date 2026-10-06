@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8bb60ff2_72cc38ef",
+        "filename": "include/execvpe.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1003197
+      },
+      "writtenOn": "2026-10-06T18:49:08Z",
+      "side": 1,
+      "message": "I have renamed execvpe() into runCommand().",
+      "parentUuid": "ddf69ec3_82fd1f4c",
+      "revId": "1493889e3746d8ec14db1c9de639e35661346200",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "25c73f99_55289656",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-10-03T20:28:31Z",
       "side": 1,
       "message": "BTW you could avoid this by passing stdplus::zstring / stdplus::zstring_view and then you have null terminated views that convert to char*",
+      "revId": "1493889e3746d8ec14db1c9de639e35661346200",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fe6eaf9_092612cf",
+        "filename": "src/execvpe.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1003197
+      },
+      "writtenOn": "2026-10-06T18:49:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "25c73f99_55289656",
       "revId": "1493889e3746d8ec14db1c9de639e35661346200",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b5b4e000_9587cc51",
+        "filename": "src/execvpe.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1003197
+      },
+      "writtenOn": "2026-10-06T18:49:08Z",
+      "side": 1,
+      "message": "Let\u0027s implement this functionality when we need it.",
+      "parentUuid": "18cfae5c_c71b55fe",
+      "revId": "1493889e3746d8ec14db1c9de639e35661346200",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0ad21979_dde07302",
@@ -69,6 +123,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2695e8f4_f51e08d3",
+        "filename": "src/execvpe.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1003197
+      },
+      "writtenOn": "2026-10-06T18:49:08Z",
+      "side": 1,
+      "message": "Hmm ... in the user space code I have seen CLOEXEC is often forgotten.",
+      "parentUuid": "0ad21979_dde07302",
+      "revId": "1493889e3746d8ec14db1c9de639e35661346200",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d7022d8e_c922e04c",
@@ -82,6 +154,30 @@
       "writtenOn": "2026-10-05T16:47:01Z",
       "side": 1,
       "message": "nit: probably better to unify between bash and sh (just use sh instead across?)",
+      "range": {
+        "startLine": 72,
+        "startChar": 33,
+        "endLine": 84,
+        "endChar": 40
+      },
+      "revId": "1493889e3746d8ec14db1c9de639e35661346200",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "16a86d29_154868e7",
+        "filename": "src/test/execvpe_test.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1003197
+      },
+      "writtenOn": "2026-10-06T18:49:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d7022d8e_c922e04c",
       "range": {
         "startLine": 72,
         "startChar": 33,

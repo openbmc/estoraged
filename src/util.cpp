@@ -74,8 +74,8 @@ uint8_t findPredictedMediaLifeLeftPercent(const std::string& sysfsPath)
     }
     catch (...)
     {
-        lg2::error("Unable to read sysfs", "REDFISH_MESSAGE_ID",
-                   std::string("OpenBMC.0.1.DriveEraseFailure"));
+        lg2::error("Unable to read life_time from sysfs", "REDFISH_MESSAGE_ID",
+                   std::string("OpenBMC.0.1.LifeTimeFailure"));
         lifeTimeFile.close();
         return 255;
     }
@@ -107,7 +107,7 @@ std::string getPartNumber(const std::filesystem::path& sysfsPath)
     }
     catch (...)
     {
-        lg2::error("Unable to read sysfs", "REDFISH_MESSAGE_ID",
+        lg2::error("Unable to read name from sysfs", "REDFISH_MESSAGE_ID",
                    std::string("OpenBMC.0.1.PartNumberFailure"));
     }
     partNameFile.close();
@@ -132,7 +132,7 @@ std::string getSerialNumber(const std::filesystem::path& sysfsPath)
     }
     catch (...)
     {
-        lg2::error("Unable to read sysfs", "REDFISH_MESSAGE_ID",
+        lg2::error("Unable to read serial from sysfs", "REDFISH_MESSAGE_ID",
                    std::string("OpenBMC.0.1.SerialNumberFailure"));
     }
     serialNumberFile.close();

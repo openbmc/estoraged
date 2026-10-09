@@ -18,6 +18,7 @@
 #include <filesystem>
 #include <format>
 #include <memory>
+#include <optional>
 #include <stdexcept>
 #include <string>
 #include <string_view>
@@ -174,6 +175,11 @@ class EStoraged
 
     /** @brief Indicates whether the LUKS device is currently locked. */
     bool lockedProperty{false};
+
+    /** @brief Seed used by the most recent successful LogicalOverWrite.
+     *  @details LogicalVerify is rejected if this has no value.
+     */
+    std::optional<uint64_t> patternSeed;
 
     /** @brief Pointer to cryptsetup interface object.
      *  @details This is used to mock out the cryptsetup functions.

@@ -279,13 +279,37 @@ void EStoraged::erase(Volume::EraseMethod inEraseMethod)
         }
         case Volume::EraseMethod::LogicalOverWrite:
         {
-            Pattern myErasePattern(devPath);
+            /*
+             * Use a new random seed for every overwrite such that a
+             * subsequent LogicalVerify cannot succeed because of a pattern
+             * left behind by an earlier overwrite.
+             */
+            uint64_t seed = 0;
+            if (RAND_bytes(reinterpret_cast<unsigned char*>(&seed),
+                           sizeof(seed)) != 1)
+            {
+                lg2::error("Failed to generate pattern seed",
+                           "REDFISH_MESSAGE_ID",
+                           std::string("OpenBMC.0.1.DriveEraseFailure"));
+                throw InternalFailure();
+            }
+            patternSeed.reset();
+            Pattern myErasePattern(devPath, seed);
             myErasePattern.writePattern();
+            patternSeed = seed;
             break;
         }
         case Volume::EraseMethod::LogicalVerify:
         {
-            Pattern myErasePattern(devPath);
+            if (!patternSeed)
+            {
+                lg2::error("LogicalVerify requires a preceding successful "
+                           "LogicalOverWrite",
+                           "REDFISH_MESSAGE_ID",
+                           std::string("OpenBMC.0.1.DriveEraseFailure"));
+                throw UnsupportedRequest();
+            }
+            Pattern myErasePattern(devPath, *patternSeed);
             myErasePattern.verifyPattern();
             break;
         }

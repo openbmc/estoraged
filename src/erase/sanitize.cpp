@@ -119,7 +119,7 @@ void Sanitize::emmcSanitize()
 }
 
 int IOCTLWrapperImpl::doIoctl(std::string_view devPath, unsigned long request,
-                              struct mmc_ioc_cmd data)
+                              struct mmc_ioc_cmd& data)
 
 {
     ManagedFd fd = stdplus::fd::open(std::string(devPath).c_str(),
@@ -130,7 +130,7 @@ int IOCTLWrapperImpl::doIoctl(std::string_view devPath, unsigned long request,
 
 int IOCTLWrapperImpl::doIoctlMulti(std::string_view devPath,
                                    unsigned long request,
-                                   struct MmcIoMultiCmdErase data)
+                                   struct MmcIoMultiCmdErase& data)
 {
     ManagedFd fd = stdplus::fd::open(std::string(devPath).c_str(),
                                      stdplus::fd::OpenAccess::ReadWrite);

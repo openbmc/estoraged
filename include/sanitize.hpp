@@ -28,7 +28,7 @@ class IOCTLWrapperInterface
      * @param[in] mmc_ioc_cmd - eMMC cmd
      */
     virtual int doIoctl(std::string_view devPath, unsigned long request,
-                        struct mmc_ioc_cmd data) = 0;
+                        struct mmc_ioc_cmd& data) = 0;
 
     /** @brief Wrapper around ioctl
      *  @details Used for mocking purposes.
@@ -38,7 +38,7 @@ class IOCTLWrapperInterface
      * @param[in] mmc_io_mutli_cmd - many eMMC cmd
      */
     virtual int doIoctlMulti(std::string_view devPath, unsigned long request,
-                             struct MmcIoMultiCmdErase data) = 0;
+                             struct MmcIoMultiCmdErase& data) = 0;
 
     virtual ~IOCTLWrapperInterface() = default;
     IOCTLWrapperInterface() = default;
@@ -54,9 +54,9 @@ class IOCTLWrapperImpl : public IOCTLWrapperInterface
 {
   public:
     int doIoctl(std::string_view devPath, unsigned long request,
-                struct mmc_ioc_cmd data) override;
+                struct mmc_ioc_cmd& data) override;
     int doIoctlMulti(std::string_view devPath, unsigned long request,
-                     struct MmcIoMultiCmdErase data) override;
+                     struct MmcIoMultiCmdErase& data) override;
     ~IOCTLWrapperImpl() override = default;
     IOCTLWrapperImpl() = default;
 

@@ -26,19 +26,19 @@ using ::testing::_;
 using ::testing::Return;
 using ::testing::StrEq;
 
-const std::string testFileName = "testFile";
-
 class CryptoEraseTest : public testing::Test
 {
   public:
+    TestTmpDir tmpDir;
+    std::string testFileName;
     std::ofstream testFile;
 
     void SetUp() override
     {
+        testFileName = (tmpDir.get() / "testFile").string();
         /* Create an empty file that we'll pretend is a 'storage device'. */
         testFile.open(testFileName,
                       std::ios::out | std::ios::binary | std::ios::trunc);
-        testFile.close();
         if (testFile.fail())
         {
             throw std::runtime_error("Failed to open test file");

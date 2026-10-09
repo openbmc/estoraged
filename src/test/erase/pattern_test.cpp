@@ -1,4 +1,5 @@
 #include "estoraged_conf.hpp"
+#include "estoraged_test.hpp"
 #include "pattern.hpp"
 
 #include <fcntl.h>
@@ -28,7 +29,8 @@ using testing::Return;
 
 TEST(pattern, patternPass)
 {
-    std::string testFileName = "patternPass";
+    TestTmpDir tmpDir;
+    std::string testFileName = (tmpDir.get() / "patternPass").string();
     uint64_t size = 4096;
     std::ofstream testFile;
     testFile.open(testFileName,
@@ -53,7 +55,8 @@ TEST(pattern, patternPass)
 
 TEST(pattern, patternNotDivisible)
 {
-    std::string testFileName = "notDivisible";
+    TestTmpDir tmpDir;
+    std::string testFileName = (tmpDir.get() / "notDivisible").string();
     uint64_t size = 4097;
     // 4097 is not divisible by the block size, and we expect no errors
     std::ofstream testFile;
@@ -73,7 +76,8 @@ TEST(pattern, patternNotDivisible)
 
 TEST(pattern, patternsDontMatch)
 {
-    std::string testFileName = "patternsDontMatch";
+    TestTmpDir tmpDir;
+    std::string testFileName = (tmpDir.get() / "patternsDontMatch").string();
     uint64_t size = 4096;
     std::ofstream testFile;
 

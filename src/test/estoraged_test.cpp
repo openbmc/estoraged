@@ -39,6 +39,7 @@ namespace estoraged_test
 using sdbusplus::server::xyz::openbmc_project::inventory::item::Volume;
 using sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
 using sdbusplus::xyz::openbmc_project::Common::Error::ResourceNotFound;
+using sdbusplus::xyz::openbmc_project::Common::Error::UnsupportedRequest;
 using std::filesystem::path;
 using stdplus::fd::FdMock;
 using ::testing::_;
@@ -984,6 +985,25 @@ TEST_F(EStoragedTest, EmptyPasswordFail)
                  InternalFailure);
     EXPECT_THROW(esObject->changePassword(password, emptyPassword),
                  InternalFailure);
+}
+
+/* LogicalVerify must be rejected if no LogicalOverWrite preceded it. */
+TEST_F(EStoragedTest, LogicalVerifyWithoutOverWriteFails)
+{
+    EXPECT_THROW(esObject->erase(Volume::EraseMethod::LogicalVerify),
+                 UnsupportedRequest);
+}
+
+/*
+ * A failed LogicalOverWrite must not enable LogicalVerify. The test device is
+ * a regular file, so querying its size with BLKGETSIZE64 fails.
+ */
+TEST_F(EStoragedTest, LogicalVerifyAfterFailedOverWriteFails)
+{
+    EXPECT_THROW(esObject->erase(Volume::EraseMethod::LogicalOverWrite),
+                 InternalFailure);
+    EXPECT_THROW(esObject->erase(Volume::EraseMethod::LogicalVerify),
+                 UnsupportedRequest);
 }
 
 TEST(EMMCBackgroundOperation, IoCtlFailure)

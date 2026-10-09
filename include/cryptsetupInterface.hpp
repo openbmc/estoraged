@@ -260,8 +260,7 @@ class CryptHandle
      *
      *  @param[in] device - path to device file
      */
-    explicit CryptHandle(const std::string_view& device) : handle(init(device))
-    {}
+    explicit CryptHandle(const std::string& device) : handle(init(device)) {}
 
     /** @brief Get a pointer to the crypt_device struct. */
     struct crypt_device* get()
@@ -282,10 +281,10 @@ class CryptHandle
      *
      *  @param[in] device - path to device file
      */
-    struct crypt_device* init(const std::string_view& device)
+    struct crypt_device* init(const std::string& device)
     {
         struct crypt_device* cryptDev = nullptr;
-        int retval = crypt_init(&cryptDev, device.data());
+        int retval = crypt_init(&cryptDev, device.c_str());
         if (retval < 0)
         {
             lg2::error("Failed to crypt_init", "REDFISH_MESSAGE_ID",

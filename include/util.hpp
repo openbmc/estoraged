@@ -4,6 +4,7 @@
 #include <filesystem>
 #include <optional>
 #include <string>
+#include <utility>
 
 namespace estoraged
 {
@@ -21,15 +22,14 @@ struct DeviceInfo
     std::string driveType;
     std::string driveProtocol;
 
-    DeviceInfo(std::filesystem::path& deviceFile,
-               std::filesystem::path& sysfsDir, std::string& luksName,
-               std::string& locationCode, uint64_t eraseMaxGeometry,
-               uint64_t eraseMinGeometry, std::string& driveType,
-               std::string& driveProtocol) :
-        deviceFile(deviceFile), sysfsDir(sysfsDir), luksName(luksName),
-        locationCode(locationCode), eraseMaxGeometry(eraseMaxGeometry),
-        eraseMinGeometry(eraseMinGeometry), driveType(driveType),
-        driveProtocol(driveProtocol)
+    DeviceInfo(std::filesystem::path deviceFile, std::filesystem::path sysfsDir,
+               std::string luksName, std::string locationCode,
+               uint64_t eraseMaxGeometry, uint64_t eraseMinGeometry,
+               std::string driveType, std::string driveProtocol) :
+        deviceFile(std::move(deviceFile)), sysfsDir(std::move(sysfsDir)),
+        luksName(std::move(luksName)), locationCode(std::move(locationCode)),
+        eraseMaxGeometry(eraseMaxGeometry), eraseMinGeometry(eraseMinGeometry),
+        driveType(std::move(driveType)), driveProtocol(std::move(driveProtocol))
     {}
 };
 

@@ -3,6 +3,8 @@
 #include "getConfig.hpp"
 
 #include <boost/container/flat_map.hpp>
+#include <stdplus/fd/create.hpp>
+#include <stdplus/fd/managed.hpp>
 #include <util.hpp>
 #include <xyz/openbmc_project/Common/error.hpp>
 
@@ -382,6 +384,27 @@ TEST(utilTest, findSizeOfBlockDeviceFail)
 {
     using sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
     EXPECT_THROW(estoraged::util::findSizeOfBlockDevice("/nonexistent_device"),
+                 InternalFailure);
+}
+
+/* BLKFLSBUF is only supported for block devices. */
+TEST(utilTest, dropBlockDeviceCacheRegularFileFail)
+{
+    using sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
+    TestTmpDir tmpDir;
+    const std::filesystem::path testFileName = tmpDir.get() / "regular";
+    std::ofstream(testFileName) << "data";
+    stdplus::fd::ManagedFd fd = stdplus::fd::open(
+        testFileName.c_str(), stdplus::fd::OpenAccess::ReadOnly);
+    EXPECT_THROW(
+        estoraged::util::dropBlockDeviceCache(fd.get(), testFileName.string()),
+        InternalFailure);
+}
+
+TEST(utilTest, dropBlockDeviceCacheInvalidFdFail)
+{
+    using sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
+    EXPECT_THROW(estoraged::util::dropBlockDeviceCache(-1, "/dev/invalid"),
                  InternalFailure);
 }
 

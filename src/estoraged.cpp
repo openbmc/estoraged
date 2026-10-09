@@ -26,6 +26,7 @@
 
 #include <array>
 #include <cstdlib>
+#include <cstring>
 #include <filesystem>
 #include <string>
 #include <string_view>
@@ -34,6 +35,15 @@
 
 namespace estoraged
 {
+namespace
+{
+
+class FilesystemError : public std::runtime_error
+{
+    using std::runtime_error::runtime_error;
+};
+
+} // namespace
 
 using Association = std::tuple<std::string, std::string, std::string>;
 using sdbusplus::asio::PropertyPermission;
@@ -41,8 +51,6 @@ using sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
 using sdbusplus::xyz::openbmc_project::Common::Error::UnsupportedRequest;
 using sdbusplus::xyz::openbmc_project::Inventory::Item::server::Drive;
 using sdbusplus::xyz::openbmc_project::Inventory::Item::server::Volume;
-const char* fsRecoveryError = "Failed to recover filesystem";
-const char* fsMountError = "Failed to mount filesystem";
 
 EStoraged::EStoraged(
     std::unique_ptr<stdplus::Fd> fd, sdbusplus::asio::object_server& server,
@@ -470,7 +478,7 @@ void EStoraged::mountFilesystem()
         lg2::error("The fsck command failed: {RETVAL}", "RETVAL", retval,
                    "REDFISH_MESSAGE_ID",
                    std::string("OpenBMC.0.1.FixFilesystemFail"));
-        throw std::runtime_error(fsRecoveryError);
+        throw FilesystemError("Failed to recover filesystem");
     }
     if (retval > 0)
     {
@@ -513,7 +521,7 @@ void EStoraged::mountFilesystem()
                        "REDFISH_MESSAGE_ID",
                        std::string("OpenBMC.0.1.MountFilesystemFail"));
         }
-        throw std::runtime_error(fsMountError);
+        throw FilesystemError("Failed to mount filesystem");
     }
 
     lg2::info("Successfully mounted filesystem at {DIR}", "DIR", mountPoint,
@@ -527,21 +535,15 @@ void EStoraged::mountFilesystemLockOnError(bool lockOnError)
     {
         mountFilesystem();
     }
-    catch (const std::runtime_error& e)
+    catch (const FilesystemError&)
     {
-        if (std::strcmp(e.what(), fsRecoveryError) == 0 ||
-            std::strcmp(e.what(), fsMountError) == 0)
+        /* Lock the partition otherwise recovery actions will fail */
+        if (lockOnError)
         {
-            /* Lock the partition otherwise recovery actions will fail */
-            if (lockOnError)
-            {
-                deactivateLuksDev();
-            }
-            /* Throw a generic exception as not to break current expectations */
-            throw InternalFailure();
+            deactivateLuksDev();
         }
-        /* Forward unrelated runtime_error exceptions */
-        throw;
+        /* Throw a generic exception as not to break current expectations */
+        throw InternalFailure();
     }
 }
 

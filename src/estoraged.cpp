@@ -234,8 +234,29 @@ void EStoraged::formatLuks(const std::vector<uint8_t>& password,
     formatLuksDev(password);
     activateLuksDev(password);
 
-    createFilesystem();
-    mountFilesystemLockOnError(false);
+    try
+    {
+        createFilesystem();
+        mountFilesystemLockOnError(false);
+    }
+    catch (...)
+    {
+        /*
+         * Lock the LUKS device again such that the volume does not remain
+         * unlocked without a mounted filesystem.
+         */
+        try
+        {
+            deactivateLuksDev();
+        }
+        catch (...)
+        {
+            lg2::error("Failed to lock {DEV} after a format failure", "DEV",
+                       devPath, "REDFISH_MESSAGE_ID",
+                       std::string("OpenBMC.0.1.FormatFail"));
+        }
+        throw;
+    }
 }
 
 void EStoraged::erase(Volume::EraseMethod inEraseMethod)

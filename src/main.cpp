@@ -196,6 +196,17 @@ int main(void)
                 "',arg0namespace='" + estoraged::emmcConfigInterface + "'",
             eventHandler);
 
+        /*
+         * Entity Manager announces new configuration objects with the
+         * InterfacesAdded signal. Process these the same way as property
+         * changes such that a configuration that shows up late is not missed.
+         */
+        auto interfacesAddedMatch = std::make_unique<sdbusplus::match>(
+            static_cast<sdbusplus::bus_t&>(*conn),
+            sdbusplus::bus::match::rules::interfacesAddedAtPath(
+                "/xyz/openbmc_project/inventory/"),
+            eventHandler);
+
         lg2::info("Storage management service is running", "REDFISH_MESSAGE_ID",
                   std::string("OpenBMC.1.0.ServiceStarted"));
 

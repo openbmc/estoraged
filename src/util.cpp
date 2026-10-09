@@ -62,25 +62,15 @@ uint8_t findPredictedMediaLifeLeftPercent(const std::string& sysfsPath)
     // 0x0B <=> Exceeded its maximum estimated device life time
 
     uint16_t estA = 0, estB = 0;
-    std::ifstream lifeTimeFile;
-    try
-    {
-        lifeTimeFile.open(sysfsPath + "/life_time", std::ios_base::in);
-        lifeTimeFile >> std::hex >> estA;
-        lifeTimeFile >> std::hex >> estB;
-        if ((estA == 0) || (estA > 11) || (estB == 0) || (estB > 11))
-        {
-            throw InternalFailure();
-        }
-    }
-    catch (...)
+    std::ifstream lifeTimeFile(sysfsPath + "/life_time");
+    if (!(lifeTimeFile >> std::hex >> estA >> std::hex >> estB) ||
+        (estA == 0) || (estA > 11) || (estB == 0) || (estB > 11))
     {
         lg2::error("Unable to read life_time from sysfs", "REDFISH_MESSAGE_ID",
                    std::string("OpenBMC.0.1.LifeTimeFailure"));
-        lifeTimeFile.close();
         return 255;
     }
-    lifeTimeFile.close();
+
     // we are returning lowest LifeLeftPercent
     uint8_t maxLifeUsed = 0;
     if (estA > estB)
@@ -97,24 +87,13 @@ uint8_t findPredictedMediaLifeLeftPercent(const std::string& sysfsPath)
 
 std::string getPartNumber(const std::filesystem::path& sysfsPath)
 {
-    std::ifstream partNameFile;
+    std::ifstream partNameFile(sysfsPath / "name");
     std::string partName;
-    try
-    {
-        std::filesystem::path namePath(sysfsPath);
-        namePath /= "name";
-        partNameFile.open(namePath, std::ios_base::in);
-        partNameFile >> partName;
-    }
-    catch (...)
+    if (!(partNameFile >> partName) || partName.empty())
     {
         lg2::error("Unable to read name from sysfs", "REDFISH_MESSAGE_ID",
                    std::string("OpenBMC.0.1.PartNumberFailure"));
-    }
-    partNameFile.close();
-    if (partName.empty())
-    {
-        partName = "unknown";
+        return "unknown";
     }
 
     return partName;
@@ -122,24 +101,13 @@ std::string getPartNumber(const std::filesystem::path& sysfsPath)
 
 std::string getSerialNumber(const std::filesystem::path& sysfsPath)
 {
-    std::ifstream serialNumberFile;
+    std::ifstream serialNumberFile(sysfsPath / "serial");
     std::string serialNumber;
-    try
-    {
-        std::filesystem::path serialPath(sysfsPath);
-        serialPath /= "serial";
-        serialNumberFile.open(serialPath, std::ios_base::in);
-        serialNumberFile >> serialNumber;
-    }
-    catch (...)
+    if (!(serialNumberFile >> serialNumber) || serialNumber.empty())
     {
         lg2::error("Unable to read serial from sysfs", "REDFISH_MESSAGE_ID",
                    std::string("OpenBMC.0.1.SerialNumberFailure"));
-    }
-    serialNumberFile.close();
-    if (serialNumber.empty())
-    {
-        serialNumber = "unknown";
+        return "unknown";
     }
 
     return serialNumber;

@@ -23,13 +23,13 @@ using stdplus::fd::Fd;
 void Zero::writeZero(const uint64_t driveSize, Fd& fd)
 {
     uint64_t currentIndex = 0;
-    const std::array<const std::byte, blockSize> blockOfZeros{};
+    const std::array<std::byte, blockSize> blockOfZeros{};
 
     while (currentIndex < driveSize)
     {
-        uint32_t writeSize = currentIndex + blockSize < driveSize
-                                 ? blockSize
-                                 : driveSize - currentIndex;
+        size_t writeSize = currentIndex + blockSize < driveSize
+                               ? blockSize
+                               : driveSize - currentIndex;
         try
         {
             size_t written = 0;
@@ -73,13 +73,13 @@ void Zero::verifyZero(uint64_t driveSize, Fd& fd)
 {
     uint64_t currentIndex = 0;
     std::array<std::byte, blockSize> readArr{};
-    const std::array<const std::byte, blockSize> blockOfZeros{};
+    const std::array<std::byte, blockSize> blockOfZeros{};
 
     while (currentIndex < driveSize)
     {
-        uint32_t readSize = currentIndex + blockSize < driveSize
-                                ? blockSize
-                                : driveSize - currentIndex;
+        size_t readSize = currentIndex + blockSize < driveSize
+                              ? blockSize
+                              : driveSize - currentIndex;
         try
         {
             size_t read = 0;

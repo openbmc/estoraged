@@ -1026,6 +1026,12 @@ TEST(EMMCBackgroundOperation, EnableSuccess)
         std::move(mockFd), "/dev/test"));
 }
 
+TEST(EMMCBackgroundOperation, Null)
+{
+    EXPECT_FALSE(
+        estoraged::EStoraged::enableBackgroundOperation(nullptr, "/dev/test"));
+}
+
 TEST(HSMode, HsModeError)
 {
     std::unique_ptr<FdMock> mockFd = std::make_unique<FdMock>();

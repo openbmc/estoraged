@@ -1148,6 +1148,24 @@ TEST_F(FilesystemTest, DirectoryOperations)
     EXPECT_FALSE(fs.directoryExists(testDir));
 }
 
+TEST_F(FilesystemTest, DirectoryOperationsFailureDoesNotThrow)
+{
+    estoraged::Filesystem fs;
+    /* The parent directory does not exist. */
+    const std::filesystem::path missingParent =
+        testTmpDir() / "nonexistent_parent" / "dir";
+    EXPECT_NO_THROW(EXPECT_FALSE(fs.createDirectory(missingParent)));
+    EXPECT_NO_THROW(EXPECT_FALSE(fs.directoryExists(missingParent)));
+    EXPECT_NO_THROW(EXPECT_FALSE(fs.removeDirectory(missingParent)));
+
+    /* Removing a non-empty directory fails. */
+    const std::filesystem::path nonEmpty = testTmpDir() / "nonempty_dir";
+    ASSERT_TRUE(std::filesystem::create_directory(nonEmpty));
+    std::ofstream(nonEmpty / "file") << "x";
+    EXPECT_NO_THROW(EXPECT_FALSE(fs.removeDirectory(nonEmpty)));
+    std::filesystem::remove_all(nonEmpty);
+}
+
 TEST_F(FilesystemTest, MountFailure)
 {
     estoraged::Filesystem fs;

@@ -602,7 +602,6 @@ bool EStoraged::enableBackgroundOperation(std::unique_ptr<stdplus::Fd> fd,
                                           std::string_view devPath)
 {
     struct mmc_ioc_cmd idata{};
-    memset(&idata, 0, sizeof(idata));
     // Extended Device Specific Data. Contains information about the Device
     // capabilities and selected modes.
     std::array<uint8_t, /*EXT_CSD*/ 512> extCsd{};

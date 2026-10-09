@@ -15,6 +15,7 @@
 #include <linux/mmc/core.h>
 #include <linux/mmc/ioctl.h>
 #include <linux/mmc/mmc.h>
+#include <openssl/crypto.h>
 #include <openssl/rand.h>
 #include <sys/ioctl.h>
 
@@ -37,6 +38,27 @@ namespace estoraged
 {
 namespace
 {
+
+class ScopedCleanse
+{
+  public:
+    ScopedCleanse(void* ptr, std::size_t len) noexcept : ptr(ptr), len(len) {}
+    ~ScopedCleanse()
+    {
+        if (ptr != nullptr && len > 0)
+        {
+            OPENSSL_cleanse(ptr, len);
+        }
+    }
+    ScopedCleanse(const ScopedCleanse&) = delete;
+    ScopedCleanse& operator=(const ScopedCleanse&) = delete;
+    ScopedCleanse(ScopedCleanse&&) = delete;
+    ScopedCleanse& operator=(ScopedCleanse&&) = delete;
+
+  private:
+    void* ptr;
+    std::size_t len;
+};
 
 class FilesystemError : public std::runtime_error
 {
@@ -100,8 +122,9 @@ EStoraged::EStoraged(
     volumeInterface = objectServer.add_interface(
         objectPath, "xyz.openbmc_project.Inventory.Item.Volume");
     volumeInterface->register_method(
-        "FormatLuks", [this](const std::vector<uint8_t>& password,
-                             Volume::FilesystemType type) {
+        "FormatLuks",
+        [this](std::vector<uint8_t>& password, Volume::FilesystemType type) {
+            ScopedCleanse passwordCleaner(password.data(), password.size());
             this->formatLuks(password, type);
         });
     volumeInterface->register_method(
@@ -109,11 +132,15 @@ EStoraged::EStoraged(
         [this](Volume::EraseMethod eraseType) { this->erase(eraseType); });
     volumeInterface->register_method("Lock", [this]() { this->lock(); });
     volumeInterface->register_method(
-        "Unlock",
-        [this](std::vector<uint8_t>& password) { this->unlock(password); });
+        "Unlock", [this](std::vector<uint8_t>& password) {
+            ScopedCleanse passwordCleaner(password.data(), password.size());
+            this->unlock(password);
+        });
     volumeInterface->register_method(
-        "ChangePassword", [this](const std::vector<uint8_t>& oldPassword,
-                                 const std::vector<uint8_t>& newPassword) {
+        "ChangePassword", [this](std::vector<uint8_t>& oldPassword,
+                                 std::vector<uint8_t>& newPassword) {
+            ScopedCleanse oldCleaner(oldPassword.data(), oldPassword.size());
+            ScopedCleanse newCleaner(newPassword.data(), newPassword.size());
             this->changePassword(oldPassword, newPassword);
         });
     volumeInterface->register_property_r(
@@ -290,12 +317,12 @@ void EStoraged::lock()
     deactivateLuksDev();
 }
 
-void EStoraged::unlock(std::vector<uint8_t> password)
+void EStoraged::unlock(const std::vector<uint8_t>& password)
 {
     std::string msg = "OpenBMC.0.1.DriveUnlock";
     lg2::info("Starting unlock", "REDFISH_MESSAGE_ID", msg);
 
-    activateLuksDev(std::move(password));
+    activateLuksDev(password);
     mountFilesystemLockOnError(true);
 }
 
@@ -356,7 +383,7 @@ std::string_view EStoraged::getMountPoint() const
     return mountPoint;
 }
 
-void EStoraged::formatLuksDev(std::vector<uint8_t> password)
+void EStoraged::formatLuksDev(const std::vector<uint8_t>& password)
 {
     lg2::info("Formatting device {DEV}", "DEV", devPath, "REDFISH_MESSAGE_ID",
               std::string("OpenBMC.0.1.FormatLuksDev"));
@@ -371,6 +398,7 @@ void EStoraged::formatLuksDev(std::vector<uint8_t> password)
     /* Generate the volume key. */
     const std::size_t keySize = 64;
     std::vector<uint8_t> volumeKey(keySize);
+    ScopedCleanse keyCleaner(volumeKey.data(), volumeKey.size());
     if (RAND_bytes(volumeKey.data(), keySize) != 1)
     {
         lg2::error("Failed to create volume key", "REDFISH_MESSAGE_ID",
@@ -439,7 +467,7 @@ Drive::DriveEncryptionState EStoraged::findEncryptionStatus()
     }
 }
 
-void EStoraged::activateLuksDev(std::vector<uint8_t> password)
+void EStoraged::activateLuksDev(const std::vector<uint8_t>& password)
 {
     lg2::info("Activating LUKS dev {DEV}", "DEV", devPath, "REDFISH_MESSAGE_ID",
               std::string("OpenBMC.0.1.ActivateLuksDev"));

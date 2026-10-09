@@ -26,12 +26,12 @@ using ::stdplus::fd::ManagedFd;
 
 uint64_t findSizeOfBlockDevice(const std::string& devPath)
 {
-    ManagedFd fd;
     uint64_t bytes = 0;
     try
     {
         // open block dev
-        fd = stdplus::fd::open(devPath, stdplus::fd::OpenAccess::ReadOnly);
+        ManagedFd fd =
+            stdplus::fd::open(devPath, stdplus::fd::OpenAccess::ReadOnly);
         // get block size
         fd.ioctl(BLKGETSIZE64, &bytes);
     }
@@ -39,7 +39,7 @@ uint64_t findSizeOfBlockDevice(const std::string& devPath)
     {
         lg2::error("erase unable to open blockdev", "REDFISH_MESSAGE_ID",
                    std::string("OpenBMC.0.1.DriveEraseFailure"),
-                   "REDFISH_MESSAGE_ARGS", std::to_string(fd.get()));
+                   "REDFISH_MESSAGE_ARGS", devPath);
         throw InternalFailure();
     }
     return bytes;

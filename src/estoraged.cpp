@@ -27,7 +27,6 @@
 #include <array>
 #include <cstdlib>
 #include <filesystem>
-#include <iostream>
 #include <string>
 #include <string_view>
 #include <utility>
@@ -215,7 +214,6 @@ void EStoraged::formatLuks(const std::vector<uint8_t>& password,
 
 void EStoraged::erase(Volume::EraseMethod inEraseMethod)
 {
-    std::cerr << "Erasing encrypted eMMC" << std::endl;
     lg2::info("Starting erase", "REDFISH_MESSAGE_ID",
               std::string("OpenBMC.0.1.DriveErase"));
     switch (inEraseMethod)

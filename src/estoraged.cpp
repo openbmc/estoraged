@@ -24,6 +24,7 @@
 #include <stdplus/fd/managed.hpp>
 #include <xyz/openbmc_project/Common/error.hpp>
 
+#include <array>
 #include <cstdlib>
 #include <filesystem>
 #include <iostream>

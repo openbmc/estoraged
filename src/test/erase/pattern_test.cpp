@@ -35,13 +35,13 @@ TEST(pattern, patternPass)
                   std::ios::out | std::ios::binary | std::ios::trunc);
     testFile.close();
 
-    stdplus::fd::Fd&& writeFd =
+    stdplus::fd::ManagedFd writeFd =
         stdplus::fd::open(testFileName, stdplus::fd::OpenAccess::WriteOnly);
 
     Pattern pass(testFileName);
     EXPECT_NO_THROW(pass.writePattern(size, writeFd));
 
-    stdplus::fd::Fd&& readFd =
+    stdplus::fd::ManagedFd readFd =
         stdplus::fd::open(testFileName, stdplus::fd::OpenAccess::ReadOnly);
 
     EXPECT_NO_THROW(pass.verifyPattern(size, readFd));
@@ -61,12 +61,12 @@ TEST(pattern, patternNotDivisible)
                   std::ios::out | std::ios::binary | std::ios::trunc);
     testFile.close();
 
-    stdplus::fd::Fd&& writeFd =
+    stdplus::fd::ManagedFd writeFd =
         stdplus::fd::open(testFileName, stdplus::fd::OpenAccess::WriteOnly);
     Pattern pass(testFileName);
     EXPECT_NO_THROW(pass.writePattern(size, writeFd));
 
-    stdplus::fd::Fd&& readFd =
+    stdplus::fd::ManagedFd readFd =
         stdplus::fd::open(testFileName, stdplus::fd::OpenAccess::ReadOnly);
     EXPECT_NO_THROW(pass.verifyPattern(size, readFd));
 }
@@ -85,12 +85,12 @@ TEST(pattern, patternsDontMatch)
                    sizeof(dummyValue));
     testFile.close();
 
-    stdplus::fd::Fd&& writeFd =
+    stdplus::fd::ManagedFd writeFd =
         stdplus::fd::open(testFileName, stdplus::fd::OpenAccess::WriteOnly);
 
     EXPECT_NO_THROW(pass.writePattern(size - sizeof(dummyValue), writeFd));
 
-    stdplus::fd::Fd&& readFd =
+    stdplus::fd::ManagedFd readFd =
         stdplus::fd::open(testFileName, stdplus::fd::OpenAccess::ReadOnly);
 
     EXPECT_THROW(pass.verifyPattern(size, readFd), InternalFailure);

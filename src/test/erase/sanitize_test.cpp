@@ -25,12 +25,12 @@ class IOCTLWrapperMock : public estoraged::IOCTLWrapperInterface
   public:
     MOCK_METHOD(int, doIoctl,
                 (std::string_view devPath, unsigned long request,
-                 struct mmc_ioc_cmd idata),
+                 struct mmc_ioc_cmd& idata),
                 (override));
 
     MOCK_METHOD(int, doIoctlMulti,
                 (std::string_view devPath, unsigned long request,
-                 struct estoraged::MmcIoMultiCmdErase),
+                 struct estoraged::MmcIoMultiCmdErase& data),
                 (override));
 };
 

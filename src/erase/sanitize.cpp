@@ -123,7 +123,7 @@ int IOCTLWrapperImpl::doIoctl(std::string_view devPath, unsigned long request,
 
 {
     ManagedFd fd = stdplus::fd::open(std::string(devPath).c_str(),
-                                     stdplus::fd::OpenAccess::ReadOnly);
+                                     stdplus::fd::OpenAccess::ReadWrite);
 
     return fd.ioctl(request, static_cast<void*>(&data));
 }
@@ -133,7 +133,7 @@ int IOCTLWrapperImpl::doIoctlMulti(std::string_view devPath,
                                    struct MmcIoMultiCmdErase data)
 {
     ManagedFd fd = stdplus::fd::open(std::string(devPath).c_str(),
-                                     stdplus::fd::OpenAccess::ReadOnly);
+                                     stdplus::fd::OpenAccess::ReadWrite);
 
     return fd.ioctl(request, static_cast<void*>(&data));
 }

@@ -34,10 +34,10 @@ TEST(Zeros, zeroPass)
     testFile.close();
     uint64_t size = 4096;
     Zero pass(testFileName);
-    stdplus::fd::Fd&& write =
+    stdplus::fd::ManagedFd write =
         stdplus::fd::open(testFileName, stdplus::fd::OpenAccess::ReadWrite);
     EXPECT_NO_THROW(pass.writeZero(size, write));
-    stdplus::fd::Fd&& read =
+    stdplus::fd::ManagedFd read =
         stdplus::fd::open(testFileName, stdplus::fd::OpenAccess::ReadWrite);
     EXPECT_NO_THROW(pass.verifyZero(size, read));
 }
@@ -57,11 +57,11 @@ TEST(Zeros, notDivisible)
     uint64_t size = 4097;
     // 4097 is not divisible by the block size, and we expect no errors
 
-    stdplus::fd::Fd&& write =
+    stdplus::fd::ManagedFd write =
         stdplus::fd::open(testFileName, stdplus::fd::OpenAccess::ReadWrite);
     Zero pass(testFileName);
     EXPECT_NO_THROW(pass.writeZero(size, write));
-    stdplus::fd::Fd&& read =
+    stdplus::fd::ManagedFd read =
         stdplus::fd::open(testFileName, stdplus::fd::OpenAccess::ReadWrite);
     EXPECT_NO_THROW(pass.verifyZero(size, read));
 }
@@ -78,7 +78,7 @@ TEST(Zeros, notZeroStart)
                    sizeof(dummyValue));
     testFile.close();
     uint64_t size = 4096;
-    stdplus::fd::Fd&& readWrite =
+    stdplus::fd::ManagedFd readWrite =
         stdplus::fd::open(testFileName, stdplus::fd::OpenAccess::ReadWrite);
 
     Zero pass(testFileName);
@@ -104,7 +104,7 @@ TEST(Zeros, notZeroEnd)
     uint64_t size = 4096;
     Zero pass(testFileName);
     uint32_t dummyValue = 88;
-    stdplus::fd::Fd&& write =
+    stdplus::fd::ManagedFd write =
         stdplus::fd::open(testFileName, stdplus::fd::OpenAccess::ReadWrite);
     EXPECT_NO_THROW(pass.writeZero(size - sizeof(dummyValue), write));
 
@@ -113,7 +113,7 @@ TEST(Zeros, notZeroEnd)
     testFile << dummyValue;
     testFile.close();
 
-    stdplus::fd::Fd&& read =
+    stdplus::fd::ManagedFd read =
         stdplus::fd::open(testFileName, stdplus::fd::OpenAccess::ReadWrite);
     EXPECT_THROW(pass.verifyZero(size, read), InternalFailure);
 }

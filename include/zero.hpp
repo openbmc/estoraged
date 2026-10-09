@@ -33,7 +33,7 @@ class Zero : public Erase
      */
     void writeZero()
     {
-        stdplus::fd::Fd&& fd = stdplus::fd::open(
+        stdplus::fd::ManagedFd fd = stdplus::fd::open(
             devPath, stdplus::fd::OpenFlags(stdplus::fd::OpenAccess::WriteOnly)
                          .set(stdplus::fd::OpenFlag::Sync));
         writeZero(util::findSizeOfBlockDevice(devPath), fd);
@@ -51,7 +51,7 @@ class Zero : public Erase
      */
     void verifyZero()
     {
-        stdplus::fd::Fd&& fd =
+        stdplus::fd::ManagedFd fd =
             stdplus::fd::open(devPath, stdplus::fd::OpenAccess::ReadOnly);
         verifyZero(util::findSizeOfBlockDevice(devPath), fd);
     }

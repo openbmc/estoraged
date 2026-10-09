@@ -158,6 +158,54 @@ TEST(utilTest, findDevicePass)
     EXPECT_EQ(2U, std::filesystem::remove_all(searchDir / "def"));
 }
 
+/* Helper that creates a dummy sysfs block device with the given type. */
+static void createDummyBlockDevice(const std::filesystem::path& searchDir,
+                                   const std::string& name,
+                                   const std::string& type)
+{
+    std::filesystem::create_directories(searchDir / name / "device");
+    std::ofstream typeFile(searchDir / name / "device/type",
+                           std::ios::out | std::ios::trunc);
+    typeFile << type;
+}
+
+/* Test case where eMMC boot partitions and partitions are skipped. */
+TEST(utilTest, findDeviceSkipsBootAndPartitions)
+{
+    TestTmpDir tmpDir;
+    const std::filesystem::path& searchDir = tmpDir.get();
+    estoraged::StorageData data;
+    data.emplace(std::string("Type"),
+                 estoraged::BasicVariantType("EmmcDevice"));
+
+    createDummyBlockDevice(searchDir, "mmcblk0boot0", "MMC");
+    createDummyBlockDevice(searchDir, "mmcblk0boot1", "MMC");
+    createDummyBlockDevice(searchDir, "mmcblk0p1", "MMC");
+    std::ofstream(searchDir / "mmcblk0p1/partition") << "1";
+    createDummyBlockDevice(searchDir, "mmcblk0", "MMC");
+
+    auto result = estoraged::util::findDevice(data, searchDir);
+    ASSERT_TRUE(result.has_value());
+    EXPECT_EQ("/dev/mmcblk0", result->deviceFile.string());
+    EXPECT_EQ(searchDir / "mmcblk0/device", result->sysfsDir);
+}
+
+/* Test case where only eMMC boot partitions and partitions exist. */
+TEST(utilTest, findDeviceOnlyBootAndPartitionsFail)
+{
+    TestTmpDir tmpDir;
+    const std::filesystem::path& searchDir = tmpDir.get();
+    estoraged::StorageData data;
+    data.emplace(std::string("Type"),
+                 estoraged::BasicVariantType("EmmcDevice"));
+
+    createDummyBlockDevice(searchDir, "mmcblk0boot0", "MMC");
+    createDummyBlockDevice(searchDir, "mmcblk0p1", "MMC");
+    std::ofstream(searchDir / "mmcblk0p1/partition") << "1";
+
+    EXPECT_FALSE(estoraged::util::findDevice(data, searchDir).has_value());
+}
+
 /* Test case where we successfully find the device file with updating the
  * min/max geometry. */
 TEST(utilTest, findDeviceWithMaxAndMinGeometryPass)

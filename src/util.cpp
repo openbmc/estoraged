@@ -255,6 +255,20 @@ std::optional<DeviceInfo> findDevice(const StorageData& data,
     for (const auto& dirEntry : dirIter)
     {
         /*
+         * Skip eMMC hardware boot partitions (e.g. mmcblk0boot0) and
+         * partitions of block devices. The 'device' link of a boot partition
+         * points to the same card as the user data area, so its 'type' file
+         * reports MMC too. Selecting such a device would cause destructive
+         * operations like FormatLuks or Erase to target the wrong device.
+         */
+        const std::string entryName = dirEntry.path().filename().string();
+        if (entryName.find("boot") != std::string::npos ||
+            std::filesystem::exists(dirEntry.path() / "partition", ec))
+        {
+            continue;
+        }
+
+        /*
          * We will look at the 'type' file to determine if this is an MMC
          * device.
          */

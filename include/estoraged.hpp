@@ -261,13 +261,17 @@ class EStoraged
      */
     CryptHandle loadLuksHeader();
 
+    /** @brief Check whether a LUKS header is present on the device.
+     *
+     *  @returns Encrypted if the LUKS header could be loaded and Unencrypted
+     *    otherwise.
+     */
+    Drive::DriveEncryptionState findEncryptionStatus();
+
     /** @brief Unlock the device.
      *
      *  @param[in] password - password to activate the LUKS device.
      */
-
-    Drive::DriveEncryptionState findEncryptionStatus();
-
     void activateLuksDev(std::vector<uint8_t> password);
 
     /** @brief Create the filesystem on the LUKS device.

@@ -325,4 +325,14 @@ TEST(utilTest, findSizeOfBlockDeviceFail)
                  InternalFailure);
 }
 
+TEST(utilTest, findDeviceNonStringTypeFail)
+{
+    estoraged::StorageData data;
+    data.emplace(std::string("Type"), estoraged::BasicVariantType(uint64_t{1}));
+
+    auto result =
+        estoraged::util::findDevice(data, std::filesystem::path("./"));
+    EXPECT_FALSE(result.has_value());
+}
+
 } // namespace estoraged_test

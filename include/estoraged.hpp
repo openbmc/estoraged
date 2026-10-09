@@ -155,10 +155,11 @@ class EStoraged
      *  @details This enables the BKOPS flag on the eMMC device and set it to
      * manual mode.
      *
-     * @throw BkopsUnsupported BKOPS not support for the MMC
+     * @throw BkopsIoctlFailure Failed to read the EXT_CSD register of the MMC
      * @throw BkopsEnableFailure Failed to enable BKOPS on the MMC
      *
-     * @returns true if we enabled the BKOPS on the MMC
+     * @returns true if we enabled the BKOPS on the MMC, false if fd is null,
+     * if BKOPS is not supported or if BKOPS is already enabled
      */
     static bool enableBackgroundOperation(std::unique_ptr<stdplus::Fd> fd,
                                           std::string_view devPath);

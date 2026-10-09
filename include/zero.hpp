@@ -56,6 +56,8 @@ class Zero : public Erase
     {
         stdplus::fd::ManagedFd fd =
             stdplus::fd::open(devPath, stdplus::fd::OpenAccess::ReadOnly);
+        /* Make sure that the data is read from the medium. */
+        util::dropBlockDeviceCache(fd.get(), devPath);
         verifyZero(util::findSizeOfBlockDevice(devPath), fd);
     }
 

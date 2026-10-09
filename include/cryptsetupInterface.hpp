@@ -244,7 +244,8 @@ class Cryptsetup : public CryptsetupInterface
 
     std::string cryptGetDir() override
     {
-        return {crypt_get_dir()};
+        const char* dir = crypt_get_dir();
+        return dir != nullptr ? std::string(dir) : "/dev/mapper";
     }
 };
 

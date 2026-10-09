@@ -28,8 +28,9 @@ class Pattern : public Erase
      */
     void writePattern()
     {
-        stdplus::fd::Fd&& fd =
-            stdplus::fd::open(devPath, stdplus::fd::OpenAccess::WriteOnly);
+        stdplus::fd::Fd&& fd = stdplus::fd::open(
+            devPath, stdplus::fd::OpenFlags(stdplus::fd::OpenAccess::WriteOnly)
+                         .set(stdplus::fd::OpenFlag::Sync));
         writePattern(util::findSizeOfBlockDevice(devPath), fd);
     }
 

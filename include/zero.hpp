@@ -33,8 +33,9 @@ class Zero : public Erase
      */
     void writeZero()
     {
-        stdplus::fd::Fd&& fd =
-            stdplus::fd::open(devPath, stdplus::fd::OpenAccess::WriteOnly);
+        stdplus::fd::Fd&& fd = stdplus::fd::open(
+            devPath, stdplus::fd::OpenFlags(stdplus::fd::OpenAccess::WriteOnly)
+                         .set(stdplus::fd::OpenFlag::Sync));
         writeZero(util::findSizeOfBlockDevice(devPath), fd);
     }
 

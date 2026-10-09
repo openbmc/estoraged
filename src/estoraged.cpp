@@ -305,6 +305,13 @@ void EStoraged::changePassword(const std::vector<uint8_t>& oldPassword,
     lg2::info("Starting change password", "REDFISH_MESSAGE_ID",
               std::string("OpenBMC.0.1.DrivePasswordChanged"));
 
+    if (oldPassword.empty() || newPassword.empty())
+    {
+        lg2::error("Empty password is not allowed", "REDFISH_MESSAGE_ID",
+                   std::string("OpenBMC.0.1.DrivePasswordChangeFail"));
+        throw InternalFailure();
+    }
+
     CryptHandle cryptHandle = loadLuksHeader();
 
     int retval = cryptIface->cryptKeyslotChangeByPassphrase(
@@ -353,6 +360,13 @@ void EStoraged::formatLuksDev(std::vector<uint8_t> password)
 {
     lg2::info("Formatting device {DEV}", "DEV", devPath, "REDFISH_MESSAGE_ID",
               std::string("OpenBMC.0.1.FormatLuksDev"));
+
+    if (password.empty())
+    {
+        lg2::error("Empty password is not allowed", "REDFISH_MESSAGE_ID",
+                   std::string("OpenBMC.0.1.FormatLuksDevFail"));
+        throw InternalFailure();
+    }
 
     /* Generate the volume key. */
     const std::size_t keySize = 64;
@@ -429,6 +443,13 @@ void EStoraged::activateLuksDev(std::vector<uint8_t> password)
 {
     lg2::info("Activating LUKS dev {DEV}", "DEV", devPath, "REDFISH_MESSAGE_ID",
               std::string("OpenBMC.0.1.ActivateLuksDev"));
+
+    if (password.empty())
+    {
+        lg2::error("Empty password is not allowed", "REDFISH_MESSAGE_ID",
+                   std::string("OpenBMC.0.1.ActivateLuksDevFail"));
+        throw InternalFailure();
+    }
 
     /* Create the handle. */
     CryptHandle cryptHandle = loadLuksHeader();

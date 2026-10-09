@@ -129,7 +129,7 @@ class EStoraged
      *
      *  @param[in] password - password for the LUKS device.
      */
-    void unlock(std::vector<uint8_t> password);
+    void unlock(const std::vector<uint8_t>& password);
 
     /** @brief Change the password for the LUKS device.
      *
@@ -254,7 +254,7 @@ class EStoraged
      *
      *  @param[in] password - password to set for the LUKS device.
      */
-    void formatLuksDev(std::vector<uint8_t> password);
+    void formatLuksDev(const std::vector<uint8_t>& password);
 
     /** @brief check the LUKS header, for devPath
      *
@@ -273,7 +273,7 @@ class EStoraged
      *
      *  @param[in] password - password to activate the LUKS device.
      */
-    void activateLuksDev(std::vector<uint8_t> password);
+    void activateLuksDev(const std::vector<uint8_t>& password);
 
     /** @brief Create the filesystem on the LUKS device.
      *  @details The LUKS device should already be activated, i.e. unlocked.

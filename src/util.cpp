@@ -315,10 +315,11 @@ std::optional<DeviceInfo> findDevice(const StorageData& data,
                 deviceFile /= deviceName;
 
                 std::string luksName = "luks-" + deviceName.string();
-                return DeviceInfo{deviceFile,       sysfsDir,
-                                  luksName,         locationCode,
-                                  eraseMaxGeometry, eraseMinGeometry,
-                                  driveType,        driveProtocol};
+                return DeviceInfo{
+                    std::move(deviceFile), std::move(sysfsDir),
+                    std::move(luksName),   std::move(locationCode),
+                    eraseMaxGeometry,      eraseMinGeometry,
+                    std::move(driveType),  std::move(driveProtocol)};
             }
         }
         catch (...)

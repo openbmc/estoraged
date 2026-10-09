@@ -8,6 +8,7 @@
 #include <initializer_list>
 #include <string>
 #include <string_view>
+#include <system_error>
 #include <vector>
 
 namespace estoraged
@@ -150,17 +151,20 @@ class Filesystem : public FilesystemInterface
 
     bool createDirectory(const std::filesystem::path& p) override
     {
-        return std::filesystem::create_directory(p);
+        std::error_code ec;
+        return std::filesystem::create_directory(p, ec) && !ec;
     }
 
     bool removeDirectory(const std::filesystem::path& p) override
     {
-        return std::filesystem::remove(p);
+        std::error_code ec;
+        return std::filesystem::remove(p, ec) && !ec;
     }
 
     bool directoryExists(const std::filesystem::path& p) override
     {
-        return std::filesystem::is_directory(std::filesystem::status(p));
+        std::error_code ec;
+        return std::filesystem::is_directory(p, ec) && !ec;
     }
 
     int runFsck(std::initializer_list<std::string_view> args) override

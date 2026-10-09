@@ -9,6 +9,8 @@ namespace estoraged
 class Erase
 {
   public:
+    virtual ~Erase() = default;
+
     /** @brief creates an erase object
      *  @param inDevPath the linux path for the block device
      */

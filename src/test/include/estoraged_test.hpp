@@ -1,3 +1,4 @@
+#pragma once
 
 #include "cryptErase.hpp"
 #include "cryptsetupInterface.hpp"
@@ -6,17 +7,61 @@
 
 #include <unistd.h>
 
+#include <cerrno>
+#include <cstdlib>
 #include <exception>
 #include <filesystem>
 #include <initializer_list>
 #include <string>
 #include <string_view>
+#include <system_error>
 
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
 namespace estoraged_test
 {
+
+/*
+ * Temporary scratch directory created with mkdtemp() so that tests do not
+ * leave stray files in the working directory or interfere with concurrent test
+ * runs. The directory and its contents are removed on destruction.
+ */
+class TestTmpDir
+{
+  public:
+    TestTmpDir()
+    {
+        std::filesystem::path tmplPath =
+            std::filesystem::temp_directory_path() / "estoraged_test.XXXXXX";
+        std::string tmpl = tmplPath.string();
+        if (mkdtemp(tmpl.data()) == nullptr)
+        {
+            throw std::system_error(errno, std::generic_category(),
+                                    "mkdtemp(" + tmpl + ")");
+        }
+        dir = tmpl;
+    }
+
+    ~TestTmpDir()
+    {
+        std::error_code ec;
+        std::filesystem::remove_all(dir, ec);
+    }
+
+    TestTmpDir(const TestTmpDir&) = delete;
+    TestTmpDir& operator=(const TestTmpDir&) = delete;
+    TestTmpDir(TestTmpDir&&) = delete;
+    TestTmpDir& operator=(TestTmpDir&&) = delete;
+
+    const std::filesystem::path& get() const
+    {
+        return dir;
+    }
+
+  private:
+    std::filesystem::path dir;
+};
 
 class MockFilesystemInterface : public estoraged::FilesystemInterface
 {

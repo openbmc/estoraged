@@ -1,4 +1,5 @@
 #include "estoraged_conf.hpp"
+#include "estoraged_test.hpp"
 #include "zero.hpp"
 
 #include <fcntl.h>
@@ -26,7 +27,8 @@ using testing::Return;
 
 TEST(Zeros, zeroPass)
 {
-    std::string testFileName = "testfile_pass";
+    TestTmpDir tmpDir;
+    std::string testFileName = (tmpDir.get() / "testfile_pass").string();
     std::ofstream testFile;
 
     testFile.open(testFileName,
@@ -47,7 +49,9 @@ TEST(Zeros, zeroPass)
  */
 TEST(Zeros, notDivisible)
 {
-    std::string testFileName = "testfile_notDivisible";
+    TestTmpDir tmpDir;
+    std::string testFileName =
+        (tmpDir.get() / "testfile_notDivisible").string();
     std::ofstream testFile;
 
     testFile.open(testFileName,
@@ -68,7 +72,9 @@ TEST(Zeros, notDivisible)
 
 TEST(Zeros, notZeroStart)
 {
-    std::string testFileName = "testfile_notZeroStart";
+    TestTmpDir tmpDir;
+    std::string testFileName =
+        (tmpDir.get() / "testfile_notZeroStart").string();
     std::ofstream testFile;
 
     // open the file and write none zero to it
@@ -94,7 +100,8 @@ TEST(Zeros, notZeroStart)
 
 TEST(Zeros, notZeroEnd)
 {
-    std::string testFileName = "testfile_notZeroEnd";
+    TestTmpDir tmpDir;
+    std::string testFileName = (tmpDir.get() / "testfile_notZeroEnd").string();
     std::ofstream testFile;
 
     testFile.open(testFileName,

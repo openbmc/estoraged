@@ -220,4 +220,21 @@ TEST(pattern, driveIsSmaller)
     EXPECT_THROW(tryPattern.verifyPattern(size, mocks), InternalFailure);
 }
 
+TEST(pattern, writeReadSystemError)
+{
+    uint64_t size = 4096;
+    Pattern tryPattern("testfile_systemError");
+    stdplus::fd::FdMock mocks;
+
+    EXPECT_CALL(mocks, write(_))
+        .WillOnce(testing::Throw(
+            std::system_error(EIO, std::generic_category(), "write failed")));
+    EXPECT_THROW(tryPattern.writePattern(size, mocks), InternalFailure);
+
+    EXPECT_CALL(mocks, read(_))
+        .WillOnce(testing::Throw(
+            std::system_error(EIO, std::generic_category(), "read failed")));
+    EXPECT_THROW(tryPattern.verifyPattern(size, mocks), InternalFailure);
+}
+
 } // namespace estoraged_test

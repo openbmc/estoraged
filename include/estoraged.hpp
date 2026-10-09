@@ -12,7 +12,6 @@
 #include <sdbusplus/server/object.hpp>
 #include <stdplus/fd/create.hpp>
 #include <stdplus/fd/managed.hpp>
-#include <util.hpp>
 #include <xyz/openbmc_project/Inventory/Item/Drive/server.hpp>
 #include <xyz/openbmc_project/Inventory/Item/Volume/server.hpp>
 

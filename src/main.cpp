@@ -13,7 +13,6 @@
 #include <sdbusplus/asio/object_server.hpp>
 #include <sdbusplus/bus.hpp>
 #include <sdbusplus/bus/match.hpp>
-#include <util.hpp>
 
 #include <cstdlib>
 #include <filesystem>

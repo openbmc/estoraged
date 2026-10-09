@@ -33,17 +33,16 @@ void Pattern::writePattern(const uint64_t driveSize, Fd& fd)
     // random number generator seeded with a constant value will
     // generate a predictable sequence of values NOLINTNEXTLINE
     std::minstd_rand0 generator(seed);
-    std::array<std::byte, blockSize> randArr{};
+    std::array<uint32_t, blockSizeUsing32> randArr{};
 
     while (currentIndex < driveSize)
     {
         // generate a 4k block of prng
-        std::array<uint32_t, blockSizeUsing32>* randArrFill =
-            reinterpret_cast<std::array<uint32_t, blockSizeUsing32>*>(&randArr);
         for (uint32_t i = 0; i < blockSizeUsing32; i++)
         {
-            (*randArrFill)[i] = generator();
+            randArr[i] = generator();
         }
+        auto randBytes = std::as_bytes(std::span{randArr});
         // if we can write all 4k bytes do that, else write the remainder
         size_t writeSize = currentIndex + blockSize < driveSize
                                ? blockSize
@@ -52,8 +51,7 @@ void Pattern::writePattern(const uint64_t driveSize, Fd& fd)
         size_t retry = 0;
         while (written < writeSize)
         {
-            written += fd.write(std::span{randArr}.subspan(written,
-                                                           writeSize - written))
+            written += fd.write(randBytes.subspan(written, writeSize - written))
                            .size();
             if (written == writeSize)
             {
@@ -82,7 +80,7 @@ void Pattern::verifyPattern(const uint64_t driveSize, Fd& fd)
     // random number generator seeded with a constant value will
     // generate a predictable sequence of values NOLINTNEXTLINE
     std::minstd_rand0 generator(seed);
-    std::array<std::byte, blockSize> randArr{};
+    std::array<uint32_t, blockSizeUsing32> randArr{};
     std::array<std::byte, blockSize> readArr{};
 
     while (currentIndex < driveSize)
@@ -92,12 +90,9 @@ void Pattern::verifyPattern(const uint64_t driveSize, Fd& fd)
                               : driveSize - currentIndex;
         try
         {
-            std::array<uint32_t, blockSizeUsing32>* randArrFill =
-                reinterpret_cast<std::array<uint32_t, blockSizeUsing32>*>(
-                    &randArr);
             for (uint32_t i = 0; i < blockSizeUsing32; i++)
             {
-                (*randArrFill)[i] = generator();
+                randArr[i] = generator();
             }
             size_t read = 0;
             size_t retry = 0;
@@ -132,8 +127,9 @@ void Pattern::verifyPattern(const uint64_t driveSize, Fd& fd)
             throw InternalFailure();
         }
 
-        if (!std::ranges::equal(std::span{randArr}.subspan(0, readSize),
-                                std::span{readArr}.subspan(0, readSize)))
+        if (!std::ranges::equal(
+                std::as_bytes(std::span{randArr}).subspan(0, readSize),
+                std::span{readArr}.subspan(0, readSize)))
         {
             lg2::error("Estoraged erase pattern does not match",
                        "REDFISH_MESSAGE_ID",

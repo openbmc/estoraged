@@ -50,7 +50,7 @@ class Pattern : public Erase
      */
     void verifyPattern()
     {
-        stdplus::fd::Fd&& fd =
+        stdplus::fd::ManagedFd fd =
             stdplus::fd::open(devPath, stdplus::fd::OpenAccess::ReadOnly);
         verifyPattern(util::findSizeOfBlockDevice(devPath), fd);
     }

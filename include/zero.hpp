@@ -54,7 +54,7 @@ class Zero : public Erase
      */
     void verifyZero()
     {
-        stdplus::fd::Fd&& fd =
+        stdplus::fd::ManagedFd fd =
             stdplus::fd::open(devPath, stdplus::fd::OpenAccess::ReadOnly);
         verifyZero(util::findSizeOfBlockDevice(devPath), fd);
     }

@@ -51,48 +51,6 @@ static auto fsckDevpathIs(const auto& devPath)
     return ElementsAre("-t", "ext4", "-y", devPath);
 }
 
-/*
- * Per-process scratch directory. It is created with mkdtemp() so that test
- * runs that execute concurrently on the same host do not interfere with each
- * other. The directory and its contents are removed when the test program
- * exits.
- */
-class TestTmpDir
-{
-  public:
-    TestTmpDir()
-    {
-        std::filesystem::path tmplPath =
-            std::filesystem::temp_directory_path() / "estoraged_test.XXXXXX";
-        std::string tmpl = tmplPath.string();
-        if (mkdtemp(tmpl.data()) == nullptr)
-        {
-            throw std::system_error(errno, std::generic_category(),
-                                    "mkdtemp(" + tmpl + ")");
-        }
-        dir = tmpl;
-    }
-
-    ~TestTmpDir()
-    {
-        std::error_code ec;
-        std::filesystem::remove_all(dir, ec);
-    }
-
-    TestTmpDir(const TestTmpDir&) = delete;
-    TestTmpDir& operator=(const TestTmpDir&) = delete;
-    TestTmpDir(TestTmpDir&&) = delete;
-    TestTmpDir& operator=(TestTmpDir&&) = delete;
-
-    const std::filesystem::path& get() const
-    {
-        return dir;
-    }
-
-  private:
-    std::filesystem::path dir;
-};
-
 static const std::filesystem::path& testTmpDir()
 {
     static const TestTmpDir tmpDir;

@@ -69,4 +69,15 @@ TEST(Sanitize, Sanitize_emmcSanitize)
     EXPECT_THROW(ioctlSanitize.doSanitize(4000000000), InternalFailure);
 }
 
+TEST(Sanitize, Sanitize_InvalidDriveSize)
+{
+    std::unique_ptr<IOCTLWrapperMock> mockIOCTL =
+        std::make_unique<IOCTLWrapperMock>();
+    estoraged::Sanitize sanitize("/dev/null", std::move(mockIOCTL));
+    EXPECT_THROW(sanitize.doSanitize(0), InternalFailure);
+    EXPECT_THROW(sanitize.doSanitize(511), InternalFailure);
+    EXPECT_THROW(sanitize.doSanitize((uint64_t{1} << 32) * 512 + 512),
+                 InternalFailure);
+}
+
 } // namespace estoraged_test

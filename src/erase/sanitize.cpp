@@ -13,6 +13,8 @@
 
 #include <array>
 #include <cstddef>
+#include <cstdint>
+#include <limits>
 #include <span>
 #include <string>
 #include <string_view>
@@ -76,6 +78,12 @@ void Sanitize::emmcErase(uint64_t driveSize)
     uint64_t sectorSize = 0x200; // default value see eMMC spec 6.6.34.
                                  // NOTE: 0x200 is only valid for eMMC greater
                                  // then 2 GB
+    if (driveSize < sectorSize ||
+        (driveSize / sectorSize) - 1 > std::numeric_limits<uint32_t>::max())
+    {
+        throw InternalFailure();
+    }
+
     struct MmcIoMultiCmdErase eraseCmd = {};
 
     eraseCmd.num_of_cmds = 3;
@@ -85,7 +93,7 @@ void Sanitize::emmcErase(uint64_t driveSize)
     eraseCmd.cmds[0].write_flag = 1;
 
     eraseCmd.cmds[1].opcode = mmcEraseGroupEnd;
-    eraseCmd.cmds[1].arg = (driveSize / sectorSize) - 1;
+    eraseCmd.cmds[1].arg = static_cast<uint32_t>((driveSize / sectorSize) - 1);
     eraseCmd.cmds[1].flags = mmcRspSpiR1 | mmcRspR1 | mmcCmdAc;
     eraseCmd.cmds[1].write_flag = 1;
 

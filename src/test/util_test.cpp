@@ -3,6 +3,7 @@
 
 #include <boost/container/flat_map.hpp>
 #include <util.hpp>
+#include <xyz/openbmc_project/Common/error.hpp>
 
 #include <filesystem>
 #include <fstream>
@@ -315,6 +316,13 @@ TEST(utilTest, findDeviceNotFoundFail)
     /* Delete the dummy files. */
     EXPECT_EQ(3U, std::filesystem::remove_all("abc"));
     EXPECT_EQ(2U, std::filesystem::remove_all("def"));
+}
+
+TEST(utilTest, findSizeOfBlockDeviceFail)
+{
+    using sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
+    EXPECT_THROW(estoraged::util::findSizeOfBlockDevice("/nonexistent_device"),
+                 InternalFailure);
 }
 
 } // namespace estoraged_test

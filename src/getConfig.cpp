@@ -83,7 +83,7 @@ void GetStorageConfiguration::getConfiguration()
             {
                 if (objDict.empty())
                 {
-                    return;
+                    continue;
                 }
                 const std::string& objOwner = objDict.begin()->first;
                 /* Look for the config interface exposed by this object. */

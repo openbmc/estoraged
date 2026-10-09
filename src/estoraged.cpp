@@ -599,6 +599,11 @@ std::string_view EStoraged::getCryptDevicePath() const
 bool EStoraged::enableBackgroundOperation(std::unique_ptr<stdplus::Fd> fd,
                                           std::string_view devPath)
 {
+    if (fd == nullptr)
+    {
+        return false;
+    }
+
     struct mmc_ioc_cmd idata{};
     // Extended Device Specific Data. Contains information about the Device
     // capabilities and selected modes.

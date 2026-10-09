@@ -320,6 +320,13 @@ TEST(utilTest, findDeviceNotFoundFail)
     EXPECT_EQ(2U, std::filesystem::remove_all("def"));
 }
 
+TEST(utilTest, findSizeOfBlockDeviceFail)
+{
+    using sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
+    EXPECT_THROW(estoraged::util::findSizeOfBlockDevice("/nonexistent_device"),
+                 InternalFailure);
+}
+
 TEST(utilTest, syncBlockDeviceRegularFilePass)
 {
     const std::string testFileName = "./syncBlockDeviceTestFile";

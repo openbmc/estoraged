@@ -14,12 +14,14 @@
 #include <sdbusplus/bus.hpp>
 #include <sdbusplus/bus/match.hpp>
 
+#include <algorithm>
 #include <cstdlib>
 #include <filesystem>
 #include <iostream>
 #include <memory>
 #include <optional>
 #include <string>
+#include <vector>
 
 /*
  * Get the configuration objects from Entity Manager and create new D-Bus
@@ -206,6 +208,45 @@ int main(void)
             sdbusplus::bus::match::rules::interfacesAddedAtPath(
                 "/xyz/openbmc_project/inventory/"),
             eventHandler);
+
+        /*
+         * Tear down the eStoraged object of a configuration object that has
+         * been removed. If the configuration object shows up again, a new
+         * eStoraged object will be created.
+         */
+        auto interfacesRemovedMatch = std::make_unique<sdbusplus::match>(
+            static_cast<sdbusplus::bus_t&>(*conn),
+            sdbusplus::bus::match::rules::interfacesRemovedAtPath(
+                "/xyz/openbmc_project/inventory/"),
+            [&storageObjects](sdbusplus::message_t& message) {
+                sdbusplus::object_path objectPath;
+                std::vector<std::string> interfaces;
+                try
+                {
+                    message.read(objectPath, interfaces);
+                }
+                catch (const std::exception& e)
+                {
+                    lg2::error("Failed to parse InterfacesRemoved: {ERROR}",
+                               "ERROR", e.what());
+                    return;
+                }
+                if (std::ranges::find(interfaces,
+                                      estoraged::emmcConfigInterface) ==
+                    interfaces.end())
+                {
+                    return;
+                }
+                auto it = storageObjects.find(objectPath.str);
+                if (it == storageObjects.end())
+                {
+                    return;
+                }
+                lg2::info("Removing eStoraged object for path {PATH}", "PATH",
+                          objectPath.str, "REDFISH_MESSAGE_ID",
+                          std::string("OpenBMC.0.1.RemoveStorageObject"));
+                storageObjects.erase(it);
+            });
 
         lg2::info("Storage management service is running", "REDFISH_MESSAGE_ID",
                   std::string("OpenBMC.1.0.ServiceStarted"));

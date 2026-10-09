@@ -1,4 +1,5 @@
 #include "estoraged_conf.hpp"
+#include "estoraged_test.hpp"
 #include "getConfig.hpp"
 
 #include <boost/container/flat_map.hpp>
@@ -22,7 +23,8 @@ using estoraged::util::getSerialNumber;
 
 TEST(utilTest, passFindPredictedMediaLife)
 {
-    std::string prefixName = ".";
+    TestTmpDir tmpDir;
+    std::string prefixName = tmpDir.get().string();
     std::string testFileName = prefixName + "/life_time";
     std::ofstream testFile;
     testFile.open(testFileName,
@@ -35,7 +37,8 @@ TEST(utilTest, passFindPredictedMediaLife)
 
 TEST(utilTest, estimatesSame)
 {
-    std::string prefixName = ".";
+    TestTmpDir tmpDir;
+    std::string prefixName = tmpDir.get().string();
     std::string testFileName = prefixName + "/life_time";
     std::ofstream testFile;
     testFile.open(testFileName,
@@ -49,7 +52,8 @@ TEST(utilTest, estimatesSame)
 
 TEST(utilTest, estimatesNotAvailable)
 {
-    std::string prefixName = ".";
+    TestTmpDir tmpDir;
+    std::string prefixName = tmpDir.get().string();
     std::string testFileName = prefixName + "/life_time";
     std::ofstream testFile;
     testFile.open(testFileName,
@@ -62,49 +66,49 @@ TEST(utilTest, estimatesNotAvailable)
 
 TEST(utilTest, getPartNumberFail)
 {
-    std::string prefixName = ".";
-    std::string testFileName = prefixName + "/name";
+    TestTmpDir tmpDir;
     /* The part name file won't exist for this test. */
-    EXPECT_EQ(getPartNumber(prefixName), "unknown");
+    EXPECT_EQ(getPartNumber(tmpDir.get()), "unknown");
 }
 
 TEST(utilTest, getPartNumberPass)
 {
-    std::string prefixName = ".";
-    std::string testFileName = prefixName + "/name";
+    TestTmpDir tmpDir;
+    std::filesystem::path testFileName = tmpDir.get() / "name";
     std::ofstream testFile;
     testFile.open(testFileName,
                   std::ios::out | std::ios::binary | std::ios::trunc);
     testFile << "ABCD1234";
     testFile.close();
-    EXPECT_EQ(getPartNumber(prefixName), "ABCD1234");
+    EXPECT_EQ(getPartNumber(tmpDir.get()), "ABCD1234");
     EXPECT_TRUE(std::filesystem::remove(testFileName));
 }
 
 TEST(utilTest, getSerialNumberFail)
 {
-    std::string prefixName = ".";
-    std::string testFileName = prefixName + "/serial";
+    TestTmpDir tmpDir;
     /* The serial number file won't exist for this test. */
-    EXPECT_EQ(getSerialNumber(prefixName), "unknown");
+    EXPECT_EQ(getSerialNumber(tmpDir.get()), "unknown");
 }
 
 TEST(utilTest, getSerialNumberPass)
 {
-    std::string prefixName = ".";
-    std::string testFileName = prefixName + "/serial";
+    TestTmpDir tmpDir;
+    std::filesystem::path testFileName = tmpDir.get() / "serial";
     std::ofstream testFile;
     testFile.open(testFileName,
                   std::ios::out | std::ios::binary | std::ios::trunc);
     testFile << "0x12345678";
     testFile.close();
-    EXPECT_EQ(getSerialNumber(prefixName), "0x12345678");
+    EXPECT_EQ(getSerialNumber(tmpDir.get()), "0x12345678");
     EXPECT_TRUE(std::filesystem::remove(testFileName));
 }
 
 /* Test case where we successfully find the device file. */
 TEST(utilTest, findDevicePass)
 {
+    TestTmpDir tmpDir;
+    const std::filesystem::path& searchDir = tmpDir.get();
     estoraged::StorageData data;
 
     /* Set up the map of properties. */
@@ -115,33 +119,32 @@ TEST(utilTest, findDevicePass)
                  estoraged::BasicVariantType("U102020"));
 
     /* Create a dummy device. */
-    std::filesystem::create_directories("abc/device");
-    const std::string dummyTypeFileName("abc/device/type");
+    std::filesystem::create_directories(searchDir / "abc/device");
+    const std::filesystem::path dummyTypeFileName =
+        searchDir / "abc/device/type";
     std::ofstream dummyTypeFile(dummyTypeFileName,
                                 std::ios::out | std::ios::trunc);
     dummyTypeFile << "SSD";
     dummyTypeFile.close();
 
     /* Another device. */
-    std::filesystem::create_directories("def/device");
+    std::filesystem::create_directories(searchDir / "def/device");
 
     /* Create a dummy eMMC device. */
-    std::filesystem::create_directories("mmcblk0/device");
-    const std::string typeFileName("mmcblk0/device/type");
+    std::filesystem::create_directories(searchDir / "mmcblk0/device");
+    const std::filesystem::path typeFileName =
+        searchDir / "mmcblk0/device/type";
     std::ofstream typeFile(typeFileName, std::ios::out | std::ios::trunc);
     typeFile << "MMC";
     typeFile.close();
 
     /* Look for the device file. */
-    std::filesystem::path deviceFile, sysfsDir;
-    std::string luksName, locationCode;
-    auto result =
-        estoraged::util::findDevice(data, std::filesystem::path("./"));
+    auto result = estoraged::util::findDevice(data, searchDir);
     EXPECT_TRUE(result.has_value());
 
     /* Validate the results. */
     EXPECT_EQ("/dev/mmcblk0", result->deviceFile.string());
-    EXPECT_EQ("./mmcblk0/device", result->sysfsDir.string());
+    EXPECT_EQ(searchDir / "mmcblk0/device", result->sysfsDir);
     EXPECT_EQ("luks-mmcblk0", result->luksName);
     EXPECT_EQ("U102020", result->locationCode);
     EXPECT_EQ(ERASE_MAX_GEOMETRY, result->eraseMaxGeometry);
@@ -150,15 +153,17 @@ TEST(utilTest, findDevicePass)
     EXPECT_EQ("eMMC", result->driveProtocol);
 
     /* Delete the dummy files. */
-    EXPECT_EQ(3U, std::filesystem::remove_all("mmcblk0"));
-    EXPECT_EQ(3U, std::filesystem::remove_all("abc"));
-    EXPECT_EQ(2U, std::filesystem::remove_all("def"));
+    EXPECT_EQ(3U, std::filesystem::remove_all(searchDir / "mmcblk0"));
+    EXPECT_EQ(3U, std::filesystem::remove_all(searchDir / "abc"));
+    EXPECT_EQ(2U, std::filesystem::remove_all(searchDir / "def"));
 }
 
 /* Test case where we successfully find the device file with updating the
  * min/max geometry. */
 TEST(utilTest, findDeviceWithMaxAndMinGeometryPass)
 {
+    TestTmpDir tmpDir;
+    const std::filesystem::path& searchDir = tmpDir.get();
     estoraged::StorageData data;
 
     /* Set up the map of properties. */
@@ -173,33 +178,32 @@ TEST(utilTest, findDeviceWithMaxAndMinGeometryPass)
                  estoraged::BasicVariantType((uint64_t)1234));
 
     /* Create a dummy device. */
-    std::filesystem::create_directories("abc/device");
-    const std::string dummyTypeFileName("abc/device/type");
+    std::filesystem::create_directories(searchDir / "abc/device");
+    const std::filesystem::path dummyTypeFileName =
+        searchDir / "abc/device/type";
     std::ofstream dummyTypeFile(dummyTypeFileName,
                                 std::ios::out | std::ios::trunc);
     dummyTypeFile << "SSD";
     dummyTypeFile.close();
 
     /* Another device. */
-    std::filesystem::create_directories("def/device");
+    std::filesystem::create_directories(searchDir / "def/device");
 
     /* Create a dummy eMMC device. */
-    std::filesystem::create_directories("mmcblk0/device");
-    const std::string typeFileName("mmcblk0/device/type");
+    std::filesystem::create_directories(searchDir / "mmcblk0/device");
+    const std::filesystem::path typeFileName =
+        searchDir / "mmcblk0/device/type";
     std::ofstream typeFile(typeFileName, std::ios::out | std::ios::trunc);
     typeFile << "MMC";
     typeFile.close();
 
     /* Look for the device file. */
-    std::filesystem::path deviceFile, sysfsDir;
-    std::string luksName, locationCode;
-    auto result =
-        estoraged::util::findDevice(data, std::filesystem::path("./"));
+    auto result = estoraged::util::findDevice(data, searchDir);
     EXPECT_TRUE(result.has_value());
 
     /* Validate the results. */
     EXPECT_EQ("/dev/mmcblk0", result->deviceFile.string());
-    EXPECT_EQ("./mmcblk0/device", result->sysfsDir.string());
+    EXPECT_EQ(searchDir / "mmcblk0/device", result->sysfsDir);
     EXPECT_EQ("luks-mmcblk0", result->luksName);
     EXPECT_EQ("U102020", result->locationCode);
     EXPECT_EQ(5566, result->eraseMaxGeometry);
@@ -208,51 +212,56 @@ TEST(utilTest, findDeviceWithMaxAndMinGeometryPass)
     EXPECT_EQ("eMMC", result->driveProtocol);
 
     /* Delete the dummy files. */
-    EXPECT_EQ(3U, std::filesystem::remove_all("mmcblk0"));
-    EXPECT_EQ(3U, std::filesystem::remove_all("abc"));
-    EXPECT_EQ(2U, std::filesystem::remove_all("def"));
+    EXPECT_EQ(3U, std::filesystem::remove_all(searchDir / "mmcblk0"));
+    EXPECT_EQ(3U, std::filesystem::remove_all(searchDir / "abc"));
+    EXPECT_EQ(2U, std::filesystem::remove_all(searchDir / "def"));
 }
 
 /* Test case where the "Type" property doesn't exist. */
 TEST(utilTest, findDeviceNoTypeFail)
 {
+    TestTmpDir tmpDir;
+    const std::filesystem::path& searchDir = tmpDir.get();
     estoraged::StorageData data;
 
     /* Set up the map of properties (with the "Type" property missing). */
     data.emplace(std::string("Name"), estoraged::BasicVariantType("emmc"));
 
     /* Create a dummy device. */
-    std::filesystem::create_directories("abc/device");
-    const std::string dummyTypeFileName("abc/device/type");
+    std::filesystem::create_directories(searchDir / "abc/device");
+    const std::filesystem::path dummyTypeFileName =
+        searchDir / "abc/device/type";
     std::ofstream dummyTypeFile(dummyTypeFileName,
                                 std::ios::out | std::ios::trunc);
     dummyTypeFile << "SSD";
     dummyTypeFile.close();
 
     /* Another device. */
-    std::filesystem::create_directories("def/device");
+    std::filesystem::create_directories(searchDir / "def/device");
 
     /* Create a dummy eMMC device. */
-    std::filesystem::create_directories("mmcblk0/device");
-    const std::string typeFileName("mmcblk0/device/type");
+    std::filesystem::create_directories(searchDir / "mmcblk0/device");
+    const std::filesystem::path typeFileName =
+        searchDir / "mmcblk0/device/type";
     std::ofstream typeFile(typeFileName, std::ios::out | std::ios::trunc);
     typeFile << "MMC";
     typeFile.close();
 
     /* Look for the device file. */
-    auto result =
-        estoraged::util::findDevice(data, std::filesystem::path("./"));
+    auto result = estoraged::util::findDevice(data, searchDir);
     EXPECT_FALSE(result.has_value());
 
     /* Delete the dummy files. */
-    EXPECT_EQ(3U, std::filesystem::remove_all("mmcblk0"));
-    EXPECT_EQ(3U, std::filesystem::remove_all("abc"));
-    EXPECT_EQ(2U, std::filesystem::remove_all("def"));
+    EXPECT_EQ(3U, std::filesystem::remove_all(searchDir / "mmcblk0"));
+    EXPECT_EQ(3U, std::filesystem::remove_all(searchDir / "abc"));
+    EXPECT_EQ(2U, std::filesystem::remove_all(searchDir / "def"));
 }
 
 /* Test case where the device type is not supported. */
 TEST(utilTest, findDeviceUnsupportedTypeFail)
 {
+    TestTmpDir tmpDir;
+    const std::filesystem::path& searchDir = tmpDir.get();
     estoraged::StorageData data;
 
     /* Set up the map of properties (with an unsupported "Type"). */
@@ -261,37 +270,40 @@ TEST(utilTest, findDeviceUnsupportedTypeFail)
                  estoraged::BasicVariantType("some_drive"));
 
     /* Create a dummy device. */
-    std::filesystem::create_directories("abc/device");
-    const std::string dummyTypeFileName("abc/device/type");
+    std::filesystem::create_directories(searchDir / "abc/device");
+    const std::filesystem::path dummyTypeFileName =
+        searchDir / "abc/device/type";
     std::ofstream dummyTypeFile(dummyTypeFileName,
                                 std::ios::out | std::ios::trunc);
     dummyTypeFile << "SSD";
     dummyTypeFile.close();
 
     /* Another device. */
-    std::filesystem::create_directories("def/device");
+    std::filesystem::create_directories(searchDir / "def/device");
 
     /* Create a dummy eMMC device. */
-    std::filesystem::create_directories("mmcblk0/device");
-    const std::string typeFileName("mmcblk0/device/type");
+    std::filesystem::create_directories(searchDir / "mmcblk0/device");
+    const std::filesystem::path typeFileName =
+        searchDir / "mmcblk0/device/type";
     std::ofstream typeFile(typeFileName, std::ios::out | std::ios::trunc);
     typeFile << "MMC";
     typeFile.close();
 
     /* Look for the device file. */
-    auto result =
-        estoraged::util::findDevice(data, std::filesystem::path("./"));
+    auto result = estoraged::util::findDevice(data, searchDir);
     EXPECT_FALSE(result.has_value());
 
     /* Delete the dummy files. */
-    EXPECT_EQ(3U, std::filesystem::remove_all("mmcblk0"));
-    EXPECT_EQ(3U, std::filesystem::remove_all("abc"));
-    EXPECT_EQ(2U, std::filesystem::remove_all("def"));
+    EXPECT_EQ(3U, std::filesystem::remove_all(searchDir / "mmcblk0"));
+    EXPECT_EQ(3U, std::filesystem::remove_all(searchDir / "abc"));
+    EXPECT_EQ(2U, std::filesystem::remove_all(searchDir / "def"));
 }
 
 /* Test case where we can't find the device file. */
 TEST(utilTest, findDeviceNotFoundFail)
 {
+    TestTmpDir tmpDir;
+    const std::filesystem::path& searchDir = tmpDir.get();
     estoraged::StorageData data;
 
     /* Set up the map of properties. */
@@ -300,24 +312,24 @@ TEST(utilTest, findDeviceNotFoundFail)
     data.emplace(std::string("Name"), estoraged::BasicVariantType("emmc"));
 
     /* Create a dummy device. */
-    std::filesystem::create_directories("abc/device");
-    const std::string dummyTypeFileName("abc/device/type");
+    std::filesystem::create_directories(searchDir / "abc/device");
+    const std::filesystem::path dummyTypeFileName =
+        searchDir / "abc/device/type";
     std::ofstream dummyTypeFile(dummyTypeFileName,
                                 std::ios::out | std::ios::trunc);
     dummyTypeFile << "SSD";
     dummyTypeFile.close();
 
     /* Another device. */
-    std::filesystem::create_directories("def/device");
+    std::filesystem::create_directories(searchDir / "def/device");
 
     /* Look for the device file. */
-    auto result =
-        estoraged::util::findDevice(data, std::filesystem::path("./"));
+    auto result = estoraged::util::findDevice(data, searchDir);
     EXPECT_FALSE(result.has_value());
 
     /* Delete the dummy files. */
-    EXPECT_EQ(3U, std::filesystem::remove_all("abc"));
-    EXPECT_EQ(2U, std::filesystem::remove_all("def"));
+    EXPECT_EQ(3U, std::filesystem::remove_all(searchDir / "abc"));
+    EXPECT_EQ(2U, std::filesystem::remove_all(searchDir / "def"));
 }
 
 TEST(utilTest, findSizeOfBlockDeviceFail)
@@ -329,15 +341,13 @@ TEST(utilTest, findSizeOfBlockDeviceFail)
 
 TEST(utilTest, syncBlockDeviceRegularFilePass)
 {
-    const std::string testFileName = "./syncBlockDeviceTestFile";
+    TestTmpDir tmpDir;
+    const std::filesystem::path testFileName = tmpDir.get() / "regular";
     std::ofstream(testFileName) << "data";
-    {
-        stdplus::fd::ManagedFd fd = stdplus::fd::open(
-            testFileName.c_str(), stdplus::fd::OpenAccess::WriteOnly);
-        EXPECT_NO_THROW(
-            estoraged::util::syncBlockDevice(fd.get(), testFileName));
-    }
-    EXPECT_TRUE(std::filesystem::remove(testFileName));
+    stdplus::fd::ManagedFd fd = stdplus::fd::open(
+        testFileName.c_str(), stdplus::fd::OpenAccess::WriteOnly);
+    EXPECT_NO_THROW(
+        estoraged::util::syncBlockDevice(fd.get(), testFileName.string()));
 }
 
 TEST(utilTest, syncBlockDeviceInvalidFdFail)
@@ -351,16 +361,14 @@ TEST(utilTest, syncBlockDeviceInvalidFdFail)
 TEST(utilTest, dropBlockDeviceCacheRegularFileFail)
 {
     using sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
-    const std::string testFileName = "./dropBlockDeviceCacheTestFile";
+    TestTmpDir tmpDir;
+    const std::filesystem::path testFileName = tmpDir.get() / "regular";
     std::ofstream(testFileName) << "data";
-    {
-        stdplus::fd::ManagedFd fd = stdplus::fd::open(
-            testFileName.c_str(), stdplus::fd::OpenAccess::ReadOnly);
-        EXPECT_THROW(
-            estoraged::util::dropBlockDeviceCache(fd.get(), testFileName),
-            InternalFailure);
-    }
-    EXPECT_TRUE(std::filesystem::remove(testFileName));
+    stdplus::fd::ManagedFd fd = stdplus::fd::open(
+        testFileName.c_str(), stdplus::fd::OpenAccess::ReadOnly);
+    EXPECT_THROW(
+        estoraged::util::dropBlockDeviceCache(fd.get(), testFileName.string()),
+        InternalFailure);
 }
 
 TEST(utilTest, dropBlockDeviceCacheInvalidFdFail)
@@ -372,11 +380,11 @@ TEST(utilTest, dropBlockDeviceCacheInvalidFdFail)
 
 TEST(utilTest, findDeviceNonStringTypeFail)
 {
+    TestTmpDir tmpDir;
     estoraged::StorageData data;
     data.emplace(std::string("Type"), estoraged::BasicVariantType(uint64_t{1}));
 
-    auto result =
-        estoraged::util::findDevice(data, std::filesystem::path("./"));
+    auto result = estoraged::util::findDevice(data, tmpDir.get());
     EXPECT_FALSE(result.has_value());
 }
 

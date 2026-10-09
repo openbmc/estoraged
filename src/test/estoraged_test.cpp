@@ -498,11 +498,13 @@ TEST_F(EStoragedTest, CreateFilesystemFail)
         runMkfs(ElementsAre("-E", "discard", esObject->getCryptDevicePath())))
         .WillOnce(Return(-1));
 
+    /* formatLuks() must lock the device again after the failure. */
+    EXPECT_CALL(*mockCryptIface, cryptDeactivate(_, _))
+        .WillOnce(&removeMappedDev);
+
     EXPECT_THROW(esObject->formatLuks(password, Volume::FilesystemType::ext4),
                  InternalFailure);
-    EXPECT_FALSE(esObject->isLocked());
-
-    EXPECT_EQ(0, removeMappedDev());
+    EXPECT_TRUE(esObject->isLocked());
 }
 
 /* Test case where we fail to create the mount point. */
@@ -533,11 +535,13 @@ TEST_F(EStoragedTest, CreateMountPointFail)
     EXPECT_CALL(*mockFsIface, createDirectory(path(esObject->getMountPoint())))
         .WillOnce(Return(false));
 
+    /* formatLuks() must lock the device again after the failure. */
+    EXPECT_CALL(*mockCryptIface, cryptDeactivate(_, _))
+        .WillOnce(&removeMappedDev);
+
     EXPECT_THROW(esObject->formatLuks(password, Volume::FilesystemType::ext4),
                  InternalFailure);
-    EXPECT_FALSE(esObject->isLocked());
-
-    EXPECT_EQ(0, removeMappedDev());
+    EXPECT_TRUE(esObject->isLocked());
 }
 
 /* Test case where we fail to mount the filesystem when formatting. */
@@ -581,11 +585,13 @@ TEST_F(EStoragedTest, FormatMountFail)
      * there is a major issue and decrypting the device most likely won't be
      * enough to recover.
      */
+    /* formatLuks() must lock the device again after the failure. */
+    EXPECT_CALL(*mockCryptIface, cryptDeactivate(_, _))
+        .WillOnce(&removeMappedDev);
+
     EXPECT_THROW(esObject->formatLuks(password, Volume::FilesystemType::ext4),
                  InternalFailure);
-    EXPECT_FALSE(esObject->isLocked());
-
-    EXPECT_EQ(0, removeMappedDev());
+    EXPECT_TRUE(esObject->isLocked());
 }
 
 /* Test case where fsck fails with uncorrected errors (exit code 4). */
@@ -610,11 +616,13 @@ TEST_F(EStoragedTest, FormatFsckErrorsFail)
                 runFsck(fsckDevpathIs(esObject->getCryptDevicePath())))
         .WillOnce(Return(4));
 
+    /* formatLuks() must lock the device again after the failure. */
+    EXPECT_CALL(*mockCryptIface, cryptDeactivate(_, _))
+        .WillOnce(&removeMappedDev);
+
     EXPECT_THROW(esObject->formatLuks(password, Volume::FilesystemType::ext4),
                  InternalFailure);
-    EXPECT_FALSE(esObject->isLocked());
-
-    EXPECT_EQ(0, removeMappedDev());
+    EXPECT_TRUE(esObject->isLocked());
 }
 
 /* Test case where we fail to mount the filesystem when unlocking a device. */
@@ -791,6 +799,36 @@ TEST_F(EStoragedTest, LockNotMounted)
 
     EXPECT_NO_THROW(esObject->lock());
     EXPECT_TRUE(esObject->isLocked());
+}
+
+/*
+ * Test case where formatLuks() fails after activation and locking the device
+ * again fails too. The original error must be reported.
+ */
+TEST_F(EStoragedTest, FormatFailDeactivateFail)
+{
+    EXPECT_CALL(*mockCryptIface, cryptFormat(_, _, _, _, _, _, _, _)).Times(1);
+
+    EXPECT_CALL(*mockCryptIface, cryptKeyslotAddByVolumeKey(_, _, _, _, _, _))
+        .Times(1);
+
+    EXPECT_CALL(*mockCryptIface, cryptLoad(_, _, _)).Times(1);
+
+    EXPECT_CALL(*mockCryptIface, cryptActivateByPassphrase(_, _, _, _, _, _))
+        .WillOnce(&createMappedDev);
+
+    EXPECT_CALL(
+        *mockFsIface,
+        runMkfs(ElementsAre("-E", "discard", esObject->getCryptDevicePath())))
+        .WillOnce(Return(-1));
+
+    EXPECT_CALL(*mockCryptIface, cryptDeactivate(_, _)).WillOnce(Return(-1));
+
+    EXPECT_THROW(esObject->formatLuks(password, Volume::FilesystemType::ext4),
+                 InternalFailure);
+    EXPECT_FALSE(esObject->isLocked());
+
+    EXPECT_EQ(0, removeMappedDev());
 }
 
 /* Test case where we fail to remove the mount point. */

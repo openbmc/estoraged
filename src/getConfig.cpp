@@ -39,14 +39,19 @@ void GetStorageConfiguration::getStorageInfo(
             boost::container::flat_map<std::string, BasicVariantType>& data) {
             if (ec)
             {
+                if (retries == 0U)
+                {
+                    lg2::error(
+                        "Error getting properties for {PATH}: no retries left",
+                        "PATH", path, "REDFISH_MESSAGE_ID",
+                        std::string("OpenBMC.0.1.GetStorageInfoFail"));
+                    return;
+                }
+
                 lg2::error(
                     "Error getting properties for {PATH}: {RETRIES} retries left",
                     "PATH", path, "RETRIES", retries - 1, "REDFISH_MESSAGE_ID",
                     std::string("OpenBMC.0.1.GetStorageInfoFail"));
-                if (retries == 0U)
-                {
-                    return;
-                }
 
                 auto timer = std::make_shared<boost::asio::steady_timer>(
                     self->dbusConnection->get_io_context());

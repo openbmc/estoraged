@@ -267,7 +267,17 @@ std::optional<DeviceInfo> findDevice(const StorageData& data,
     }
 
     /* Look for the eMMC in the specified searchDir directory. */
-    for (const auto& dirEntry : std::filesystem::directory_iterator{searchDir})
+    std::error_code ec;
+    std::filesystem::directory_iterator dirIter(searchDir, ec);
+    if (ec)
+    {
+        lg2::error("Failed to open search directory {DIR}: {ERROR}", "DIR",
+                   searchDir, "ERROR", ec.message(), "REDFISH_MESSAGE_ID",
+                   std::string("OpenBMC.0.1.FindDeviceFail"));
+        return std::nullopt;
+    }
+
+    for (const auto& dirEntry : dirIter)
     {
         /*
          * We will look at the 'type' file to determine if this is an MMC
@@ -275,7 +285,7 @@ std::optional<DeviceInfo> findDevice(const StorageData& data,
          */
         std::filesystem::path curPath(dirEntry.path());
         curPath /= "device/type";
-        if (!std::filesystem::exists(curPath))
+        if (!std::filesystem::exists(curPath, ec) || ec)
         {
             /* The 'type' file doesn't exist. This must not be an eMMC. */
             continue;

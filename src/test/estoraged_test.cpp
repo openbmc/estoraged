@@ -770,7 +770,7 @@ TEST_F(EStoragedTest, UnmountFail)
         .WillOnce(Return(0));
 
     EXPECT_CALL(*mockFsIface, doUnmount(StrEq(esObject->getMountPoint())))
-        .WillOnce(Return(-1));
+        .WillOnce(testing::DoAll(testing::Assign(&errno, EBUSY), Return(-1)));
 
     esObject->formatLuks(password, Volume::FilesystemType::ext4);
     EXPECT_FALSE(esObject->isLocked());
@@ -779,6 +779,60 @@ TEST_F(EStoragedTest, UnmountFail)
     EXPECT_FALSE(esObject->isLocked());
 
     EXPECT_EQ(0, removeMappedDev());
+}
+
+/*
+ * Test case where the volume is unlocked but the filesystem is not mounted.
+ * lock() must still deactivate the LUKS device.
+ */
+TEST_F(EStoragedTest, LockNotMounted)
+{
+    EXPECT_CALL(*mockCryptIface, cryptFormat(_, _, _, _, _, _, _, _)).Times(1);
+
+    EXPECT_CALL(*mockCryptIface, cryptKeyslotAddByVolumeKey(_, _, _, _, _, _))
+        .Times(1);
+
+    EXPECT_CALL(*mockCryptIface, cryptLoad(_, _, _)).Times(1);
+
+    EXPECT_CALL(*mockCryptIface, cryptActivateByPassphrase(_, _, _, _, _, _))
+        .WillOnce(&createMappedDev);
+
+    EXPECT_CALL(
+        *mockFsIface,
+        runMkfs(ElementsAre("-E", "discard", esObject->getCryptDevicePath())))
+        .WillOnce(Return(0));
+
+    EXPECT_CALL(*mockFsIface,
+                runFsck(fsckDevpathIs(esObject->getCryptDevicePath())))
+        .WillOnce(Return(0));
+
+    /* formatLuks: mountFilesystem, then lock: unmountFilesystem */
+    EXPECT_CALL(*mockFsIface, directoryExists(path(esObject->getMountPoint())))
+        .WillOnce(Return(false))
+        .WillOnce(Return(false));
+
+    EXPECT_CALL(*mockFsIface, createDirectory(path(esObject->getMountPoint())))
+        .WillOnce(Return(true));
+
+    EXPECT_CALL(*mockFsIface,
+                doMount(StrEq(esObject->getCryptDevicePath()),
+                        StrEq(esObject->getMountPoint()), _, _, _))
+        .WillOnce(Return(0));
+
+    /* The filesystem is no longer mounted, e.g. after a manual umount. */
+    EXPECT_CALL(*mockFsIface, doUnmount(StrEq(esObject->getMountPoint())))
+        .WillOnce(testing::DoAll(testing::Assign(&errno, EINVAL), Return(-1)));
+
+    EXPECT_CALL(*mockFsIface, removeDirectory(_)).Times(0);
+
+    EXPECT_CALL(*mockCryptIface, cryptDeactivate(_, _))
+        .WillOnce(&removeMappedDev);
+
+    esObject->formatLuks(password, Volume::FilesystemType::ext4);
+    EXPECT_FALSE(esObject->isLocked());
+
+    EXPECT_NO_THROW(esObject->lock());
+    EXPECT_TRUE(esObject->isLocked());
 }
 
 /* Test case where we fail to remove the mount point. */

@@ -28,9 +28,13 @@ class Pattern : public Erase
      */
     void writePattern()
     {
-        stdplus::fd::Fd&& fd =
+        stdplus::fd::ManagedFd fd =
             stdplus::fd::open(devPath, stdplus::fd::OpenAccess::WriteOnly);
         writePattern(util::findSizeOfBlockDevice(devPath), fd);
+        /* Make sure that the data reached the medium and report errors. */
+        util::syncBlockDevice(fd.get(), devPath);
+        /* Drop the written data from the page cache. */
+        util::dropBlockDeviceCache(fd.get(), devPath);
     }
 
     /** @brief writes an incompressible random pattern to the drive

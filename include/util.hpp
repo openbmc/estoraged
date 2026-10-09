@@ -4,6 +4,7 @@
 #include <filesystem>
 #include <optional>
 #include <string>
+#include <string_view>
 
 namespace estoraged
 {
@@ -38,6 +39,26 @@ struct DeviceInfo
  *  @return size of a block device using the devPath
  */
 uint64_t findSizeOfBlockDevice(const std::string& devPath);
+
+/** @brief Write the data written to a block device to the storage medium
+ *  @details Calls fdatasync() such that all data written through the file
+ *    descriptor has reached the storage medium when this function returns
+ *    and such that writeback errors are reported.
+ *  @param[in] fd - file descriptor of the block device
+ *  @param[in] devPath - path of the block device, used for logging
+ *  @throw InternalFailure if fdatasync() fails
+ */
+void syncBlockDevice(int fd, std::string_view devPath);
+
+/** @brief Write back dirty data and drop the cached data of a block device
+ *  @details Calls ioctl(BLKFLSBUF) and posix_fadvise(POSIX_FADV_DONTNEED)
+ *    such that subsequent reads are served from the storage medium instead
+ *    of from the page cache.
+ *  @param[in] fd - file descriptor of the block device
+ *  @param[in] devPath - path of the block device, used for logging
+ *  @throw InternalFailure if either call fails
+ */
+void dropBlockDeviceCache(int fd, std::string_view devPath);
 
 /** @brief finds the predicted life left for a eMMC device
  *  @param[in] sysfsPath - The path to the linux sysfs interface

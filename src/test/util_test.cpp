@@ -2,7 +2,10 @@
 #include "getConfig.hpp"
 
 #include <boost/container/flat_map.hpp>
+#include <stdplus/fd/create.hpp>
+#include <stdplus/fd/managed.hpp>
 #include <util.hpp>
+#include <xyz/openbmc_project/Common/error.hpp>
 
 #include <filesystem>
 #include <fstream>
@@ -315,6 +318,49 @@ TEST(utilTest, findDeviceNotFoundFail)
     /* Delete the dummy files. */
     EXPECT_EQ(3U, std::filesystem::remove_all("abc"));
     EXPECT_EQ(2U, std::filesystem::remove_all("def"));
+}
+
+TEST(utilTest, syncBlockDeviceRegularFilePass)
+{
+    const std::string testFileName = "./syncBlockDeviceTestFile";
+    std::ofstream(testFileName) << "data";
+    {
+        stdplus::fd::ManagedFd fd = stdplus::fd::open(
+            testFileName.c_str(), stdplus::fd::OpenAccess::WriteOnly);
+        EXPECT_NO_THROW(
+            estoraged::util::syncBlockDevice(fd.get(), testFileName));
+    }
+    EXPECT_TRUE(std::filesystem::remove(testFileName));
+}
+
+TEST(utilTest, syncBlockDeviceInvalidFdFail)
+{
+    using sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
+    EXPECT_THROW(estoraged::util::syncBlockDevice(-1, "/dev/invalid"),
+                 InternalFailure);
+}
+
+/* BLKFLSBUF is only supported for block devices. */
+TEST(utilTest, dropBlockDeviceCacheRegularFileFail)
+{
+    using sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
+    const std::string testFileName = "./dropBlockDeviceCacheTestFile";
+    std::ofstream(testFileName) << "data";
+    {
+        stdplus::fd::ManagedFd fd = stdplus::fd::open(
+            testFileName.c_str(), stdplus::fd::OpenAccess::ReadOnly);
+        EXPECT_THROW(
+            estoraged::util::dropBlockDeviceCache(fd.get(), testFileName),
+            InternalFailure);
+    }
+    EXPECT_TRUE(std::filesystem::remove(testFileName));
+}
+
+TEST(utilTest, dropBlockDeviceCacheInvalidFdFail)
+{
+    using sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
+    EXPECT_THROW(estoraged::util::dropBlockDeviceCache(-1, "/dev/invalid"),
+                 InternalFailure);
 }
 
 } // namespace estoraged_test

@@ -3,7 +3,10 @@
 #include "estoraged_conf.hpp"
 #include "getConfig.hpp"
 
+#include <fcntl.h>
 #include <linux/fs.h>
+#include <sys/ioctl.h>
+#include <unistd.h>
 
 #include <phosphor-logging/lg2.hpp>
 #include <stdplus/fd/create.hpp>
@@ -11,11 +14,13 @@
 #include <stdplus/handle/managed.hpp>
 #include <xyz/openbmc_project/Common/error.hpp>
 
+#include <cerrno>
 #include <filesystem>
 #include <fstream>
 #include <iostream>
 #include <optional>
 #include <string>
+#include <system_error>
 
 namespace estoraged
 {
@@ -43,6 +48,43 @@ uint64_t findSizeOfBlockDevice(const std::string& devPath)
         throw InternalFailure();
     }
     return bytes;
+}
+
+void syncBlockDevice(int fd, std::string_view devPath)
+{
+    if (::fdatasync(fd) != 0)
+    {
+        const int err = errno;
+        lg2::error("fdatasync() failed for {DEV}: {ERROR}", "DEV", devPath,
+                   "ERROR", std::generic_category().message(err),
+                   "REDFISH_MESSAGE_ID",
+                   std::string("OpenBMC.0.1.SyncBlockDeviceFailure"));
+        throw InternalFailure();
+    }
+}
+
+void dropBlockDeviceCache(int fd, std::string_view devPath)
+{
+    if (::ioctl(fd, BLKFLSBUF, 0) != 0)
+    {
+        const int err = errno;
+        lg2::error("BLKFLSBUF failed for {DEV}: {ERROR}", "DEV", devPath,
+                   "ERROR", std::generic_category().message(err),
+                   "REDFISH_MESSAGE_ID",
+                   std::string("OpenBMC.0.1.FlushBlockDeviceFailure"));
+        throw InternalFailure();
+    }
+
+    /* posix_fadvise() returns an error number instead of setting errno. */
+    const int err = ::posix_fadvise(fd, 0, 0, POSIX_FADV_DONTNEED);
+    if (err != 0)
+    {
+        lg2::error("posix_fadvise() failed for {DEV}: {ERROR}", "DEV", devPath,
+                   "ERROR", std::generic_category().message(err),
+                   "REDFISH_MESSAGE_ID",
+                   std::string("OpenBMC.0.1.FlushBlockDeviceFailure"));
+        throw InternalFailure();
+    }
 }
 
 uint8_t findPredictedMediaLifeLeftPercent(const std::string& sysfsPath)

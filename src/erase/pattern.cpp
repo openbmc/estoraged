@@ -47,28 +47,39 @@ void Pattern::writePattern(const uint64_t driveSize, Fd& fd)
         size_t writeSize = currentIndex + blockSize < driveSize
                                ? blockSize
                                : driveSize - currentIndex;
-        size_t written = 0;
-        size_t retry = 0;
-        while (written < writeSize)
+        try
         {
-            written += fd.write(randBytes.subspan(written, writeSize - written))
-                           .size();
-            if (written == writeSize)
+            size_t written = 0;
+            size_t retry = 0;
+            while (written < writeSize)
             {
-                break;
+                written +=
+                    fd.write(randBytes.subspan(written, writeSize - written))
+                        .size();
+                if (written == writeSize)
+                {
+                    break;
+                }
+                if (written > writeSize)
+                {
+                    throw InternalFailure();
+                }
+                retry++;
+                if (retry > maxRetry)
+                {
+                    lg2::error("Unable to do full write", "REDFISH_MESSAGE_ID",
+                               std::string("eStorageD.1.0.EraseFailure"));
+                    throw InternalFailure();
+                }
+                std::this_thread::sleep_for(delay);
             }
-            if (written > writeSize)
-            {
-                throw InternalFailure();
-            }
-            retry++;
-            if (retry > maxRetry)
-            {
-                lg2::error("Unable to do full write", "REDFISH_MESSAGE_ID",
-                           std::string("eStorageD.1.0.EraseFailure"));
-                throw InternalFailure();
-            }
-            std::this_thread::sleep_for(delay);
+        }
+        catch (...)
+        {
+            lg2::error("Estoraged erase pattern unable to write",
+                       "REDFISH_MESSAGE_ID",
+                       std::string("eStorageD.1.0.EraseFailure"));
+            throw InternalFailure();
         }
         currentIndex = currentIndex + writeSize;
     }

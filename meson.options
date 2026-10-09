@@ -18,7 +18,8 @@ option(
     'highspeed_parts',
     type: 'array',
     value: [],
-    description: 'A list of part number to enable Highspeed Timing modes for the MMC',
+    deprecated: true,
+    description: 'Ignored. Kept for compatibility with existing build configurations',
 )
 
 option(

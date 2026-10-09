@@ -249,7 +249,14 @@ std::optional<DeviceInfo> findDevice(const StorageData& data,
      * that we only support eMMC currently, so report an error for any other
      * device types.
      */
-    std::string deviceType = std::get<std::string>(typeVariant);
+    const std::string* deviceTypePtr = std::get_if<std::string>(&typeVariant);
+    if (deviceTypePtr == nullptr)
+    {
+        lg2::error("Type property is not a string", "REDFISH_MESSAGE_ID",
+                   std::string("OpenBMC.0.1.FindDeviceFail"));
+        return std::nullopt;
+    }
+    const std::string& deviceType = *deviceTypePtr;
     /* drive type and protocol to report in the Item.Drive dbus interface */
     std::string driveType;
     std::string driveProtocol;

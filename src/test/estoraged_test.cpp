@@ -923,6 +923,19 @@ TEST_F(EStoragedTest, ChangePasswordFail)
                  InternalFailure);
 }
 
+TEST_F(EStoragedTest, EmptyPasswordFail)
+{
+    const std::vector<uint8_t> emptyPassword;
+    EXPECT_THROW(
+        esObject->formatLuks(emptyPassword, Volume::FilesystemType::ext4),
+        InternalFailure);
+    EXPECT_THROW(esObject->unlock(emptyPassword), InternalFailure);
+    EXPECT_THROW(esObject->changePassword(emptyPassword, password),
+                 InternalFailure);
+    EXPECT_THROW(esObject->changePassword(password, emptyPassword),
+                 InternalFailure);
+}
+
 TEST(EMMCBackgroundOperation, IoCtlFailure)
 {
     std::unique_ptr<FdMock> mockFd = std::make_unique<FdMock>();

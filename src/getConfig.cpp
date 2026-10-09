@@ -7,6 +7,7 @@
 
 #include <chrono>
 #include <cstdlib>
+#include <exception>
 #include <memory>
 #include <string>
 #include <utility>
@@ -103,7 +104,23 @@ void GetStorageConfiguration::getConfiguration()
 
 GetStorageConfiguration::~GetStorageConfiguration()
 {
-    callback(respData);
+    /*
+     * Destructors are implicitly noexcept. Catch all exceptions such that an
+     * exception thrown by the callback does not trigger std::terminate().
+     */
+    try
+    {
+        callback(respData);
+    }
+    catch (const std::exception& e)
+    {
+        lg2::error("Unhandled exception in configuration callback: {ERROR}",
+                   "ERROR", e.what());
+    }
+    catch (...)
+    {
+        lg2::error("Unhandled unknown exception in configuration callback");
+    }
 }
 
 } // namespace estoraged

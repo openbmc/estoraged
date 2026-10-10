@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1baae79b_99625f83",
+        "filename": "include/cryptsetupInterface.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2026-10-10T05:54:17Z",
+      "side": 1,
+      "message": "This is actually a good place for zstring_view",
+      "revId": "d4380555abf6a9bbe3c0b9dcb6baf1939b0dc66f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

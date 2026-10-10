@@ -16,6 +16,24 @@
       "message": "Wouldn\u0027t it be faster to just fdatasync() at the end? For both of these",
       "revId": "e4b031081ffc6c8731148f53b97c6579f1b298d4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8e8bee3_53d59d91",
+        "filename": "include/zero.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1003197
+      },
+      "writtenOn": "2026-10-10T14:19:13Z",
+      "side": 1,
+      "message": "I have dropped O_SYNC. Instead, fdatasync() and BLKFLSBUF are now called.",
+      "parentUuid": "f091ffe2_e4deb30b",
+      "revId": "e4b031081ffc6c8731148f53b97c6579f1b298d4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

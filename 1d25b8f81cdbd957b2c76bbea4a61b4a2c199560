@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "292a0e87_e445871d",
+        "filename": "src/estoraged.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 623,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2026-10-12T22:16:07Z",
+      "side": 1,
+      "message": "In general it would probably be better to just leverage ENOENT as acceptable from the removeDirectory call to avoid checking then removing. Just remove and validate the code.",
+      "revId": "1d25b8f81cdbd957b2c76bbea4a61b4a2c199560",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

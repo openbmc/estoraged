@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2e733a4_19f2346d",
+        "filename": "src/util.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2026-10-12T23:28:13Z",
+      "side": 1,
+      "message": "Presumably we only want unpartitioned devices?",
+      "revId": "b3fb51c3fe490c653626f9a21a74aa57d4c05948",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

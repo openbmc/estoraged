@@ -1,5 +1,7 @@
 #pragma once
 
+#include "estoraged_conf.hpp"
+
 #include <boost/container/flat_map.hpp>
 #include <sdbusplus/asio/connection.hpp>
 
@@ -10,14 +12,19 @@
 namespace estoraged
 {
 
+#if HAVE_SDBUSPLUS_OBJECT_PATH
+using object_path = sdbusplus::object_path;
+#else
+using object_path = sdbusplus::message::object_path;
+#endif
+
 using BasicVariantType =
     std::variant<std::vector<std::string>, std::string, int64_t, uint64_t,
                  double, int32_t, uint32_t, int16_t, uint16_t, uint8_t, bool>;
 
 /* Map of properties for the config interface. */
 using StorageData = boost::container::flat_map<std::string, BasicVariantType>;
-using ManagedStorageType =
-    boost::container::flat_map<sdbusplus::object_path, StorageData>;
+using ManagedStorageType = boost::container::flat_map<object_path, StorageData>;
 
 const constexpr char* emmcConfigInterface =
     "xyz.openbmc_project.Configuration.EmmcDevice";

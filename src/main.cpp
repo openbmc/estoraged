@@ -205,7 +205,7 @@ int main(void)
          */
         auto interfacesAddedMatch = std::make_unique<sdbusplus::match>(
             static_cast<sdbusplus::bus_t&>(*conn),
-            sdbusplus::bus::match::rules::interfacesAddedAtPath(
+            sdbusplus::match_rules::interfacesAddedAtPath(
                 "/xyz/openbmc_project/inventory/"),
             eventHandler);
 
@@ -216,7 +216,7 @@ int main(void)
          */
         auto interfacesRemovedMatch = std::make_unique<sdbusplus::match>(
             static_cast<sdbusplus::bus_t&>(*conn),
-            sdbusplus::bus::match::rules::interfacesRemovedAtPath(
+            sdbusplus::match_rules::interfacesRemovedAtPath(
                 "/xyz/openbmc_project/inventory/"),
             [&storageObjects](sdbusplus::message_t& message) {
                 sdbusplus::object_path objectPath;

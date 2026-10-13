@@ -286,7 +286,7 @@ Checks: '-*,
 
 CheckOptions:
 -   key: cppcoreguidelines-macro-usage.AllowedRegexp
-    value: ((ERASE_MIN_GEOMETRY)|(ERASE_MAX_GEOMETRY)|(twiddleextCsdEraseGroupDef))
+    value: ((ERASE_MIN_GEOMETRY)|(ERASE_MAX_GEOMETRY)|(twiddleextCsdEraseGroupDef)|(HAVE_SDBUSPLUS_OBJECT_PATH)|(HAVE_SDBUSPLUS_MATCH))
 -   key: readability-identifier-naming.ClassCase
     value: CamelCase
 -   key: readability-identifier-naming.FunctionCase

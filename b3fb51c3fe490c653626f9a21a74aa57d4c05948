@@ -16,6 +16,24 @@
       "message": "Presumably we only want unpartitioned devices?",
       "revId": "b3fb51c3fe490c653626f9a21a74aa57d4c05948",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "542d5ce8_fb7f4730",
+        "filename": "src/util.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 1003197
+      },
+      "writtenOn": "2026-10-13T15:59:26Z",
+      "side": 1,
+      "message": "The changes in this CL cause partitions to be skipped. Is my understanding correct that the purpose of findDevice() is to look up the main user data area and to skip partitions? My understanding is that the eMMC kernel driver assigns names as follows:\n```\nLinux device         Purpose\n------------------   --------------------\n/dev/mmcblk0         Main user data area\n/dev/mmcblk0boot0    Boot partition 0\n/dev/mmcblk0boot1    Boot partition 1\n/dev/mmcblk0gp0–gp3  Optional general-purpose partitions\nRPMB device          Replay-protected storage, accessed through a specialized interface\n```",
+      "parentUuid": "e2e733a4_19f2346d",
+      "revId": "b3fb51c3fe490c653626f9a21a74aa57d4c05948",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

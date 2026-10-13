@@ -1,5 +1,6 @@
 
 #include "estoraged.hpp"
+#include "estoraged_conf.hpp"
 #include "getConfig.hpp"
 #include "util.hpp"
 
@@ -22,6 +23,12 @@
 #include <optional>
 #include <string>
 #include <vector>
+
+#if HAVE_SDBUSPLUS_MATCH
+using match_t = sdbusplus::match;
+#else
+using match_t = sdbusplus::bus::match_t;
+#endif
 
 /*
  * Get the configuration objects from Entity Manager and create new D-Bus
@@ -52,7 +59,7 @@ void createStorageObjects(
                 return;
             }
 
-            for (const std::pair<sdbusplus::object_path,
+            for (const std::pair<estoraged::object_path,
                                  estoraged::StorageData>& storage :
                  storageConfigurations)
             {
@@ -191,7 +198,7 @@ int main(void)
                     });
             };
 
-        auto match = std::make_unique<sdbusplus::match>(
+        auto match = std::make_unique<match_t>(
             static_cast<sdbusplus::bus_t&>(*conn),
             "type='signal',member='PropertiesChanged',path_namespace='" +
                 std::string("/xyz/openbmc_project/inventory") +
@@ -203,7 +210,7 @@ int main(void)
          * InterfacesAdded signal. Process these the same way as property
          * changes such that a configuration that shows up late is not missed.
          */
-        auto interfacesAddedMatch = std::make_unique<sdbusplus::match>(
+        auto interfacesAddedMatch = std::make_unique<match_t>(
             static_cast<sdbusplus::bus_t&>(*conn),
             sdbusplus::match_rules::interfacesAddedAtPath(
                 "/xyz/openbmc_project/inventory/"),
@@ -214,12 +221,12 @@ int main(void)
          * been removed. If the configuration object shows up again, a new
          * eStoraged object will be created.
          */
-        auto interfacesRemovedMatch = std::make_unique<sdbusplus::match>(
+        auto interfacesRemovedMatch = std::make_unique<match_t>(
             static_cast<sdbusplus::bus_t&>(*conn),
             sdbusplus::match_rules::interfacesRemovedAtPath(
                 "/xyz/openbmc_project/inventory/"),
             [&storageObjects](sdbusplus::message_t& message) {
-                sdbusplus::object_path objectPath;
+                estoraged::object_path objectPath;
                 std::vector<std::string> interfaces;
                 try
                 {

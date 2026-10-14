@@ -551,9 +551,7 @@ void EStoraged::mountFilesystem()
         lg2::error("Failed to mount filesystem: {RETVAL}", "RETVAL", retval,
                    "REDFISH_MESSAGE_ID",
                    std::string("OpenBMC.0.1.MountFilesystemFail"));
-        bool removeSuccess =
-            fsIface->removeDirectory(std::filesystem::path(mountPoint));
-        if (!removeSuccess)
+        if (fsIface->removeDirectory(std::filesystem::path(mountPoint)) != 0)
         {
             lg2::error("Failed to remove mount point: {DIR}", "DIR", mountPoint,
                        "REDFISH_MESSAGE_ID",
@@ -597,8 +595,7 @@ void EStoraged::unmountFilesystem()
     }
 
     /* Remove the mount point. */
-    bool success = fsIface->removeDirectory(std::filesystem::path(mountPoint));
-    if (!success)
+    if (fsIface->removeDirectory(std::filesystem::path(mountPoint)) != 0)
     {
         lg2::error("Failed to remove mount point {DIR}", "DIR", mountPoint,
                    "REDFISH_MESSAGE_ID",

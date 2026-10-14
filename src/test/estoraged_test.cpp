@@ -229,7 +229,7 @@ TEST_F(EStoragedTest, FormatPass)
         .WillOnce(Return(0));
 
     EXPECT_CALL(*mockFsIface, removeDirectory(path(esObject->getMountPoint())))
-        .WillOnce(Return(true));
+        .WillOnce(Return(0));
 
     EXPECT_CALL(*mockCryptIface, cryptDeactivate(_, _))
         .WillOnce(&removeMappedDev);
@@ -279,7 +279,7 @@ TEST_F(EStoragedTest, FormatFsckRepairsErrorsPass)
         .WillOnce(Return(0));
 
     EXPECT_CALL(*mockFsIface, removeDirectory(path(esObject->getMountPoint())))
-        .WillOnce(Return(true));
+        .WillOnce(Return(0));
 
     EXPECT_CALL(*mockCryptIface, cryptDeactivate(_, _))
         .WillOnce(&removeMappedDev);
@@ -341,7 +341,7 @@ TEST_F(EStoragedTest, FormatWithRealFilesystem)
         .WillOnce(Return(0));
 
     EXPECT_CALL(*mockFsIface, removeDirectory(path(esObject->getMountPoint())))
-        .WillOnce(Return(true));
+        .WillOnce(Return(0));
 
     EXPECT_CALL(*mockCryptIface, cryptDeactivate(_, _))
         .WillOnce(&removeMappedDev);
@@ -394,7 +394,7 @@ TEST_F(EStoragedTest, MountPointExistsPass)
         .WillOnce(Return(0));
 
     EXPECT_CALL(*mockFsIface, removeDirectory(path(esObject->getMountPoint())))
-        .WillOnce(Return(true));
+        .WillOnce(Return(0));
 
     EXPECT_CALL(*mockCryptIface, cryptDeactivate(_, _))
         .WillOnce(&removeMappedDev);
@@ -574,7 +574,7 @@ TEST_F(EStoragedTest, FormatMountFail)
         .WillOnce(Return(-1));
 
     EXPECT_CALL(*mockFsIface, removeDirectory(path(esObject->getMountPoint())))
-        .WillOnce(Return(true));
+        .WillOnce(Return(0));
 
     /*
      * If this filesystem fails to mount when initially formatting the device,
@@ -776,7 +776,7 @@ TEST_F(EStoragedTest, RemoveMountPointFail)
         .WillOnce(Return(0));
 
     EXPECT_CALL(*mockFsIface, removeDirectory(path(esObject->getMountPoint())))
-        .WillOnce(Return(false));
+        .WillOnce(Return(-1));
 
     esObject->formatLuks(password, Volume::FilesystemType::ext4);
     EXPECT_FALSE(esObject->isLocked());
@@ -825,7 +825,7 @@ TEST_F(EStoragedTest, DeactivateFail)
         .WillOnce(Return(0));
 
     EXPECT_CALL(*mockFsIface, removeDirectory(path(esObject->getMountPoint())))
-        .WillOnce(Return(true));
+        .WillOnce(Return(0));
 
     EXPECT_CALL(*mockCryptIface, cryptDeactivate(_, _)).WillOnce(Return(-1));
 
@@ -1075,7 +1075,7 @@ TEST_F(FilesystemTest, DirectoryOperations)
     EXPECT_FALSE(fs.directoryExists(testDir));
     EXPECT_TRUE(fs.createDirectory(testDir));
     EXPECT_TRUE(fs.directoryExists(testDir));
-    EXPECT_TRUE(fs.removeDirectory(testDir));
+    EXPECT_EQ(fs.removeDirectory(testDir), 0);
     EXPECT_FALSE(fs.directoryExists(testDir));
 }
 
@@ -1087,13 +1087,15 @@ TEST_F(FilesystemTest, DirectoryOperationsFailureDoesNotThrow)
         testTmpDir() / "nonexistent_parent" / "dir";
     EXPECT_NO_THROW(EXPECT_FALSE(fs.createDirectory(missingParent)));
     EXPECT_NO_THROW(EXPECT_FALSE(fs.directoryExists(missingParent)));
-    EXPECT_NO_THROW(EXPECT_FALSE(fs.removeDirectory(missingParent)));
+    EXPECT_NO_THROW(EXPECT_EQ(fs.removeDirectory(missingParent), -1));
+    EXPECT_EQ(errno, ENOENT);
 
     /* Removing a non-empty directory fails. */
     const std::filesystem::path nonEmpty = testTmpDir() / "nonempty_dir";
     ASSERT_TRUE(std::filesystem::create_directory(nonEmpty));
     std::ofstream(nonEmpty / "file") << "x";
-    EXPECT_NO_THROW(EXPECT_FALSE(fs.removeDirectory(nonEmpty)));
+    EXPECT_NO_THROW(EXPECT_EQ(fs.removeDirectory(nonEmpty), -1));
+    EXPECT_TRUE(errno == ENOTEMPTY || errno == EEXIST);
     std::filesystem::remove_all(nonEmpty);
 }
 

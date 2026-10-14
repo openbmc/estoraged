@@ -80,7 +80,7 @@ class MockFilesystemInterface : public estoraged::FilesystemInterface
     MOCK_METHOD(bool, createDirectory, (const std::filesystem::path& p),
                 (override));
 
-    MOCK_METHOD(bool, removeDirectory, (const std::filesystem::path& p),
+    MOCK_METHOD(int, removeDirectory, (const std::filesystem::path& p),
                 (override));
 
     MOCK_METHOD(bool, directoryExists, (const std::filesystem::path& p),

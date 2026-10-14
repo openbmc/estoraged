@@ -3,6 +3,7 @@
 #include "runCommand.hpp"
 
 #include <sys/mount.h>
+#include <unistd.h>
 
 #include <filesystem>
 #include <initializer_list>
@@ -75,14 +76,15 @@ class FilesystemInterface
      */
     virtual bool createDirectory(const std::filesystem::path& p) = 0;
 
-    /** @brief Wrapper around std::filesystem::remove.
+    /** @brief Wrapper around rmdir().
      *  @details Used for mocking purposes.
      *
      *  @param[in] p - path to directory that should be removed.
      *
-     *  @returns true on success, false otherwise.
+     *  @returns On success, zero is returned. On error, -1 is returned, and
+     *    errno is set to indicate the error.
      */
-    virtual bool removeDirectory(const std::filesystem::path& p) = 0;
+    virtual int removeDirectory(const std::filesystem::path& p) = 0;
 
     /** @brief Wrapper around std::filesystem::is_directory
      *
@@ -155,10 +157,9 @@ class Filesystem : public FilesystemInterface
         return std::filesystem::create_directory(p, ec) && !ec;
     }
 
-    bool removeDirectory(const std::filesystem::path& p) override
+    int removeDirectory(const std::filesystem::path& p) override
     {
-        std::error_code ec;
-        return std::filesystem::remove(p, ec) && !ec;
+        return rmdir(p.c_str());
     }
 
     bool directoryExists(const std::filesystem::path& p) override

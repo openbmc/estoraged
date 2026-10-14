@@ -10,6 +10,8 @@
 #include <stdplus/fd/managed.hpp>
 #include <xyz/openbmc_project/Common/error.hpp>
 
+#include <array>
+#include <cstdint>
 #include <fstream>
 #include <span>
 #include <system_error>
@@ -27,6 +29,8 @@ using testing::_;
 using testing::Invoke;
 using testing::Return;
 
+constexpr uint64_t testSeed = 0x6a656272;
+
 TEST(pattern, patternPass)
 {
     TestTmpDir tmpDir;
@@ -40,7 +44,7 @@ TEST(pattern, patternPass)
     stdplus::fd::ManagedFd writeFd =
         stdplus::fd::open(testFileName, stdplus::fd::OpenAccess::WriteOnly);
 
-    Pattern pass(testFileName);
+    Pattern pass(testFileName, testSeed);
     EXPECT_NO_THROW(pass.writePattern(size, writeFd));
 
     stdplus::fd::ManagedFd readFd =
@@ -66,7 +70,7 @@ TEST(pattern, patternNotDivisible)
 
     stdplus::fd::ManagedFd writeFd =
         stdplus::fd::open(testFileName, stdplus::fd::OpenAccess::WriteOnly);
-    Pattern pass(testFileName);
+    Pattern pass(testFileName, testSeed);
     EXPECT_NO_THROW(pass.writePattern(size, writeFd));
 
     stdplus::fd::ManagedFd readFd =
@@ -81,7 +85,7 @@ TEST(pattern, patternsDontMatch)
     uint64_t size = 4096;
     std::ofstream testFile;
 
-    Pattern pass(testFileName);
+    Pattern pass(testFileName, testSeed);
 
     int dummyValue = 88;
     testFile.open(testFileName, std::ios::binary | std::ios::out);
@@ -100,6 +104,29 @@ TEST(pattern, patternsDontMatch)
     EXPECT_THROW(pass.verifyPattern(size, readFd), InternalFailure);
 }
 
+/*
+ * Verifying with a different seed than the one used for writing must fail
+ * such that a stale pattern from an earlier overwrite is not accepted.
+ */
+TEST(pattern, differentSeedFails)
+{
+    TestTmpDir tmpDir;
+    std::string testFileName = (tmpDir.get() / "differentSeed").string();
+    uint64_t size = 4096;
+    std::ofstream testFile(testFileName, std::ios::out | std::ios::binary);
+    testFile.close();
+
+    stdplus::fd::ManagedFd writeFd =
+        stdplus::fd::open(testFileName, stdplus::fd::OpenAccess::WriteOnly);
+    Pattern writer(testFileName, testSeed);
+    EXPECT_NO_THROW(writer.writePattern(size, writeFd));
+
+    stdplus::fd::ManagedFd readFd =
+        stdplus::fd::open(testFileName, stdplus::fd::OpenAccess::ReadOnly);
+    Pattern verifier(testFileName, testSeed + 1);
+    EXPECT_THROW(verifier.verifyPattern(size, readFd), InternalFailure);
+}
+
 /* The pattern must use all bits of each 64-bit word. */
 TEST(pattern, usesAllBits)
 {
@@ -111,7 +138,7 @@ TEST(pattern, usesAllBits)
 
     stdplus::fd::ManagedFd writeFd =
         stdplus::fd::open(testFileName, stdplus::fd::OpenAccess::WriteOnly);
-    Pattern writer(testFileName);
+    Pattern writer(testFileName, testSeed);
     EXPECT_NO_THROW(writer.writePattern(size, writeFd));
 
     std::array<uint64_t, 4096 / sizeof(uint64_t)> words{};
@@ -135,7 +162,7 @@ TEST(pattern, shortReadWritePass)
     static auto shortData1 = std::vector<std::byte>(shortSize);
     static auto shortData2 = std::vector<std::byte>(shortSize);
     static auto restOfData = std::vector<std::byte>(size - shortSize * 2);
-    Pattern pass(testFileName);
+    Pattern pass(testFileName, testSeed);
     stdplus::fd::FdMock mock;
 
     testing::Sequence s;
@@ -195,7 +222,7 @@ TEST(Zeros, shortReadWriteFail)
 
     uint64_t size = 4096;
     size_t shortSize = 128;
-    Pattern tryPattern(testFileName);
+    Pattern tryPattern(testFileName, testSeed);
     auto shortData = std::vector<std::byte>(shortSize, std::byte{0});
     auto restOfData =
         std::vector<std::byte>(size - shortSize * 3, std::byte{0});
@@ -229,7 +256,7 @@ TEST(pattern, driveIsSmaller)
     std::string testFileName = "testfile_driveIsSmaller";
 
     uint64_t size = 4096;
-    Pattern tryPattern(testFileName);
+    Pattern tryPattern(testFileName, testSeed);
 
     stdplus::fd::FdMock mocks;
     testing::InSequence s;
@@ -254,7 +281,7 @@ TEST(pattern, driveIsSmaller)
 TEST(pattern, writeReadSystemError)
 {
     uint64_t size = 4096;
-    Pattern tryPattern("testfile_systemError");
+    Pattern tryPattern("testfile_systemError", testSeed);
     stdplus::fd::FdMock mocks;
 
     EXPECT_CALL(mocks, write(_))

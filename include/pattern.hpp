@@ -7,6 +7,7 @@
 #include <stdplus/fd/managed.hpp>
 
 #include <chrono>
+#include <cstdint>
 #include <span>
 #include <string>
 
@@ -20,8 +21,12 @@ class Pattern : public Erase
     /** @brief Creates a pattern erase object.
      *
      *  @param[in] inDevPath - the linux device path for the block device.
+     *  @param[in] inSeed - seed of the pseudo-random number generator. The
+     *    same seed must be used to write and to verify the pattern.
      */
-    Pattern(std::string_view inDevPath) : Erase(inDevPath) {}
+    Pattern(std::string_view inDevPath, uint64_t inSeed) :
+        Erase(inDevPath), seed(inSeed)
+    {}
 
     /** @brief writes an incompressible random pattern to the drive, using
      * default parameters. It also throws errors accordingly.
@@ -66,7 +71,9 @@ class Pattern : public Erase
     void verifyPattern(uint64_t driveSize, Fd& fd);
 
   private:
-    static constexpr uint64_t seed = 0x6a656272;
+    /** @brief Seed of the pseudo-random number generator. */
+    uint64_t seed;
+
     static constexpr size_t blockSize = 4096;
     static constexpr size_t blockSizeUsing64 = blockSize / sizeof(uint64_t);
     static constexpr size_t maxRetry = 32;

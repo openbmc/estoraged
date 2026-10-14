@@ -26,11 +26,13 @@
 #include <xyz/openbmc_project/Common/error.hpp>
 
 #include <array>
+#include <cerrno>
 #include <cstdlib>
 #include <cstring>
 #include <filesystem>
 #include <string>
 #include <string_view>
+#include <system_error>
 #include <utility>
 #include <vector>
 
@@ -562,9 +564,13 @@ void EStoraged::mountFilesystem()
         lg2::error("Failed to mount filesystem: {RETVAL}", "RETVAL", retval,
                    "REDFISH_MESSAGE_ID",
                    std::string("OpenBMC.0.1.MountFilesystemFail"));
-        if (fsIface->removeDirectory(std::filesystem::path(mountPoint)) != 0)
+        if (fsIface->removeDirectory(std::filesystem::path(mountPoint)) != 0 &&
+            errno != ENOENT)
         {
-            lg2::error("Failed to remove mount point: {DIR}", "DIR", mountPoint,
+            const int err = errno;
+            lg2::error("Failed to remove mount point {DIR}: {ERROR}", "DIR",
+                       mountPoint, "ERROR",
+                       std::generic_category().message(err),
                        "REDFISH_MESSAGE_ID",
                        std::string("OpenBMC.0.1.MountFilesystemFail"));
         }
@@ -599,16 +605,32 @@ void EStoraged::unmountFilesystem()
     int retval = fsIface->doUnmount(mountPoint.c_str());
     if (retval != 0)
     {
-        lg2::error("Failed to unmount filesystem: {RETVAL}", "RETVAL", retval,
-                   "REDFISH_MESSAGE_ID",
-                   std::string("OpenBMC.0.1.UnmountFilesystemFail"));
-        throw InternalFailure();
+        const int err = errno;
+        /*
+         * umount() fails with EINVAL if the mount point is not mounted and
+         * with ENOENT if the mount point does not exist. Proceed in these
+         * cases such that the LUKS device can be locked even if the
+         * filesystem is not mounted, e.g. after a failed format or mount.
+         */
+        if (err != EINVAL && err != ENOENT)
+        {
+            lg2::error("Failed to unmount filesystem: {RETVAL}", "RETVAL",
+                       retval, "ERROR", std::generic_category().message(err),
+                       "REDFISH_MESSAGE_ID",
+                       std::string("OpenBMC.0.1.UnmountFilesystemFail"));
+            throw InternalFailure();
+        }
+
+        lg2::info("Filesystem at {DIR} is not mounted", "DIR", mountPoint);
     }
 
-    /* Remove the mount point. */
-    if (fsIface->removeDirectory(std::filesystem::path(mountPoint)) != 0)
+    /* Remove the mount point. Treat ENOENT as acceptable. */
+    if (fsIface->removeDirectory(std::filesystem::path(mountPoint)) != 0 &&
+        errno != ENOENT)
     {
-        lg2::error("Failed to remove mount point {DIR}", "DIR", mountPoint,
+        const int err = errno;
+        lg2::error("Failed to remove mount point {DIR}: {ERROR}", "DIR",
+                   mountPoint, "ERROR", std::generic_category().message(err),
                    "REDFISH_MESSAGE_ID",
                    std::string("OpenBMC.0.1.UnmountFilesystemFail"));
         throw InternalFailure();

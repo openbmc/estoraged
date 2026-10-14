@@ -100,6 +100,33 @@ TEST(pattern, patternsDontMatch)
     EXPECT_THROW(pass.verifyPattern(size, readFd), InternalFailure);
 }
 
+/* The pattern must use all bits of each 64-bit word. */
+TEST(pattern, usesAllBits)
+{
+    TestTmpDir tmpDir;
+    std::string testFileName = (tmpDir.get() / "allBits").string();
+    uint64_t size = 4096;
+    std::ofstream testFile(testFileName, std::ios::out | std::ios::binary);
+    testFile.close();
+
+    stdplus::fd::ManagedFd writeFd =
+        stdplus::fd::open(testFileName, stdplus::fd::OpenAccess::WriteOnly);
+    Pattern writer(testFileName);
+    EXPECT_NO_THROW(writer.writePattern(size, writeFd));
+
+    std::array<uint64_t, 4096 / sizeof(uint64_t)> words{};
+    std::ifstream in(testFileName, std::ios::binary);
+    in.read(reinterpret_cast<char*>(words.data()), sizeof(words));
+    ASSERT_EQ(in.gcount(), static_cast<std::streamsize>(sizeof(words)));
+
+    uint64_t orBits = 0;
+    for (uint64_t word : words)
+    {
+        orBits |= word;
+    }
+    EXPECT_EQ(orBits, ~uint64_t{0});
+}
+
 TEST(pattern, shortReadWritePass)
 {
     std::string testFileName = "testfile_shortRead";

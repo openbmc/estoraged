@@ -66,9 +66,9 @@ class Pattern : public Erase
     void verifyPattern(uint64_t driveSize, Fd& fd);
 
   private:
-    static constexpr uint32_t seed = 0x6a656272;
+    static constexpr uint64_t seed = 0x6a656272;
     static constexpr size_t blockSize = 4096;
-    static constexpr size_t blockSizeUsing32 = blockSize / sizeof(uint32_t);
+    static constexpr size_t blockSizeUsing64 = blockSize / sizeof(uint64_t);
     static constexpr size_t maxRetry = 32;
     static constexpr std::chrono::duration delay = std::chrono::milliseconds(1);
 };

@@ -75,10 +75,12 @@ void Sanitize::doSanitize(uint64_t driveSize)
 
 void Sanitize::emmcErase(uint64_t driveSize)
 {
-    uint64_t sectorSize = 0x200; // default value see eMMC spec 6.6.34.
-                                 // NOTE: 0x200 is only valid for eMMC greater
-                                 // then 2 GB
-    if (driveSize < sectorSize ||
+    // eMMC spec 6.6.34: 512-byte sector addressing is used for devices > 2 GiB,
+    // and byte addressing is used for devices <= 2 GiB.
+    constexpr uint64_t minDriveSize = 0x200;
+    constexpr uint64_t maxByteAddrSize = 0x80000000;
+    uint64_t sectorSize = driveSize > maxByteAddrSize ? 0x200 : 1;
+    if (driveSize < minDriveSize ||
         (driveSize / sectorSize) - 1 > std::numeric_limits<uint32_t>::max())
     {
         throw InternalFailure();

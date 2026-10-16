@@ -42,8 +42,22 @@ TEST(Sanitize, Successful)
     IOCTLWrapperMock* mockPtr = mockIOCTL.get();
     estoraged::Sanitize goodSanitize("/dev/null", std::move(mockIOCTL));
     EXPECT_CALL(*mockPtr, doIoctl(_, _, _)).WillRepeatedly(Return(0));
-    EXPECT_CALL(*mockPtr, doIoctlMulti(_, _, _)).WillRepeatedly(Return(0));
+    uint32_t eraseEndArg = 0;
+    EXPECT_CALL(*mockPtr, doIoctlMulti(_, _, _))
+        .WillRepeatedly(
+            [&eraseEndArg](std::string_view, unsigned long,
+                           struct estoraged::MmcIoMultiCmdErase& data) {
+                eraseEndArg = data.cmds[1].arg;
+                return 0;
+            });
     EXPECT_NO_THROW(goodSanitize.doSanitize(52428800));
+    EXPECT_EQ(eraseEndArg, 52428800U - 1U);
+
+    EXPECT_NO_THROW(goodSanitize.doSanitize(0x80000000));
+    EXPECT_EQ(eraseEndArg, 0x80000000U - 1U);
+
+    EXPECT_NO_THROW(goodSanitize.doSanitize(4000000000));
+    EXPECT_EQ(eraseEndArg, (4000000000U / 512U) - 1U);
 }
 
 // doIoctlMulti returns -1, and Sanitize::emmcErase throws InternalFailure

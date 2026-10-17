@@ -16,6 +16,24 @@
       "message": "OpenBMC is only a \"live at HEAD\" project.  If you need backwards compatibility for downstream builds, you need to deal with that downstream.  If you keep reverting these changes, this repository will cease to compile.",
       "revId": "47bffe27e6d5de561dcf7eea0d99a09665c03f89",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "88a94b61_6cc0e229",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2026-10-17T23:35:04Z",
+      "side": 1,
+      "message": "To address this specific commit, yes we did regress compared to HEAD.\n\nWRT the project in general. I know the stance about \"live at HEAD\", but I don\u0027t see why the autodetection here would be a problem WRT compiles. It handles both old and new sdbusplus code. I don\u0027t think this is a big deal since we will be supporting living at HEAD and on past versions.",
+      "parentUuid": "8b99aa0c_d1b9ed6a",
+      "revId": "47bffe27e6d5de561dcf7eea0d99a09665c03f89",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ],
   "submitRequirementResults": []

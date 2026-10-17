@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd966c7d_0f2d9d5a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003197
+      },
+      "writtenOn": "2026-10-17T14:20:41Z",
+      "side": 1,
+      "message": "This breaks compatibility with older versions of the sdbusplus library. Not everyone is using the latest version of that library.",
+      "revId": "75b96cf91ac2c4cf345356b25441b0e83aca8d9c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

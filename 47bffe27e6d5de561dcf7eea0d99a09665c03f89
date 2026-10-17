@@ -1,4 +1,22 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b99aa0c_d1b9ed6a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-10-17T23:30:56Z",
+      "side": 1,
+      "message": "OpenBMC is only a \"live at HEAD\" project.  If you need backwards compatibility for downstream builds, you need to deal with that downstream.  If you keep reverting these changes, this repository will cease to compile.",
+      "revId": "47bffe27e6d5de561dcf7eea0d99a09665c03f89",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ],
   "submitRequirementResults": []
 }

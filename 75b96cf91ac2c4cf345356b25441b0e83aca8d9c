@@ -52,6 +52,24 @@
       "parentUuid": "7600097a_8dcbafb4",
       "revId": "75b96cf91ac2c4cf345356b25441b0e83aca8d9c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b826eb9_9f0888c4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2026-10-17T23:36:31Z",
+      "side": 1,
+      "message": "Yes, if the stance of the project is to explicitly not allow backward compatability shimming we will just go entirely downstream with our changes.",
+      "parentUuid": "ea8123d3_23917482",
+      "revId": "75b96cf91ac2c4cf345356b25441b0e83aca8d9c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

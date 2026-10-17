@@ -34,6 +34,24 @@
       "parentUuid": "cd966c7d_0f2d9d5a",
       "revId": "75b96cf91ac2c4cf345356b25441b0e83aca8d9c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea8123d3_23917482",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-10-17T23:32:26Z",
+      "side": 1,
+      "message": "\u003e OpenBMC is only a \"live at HEAD\" project. If you need backwards compatibility for downstream builds, you need to deal with that downstream. If you keep reverting these changes, this repository will cease to compile.\n\nI left this comment in the commit you previously used to revert the other automated commit.",
+      "parentUuid": "7600097a_8dcbafb4",
+      "revId": "75b96cf91ac2c4cf345356b25441b0e83aca8d9c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

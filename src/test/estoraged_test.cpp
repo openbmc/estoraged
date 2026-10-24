@@ -832,7 +832,10 @@ TEST_F(EStoragedTest, FormatFailDeactivateFail)
     EXPECT_EQ(0, removeMappedDev());
 }
 
-/* Test case where we fail to remove the mount point. */
+/*
+ * Test case where we fail to remove the mount point.
+ * lock() must still deactivate the LUKS device.
+ */
 TEST_F(EStoragedTest, RemoveMountPointFail)
 {
     EXPECT_CALL(*mockCryptIface, cryptFormat(_, _, _, _, _, _, _, _)).Times(1);
@@ -871,14 +874,15 @@ TEST_F(EStoragedTest, RemoveMountPointFail)
     EXPECT_CALL(*mockFsIface, removeDirectory(path(esObject->getMountPoint())))
         .WillOnce(testing::DoAll(testing::Assign(&errno, EBUSY), Return(-1)));
 
+    EXPECT_CALL(*mockCryptIface, cryptDeactivate(_, _))
+        .WillOnce(&removeMappedDev);
+
     esObject->formatLuks(password, Volume::FilesystemType::ext4);
     EXPECT_FALSE(esObject->isLocked());
 
-    /* This will fail to remove the mount point. */
-    EXPECT_THROW(esObject->lock(), InternalFailure);
-    EXPECT_FALSE(esObject->isLocked());
-
-    EXPECT_EQ(0, removeMappedDev());
+    /* Lock must succeed even if removing the mount point fails. */
+    EXPECT_NO_THROW(esObject->lock());
+    EXPECT_TRUE(esObject->isLocked());
 }
 
 /* Test case where we fail to deactivate the LUKS device. */

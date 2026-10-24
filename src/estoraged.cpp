@@ -657,22 +657,28 @@ void EStoraged::unmountFilesystem()
 
         lg2::info("Filesystem at {DIR} is not mounted", "DIR", mountPoint);
     }
+    else
+    {
+        lg2::info("Successfully unmounted filesystem at {DIR}", "DIR",
+                  mountPoint, "REDFISH_MESSAGE_ID",
+                  std::string("OpenBMC.0.1.MountFilesystemSuccess"));
+    }
 
-    /* Remove the mount point. Treat ENOENT as acceptable. */
+    /*
+     * Remove the mount point. Treat ENOENT as acceptable and only log other
+     * errors so that lock() still deactivates the LUKS device after the
+     * filesystem has been unmounted.
+     */
     if (fsIface->removeDirectory(std::filesystem::path(mountPoint)) != 0 &&
         errno != ENOENT)
     {
         const int err = errno;
-        lg2::error("Failed to remove mount point {DIR}: {ERROR}", "DIR",
-                   mountPoint, "ERROR", std::generic_category().message(err),
-                   "REDFISH_MESSAGE_ID",
-                   std::string("OpenBMC.0.1.UnmountFilesystemFail"));
-        throw InternalFailure();
+        lg2::error(
+            "Failed to remove mount point {DIR}, continuing anyway: {ERROR}",
+            "DIR", mountPoint, "ERROR", std::generic_category().message(err),
+            "REDFISH_MESSAGE_ID",
+            std::string("OpenBMC.0.1.UnmountFilesystemFail"));
     }
-
-    lg2::info("Successfully unmounted filesystem at {DIR}", "DIR", mountPoint,
-              "REDFISH_MESSAGE_ID",
-              std::string("OpenBMC.0.1.MountFilesystemSuccess"));
 }
 
 void EStoraged::deactivateLuksDev()

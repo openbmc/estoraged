@@ -34,6 +34,24 @@
       "parentUuid": "469c5ec2_8d9952b2",
       "revId": "ae6b1663fe946b259a0e52be31b495c1f9e152f4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24447881_f572d697",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2026-10-25T05:11:42Z",
+      "side": 1,
+      "message": "See this for one precauation https://gbmc-review.git.corp.google.com/c/meta-gbmc-staging/+/118149",
+      "parentUuid": "53753b68_8ecee68a",
+      "revId": "ae6b1663fe946b259a0e52be31b495c1f9e152f4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

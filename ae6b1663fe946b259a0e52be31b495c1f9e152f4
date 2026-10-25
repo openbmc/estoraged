@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "469c5ec2_8d9952b2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003197
+      },
+      "writtenOn": "2026-10-25T01:30:44Z",
+      "side": 1,
+      "message": "Is this a workaround or a fix for the root cause? Shouldn\u0027t all activity on a mountpoint have been paused before the umount happens?\n\nHave any alternatives been considered, e.g. creating the mountpoint directory as read-only?",
+      "revId": "ae6b1663fe946b259a0e52be31b495c1f9e152f4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

@@ -27,7 +27,7 @@ class VerifyDriveGeometry : public Erase
     void geometryOkay(uint64_t eraseMaxGeometry, uint64_t eraseMinGemoetry)
     {
         geometryOkay(eraseMaxGeometry, eraseMinGemoetry,
-                     util::findSizeOfBlockDevice(devPath));
+                     util::findSizeOfBlockDevice(getDevPath()));
     }
     void geometryOkay(uint64_t eraseMaxGeometry, uint64_t eraseMinGemoetry,
                       uint64_t bytes);

@@ -33,13 +33,14 @@ class Zero : public Erase
      */
     void writeZero()
     {
+        const std::string& path = getDevPath();
         stdplus::fd::ManagedFd fd =
-            stdplus::fd::open(devPath, stdplus::fd::OpenAccess::WriteOnly);
-        writeZero(util::findSizeOfBlockDevice(devPath), fd);
+            stdplus::fd::open(path, stdplus::fd::OpenAccess::WriteOnly);
+        writeZero(util::findSizeOfBlockDevice(path), fd);
         /* Make sure that the data reached the medium and report errors. */
-        util::syncBlockDevice(fd.get(), devPath);
+        util::syncBlockDevice(fd.get(), path);
         /* Drop the written data from the page cache. */
-        util::dropBlockDeviceCache(fd.get(), devPath);
+        util::dropBlockDeviceCache(fd.get(), path);
     }
 
     /** @brief verifies the drive has only zeros on it,
@@ -54,11 +55,12 @@ class Zero : public Erase
      */
     void verifyZero()
     {
+        const std::string& path = getDevPath();
         stdplus::fd::ManagedFd fd =
-            stdplus::fd::open(devPath, stdplus::fd::OpenAccess::ReadOnly);
+            stdplus::fd::open(path, stdplus::fd::OpenAccess::ReadOnly);
         /* Make sure that the data is read from the medium. */
-        util::dropBlockDeviceCache(fd.get(), devPath);
-        verifyZero(util::findSizeOfBlockDevice(devPath), fd);
+        util::dropBlockDeviceCache(fd.get(), path);
+        verifyZero(util::findSizeOfBlockDevice(path), fd);
     }
 
   private:

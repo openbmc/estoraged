@@ -25,7 +25,7 @@ CryptErase::CryptErase(
 void CryptErase::doErase()
 {
     /* get cryptHandle */
-    CryptHandle cryptHandle{devPath};
+    CryptHandle cryptHandle{getDevPath()};
     /* cryptLoad */
     if (cryptIface->cryptLoad(cryptHandle.get(), CRYPT_LUKS2, nullptr) != 0)
     {

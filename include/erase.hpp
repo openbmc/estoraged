@@ -16,7 +16,13 @@ class Erase
      */
     Erase(std::string_view inDevPath) : devPath(inDevPath) {}
 
-  protected:
+    /** @brief returns the linux path for the block device */
+    const std::string& getDevPath() const
+    {
+        return devPath;
+    }
+
+  private:
     /* The linux path for the block device */
     std::string devPath;
 };

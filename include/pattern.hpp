@@ -33,13 +33,14 @@ class Pattern : public Erase
      */
     void writePattern()
     {
+        const std::string& path = getDevPath();
         stdplus::fd::ManagedFd fd =
-            stdplus::fd::open(devPath, stdplus::fd::OpenAccess::WriteOnly);
-        writePattern(util::findSizeOfBlockDevice(devPath), fd);
+            stdplus::fd::open(path, stdplus::fd::OpenAccess::WriteOnly);
+        writePattern(util::findSizeOfBlockDevice(path), fd);
         /* Make sure that the data reached the medium and report errors. */
-        util::syncBlockDevice(fd.get(), devPath);
+        util::syncBlockDevice(fd.get(), path);
         /* Drop the written data from the page cache. */
-        util::dropBlockDeviceCache(fd.get(), devPath);
+        util::dropBlockDeviceCache(fd.get(), path);
     }
 
     /** @brief writes an incompressible random pattern to the drive
@@ -55,11 +56,12 @@ class Pattern : public Erase
      */
     void verifyPattern()
     {
+        const std::string& path = getDevPath();
         stdplus::fd::ManagedFd fd =
-            stdplus::fd::open(devPath, stdplus::fd::OpenAccess::ReadOnly);
+            stdplus::fd::open(path, stdplus::fd::OpenAccess::ReadOnly);
         /* Make sure that the data is read from the medium. */
-        util::dropBlockDeviceCache(fd.get(), devPath);
-        verifyPattern(util::findSizeOfBlockDevice(devPath), fd);
+        util::dropBlockDeviceCache(fd.get(), path);
+        verifyPattern(util::findSizeOfBlockDevice(path), fd);
     }
 
     /** @brief verifies the incompressible random pattern is on the drive

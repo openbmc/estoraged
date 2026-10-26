@@ -106,7 +106,8 @@ void Sanitize::emmcErase(uint64_t driveSize)
     eraseCmd.cmds[2].flags = mmcRspSpiR1B | mmcRspR1B | mmcCmdAc;
     eraseCmd.cmds[2].write_flag = 1;
 
-    if (ioctlWrapper->doIoctlMulti(devPath, MMC_IOC_MULTI_CMD, eraseCmd) != 0)
+    if (ioctlWrapper->doIoctlMulti(getDevPath(), MMC_IOC_MULTI_CMD, eraseCmd) !=
+        0)
     {
         throw InternalFailure();
     }
@@ -122,7 +123,7 @@ void Sanitize::emmcSanitize()
     idata.flags = mmcRspSpiR1B | mmcRspR1B | mmcCmdAc;
 
     // make the eMMC sanitize ioctl
-    if (ioctlWrapper->doIoctl(devPath, MMC_IOC_CMD, idata) != 0)
+    if (ioctlWrapper->doIoctl(getDevPath(), MMC_IOC_CMD, idata) != 0)
     {
         throw InternalFailure();
     }

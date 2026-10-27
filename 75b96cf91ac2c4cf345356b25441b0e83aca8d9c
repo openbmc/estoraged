@@ -70,6 +70,24 @@
       "parentUuid": "ea8123d3_23917482",
       "revId": "75b96cf91ac2c4cf345356b25441b0e83aca8d9c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be58fc8e_0aad356a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-10-27T11:11:15Z",
+      "side": 1,
+      "message": "Generally we do not do shimming for our own projects.  If you want to change that policy, I think you should raise it for consensus rather than doing it in random sub-projects.\n\nIf you\u0027re going to continue to do it in this project there are two options:\n\n1. I turn off the automation that helps migrate you for this repository and you deal with it on your own when the repository breaks.\n\n2. You put the shims in a single file that I can exempt from the automation.\n\nRight now there are two issues:\n\na) your shims are spread around so I cannot detect them and as you see the shim itself is being fixed.\n\nb) you didn\u0027t add a shim for `match_rules` and instead you just reverted my last automated change.",
+      "parentUuid": "9b826eb9_9f0888c4",
+      "revId": "75b96cf91ac2c4cf345356b25441b0e83aca8d9c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

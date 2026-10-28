@@ -1,6 +1,7 @@
 #include "estoraged_conf.hpp"
 #include "estoraged_test.hpp"
 #include "pattern.hpp"
+#include "util.hpp"
 
 #include <fcntl.h>
 #include <unistd.h>
@@ -293,6 +294,48 @@ TEST(pattern, writeReadSystemError)
         .WillOnce(testing::Throw(
             std::system_error(EIO, std::generic_category(), "read failed")));
     EXPECT_THROW(tryPattern.verifyPattern(size, mocks), InternalFailure);
+}
+
+/* Overwrites the byte at @p offset of @p path with a nonzero value. */
+static void corruptByte(const std::string& path, off_t offset)
+{
+    stdplus::fd::ManagedFd fd =
+        stdplus::fd::open(path, stdplus::fd::OpenAccess::ReadWrite);
+    const char value = 0x5a;
+    ASSERT_EQ(::pwrite(fd.get(), &value, 1, offset), 1);
+    ASSERT_EQ(::fdatasync(fd.get()), 0);
+}
+
+/* Write and verify a pattern that spans multiple I/O blocks, opening the file
+ * for direct I/O if supported. Also verify that a single corrupted byte in the
+ * last, partial block is detected.
+ */
+TEST(pattern, multiBlockDirect)
+{
+    TestTmpDir tmpDir;
+    std::string testFileName = (tmpDir.get() / "multiBlockDirect").string();
+    const uint64_t size = (2 * 1024 * 1024) + (3 * 512);
+    std::ofstream testFile;
+    testFile.open(testFileName,
+                  std::ios::out | std::ios::binary | std::ios::trunc);
+    testFile.close();
+
+    Pattern pass(testFileName, testSeed);
+    {
+        stdplus::fd::ManagedFd writeFd = estoraged::util::openBlockDeviceDirect(
+            testFileName, stdplus::fd::OpenAccess::WriteOnly);
+        EXPECT_NO_THROW(pass.writePattern(size, writeFd));
+    }
+    {
+        stdplus::fd::ManagedFd readFd = estoraged::util::openBlockDeviceDirect(
+            testFileName, stdplus::fd::OpenAccess::ReadOnly);
+        EXPECT_NO_THROW(pass.verifyPattern(size, readFd));
+    }
+
+    corruptByte(testFileName, static_cast<off_t>(size - 1));
+    stdplus::fd::ManagedFd readFd = estoraged::util::openBlockDeviceDirect(
+        testFileName, stdplus::fd::OpenAccess::ReadOnly);
+    EXPECT_THROW(pass.verifyPattern(size, readFd), InternalFailure);
 }
 
 } // namespace estoraged_test

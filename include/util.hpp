@@ -1,8 +1,16 @@
 #pragma once
 #include "getConfig.hpp"
 
+#include <stdplus/fd/create.hpp>
+#include <stdplus/fd/managed.hpp>
+
+#include <cstddef>
+#include <cstdlib>
 #include <filesystem>
+#include <memory>
+#include <new>
 #include <optional>
+#include <span>
 #include <string>
 #include <string_view>
 #include <utility>
@@ -33,6 +41,63 @@ struct DeviceInfo
         driveType(std::move(driveType)), driveProtocol(std::move(driveProtocol))
     {}
 };
+
+/** @brief Heap-allocated array whose start is aligned to a page boundary,
+ *  as required for O_DIRECT I/O.
+ */
+template <typename T>
+class AlignedBuffer
+{
+  public:
+    static constexpr size_t alignment = 4096;
+
+    /** @brief Allocates a zero-initialized buffer for @p count elements.
+     *  @param[in] count - number of elements. count * sizeof(T) must be a
+     *    multiple of the alignment.
+     */
+    explicit AlignedBuffer(size_t count) :
+        data(static_cast<T*>(std::aligned_alloc(alignment, count * sizeof(T)))),
+        count(count)
+    {
+        if (!data)
+        {
+            throw std::bad_alloc();
+        }
+        std::uninitialized_value_construct_n(data.get(), count);
+    }
+
+    std::span<T> span()
+    {
+        return {data.get(), count};
+    }
+
+    std::span<const T> span() const
+    {
+        return {data.get(), count};
+    }
+
+  private:
+    struct Free
+    {
+        void operator()(T* p) const
+        {
+            std::free(p);
+        }
+    };
+
+    std::unique_ptr<T, Free> data;
+    size_t count;
+};
+
+/** @brief Opens a block device for direct I/O, i.e. such that reads and
+ *  writes bypass the page cache. Falls back to buffered I/O if the device or
+ *  file system does not support O_DIRECT.
+ *  @param[in] devPath - path of the block device
+ *  @param[in] access - access mode
+ *  @return the file descriptor
+ */
+stdplus::fd::ManagedFd openBlockDeviceDirect(const std::string& devPath,
+                                             stdplus::fd::OpenAccess access);
 
 /** @brief finds the size of the linux block device in bytes
  *  @param[in] devpath - the name of the linux block device

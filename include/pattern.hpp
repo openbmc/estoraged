@@ -34,8 +34,8 @@ class Pattern : public Erase
     void writePattern()
     {
         const std::string& path = getDevPath();
-        stdplus::fd::ManagedFd fd =
-            stdplus::fd::open(path, stdplus::fd::OpenAccess::WriteOnly);
+        stdplus::fd::ManagedFd fd = util::openBlockDeviceDirect(
+            path, stdplus::fd::OpenAccess::WriteOnly);
         writePattern(util::findSizeOfBlockDevice(path), fd);
         /* Make sure that the data reached the medium and report errors. */
         util::syncBlockDevice(fd.get(), path);
@@ -57,8 +57,8 @@ class Pattern : public Erase
     void verifyPattern()
     {
         const std::string& path = getDevPath();
-        stdplus::fd::ManagedFd fd =
-            stdplus::fd::open(path, stdplus::fd::OpenAccess::ReadOnly);
+        stdplus::fd::ManagedFd fd = util::openBlockDeviceDirect(
+            path, stdplus::fd::OpenAccess::ReadOnly);
         /* Make sure that the data is read from the medium. */
         util::dropBlockDeviceCache(fd.get(), path);
         verifyPattern(util::findSizeOfBlockDevice(path), fd);
@@ -76,7 +76,11 @@ class Pattern : public Erase
     /** @brief Seed of the pseudo-random number generator. */
     uint64_t seed;
 
-    static constexpr size_t blockSize = 4096;
+    /** @brief Number of bytes per read() or write() call. Large I/O requests
+     *  minimize the number of system calls. A multiple of the logical block
+     *  size as required for O_DIRECT.
+     */
+    static constexpr size_t blockSize = 1024 * 1024;
     static constexpr size_t blockSizeUsing64 = blockSize / sizeof(uint64_t);
     static constexpr size_t maxRetry = 32;
     static constexpr std::chrono::duration delay = std::chrono::milliseconds(1);

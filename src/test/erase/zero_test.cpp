@@ -1,5 +1,6 @@
 #include "estoraged_conf.hpp"
 #include "estoraged_test.hpp"
+#include "util.hpp"
 #include "zero.hpp"
 
 #include <fcntl.h>
@@ -215,6 +216,57 @@ TEST(Zeros, driveIsSmaller)
         .WillRepeatedly(Return(std::span<std::byte>{}))
         .RetiresOnSaturation();
     EXPECT_THROW(tryZero.verifyZero(size, mocks), InternalFailure);
+}
+
+/* Overwrites the byte at @p offset of @p path with a nonzero value. */
+static void corruptByte(const std::string& path, off_t offset)
+{
+    stdplus::fd::ManagedFd fd =
+        stdplus::fd::open(path, stdplus::fd::OpenAccess::ReadWrite);
+    const char value = 0x5a;
+    ASSERT_EQ(::pwrite(fd.get(), &value, 1, offset), 1);
+    ASSERT_EQ(::fdatasync(fd.get()), 0);
+}
+
+/* Write and verify zeros that span multiple I/O blocks, opening the file for
+ * direct I/O if supported. Also verify that a nonzero byte is detected, both
+ * as the first byte of a block and in the middle of a block.
+ */
+TEST(Zeros, multiBlockDirect)
+{
+    TestTmpDir tmpDir;
+    std::string testFileName = (tmpDir.get() / "multiBlockDirect").string();
+    const uint64_t size = (2 * 1024 * 1024) + (3 * 512);
+    std::ofstream testFile;
+    testFile.open(testFileName,
+                  std::ios::out | std::ios::binary | std::ios::trunc);
+    testFile.close();
+
+    Zero pass(testFileName);
+    {
+        stdplus::fd::ManagedFd writeFd = estoraged::util::openBlockDeviceDirect(
+            testFileName, stdplus::fd::OpenAccess::WriteOnly);
+        EXPECT_NO_THROW(pass.writeZero(size, writeFd));
+    }
+    {
+        stdplus::fd::ManagedFd readFd = estoraged::util::openBlockDeviceDirect(
+            testFileName, stdplus::fd::OpenAccess::ReadOnly);
+        EXPECT_NO_THROW(pass.verifyZero(size, readFd));
+    }
+
+    for (const off_t offset : {off_t{1024 * 1024}, off_t{(1024 * 1024) + 7}})
+    {
+        {
+            stdplus::fd::ManagedFd writeFd =
+                estoraged::util::openBlockDeviceDirect(
+                    testFileName, stdplus::fd::OpenAccess::WriteOnly);
+            EXPECT_NO_THROW(pass.writeZero(size, writeFd));
+        }
+        corruptByte(testFileName, offset);
+        stdplus::fd::ManagedFd readFd = estoraged::util::openBlockDeviceDirect(
+            testFileName, stdplus::fd::OpenAccess::ReadOnly);
+        EXPECT_THROW(pass.verifyZero(size, readFd), InternalFailure);
+    }
 }
 
 } // namespace estoraged_test

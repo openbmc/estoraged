@@ -87,6 +87,26 @@ void dropBlockDeviceCache(int fd, std::string_view devPath)
     }
 }
 
+ManagedFd openBlockDeviceDirect(const std::string& devPath,
+                                stdplus::fd::OpenAccess access)
+{
+    try
+    {
+        return stdplus::fd::open(devPath, stdplus::fd::OpenFlags(access).set(
+                                              stdplus::fd::OpenFlag::Direct));
+    }
+    catch (const std::system_error& e)
+    {
+        if (e.code() != std::errc::invalid_argument)
+        {
+            throw;
+        }
+        lg2::info("{DEV} does not support O_DIRECT; using buffered I/O", "DEV",
+                  devPath);
+    }
+    return stdplus::fd::open(devPath, access);
+}
+
 uint8_t findPredictedMediaLifeLeftPercent(const std::string& sysfsPath)
 {
     // The eMMC spec defines two estimates for the life span of the device

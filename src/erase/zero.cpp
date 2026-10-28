@@ -1,6 +1,7 @@
 #include "zero.hpp"
 
 #include "erase.hpp"
+#include "util.hpp"
 
 #include <unistd.h>
 
@@ -9,8 +10,8 @@
 #include <stdplus/fd/managed.hpp>
 #include <xyz/openbmc_project/Common/error.hpp>
 
-#include <array>
 #include <chrono>
+#include <cstring>
 #include <span>
 #include <thread>
 
@@ -23,7 +24,8 @@ using stdplus::fd::Fd;
 void Zero::writeZero(const uint64_t driveSize, Fd& fd)
 {
     uint64_t currentIndex = 0;
-    const std::array<std::byte, blockSize> blockOfZeros{};
+    const util::AlignedBuffer<std::byte> zeroBuf(blockSize);
+    const std::span<const std::byte> blockOfZeros = zeroBuf.span();
 
     while (currentIndex < driveSize)
     {
@@ -36,9 +38,9 @@ void Zero::writeZero(const uint64_t driveSize, Fd& fd)
             size_t retry = 0;
             while (written < writeSize)
             {
-                written += fd.write(std::span{blockOfZeros}.subspan(
-                                        written, writeSize - written))
-                               .size();
+                written +=
+                    fd.write(blockOfZeros.subspan(written, writeSize - written))
+                        .size();
                 if (written == writeSize)
                 {
                     break;
@@ -72,8 +74,8 @@ void Zero::writeZero(const uint64_t driveSize, Fd& fd)
 void Zero::verifyZero(uint64_t driveSize, Fd& fd)
 {
     uint64_t currentIndex = 0;
-    std::array<std::byte, blockSize> readArr{};
-    const std::array<std::byte, blockSize> blockOfZeros{};
+    util::AlignedBuffer<std::byte> readBuf(blockSize);
+    const std::span<std::byte> readArr = readBuf.span();
 
     while (currentIndex < driveSize)
     {
@@ -86,9 +88,7 @@ void Zero::verifyZero(uint64_t driveSize, Fd& fd)
             size_t retry = 0;
             while (read < readSize)
             {
-                read +=
-                    fd.read(std::span{readArr}.subspan(read, readSize - read))
-                        .size();
+                read += fd.read(readArr.subspan(read, readSize - read)).size();
                 if (read == readSize)
                 {
                     break;
@@ -114,7 +114,12 @@ void Zero::verifyZero(uint64_t driveSize, Fd& fd)
                        std::string("eStorageD.1.0.EraseFailure"));
             throw InternalFailure();
         }
-        if (memcmp(readArr.data(), blockOfZeros.data(), readSize) != 0)
+        // The block only contains zeros if the first byte is zero and if each
+        // byte equals the byte after it. This avoids allocating a block of
+        // zeros to compare with.
+        if (readSize != 0 &&
+            (readArr[0] != std::byte{0} ||
+             memcmp(readArr.data(), readArr.data() + 1, readSize - 1) != 0))
         {
             lg2::error("Estoraged erase zeros block is not zero",
                        "REDFISH_MESSAGE_ID",

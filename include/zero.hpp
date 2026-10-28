@@ -34,8 +34,8 @@ class Zero : public Erase
     void writeZero()
     {
         const std::string& path = getDevPath();
-        stdplus::fd::ManagedFd fd =
-            stdplus::fd::open(path, stdplus::fd::OpenAccess::WriteOnly);
+        stdplus::fd::ManagedFd fd = util::openBlockDeviceDirect(
+            path, stdplus::fd::OpenAccess::WriteOnly);
         writeZero(util::findSizeOfBlockDevice(path), fd);
         /* Make sure that the data reached the medium and report errors. */
         util::syncBlockDevice(fd.get(), path);
@@ -56,18 +56,19 @@ class Zero : public Erase
     void verifyZero()
     {
         const std::string& path = getDevPath();
-        stdplus::fd::ManagedFd fd =
-            stdplus::fd::open(path, stdplus::fd::OpenAccess::ReadOnly);
+        stdplus::fd::ManagedFd fd = util::openBlockDeviceDirect(
+            path, stdplus::fd::OpenAccess::ReadOnly);
         /* Make sure that the data is read from the medium. */
         util::dropBlockDeviceCache(fd.get(), path);
         verifyZero(util::findSizeOfBlockDevice(path), fd);
     }
 
   private:
-    /* @brief the size of the blocks in bytes used for write and verify.
-     * 32768 was also tested. It had almost identical performance.
+    /** @brief Number of bytes per read() or write() call. Large I/O requests
+     *  minimize the number of system calls. A multiple of the logical block
+     *  size as required for O_DIRECT.
      */
-    static constexpr size_t blockSize = 4096;
+    static constexpr size_t blockSize = 1024 * 1024;
     static constexpr size_t maxRetry = 32;
     static constexpr std::chrono::duration delay = std::chrono::milliseconds(1);
 };

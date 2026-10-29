@@ -130,6 +130,31 @@ class GetConfigTest : public ::testing::Test
         return pred();
     }
 
+    sdbusplus::message_t makePropertiesChangedSignal(const char* path)
+    {
+        auto msg = serverConn->new_signal(
+            path, "org.freedesktop.DBus.Properties", "PropertiesChanged");
+        estoraged::StorageData changed;
+        changed.emplace("Type", estoraged::BasicVariantType("EmmcDevice"));
+        std::vector<std::string> invalidated;
+        msg.append(std::string(estoraged::emmcConfigInterface), changed,
+                   invalidated);
+        return sealMessage(std::move(msg));
+    }
+
+    sdbusplus::message_t makeEmmcInterfacesAddedSignal(const char* path)
+    {
+        auto added = serverConn->new_signal(
+            kInventoryRoot, "org.freedesktop.DBus.ObjectManager",
+            "InterfacesAdded");
+        boost::container::flat_map<std::string, estoraged::StorageData> ifaces;
+        estoraged::StorageData emmcData;
+        emmcData.emplace("Type", estoraged::BasicVariantType("EmmcDevice"));
+        ifaces.emplace(estoraged::emmcConfigInterface, emmcData);
+        added.append(estoraged::object_path(path), ifaces);
+        return sealMessage(std::move(added));
+    }
+
     std::shared_ptr<sdbusplus::asio::dbus_interface> registerEmmcConfigObject(
         const std::string& path, const std::string& name = "agora_emmc")
     {
@@ -209,9 +234,184 @@ TEST_F(GetConfigTest, ExtractEmmcConfigHandlesMalformedMessage)
     EXPECT_EQ(estoraged::extractEmmcConfig(sealed), std::nullopt);
 }
 
-TEST_F(GetConfigTest, GetConfigurationRetriesMapperAndGetAll)
+TEST_F(GetConfigTest, InterfacesAddedCreatesImmediatelyAndCancelsRetries)
 {
-    std::shared_ptr<sdbusplus::asio::dbus_interface> delayedIface;
+    size_t getSubTreeCalls = 0;
+    auto mapperIface =
+        objectServer->add_interface(mapperConfig.path, mapperConfig.interface);
+    mapperIface->register_method(
+        "GetSubTree",
+        [&getSubTreeCalls](const std::string&, int32_t,
+                           const std::vector<std::string>&) -> GetSubTreeType {
+            ++getSubTreeCalls;
+            throw InternalFailure();
+        });
+    mapperIface->initialize();
+
+    mapperConfig.retryInterval = std::chrono::milliseconds(150);
+    mapperConfig.maxRetries = 5;
+
+    boost::container::flat_map<std::string, estoraged::StorageData> created;
+    estoraged::StorageConfigScanner scanner(
+        clientConn,
+        [&created](const std::string& path,
+                   const estoraged::StorageData& data) {
+            created.emplace(path, data);
+            return true;
+        },
+        [&created](const std::string& path) {
+            return created.find(path) != created.end();
+        },
+        mapperConfig, std::chrono::milliseconds(10));
+
+    /* Start initial scan; GetSubTree fails once and waits on 150 ms retry. */
+    scanner.startScan();
+    ASSERT_TRUE(runUntil([&]() { return getSubTreeCalls == 1U; }));
+    runFor(std::chrono::milliseconds(20));
+    EXPECT_EQ(getSubTreeCalls, 1U);
+    EXPECT_TRUE(created.empty());
+
+    /* Unrelated InterfacesAdded signals must not trigger scans or creates. */
+    for (int i = 0; i < 10; ++i)
+    {
+        auto unrelated = serverConn->new_signal(
+            kInventoryRoot, "org.freedesktop.DBus.ObjectManager",
+            "InterfacesAdded");
+        boost::container::flat_map<std::string, estoraged::StorageData> ifaces;
+        ifaces.emplace("xyz.openbmc_project.Sensor.Value",
+                       estoraged::StorageData{});
+        unrelated.append(
+            estoraged::object_path("/xyz/openbmc_project/inventory/sensor"),
+            ifaces);
+        auto sealed = sealMessage(std::move(unrelated));
+        scanner.handleInterfacesAdded(sealed);
+    }
+    EXPECT_TRUE(created.empty());
+
+    /* EmmcDevice InterfacesAdded creates immediately and cancels retries. */
+    auto sealedAdded = makeEmmcInterfacesAddedSignal(kTestConfigPath);
+    scanner.handleInterfacesAdded(sealedAdded);
+
+    ASSERT_EQ(created.size(), 1U);
+    EXPECT_TRUE(created.find(kTestConfigPath) != created.end());
+
+    /* Run well past retryInterval to confirm no further GetSubTree retries. */
+    runFor(std::chrono::milliseconds(250));
+    EXPECT_EQ(getSubTreeCalls, 1U);
+}
+
+TEST_F(GetConfigTest, FailedInterfacesAddedDoesNotCancelInFlightScan)
+{
+    auto emmcIface = registerEmmcConfigObject(kTestConfigPath);
+    size_t getSubTreeCalls = 0;
+    auto mapperIface =
+        objectServer->add_interface(mapperConfig.path, mapperConfig.interface);
+    mapperIface->register_method(
+        "GetSubTree",
+        [this,
+         &getSubTreeCalls](const std::string&, int32_t,
+                           const std::vector<std::string>&) -> GetSubTreeType {
+            ++getSubTreeCalls;
+            if (getSubTreeCalls == 1U)
+            {
+                throw InternalFailure();
+            }
+            return {{kTestConfigPath,
+                     {{emBusName, {estoraged::emmcConfigInterface}}}}};
+        });
+    mapperIface->initialize();
+
+    mapperConfig.retryInterval = std::chrono::milliseconds(80);
+    mapperConfig.maxRetries = 3;
+
+    boost::container::flat_set<std::string> knownPaths;
+    boost::container::flat_map<std::string, estoraged::StorageData> created;
+    estoraged::StorageConfigScanner scanner(
+        clientConn,
+        [&created, &knownPaths](const std::string& path,
+                                const estoraged::StorageData& data) {
+            if (path == kOtherConfigPath)
+            {
+                /* Simulate placeholder insertion on failed findDevice(). */
+                knownPaths.insert(path);
+                return false;
+            }
+            created.emplace(path, data);
+            knownPaths.insert(path);
+            return true;
+        },
+        [&knownPaths](const std::string& path) {
+            return knownPaths.find(path) != knownPaths.end();
+        },
+        mapperConfig, std::chrono::milliseconds(10));
+
+    scanner.startScan();
+    ASSERT_TRUE(runUntil([&]() { return getSubTreeCalls == 1U; }));
+
+    /*
+     * A failing InterfacesAdded that records a known placeholder path must not
+     * cancel the in-flight initial scan before it discovers kTestConfigPath.
+     */
+    auto failedAdded = makeEmmcInterfacesAddedSignal(kOtherConfigPath);
+    scanner.handleInterfacesAdded(failedAdded);
+    EXPECT_TRUE(created.empty());
+
+    ASSERT_TRUE(runUntil([&]() { return created.size() == 1U; }));
+    EXPECT_EQ(getSubTreeCalls, 2U);
+    EXPECT_TRUE(created.find(kTestConfigPath) != created.end());
+}
+
+TEST_F(GetConfigTest, InterfacesAddedCallbackExceptionIsCaught)
+{
+    size_t callbackCalls = 0;
+    estoraged::StorageConfigScanner scanner(
+        clientConn,
+        [&callbackCalls](const std::string&,
+                         const estoraged::StorageData&) -> bool {
+            ++callbackCalls;
+            throw InternalFailure();
+        },
+        [](const std::string&) { return false; }, mapperConfig,
+        std::chrono::milliseconds(10));
+
+    auto sealedAdded = makeEmmcInterfacesAddedSignal(kTestConfigPath);
+    EXPECT_NO_THROW(scanner.handleInterfacesAdded(sealedAdded));
+    EXPECT_EQ(callbackCalls, 1U);
+}
+
+TEST_F(GetConfigTest, PropertiesChangedIgnoresKnownPath)
+{
+    size_t getSubTreeCalls = 0;
+    auto mapperIface =
+        objectServer->add_interface(mapperConfig.path, mapperConfig.interface);
+    mapperIface->register_method(
+        "GetSubTree",
+        [&getSubTreeCalls](const std::string&, int32_t,
+                           const std::vector<std::string>&) -> GetSubTreeType {
+            ++getSubTreeCalls;
+            return {};
+        });
+    mapperIface->initialize();
+
+    boost::container::flat_set<std::string> knownPaths{kTestConfigPath};
+    estoraged::StorageConfigScanner scanner(
+        clientConn,
+        [](const std::string&, const estoraged::StorageData&) { return false; },
+        [&knownPaths](const std::string& path) {
+            return knownPaths.find(path) != knownPaths.end();
+        },
+        mapperConfig, std::chrono::milliseconds(5));
+
+    auto sig = makePropertiesChangedSignal(kTestConfigPath);
+    scanner.handlePropertiesChanged(sig);
+    runFor(std::chrono::milliseconds(30));
+
+    EXPECT_EQ(getSubTreeCalls, 0U);
+}
+
+TEST_F(GetConfigTest, PropertiesChangedSingleFlightAndMapperRetry)
+{
+    auto emmcIface = registerEmmcConfigObject(kTestConfigPath);
     size_t getSubTreeCalls = 0;
 
     auto mapperIface =
@@ -231,44 +431,52 @@ TEST_F(GetConfigTest, GetConfigurationRetriesMapperAndGetAll)
         });
     mapperIface->initialize();
 
-    mapperConfig.retryInterval = std::chrono::milliseconds(80);
-    mapperConfig.maxRetries = 4;
+    mapperConfig.retryInterval = std::chrono::milliseconds(40);
+    mapperConfig.maxRetries = 5;
 
-    estoraged::ManagedStorageType discovered;
-    bool completed = false;
-    {
-        auto getter = std::make_shared<estoraged::GetStorageConfiguration>(
-            clientConn,
-            [&discovered, &completed](estoraged::ManagedStorageType& resp) {
-                discovered = std::move(resp);
-                completed = true;
-            },
-            nullptr, mapperConfig);
-        getter->getConfiguration();
-    }
+    boost::container::flat_map<std::string, estoraged::StorageData> created;
+    estoraged::StorageConfigScanner scanner(
+        clientConn,
+        [&created](const std::string& path,
+                   const estoraged::StorageData& data) {
+            created.emplace(path, data);
+            return true;
+        },
+        [&created](const std::string& path) {
+            return created.find(path) != created.end();
+        },
+        mapperConfig, std::chrono::milliseconds(5));
 
     /*
-     * Wait until GetSubTree succeeds on attempt 3 while kTestConfigPath is not
-     * registered yet, causing the first Properties.GetAll call to fail and arm
-     * a retry.
+     * Inject repeated PropertiesChanged bursts across multiple debounce windows
+     * while the first GetStorageConfiguration retry chain is in flight.
+     * Single-flight deduplication must keep exactly one chain active (3 calls
+     * total: 2 failures + 1 success) and perform no redundant follow-up scan
+     * once kTestConfigPath is created.
      */
-    ASSERT_TRUE(runUntil([&]() { return getSubTreeCalls == 3U; }));
-    runFor(std::chrono::milliseconds(20));
-    EXPECT_FALSE(completed);
+    auto firstSig = makePropertiesChangedSignal(kTestConfigPath);
+    scanner.handlePropertiesChanged(firstSig);
+    ASSERT_TRUE(runUntil([&]() { return getSubTreeCalls >= 1U; }));
 
-    delayedIface = registerEmmcConfigObject(kTestConfigPath, "delayed_emmc");
-    ASSERT_TRUE(runUntil([&]() { return completed; }));
+    for (int wave = 0; wave < 3; ++wave)
+    {
+        auto sig = makePropertiesChangedSignal(kTestConfigPath);
+        scanner.handlePropertiesChanged(sig);
+        runFor(std::chrono::milliseconds(10));
+    }
 
+    ASSERT_TRUE(runUntil([&]() { return created.size() == 1U; }));
+    runFor(std::chrono::milliseconds(60));
     EXPECT_EQ(getSubTreeCalls, 3U);
-    ASSERT_EQ(discovered.size(), 1U);
-    const estoraged::object_path expectedPath(kTestConfigPath);
-    ASSERT_TRUE(discovered.find(expectedPath) != discovered.end());
-    EXPECT_EQ(std::get<std::string>(discovered.at(expectedPath).at("Name")),
-              "delayed_emmc");
+    ASSERT_EQ(created.size(), 1U);
+    EXPECT_EQ(
+        std::get<std::string>(created.at(kTestConfigPath).at("LocationCode")),
+        "U10");
 }
 
-TEST_F(GetConfigTest, GetConfigurationSkipsKnownPaths)
+TEST_F(GetConfigTest, GetConfigurationSkipsKnownPathsAndRetriesGetAll)
 {
+    /* Register only kOtherConfigPath initially; kTestConfigPath is absent. */
     auto knownIface = registerEmmcConfigObject(kOtherConfigPath, "known_emmc");
     std::shared_ptr<sdbusplus::asio::dbus_interface> delayedIface;
     size_t getSubTreeCalls = 0;
@@ -294,34 +502,39 @@ TEST_F(GetConfigTest, GetConfigurationSkipsKnownPaths)
     mapperConfig.maxRetries = 3;
 
     boost::container::flat_set<std::string> knownPaths{kOtherConfigPath};
-    estoraged::ManagedStorageType discovered;
-    bool completed = false;
-    {
-        auto getter = std::make_shared<estoraged::GetStorageConfiguration>(
-            clientConn,
-            [&discovered, &completed](estoraged::ManagedStorageType& resp) {
-                discovered = std::move(resp);
-                completed = true;
-            },
-            [&knownPaths](const std::string& path) {
-                return knownPaths.find(path) != knownPaths.end();
-            },
-            mapperConfig);
-        getter->getConfiguration();
-    }
+    boost::container::flat_map<std::string, estoraged::StorageData> created;
 
+    estoraged::StorageConfigScanner scanner(
+        clientConn,
+        [&created, &knownPaths](const std::string& path,
+                                const estoraged::StorageData& data) {
+            created.emplace(path, data);
+            knownPaths.insert(path);
+            return true;
+        },
+        [&knownPaths](const std::string& path) {
+            return knownPaths.find(path) != knownPaths.end();
+        },
+        mapperConfig, std::chrono::milliseconds(5));
+
+    /*
+     * Start scan while kTestConfigPath does not exist yet on serverConn, so
+     * Properties.GetAll fails on attempt 1 and schedules a retry.
+     */
+    scanner.startScan();
     ASSERT_TRUE(runUntil([&]() { return getSubTreeCalls == 1U; }));
     runFor(std::chrono::milliseconds(20));
-    EXPECT_FALSE(completed);
+    EXPECT_TRUE(created.empty());
 
+    /* Publish kTestConfigPath before the retry fires. */
     delayedIface = registerEmmcConfigObject(kTestConfigPath, "delayed_emmc");
-    ASSERT_TRUE(runUntil([&]() { return completed; }));
+    ASSERT_TRUE(runUntil([&]() { return created.size() == 1U; }));
 
+    /* kOtherConfigPath was skipped because it was already known. */
     EXPECT_EQ(getSubTreeCalls, 1U);
-    ASSERT_EQ(discovered.size(), 1U);
-    const estoraged::object_path expectedPath(kTestConfigPath);
-    ASSERT_TRUE(discovered.find(expectedPath) != discovered.end());
-    EXPECT_EQ(std::get<std::string>(discovered.at(expectedPath).at("Name")),
+    ASSERT_EQ(created.size(), 1U);
+    ASSERT_TRUE(created.find(kTestConfigPath) != created.end());
+    EXPECT_EQ(std::get<std::string>(created.at(kTestConfigPath).at("Name")),
               "delayed_emmc");
 }
 

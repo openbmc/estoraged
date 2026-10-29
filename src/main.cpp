@@ -6,7 +6,6 @@
 
 #include <boost/asio/io_context.hpp>
 #include <boost/asio/post.hpp>
-#include <boost/asio/steady_timer.hpp>
 #include <boost/container/flat_map.hpp>
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/asio/connection.hpp>
@@ -122,43 +121,6 @@ bool createStorageObject(
     return true;
 }
 
-/*
- * Get the configuration objects from Entity Manager and create new D-Bus
- * objects for each one. This function can be called multiple times, in case
- * new configuration objects show up later.
- */
-void createStorageObjects(
-    sdbusplus::asio::object_server& objectServer,
-    boost::container::flat_map<
-        std::string, std::unique_ptr<estoraged::EStoraged>>& storageObjects,
-    std::shared_ptr<sdbusplus::asio::connection>& dbusConnection)
-{
-    auto getter = std::make_shared<estoraged::GetStorageConfiguration>(
-        dbusConnection,
-        [&objectServer, &storageObjects](
-            const estoraged::ManagedStorageType& storageConfigurations) {
-            size_t numConfigObj = storageConfigurations.size();
-            if (numConfigObj > 1)
-            {
-                lg2::error(
-                    "eStoraged can only manage 1 eMMC device; found {NUM}",
-                    "NUM", numConfigObj, "REDFISH_MESSAGE_ID",
-                    std::string("OpenBMC.0.1.CreateStorageObjectsFail"));
-                return;
-            }
-
-            for (const auto& [path, data] : storageConfigurations)
-            {
-                createStorageObject(objectServer, storageObjects, path.str,
-                                    data);
-            }
-        },
-        [&storageObjects](const std::string& path) {
-            return storageObjects.find(path) != storageObjects.end();
-        });
-    getter->getConfiguration();
-}
-
 int main()
 {
     try
@@ -173,71 +135,26 @@ int main()
                                    std::unique_ptr<estoraged::EStoraged>>
             storageObjects;
 
-        boost::asio::post(io, [&]() {
-            createStorageObjects(server, storageObjects, conn);
-        });
+        estoraged::StorageConfigScanner scanner(
+            conn,
+            [&server, &storageObjects](const std::string& path,
+                                       const estoraged::StorageData& data) {
+                return createStorageObject(server, storageObjects, path, data);
+            },
+            [&storageObjects](const std::string& path) {
+                return storageObjects.find(path) != storageObjects.end();
+            });
 
-        /*
-         * Set up an event handler to process any new configuration objects
-         * that show up later.
-         */
-        boost::asio::steady_timer filterTimer(io);
-        std::function<void(sdbusplus::message_t&)> eventHandler =
-            [&](sdbusplus::message_t& message) {
-                try
-                {
-                    if (message.is_method_error())
-                    {
-                        lg2::error("eventHandler callback method error");
-                        return;
-                    }
-                    const char* path = message.get_path();
-                    if (path != nullptr &&
-                        storageObjects.find(path) != storageObjects.end())
-                    {
-                        return;
-                    }
-                    /*
-                     * This implicitly cancels the timer, if it's already
-                     * pending. If there's a burst of events within a short
-                     * period, we want to handle them all at once. So, we will
-                     * wait this long for no more events to occur, before
-                     * processing them.
-                     */
-                    filterTimer.expires_after(std::chrono::seconds(1));
-
-                    filterTimer.async_wait(
-                        [&](const boost::system::error_code& ec) {
-                            if (ec == boost::asio::error::operation_aborted)
-                            {
-                                /* we were canceled */
-                                return;
-                            }
-                            if (ec)
-                            {
-                                lg2::error("timer error");
-                                return;
-                            }
-                            createStorageObjects(server, storageObjects, conn);
-                        });
-                }
-                catch (const std::exception& e)
-                {
-                    lg2::error("Failed to handle PropertiesChanged: {ERROR}",
-                               "ERROR", e.what());
-                }
-                catch (...)
-                {
-                    lg2::error("Failed to handle PropertiesChanged");
-                }
-            };
+        boost::asio::post(io, [&scanner]() { scanner.startScan(); });
 
         auto match = std::make_unique<match_t>(
             static_cast<sdbusplus::bus_t&>(*conn),
             "type='signal',member='PropertiesChanged',path_namespace='" +
                 std::string("/xyz/openbmc_project/inventory") +
                 "',arg0namespace='" + estoraged::emmcConfigInterface + "'",
-            eventHandler);
+            [&scanner](sdbusplus::message_t& message) {
+                scanner.handlePropertiesChanged(message);
+            });
 
         /*
          * Entity Manager announces new configuration objects with the
@@ -248,26 +165,8 @@ int main()
             static_cast<sdbusplus::bus_t&>(*conn),
             sdbusplus::bus::match::rules::interfacesAddedAtPath(
                 "/xyz/openbmc_project/inventory/"),
-            [&server, &storageObjects](sdbusplus::message_t& message) {
-                try
-                {
-                    auto extracted = estoraged::extractEmmcConfig(message);
-                    if (!extracted)
-                    {
-                        return;
-                    }
-                    createStorageObject(server, storageObjects,
-                                        extracted->first, extracted->second);
-                }
-                catch (const std::exception& e)
-                {
-                    lg2::error("Failed to handle InterfacesAdded: {ERROR}",
-                               "ERROR", e.what());
-                }
-                catch (...)
-                {
-                    lg2::error("Failed to handle InterfacesAdded");
-                }
+            [&scanner](sdbusplus::message_t& message) {
+                scanner.handleInterfacesAdded(message);
             });
 
         /*

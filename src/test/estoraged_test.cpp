@@ -9,8 +9,10 @@
 #include <unistd.h>
 
 #include <boost/asio/io_context.hpp>
+#include <boost/asio/steady_timer.hpp>
 #include <sdbusplus/asio/connection.hpp>
 #include <sdbusplus/asio/object_server.hpp>
+#include <sdbusplus/bus/match.hpp>
 #include <stdplus/fd/gmock.hpp>
 #include <xyz/openbmc_project/Common/error.hpp>
 #include <xyz/openbmc_project/Inventory/Item/Volume/server.hpp>
@@ -1227,6 +1229,76 @@ TEST_F(FilesystemTest, UnmountFailure)
 {
     estoraged::Filesystem fs;
     EXPECT_EQ(fs.doUnmount("/nonexistent_path_xyz"), -1);
+}
+
+TEST(EStoragedSignalTest, ConstructorSkipsInitialPropertiesChanged)
+{
+    const std::string devFile = (testTmpDir() / "sigtest_emmc").string();
+    {
+        std::ofstream f(devFile,
+                        std::ios::out | std::ios::binary | std::ios::trunc);
+        ASSERT_TRUE(f.good());
+    }
+
+    boost::asio::io_context io;
+    auto serverConn = std::make_shared<sdbusplus::asio::connection>(
+        io, sdbusplus::bus::new_bus());
+    auto clientConn = std::make_shared<sdbusplus::asio::connection>(
+        io, sdbusplus::bus::new_bus());
+
+    const std::string objPath =
+        "/xyz/openbmc_project/inventory/storage/sigtest_emmc";
+    size_t propChangedCount = 0;
+    size_t interfacesAddedCount = 0;
+
+    sdbusplus::bus::match_t propMatch(
+        static_cast<sdbusplus::bus_t&>(*clientConn),
+        sdbusplus::bus::match::rules::type::signal() +
+            sdbusplus::bus::match::rules::member("PropertiesChanged") +
+            sdbusplus::bus::match::rules::path(objPath),
+        [&](sdbusplus::message_t&) { ++propChangedCount; });
+
+    sdbusplus::bus::match_t iaMatch(
+        static_cast<sdbusplus::bus_t&>(*clientConn),
+        sdbusplus::bus::match::rules::interfacesAdded("/"),
+        [&](sdbusplus::message_t& msg) {
+            estoraged::object_path iaPath;
+            msg.read(iaPath);
+            if (iaPath.str == objPath)
+            {
+                ++interfacesAddedCount;
+            }
+        });
+
+    auto pump = [&](std::chrono::milliseconds ms) {
+        io.restart();
+        boost::asio::steady_timer timer(io, ms);
+        timer.async_wait([&io](const boost::system::error_code&) {
+            io.stop();
+        });
+        io.run();
+    };
+    pump(std::chrono::milliseconds(20));
+
+    auto cryptIface = std::make_unique<MockCryptsetupInterface>();
+    EXPECT_CALL(*cryptIface, cryptGetDir)
+        .WillOnce(Return(testTmpDir().string()));
+    auto fsIface = std::make_unique<MockFilesystemInterface>();
+    auto mockFd = std::make_unique<FdMock>();
+
+    sdbusplus::asio::object_server objServer(serverConn);
+    estoraged::EStoraged esObj(
+        std::move(mockFd), objServer,
+        "/xyz/openbmc_project/inventory/system/board/b0/emmc", devFile,
+        "sigtest_luks", 24, 25, "PN1", "SN1", "U10", ERASE_MAX_GEOMETRY,
+        ERASE_MIN_GEOMETRY, "SSD", "eMMC", std::move(cryptIface),
+        std::move(fsIface));
+
+    pump(std::chrono::milliseconds(50));
+
+    EXPECT_EQ(interfacesAddedCount, 6U);
+    EXPECT_EQ(propChangedCount, 0U);
+    EXPECT_EQ(unlink(devFile.c_str()), 0);
 }
 
 } // namespace estoraged_test

@@ -8,20 +8,23 @@
 #include <boost/asio/post.hpp>
 #include <boost/asio/steady_timer.hpp>
 #include <boost/container/flat_map.hpp>
-#include <boost/container/throw_exception.hpp>
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/asio/connection.hpp>
 #include <sdbusplus/asio/object_server.hpp>
 #include <sdbusplus/bus.hpp>
 #include <sdbusplus/bus/match.hpp>
+#include <stdplus/fd/create.hpp>
+#include <stdplus/fd/managed.hpp>
 
 #include <algorithm>
 #include <cstdlib>
+#include <exception>
 #include <filesystem>
-#include <iostream>
 #include <memory>
 #include <optional>
 #include <string>
+#include <system_error>
+#include <utility>
 #include <vector>
 
 #if HAVE_SDBUSPLUS_MATCH
@@ -31,13 +34,98 @@ using match_t = sdbusplus::bus::match_t;
 #endif
 
 /*
- * Get the configuration objects from Entity Manager and create new D-Bus
- * objects for each one. This function can be called multiple times, in case
- * new configuration objects show up later.
+ * Create a new D-Bus object for an Entity Manager configuration object if it
+ * has not already been processed. Returns true if a valid EStoraged object
+ * exists for @p path upon return.
  *
  * Note: Currently, eStoraged can only support 1 eMMC device.
  * Additional changes will be needed to support more than 1 eMMC, or to support
  * more types of storage devices.
+ */
+bool createStorageObject(
+    sdbusplus::asio::object_server& objectServer,
+    boost::container::flat_map<
+        std::string, std::unique_ptr<estoraged::EStoraged>>& storageObjects,
+    const std::string& path, const estoraged::StorageData& data)
+{
+    if (auto it = storageObjects.find(path); it != storageObjects.end())
+    {
+        /*
+         * We've already created this object, or at least
+         * attempted to.
+         */
+        return it->second != nullptr;
+    }
+
+    if (std::ranges::any_of(storageObjects, [](const auto& entry) {
+            return entry.second != nullptr;
+        }))
+    {
+        lg2::error("eStoraged can only manage 1 eMMC device; ignoring {PATH}",
+                   "PATH", path, "REDFISH_MESSAGE_ID",
+                   std::string("OpenBMC.0.1.CreateStorageObjectsFail"));
+        return false;
+    }
+
+    /* Look for the device file. */
+    const std::filesystem::path blockDevDir{"/sys/block"};
+    auto deviceInfo = estoraged::util::findDevice(data, blockDevDir);
+    if (!deviceInfo)
+    {
+        lg2::error("Device not found for path {PATH}", "PATH", path,
+                   "REDFISH_MESSAGE_ID",
+                   std::string("OpenBMC.0.1.CreateStorageObjectsFail"));
+        /*
+         * Set a NULL pointer as a placeholder, so that we don't
+         * try and fail again later.
+         */
+        storageObjects[path] = nullptr;
+        return false;
+    }
+
+    std::filesystem::path deviceFile = std::move(deviceInfo->deviceFile);
+    std::filesystem::path sysfsDir = std::move(deviceInfo->sysfsDir);
+    std::string luksName = std::move(deviceInfo->luksName);
+    std::string locationCode = std::move(deviceInfo->locationCode);
+    uint64_t eraseMaxGeometry = deviceInfo->eraseMaxGeometry;
+    uint64_t eraseMinGeometry = deviceInfo->eraseMinGeometry;
+
+    uint64_t size = estoraged::util::findSizeOfBlockDevice(deviceFile);
+
+    uint8_t lifeleft =
+        estoraged::util::findPredictedMediaLifeLeftPercent(sysfsDir);
+    std::string partNumber = estoraged::util::getPartNumber(sysfsDir);
+    std::string serialNumber = estoraged::util::getSerialNumber(sysfsDir);
+    const std::string& driveType = deviceInfo->driveType;
+    const std::string& driveProtocol = deviceInfo->driveProtocol;
+    /* Create the storage object. */
+    std::unique_ptr<stdplus::Fd> fd;
+    try
+    {
+        fd = std::make_unique<stdplus::ManagedFd>(stdplus::fd::open(
+            deviceFile.c_str(),
+            stdplus::fd::OpenFlags(stdplus::fd::OpenAccess::ReadWrite)));
+    }
+    catch (const std::system_error& e)
+    {
+        lg2::error("Failed to open {PATH}: {ERROR}", "PATH", deviceFile,
+                   "ERROR", e.what());
+    }
+
+    storageObjects[path] = std::make_unique<estoraged::EStoraged>(
+        std::move(fd), objectServer, path, deviceFile, luksName, size, lifeleft,
+        partNumber, serialNumber, locationCode, eraseMaxGeometry,
+        eraseMinGeometry, driveType, driveProtocol);
+    lg2::info("Created eStoraged object for path {PATH}", "PATH", path,
+              "REDFISH_MESSAGE_ID",
+              std::string("OpenBMC.0.1.CreateStorageObjects"));
+    return true;
+}
+
+/*
+ * Get the configuration objects from Entity Manager and create new D-Bus
+ * objects for each one. This function can be called multiple times, in case
+ * new configuration objects show up later.
  */
 void createStorageObjects(
     sdbusplus::asio::object_server& objectServer,
@@ -59,92 +147,16 @@ void createStorageObjects(
                 return;
             }
 
-            for (const std::pair<estoraged::object_path,
-                                 estoraged::StorageData>& storage :
-                 storageConfigurations)
+            for (const auto& [path, data] : storageConfigurations)
             {
-                const std::string& path = storage.first.str;
-
-                if (storageObjects.find(path) != storageObjects.end())
-                {
-                    /*
-                     * We've already created this object, or at least
-                     * attempted to.
-                     */
-                    continue;
-                }
-
-                /* Get the properties from the config object. */
-                const estoraged::StorageData& data = storage.second;
-
-                /* Look for the device file. */
-                const std::filesystem::path blockDevDir{"/sys/block"};
-                auto deviceInfo =
-                    estoraged::util::findDevice(data, blockDevDir);
-                if (!deviceInfo)
-                {
-                    lg2::error(
-                        "Device not found for path {PATH}", "PATH", path,
-                        "REDFISH_MESSAGE_ID",
-                        std::string("OpenBMC.0.1.CreateStorageObjectsFail"));
-                    /*
-                     * Set a NULL pointer as a placeholder, so that we don't
-                     * try and fail again later.
-                     */
-                    storageObjects[path] = nullptr;
-                    continue;
-                }
-
-                std::filesystem::path deviceFile =
-                    std::move(deviceInfo->deviceFile);
-                std::filesystem::path sysfsDir =
-                    std::move(deviceInfo->sysfsDir);
-                std::string luksName = std::move(deviceInfo->luksName);
-                std::string locationCode = std::move(deviceInfo->locationCode);
-                uint64_t eraseMaxGeometry = deviceInfo->eraseMaxGeometry;
-                uint64_t eraseMinGeometry = deviceInfo->eraseMinGeometry;
-
-                uint64_t size =
-                    estoraged::util::findSizeOfBlockDevice(deviceFile);
-
-                uint8_t lifeleft =
-                    estoraged::util::findPredictedMediaLifeLeftPercent(
-                        sysfsDir);
-                std::string partNumber =
-                    estoraged::util::getPartNumber(sysfsDir);
-                std::string serialNumber =
-                    estoraged::util::getSerialNumber(sysfsDir);
-                const std::string& driveType = deviceInfo->driveType;
-                const std::string& driveProtocol = deviceInfo->driveProtocol;
-                /* Create the storage object. */
-                std::unique_ptr<stdplus::Fd> fd;
-                try
-                {
-                    fd = std::make_unique<stdplus::ManagedFd>(stdplus::fd::open(
-                        deviceFile.c_str(),
-                        stdplus::fd::OpenFlags(
-                            stdplus::fd::OpenAccess::ReadWrite)));
-                }
-                catch (const std::system_error& e)
-                {
-                    lg2::error("Failed to open {PATH}: {ERROR}", "PATH",
-                               deviceFile, "ERROR", e.what());
-                }
-
-                storageObjects[path] = std::make_unique<estoraged::EStoraged>(
-                    std::move(fd), objectServer, path, deviceFile, luksName,
-                    size, lifeleft, partNumber, serialNumber, locationCode,
-                    eraseMaxGeometry, eraseMinGeometry, driveType,
-                    driveProtocol);
-                lg2::info("Created eStoraged object for path {PATH}", "PATH",
-                          path, "REDFISH_MESSAGE_ID",
-                          std::string("OpenBMC.0.1.CreateStorageObjects"));
+                createStorageObject(objectServer, storageObjects, path.str,
+                                    data);
             }
         });
     getter->getConfiguration();
 }
 
-int main(void)
+int main()
 {
     try
     {
@@ -207,14 +219,34 @@ int main(void)
 
         /*
          * Entity Manager announces new configuration objects with the
-         * InterfacesAdded signal. Process these the same way as property
-         * changes such that a configuration that shows up late is not missed.
+         * InterfacesAdded signal. Extract EmmcDevice properties directly from
+         * the signal payload and ignore unrelated inventory interfaces.
          */
         auto interfacesAddedMatch = std::make_unique<match_t>(
             static_cast<sdbusplus::bus_t&>(*conn),
             sdbusplus::bus::match::rules::interfacesAddedAtPath(
                 "/xyz/openbmc_project/inventory/"),
-            eventHandler);
+            [&server, &storageObjects](sdbusplus::message_t& message) {
+                try
+                {
+                    auto extracted = estoraged::extractEmmcConfig(message);
+                    if (!extracted)
+                    {
+                        return;
+                    }
+                    createStorageObject(server, storageObjects,
+                                        extracted->first, extracted->second);
+                }
+                catch (const std::exception& e)
+                {
+                    lg2::error("Failed to handle InterfacesAdded: {ERROR}",
+                               "ERROR", e.what());
+                }
+                catch (...)
+                {
+                    lg2::error("Failed to handle InterfacesAdded");
+                }
+            });
 
         /*
          * Tear down the eStoraged object of a configuration object that has

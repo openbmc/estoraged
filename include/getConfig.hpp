@@ -11,6 +11,7 @@
 #include <cstdlib>
 #include <functional>
 #include <memory>
+#include <optional>
 #include <string>
 #include <utility>
 #include <variant>
@@ -45,6 +46,15 @@ struct MapperConfig
     std::chrono::milliseconds retryInterval = std::chrono::seconds(10);
     size_t maxRetries = 5;
 };
+
+/** @brief Extract EmmcDevice configuration from an InterfacesAdded signal.
+ *
+ *  @param[in] message - D-Bus InterfacesAdded signal message.
+ *  @return Pair of (config object path, StorageData) if emmcConfigInterface
+ *          is present in the signal payload, or std::nullopt otherwise.
+ */
+std::optional<std::pair<std::string, StorageData>> extractEmmcConfig(
+    sdbusplus::message_t& message);
 
 /** @class GetStorageConfiguration
  *  @brief Object used to find Entity Manager config objects.

@@ -179,7 +179,7 @@ EStoraged::EStoraged(
         locationCodeInterface = objectServer.add_interface(
             objectPath, "xyz.openbmc_project.Inventory.Decorator.LocationCode");
         locationCodeInterface->register_property("LocationCode", locationCode);
-        locationCodeInterface->initialize();
+        locationCodeInterface->initialize(true);
     }
 
     /* Add Asset interface. */
@@ -188,10 +188,10 @@ EStoraged::EStoraged(
     assetInterface->register_property("PartNumber", partNumber);
     assetInterface->register_property("SerialNumber", serialNumber);
 
-    volumeInterface->initialize();
-    driveInterface->initialize();
-    embeddedLocationInterface->initialize();
-    assetInterface->initialize();
+    volumeInterface->initialize(true);
+    driveInterface->initialize(true);
+    embeddedLocationInterface->initialize(true);
+    assetInterface->initialize(true);
 
     /* Set up the association between chassis and drive. */
     association = objectServer.add_interface(
@@ -201,7 +201,7 @@ EStoraged::EStoraged(
     associations.emplace_back("chassis", "drive",
                               std::filesystem::path(configPath).parent_path());
     association->register_property("Associations", associations);
-    association->initialize();
+    association->initialize(true);
 }
 
 EStoraged::~EStoraged()

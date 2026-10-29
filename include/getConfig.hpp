@@ -2,7 +2,9 @@
 
 #include "estoraged_conf.hpp"
 
+#include <boost/asio/steady_timer.hpp>
 #include <boost/container/flat_map.hpp>
+#include <boost/container/flat_set.hpp>
 #include <sdbusplus/asio/connection.hpp>
 #include <sdbusplus/message.hpp>
 
@@ -92,7 +94,8 @@ class GetStorageConfiguration :
     GetStorageConfiguration& operator=(GetStorageConfiguration&&) = delete;
 
     /** @brief Destructor for GetStorageConfiguration.
-     *  @details This will execute the callback provided to the constructor.
+     *  @details This will execute the callback provided to the constructor
+     *    unless cancel() has been called.
      */
     ~GetStorageConfiguration();
 
@@ -123,6 +126,10 @@ class GetStorageConfiguration :
         getStorageInfo(path, owner, mapperConfig.maxRetries);
     }
 
+    /** @brief Cancel pending retry timers and suppress the completion callback.
+     */
+    void cancel() noexcept;
+
     /** @brief Map containing config objects with corresponding properties. */
     ManagedStorageType respData;
 
@@ -131,11 +138,72 @@ class GetStorageConfiguration :
 
   private:
     bool isPathAlreadyHandled(const std::string& path) const;
+    std::shared_ptr<boost::asio::steady_timer> makeRetryTimer();
 
     /** @brief callback to process the config object data in respData. */
     std::function<void(ManagedStorageType& resp)> callback;
     PathKnownCallback isPathKnown;
     MapperConfig mapperConfig;
+    std::vector<std::weak_ptr<boost::asio::steady_timer>> retryTimers;
+    bool cancelled = false;
+};
+
+/** @class StorageConfigScanner
+ *  @brief Coordinates initial scan, PropertiesChanged, and InterfacesAdded
+ *         discovery without overlapping D-Bus retry chains.
+ */
+class StorageConfigScanner
+{
+  public:
+    /** @brief Callback invoked to create a storage object for @p path.
+     *  @return true if a valid storage object is active for @p path, false
+     *          otherwise.
+     */
+    using CreateCallback =
+        std::function<bool(const std::string& path, const StorageData& data)>;
+    using PathKnownCallback = std::function<bool(const std::string& path)>;
+
+    StorageConfigScanner(
+        std::shared_ptr<sdbusplus::asio::connection> connection,
+        CreateCallback createFunc, PathKnownCallback pathKnownFunc,
+        MapperConfig mapperCfg = {},
+        std::chrono::milliseconds debounce = std::chrono::seconds(1));
+
+    ~StorageConfigScanner();
+
+    StorageConfigScanner(const StorageConfigScanner&) = delete;
+    StorageConfigScanner& operator=(const StorageConfigScanner&) = delete;
+    StorageConfigScanner(StorageConfigScanner&&) = delete;
+    StorageConfigScanner& operator=(StorageConfigScanner&&) = delete;
+
+    /** @brief Schedule an immediate ObjectMapper scan if none is active. */
+    void startScan();
+
+    /** @brief Handle an EmmcDevice PropertiesChanged signal. */
+    void handlePropertiesChanged(sdbusplus::message_t& message) noexcept;
+
+    /** @brief Handle an inventory InterfacesAdded signal. */
+    void handleInterfacesAdded(sdbusplus::message_t& message) noexcept;
+
+  private:
+    void cancelFilterTimer() noexcept;
+    bool invokeCreateCallback(const std::string& path,
+                              const StorageData& data) noexcept;
+    void startPendingScan();
+    void scheduleFilteredScan();
+    void processConfigurations(const ManagedStorageType& storageConfigurations);
+    void pruneKnownPendingPaths();
+
+    std::shared_ptr<sdbusplus::asio::connection> dbusConnection;
+    CreateCallback createCallback;
+    PathKnownCallback isPathKnown;
+    MapperConfig mapperConfig;
+    std::chrono::milliseconds debounceDelay;
+    boost::asio::steady_timer filterTimer;
+    std::weak_ptr<GetStorageConfiguration> activeGetter;
+    boost::container::flat_set<std::string> pendingPaths;
+    std::shared_ptr<bool> lifetimeToken = std::make_shared<bool>(true);
+    bool unscopedScanPending = false;
 };
 
 } // namespace estoraged

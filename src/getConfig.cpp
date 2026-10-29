@@ -60,14 +60,29 @@ std::optional<std::pair<std::string, StorageData>> extractEmmcConfig(
     return std::make_pair(std::move(objectPath.str), std::move(it->second));
 }
 
+bool GetStorageConfiguration::isPathAlreadyHandled(
+    const std::string& path) const
+{
+    return isPathKnown && isPathKnown(path);
+}
+
 void GetStorageConfiguration::getStorageInfo(
     const std::string& path, const std::string& owner, size_t retries)
 {
+    if (isPathAlreadyHandled(path))
+    {
+        return;
+    }
+
     std::shared_ptr<GetStorageConfiguration> self = shared_from_this();
     self->dbusConnection->async_method_call(
         [self, path, owner, retries](
             const boost::system::error_code ec,
             boost::container::flat_map<std::string, BasicVariantType>& data) {
+            if (self->isPathAlreadyHandled(path))
+            {
+                return;
+            }
             if (ec)
             {
                 if (retries == 0U)
@@ -147,7 +162,7 @@ void GetStorageConfiguration::getConfiguration(size_t retries)
             }
             for (const auto& [objPath, objDict] : ret)
             {
-                if (objDict.empty())
+                if (objDict.empty() || self->isPathAlreadyHandled(objPath))
                 {
                     continue;
                 }

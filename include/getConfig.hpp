@@ -64,19 +64,26 @@ class GetStorageConfiguration :
     public std::enable_shared_from_this<GetStorageConfiguration>
 {
   public:
+    using PathKnownCallback = std::function<bool(const std::string&)>;
+
     /** @brief Constructor for GetStorageConfiguration
      *
      *  @param[in] connection - shared_ptr to D-Bus connection object.
      *  @param[in] callbackFunc - callback to run after finding the config
      *    objects.
+     *  @param[in] pathKnownFunc - optional predicate returning true if a config
+     *    object path has already been processed.
      *  @param[in] mapperCfg - optional ObjectMapper endpoint and retry config.
      */
     GetStorageConfiguration(
         std::shared_ptr<sdbusplus::asio::connection> connection,
         std::function<void(ManagedStorageType& resp)>&& callbackFunc,
+        PathKnownCallback pathKnownFunc = nullptr,
         MapperConfig mapperCfg = {}) :
         dbusConnection(std::move(connection)),
-        callback(std::move(callbackFunc)), mapperConfig(std::move(mapperCfg))
+        callback(std::move(callbackFunc)),
+        isPathKnown(std::move(pathKnownFunc)),
+        mapperConfig(std::move(mapperCfg))
     {}
 
     GetStorageConfiguration& operator=(const GetStorageConfiguration&) = delete;
@@ -123,8 +130,11 @@ class GetStorageConfiguration :
     std::shared_ptr<sdbusplus::asio::connection> dbusConnection;
 
   private:
+    bool isPathAlreadyHandled(const std::string& path) const;
+
     /** @brief callback to process the config object data in respData. */
     std::function<void(ManagedStorageType& resp)> callback;
+    PathKnownCallback isPathKnown;
     MapperConfig mapperConfig;
 };
 

@@ -6,6 +6,7 @@
 #include <boost/asio/io_context.hpp>
 #include <boost/asio/steady_timer.hpp>
 #include <boost/container/flat_map.hpp>
+#include <boost/container/flat_set.hpp>
 #include <sdbusplus/asio/connection.hpp>
 #include <sdbusplus/asio/object_server.hpp>
 #include <sdbusplus/exception.hpp>
@@ -40,6 +41,8 @@ using InternalFailure =
 constexpr const char* kInventoryRoot = "/xyz/openbmc_project/inventory";
 constexpr const char* kTestConfigPath =
     "/xyz/openbmc_project/inventory/system/board/AgoraV2ND/agora_emmc";
+constexpr const char* kOtherConfigPath =
+    "/xyz/openbmc_project/inventory/system/board/AgoraV2ND/other_emmc";
 
 sdbusplus::message_t sealMessage(sdbusplus::message_t&& msg)
 {
@@ -240,7 +243,7 @@ TEST_F(GetConfigTest, GetConfigurationRetriesMapperAndGetAll)
                 discovered = std::move(resp);
                 completed = true;
             },
-            mapperConfig);
+            nullptr, mapperConfig);
         getter->getConfiguration();
     }
 
@@ -257,6 +260,64 @@ TEST_F(GetConfigTest, GetConfigurationRetriesMapperAndGetAll)
     ASSERT_TRUE(runUntil([&]() { return completed; }));
 
     EXPECT_EQ(getSubTreeCalls, 3U);
+    ASSERT_EQ(discovered.size(), 1U);
+    const estoraged::object_path expectedPath(kTestConfigPath);
+    ASSERT_TRUE(discovered.find(expectedPath) != discovered.end());
+    EXPECT_EQ(std::get<std::string>(discovered.at(expectedPath).at("Name")),
+              "delayed_emmc");
+}
+
+TEST_F(GetConfigTest, GetConfigurationSkipsKnownPaths)
+{
+    auto knownIface = registerEmmcConfigObject(kOtherConfigPath, "known_emmc");
+    std::shared_ptr<sdbusplus::asio::dbus_interface> delayedIface;
+    size_t getSubTreeCalls = 0;
+
+    auto mapperIface =
+        objectServer->add_interface(mapperConfig.path, mapperConfig.interface);
+    mapperIface->register_method(
+        "GetSubTree",
+        [this,
+         &getSubTreeCalls](const std::string&, int32_t,
+                           const std::vector<std::string>&) -> GetSubTreeType {
+            ++getSubTreeCalls;
+            return {
+                {kOtherConfigPath,
+                 {{emBusName, {estoraged::emmcConfigInterface}}}},
+                {kTestConfigPath,
+                 {{emBusName, {estoraged::emmcConfigInterface}}}},
+            };
+        });
+    mapperIface->initialize();
+
+    mapperConfig.retryInterval = std::chrono::milliseconds(100);
+    mapperConfig.maxRetries = 3;
+
+    boost::container::flat_set<std::string> knownPaths{kOtherConfigPath};
+    estoraged::ManagedStorageType discovered;
+    bool completed = false;
+    {
+        auto getter = std::make_shared<estoraged::GetStorageConfiguration>(
+            clientConn,
+            [&discovered, &completed](estoraged::ManagedStorageType& resp) {
+                discovered = std::move(resp);
+                completed = true;
+            },
+            [&knownPaths](const std::string& path) {
+                return knownPaths.find(path) != knownPaths.end();
+            },
+            mapperConfig);
+        getter->getConfiguration();
+    }
+
+    ASSERT_TRUE(runUntil([&]() { return getSubTreeCalls == 1U; }));
+    runFor(std::chrono::milliseconds(20));
+    EXPECT_FALSE(completed);
+
+    delayedIface = registerEmmcConfigObject(kTestConfigPath, "delayed_emmc");
+    ASSERT_TRUE(runUntil([&]() { return completed; }));
+
+    EXPECT_EQ(getSubTreeCalls, 1U);
     ASSERT_EQ(discovered.size(), 1U);
     const estoraged::object_path expectedPath(kTestConfigPath);
     ASSERT_TRUE(discovered.find(expectedPath) != discovered.end());

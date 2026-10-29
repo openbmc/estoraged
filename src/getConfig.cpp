@@ -1,7 +1,9 @@
 
 #include "getConfig.hpp"
 
+#include <boost/asio/error.hpp>
 #include <boost/asio/steady_timer.hpp>
+#include <boost/container/flat_map.hpp>
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/asio/connection.hpp>
 
@@ -11,7 +13,6 @@
 #include <memory>
 #include <string>
 #include <utility>
-#include <variant>
 #include <vector>
 
 namespace estoraged
@@ -19,9 +20,6 @@ namespace estoraged
 
 namespace mapper
 {
-constexpr const char* busName = "xyz.openbmc_project.ObjectMapper";
-constexpr const char* path = "/xyz/openbmc_project/object_mapper";
-constexpr const char* interface = "xyz.openbmc_project.ObjectMapper";
 constexpr const char* subtree = "GetSubTree";
 } // namespace mapper
 
@@ -55,10 +53,14 @@ void GetStorageConfiguration::getStorageInfo(
 
                 auto timer = std::make_shared<boost::asio::steady_timer>(
                     self->dbusConnection->get_io_context());
-                timer->expires_after(std::chrono::seconds(10));
+                timer->expires_after(self->mapperConfig.retryInterval);
                 timer->async_wait([self, timer, path, owner,
-                                   retries](boost::system::error_code ec) {
-                    if (ec)
+                                   retries](boost::system::error_code waitEc) {
+                    if (waitEc == boost::asio::error::operation_aborted)
+                    {
+                        return;
+                    }
+                    if (waitEc)
                     {
                         lg2::error("Timer error!");
                         return;
@@ -75,14 +77,39 @@ void GetStorageConfiguration::getStorageInfo(
         emmcConfigInterface);
 }
 
-void GetStorageConfiguration::getConfiguration()
+void GetStorageConfiguration::getConfiguration(size_t retries)
 {
     std::shared_ptr<GetStorageConfiguration> self = shared_from_this();
     dbusConnection->async_method_call(
-        [self](const boost::system::error_code ec, const GetSubTreeType& ret) {
+        [self, retries](const boost::system::error_code ec,
+                        const GetSubTreeType& ret) {
             if (ec)
             {
-                lg2::error("Error calling mapper");
+                if (retries == 0U)
+                {
+                    lg2::error("Error calling mapper: no retries left");
+                    return;
+                }
+
+                lg2::error("Error calling mapper: {RETRIES} retries left",
+                           "RETRIES", retries - 1);
+
+                auto timer = std::make_shared<boost::asio::steady_timer>(
+                    self->dbusConnection->get_io_context());
+                timer->expires_after(self->mapperConfig.retryInterval);
+                timer->async_wait(
+                    [self, timer, retries](boost::system::error_code waitEc) {
+                        if (waitEc == boost::asio::error::operation_aborted)
+                        {
+                            return;
+                        }
+                        if (waitEc)
+                        {
+                            lg2::error("Timer error!");
+                            return;
+                        }
+                        self->getConfiguration(retries - 1);
+                    });
                 return;
             }
             for (const auto& [objPath, objDict] : ret)
@@ -95,16 +122,18 @@ void GetStorageConfiguration::getConfiguration()
                 /* Look for the config interface exposed by this object. */
                 for (const std::string& interface : objDict.begin()->second)
                 {
-                    if (interface.compare(emmcConfigInterface) == 0)
+                    if (interface == emmcConfigInterface)
                     {
                         /* Get the properties exposed by this interface. */
                         self->getStorageInfo(objPath, objOwner);
+                        break;
                     }
                 }
             }
         },
-        mapper::busName, mapper::path, mapper::interface, mapper::subtree, "/",
-        0, std::vector<const char*>(1, emmcConfigInterface));
+        mapperConfig.busName, mapperConfig.path, mapperConfig.interface,
+        mapper::subtree, "/", 0,
+        std::vector<const char*>(1, emmcConfigInterface));
 }
 
 GetStorageConfiguration::~GetStorageConfiguration()

@@ -152,6 +152,9 @@ void createStorageObjects(
                 createStorageObject(objectServer, storageObjects, path.str,
                                     data);
             }
+        },
+        [&storageObjects](const std::string& path) {
+            return storageObjects.find(path) != storageObjects.end();
         });
     getter->getConfiguration();
 }
@@ -181,33 +184,52 @@ int main()
         boost::asio::steady_timer filterTimer(io);
         std::function<void(sdbusplus::message_t&)> eventHandler =
             [&](sdbusplus::message_t& message) {
-                if (message.is_method_error())
+                try
                 {
-                    lg2::error("eventHandler callback method error");
-                    return;
-                }
-                /*
-                 * This implicitly cancels the timer, if it's already pending.
-                 * If there's a burst of events within a short period, we want
-                 * to handle them all at once. So, we will wait this long for no
-                 * more events to occur, before processing them.
-                 */
-                filterTimer.expires_after(std::chrono::seconds(1));
+                    if (message.is_method_error())
+                    {
+                        lg2::error("eventHandler callback method error");
+                        return;
+                    }
+                    const char* path = message.get_path();
+                    if (path != nullptr &&
+                        storageObjects.find(path) != storageObjects.end())
+                    {
+                        return;
+                    }
+                    /*
+                     * This implicitly cancels the timer, if it's already
+                     * pending. If there's a burst of events within a short
+                     * period, we want to handle them all at once. So, we will
+                     * wait this long for no more events to occur, before
+                     * processing them.
+                     */
+                    filterTimer.expires_after(std::chrono::seconds(1));
 
-                filterTimer.async_wait(
-                    [&](const boost::system::error_code& ec) {
-                        if (ec == boost::asio::error::operation_aborted)
-                        {
-                            /* we were canceled */
-                            return;
-                        }
-                        if (ec)
-                        {
-                            lg2::error("timer error");
-                            return;
-                        }
-                        createStorageObjects(server, storageObjects, conn);
-                    });
+                    filterTimer.async_wait(
+                        [&](const boost::system::error_code& ec) {
+                            if (ec == boost::asio::error::operation_aborted)
+                            {
+                                /* we were canceled */
+                                return;
+                            }
+                            if (ec)
+                            {
+                                lg2::error("timer error");
+                                return;
+                            }
+                            createStorageObjects(server, storageObjects, conn);
+                        });
+                }
+                catch (const std::exception& e)
+                {
+                    lg2::error("Failed to handle PropertiesChanged: {ERROR}",
+                               "ERROR", e.what());
+                }
+                catch (...)
+                {
+                    lg2::error("Failed to handle PropertiesChanged");
+                }
             };
 
         auto match = std::make_unique<match_t>(

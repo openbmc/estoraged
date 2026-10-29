@@ -8,6 +8,7 @@ tests = [
     'erase/crypto_test',
     'erase/sanitize_test',
     'estoraged_test',
+    'getConfig_test',
     'util_test',
     'runCommand_test',
 ]

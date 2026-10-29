@@ -6,11 +6,13 @@
 #include <boost/container/flat_map.hpp>
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/asio/connection.hpp>
+#include <sdbusplus/message.hpp>
 
 #include <chrono>
 #include <cstdlib>
 #include <exception>
 #include <memory>
+#include <optional>
 #include <string>
 #include <utility>
 #include <vector>
@@ -26,6 +28,37 @@ constexpr const char* subtree = "GetSubTree";
 using GetSubTreeType = std::vector<
     std::pair<std::string,
               std::vector<std::pair<std::string, std::vector<std::string>>>>>;
+
+std::optional<std::pair<std::string, StorageData>> extractEmmcConfig(
+    sdbusplus::message_t& message)
+{
+    if (message.is_method_error())
+    {
+        lg2::error("InterfacesAdded callback method error");
+        return std::nullopt;
+    }
+
+    object_path objectPath;
+    boost::container::flat_map<std::string, StorageData> interfaces;
+    try
+    {
+        message.read(objectPath, interfaces);
+    }
+    catch (const std::exception& e)
+    {
+        lg2::error("Failed to parse InterfacesAdded: {ERROR}", "ERROR",
+                   e.what());
+        return std::nullopt;
+    }
+
+    auto it = interfaces.find(emmcConfigInterface);
+    if (it == interfaces.end())
+    {
+        return std::nullopt;
+    }
+
+    return std::make_pair(std::move(objectPath.str), std::move(it->second));
+}
 
 void GetStorageConfiguration::getStorageInfo(
     const std::string& path, const std::string& owner, size_t retries)

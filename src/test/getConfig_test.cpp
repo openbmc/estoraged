@@ -1,17 +1,23 @@
 #include "getConfig.hpp"
 
+#include <systemd/sd-bus.h>
 #include <unistd.h>
 
 #include <boost/asio/io_context.hpp>
 #include <boost/asio/steady_timer.hpp>
+#include <boost/container/flat_map.hpp>
 #include <sdbusplus/asio/connection.hpp>
 #include <sdbusplus/asio/object_server.hpp>
+#include <sdbusplus/exception.hpp>
+#include <sdbusplus/message.hpp>
 #include <xyz/openbmc_project/Common/error.hpp>
 
 #include <chrono>
 #include <cstddef>
 #include <memory>
+#include <optional>
 #include <string>
+#include <tuple>
 #include <utility>
 #include <variant>
 #include <vector>
@@ -24,14 +30,26 @@ namespace estoraged_test
 namespace
 {
 
+using Association = std::tuple<std::string, std::string, std::string>;
 using GetSubTreeType = std::vector<
     std::pair<std::string,
               std::vector<std::pair<std::string, std::vector<std::string>>>>>;
 using InternalFailure =
     sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
 
+constexpr const char* kInventoryRoot = "/xyz/openbmc_project/inventory";
 constexpr const char* kTestConfigPath =
     "/xyz/openbmc_project/inventory/system/board/AgoraV2ND/agora_emmc";
+
+sdbusplus::message_t sealMessage(sdbusplus::message_t&& msg)
+{
+    int rc = sd_bus_message_seal(msg.get(), 1, 0);
+    if (rc < 0)
+    {
+        throw sdbusplus::exception::SdBusError(-rc, "sd_bus_message_seal");
+    }
+    return std::move(msg);
+}
 
 class GetConfigTest : public ::testing::Test
 {
@@ -122,6 +140,71 @@ class GetConfigTest : public ::testing::Test
         return iface;
     }
 };
+
+TEST_F(GetConfigTest, ExtractEmmcConfigIgnoresUnrelatedInterfaces)
+{
+    auto msg = serverConn->new_signal(kInventoryRoot,
+                                      "org.freedesktop.DBus.ObjectManager",
+                                      "InterfacesAdded");
+    boost::container::flat_map<std::string, estoraged::StorageData> interfaces;
+    estoraged::StorageData boardProps;
+    boardProps.emplace("Name", estoraged::BasicVariantType("AgoraV2ND"));
+    interfaces.emplace("xyz.openbmc_project.Inventory.Item.Board", boardProps);
+    msg.append(estoraged::object_path(
+                   "/xyz/openbmc_project/inventory/system/board/AgoraV2ND"),
+               interfaces);
+
+    auto sealed = sealMessage(std::move(msg));
+    EXPECT_EQ(estoraged::extractEmmcConfig(sealed), std::nullopt);
+}
+
+TEST_F(GetConfigTest, ExtractEmmcConfigSkipsComplexSiblingTypes)
+{
+    using ComplexVariant =
+        std::variant<std::vector<Association>, std::string, uint64_t>;
+    using ComplexPropMap =
+        boost::container::flat_map<std::string, ComplexVariant>;
+
+    auto msg = serverConn->new_signal(kInventoryRoot,
+                                      "org.freedesktop.DBus.ObjectManager",
+                                      "InterfacesAdded");
+    boost::container::flat_map<std::string, ComplexPropMap> interfaces;
+
+    ComplexPropMap assocProps;
+    assocProps.emplace(
+        "Associations",
+        std::vector<Association>{{"chassis", "storage", "/xyz/board"}});
+    interfaces.emplace("xyz.openbmc_project.Association.Definitions",
+                       assocProps);
+
+    ComplexPropMap emmcProps;
+    emmcProps.emplace("Type", std::string("EmmcDevice"));
+    emmcProps.emplace("Name", std::string("agora_emmc"));
+    emmcProps.emplace("EraseMaxGeometry", uint64_t{16384});
+    interfaces.emplace(estoraged::emmcConfigInterface, emmcProps);
+
+    msg.append(estoraged::object_path(kTestConfigPath), interfaces);
+    auto sealed = sealMessage(std::move(msg));
+
+    auto extracted = estoraged::extractEmmcConfig(sealed);
+    ASSERT_TRUE(extracted.has_value());
+    EXPECT_EQ(extracted->first, kTestConfigPath);
+    EXPECT_EQ(std::get<std::string>(extracted->second.at("Type")),
+              "EmmcDevice");
+    EXPECT_EQ(std::get<std::string>(extracted->second.at("Name")),
+              "agora_emmc");
+    EXPECT_EQ(std::get<uint64_t>(extracted->second.at("EraseMaxGeometry")),
+              16384U);
+}
+
+TEST_F(GetConfigTest, ExtractEmmcConfigHandlesMalformedMessage)
+{
+    auto msg = serverConn->new_signal(kInventoryRoot,
+                                      "org.freedesktop.DBus.ObjectManager",
+                                      "InterfacesAdded");
+    auto sealed = sealMessage(std::move(msg));
+    EXPECT_EQ(estoraged::extractEmmcConfig(sealed), std::nullopt);
+}
 
 TEST_F(GetConfigTest, GetConfigurationRetriesMapperAndGetAll)
 {

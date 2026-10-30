@@ -1,0 +1,9 @@
+Code-Review+1: Rudransh Agrawal <rudyagrawal@google.com>
+Code-Review+2: William A. Kennington III <wak@google.com>
+Verified+1: OpenBMC CI <openbmcbump-ci@yahoo.com>
+Submitted-by: <bvanassche@acm.org>
+Submitted-at: Fri, 30 Oct 2026 01:48:18 +0000
+Reviewed-on: https://gerrit.openbmc.org/c/openbmc/estoraged/+/96539
+Comments-Total: 3
+Project: openbmc/estoraged
+Branch: refs/heads/master

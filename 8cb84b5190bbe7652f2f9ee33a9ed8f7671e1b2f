@@ -22,6 +22,30 @@
       },
       "revId": "8cb84b5190bbe7652f2f9ee33a9ed8f7671e1b2f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "51b204e5_0b3e6cfb",
+        "filename": "meson.options",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1003159
+      },
+      "writtenOn": "2026-10-30T01:40:59Z",
+      "side": 1,
+      "message": "read the CL description, should be good!",
+      "parentUuid": "1f17d57e_19552361",
+      "range": {
+        "startLine": 14,
+        "startChar": 11,
+        "endLine": 14,
+        "endChar": 30
+      },
+      "revId": "8cb84b5190bbe7652f2f9ee33a9ed8f7671e1b2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

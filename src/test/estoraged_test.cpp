@@ -1251,24 +1251,23 @@ TEST(EStoragedSignalTest, ConstructorSkipsInitialPropertiesChanged)
     size_t propChangedCount = 0;
     size_t interfacesAddedCount = 0;
 
-    sdbusplus::bus::match_t propMatch(
+    sdbusplus::match propMatch(
         static_cast<sdbusplus::bus_t&>(*clientConn),
-        sdbusplus::bus::match::rules::type::signal() +
-            sdbusplus::bus::match::rules::member("PropertiesChanged") +
-            sdbusplus::bus::match::rules::path(objPath),
+        sdbusplus::match_rules::type::signal() +
+            sdbusplus::match_rules::member("PropertiesChanged") +
+            sdbusplus::match_rules::path(objPath),
         [&](sdbusplus::message_t&) { ++propChangedCount; });
 
-    sdbusplus::bus::match_t iaMatch(
-        static_cast<sdbusplus::bus_t&>(*clientConn),
-        sdbusplus::bus::match::rules::interfacesAdded("/"),
-        [&](sdbusplus::message_t& msg) {
-            estoraged::object_path iaPath;
-            msg.read(iaPath);
-            if (iaPath.str == objPath)
-            {
-                ++interfacesAddedCount;
-            }
-        });
+    sdbusplus::match iaMatch(static_cast<sdbusplus::bus_t&>(*clientConn),
+                             sdbusplus::match_rules::interfacesAdded("/"),
+                             [&](sdbusplus::message_t& msg) {
+                                 estoraged::object_path iaPath;
+                                 msg.read(iaPath);
+                                 if (iaPath.str == objPath)
+                                 {
+                                     ++interfacesAddedCount;
+                                 }
+                             });
 
     auto pump = [&](std::chrono::milliseconds ms) {
         io.restart();

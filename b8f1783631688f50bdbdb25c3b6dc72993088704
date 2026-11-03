@@ -16,6 +16,24 @@
       "message": "Should it just be 1 timer per code path and then coalesce around the same timer already enqueued? Would a storm of getConfigs cause a lot of timers to be created?",
       "revId": "b8f1783631688f50bdbdb25c3b6dc72993088704",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d05935c7_8fa49213",
+        "filename": "include/getConfig.hpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1003197
+      },
+      "writtenOn": "2026-11-03T23:49:46Z",
+      "side": 1,
+      "message": "A storm of getConfig triggers doesn\u0027t multiply timers: StorageConfigScanner debounces them onto the single filterTimer (re-armed via expires_after), merges paths in pendingPaths, and startPendingScan() won\u0027t start a new GetStorageConfiguration while activeGetter is alive. Inside one getter, each retry chain (one for GetSubTree, one per EmmcDevice path for GetAll) has at most one timer outstanding, since the next timer is only created after the previous one fires and the call fails again. So retryTimers holds at most 1 + N entries (N is in practice 1), with expired entries pruned in makeRetryTimer(). It exists only so cancel() can stop every outstanding retry. I can switch the mapper path to a dedicated member timer if you\u0027d prefer, but a single shared timer for the per-path GetAll retries would need per-path retry bookkeeping, which seems like more complexity than it saves.",
+      "parentUuid": "99fcb7e3_d9a9c787",
+      "revId": "b8f1783631688f50bdbdb25c3b6dc72993088704",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

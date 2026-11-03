@@ -30,7 +30,7 @@
 #if HAVE_SDBUSPLUS_MATCH
 using match_t = sdbusplus::match;
 #else
-using match_t = sdbusplus::bus::match_t;
+using match_t = sdbusplus::match;
 #endif
 
 /*
@@ -246,7 +246,7 @@ int main()
          */
         auto interfacesAddedMatch = std::make_unique<match_t>(
             static_cast<sdbusplus::bus_t&>(*conn),
-            sdbusplus::bus::match::rules::interfacesAddedAtPath(
+            sdbusplus::match_rules::interfacesAddedAtPath(
                 "/xyz/openbmc_project/inventory/"),
             [&server, &storageObjects](sdbusplus::message_t& message) {
                 try
@@ -277,7 +277,7 @@ int main()
          */
         auto interfacesRemovedMatch = std::make_unique<match_t>(
             static_cast<sdbusplus::bus_t&>(*conn),
-            sdbusplus::bus::match::rules::interfacesRemovedAtPath(
+            sdbusplus::match_rules::interfacesRemovedAtPath(
                 "/xyz/openbmc_project/inventory/"),
             [&storageObjects](sdbusplus::message_t& message) {
                 estoraged::object_path objectPath;

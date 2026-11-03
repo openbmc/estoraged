@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99fcb7e3_d9a9c787",
+        "filename": "include/getConfig.hpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2026-11-03T17:14:59Z",
+      "side": 1,
+      "message": "Should it just be 1 timer per code path and then coalesce around the same timer already enqueued? Would a storm of getConfigs cause a lot of timers to be created?",
+      "revId": "b8f1783631688f50bdbdb25c3b6dc72993088704",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

@@ -11,7 +11,7 @@ namespace estoraged
 class VerifyDriveGeometry : public Erase
 {
   public:
-    /** @brief Creates a verifyDriveGeomentry erase object.
+    /** @brief Creates a verifyDriveGeometry erase object.
      *
      *  @param[in] inDevPath - the linux device path for the block device.
      */
@@ -24,12 +24,12 @@ class VerifyDriveGeometry : public Erase
      *  @param[in] eraseMinGeometry - the min expected size to erase.
      *  @param[in] bytes - Size of the block device.
      */
-    void geometryOkay(uint64_t eraseMaxGeometry, uint64_t eraseMinGemoetry)
+    void geometryOkay(uint64_t eraseMaxGeometry, uint64_t eraseMinGeometry)
     {
-        geometryOkay(eraseMaxGeometry, eraseMinGemoetry,
+        geometryOkay(eraseMaxGeometry, eraseMinGeometry,
                      util::findSizeOfBlockDevice(getDevPath()));
     }
-    void geometryOkay(uint64_t eraseMaxGeometry, uint64_t eraseMinGemoetry,
+    void geometryOkay(uint64_t eraseMaxGeometry, uint64_t eraseMinGeometry,
                       uint64_t bytes);
 };
 

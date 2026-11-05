@@ -119,7 +119,7 @@ TEST_F(CryptoEraseTest, EraseCrypOnlyInvalid)
     EXPECT_NO_THROW(myCryptErase.doErase());
 }
 
-TEST_F(CryptoEraseTest, EraseCrypDestoryFails)
+TEST_F(CryptoEraseTest, EraseCrypDestroyFails)
 {
     std::unique_ptr<MockCryptsetupInterface> mockCryptIface =
         std::make_unique<MockCryptsetupInterface>();

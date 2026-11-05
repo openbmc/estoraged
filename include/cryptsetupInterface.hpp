@@ -125,7 +125,7 @@ class CryptsetupInterface
      */
     virtual int cryptDeactivate(struct crypt_device* cd, const char* name) = 0;
 
-    /** @brief Wrapper around crypt_keyslot_destory.
+    /** @brief Wrapper around crypt_keyslot_destroy.
      *  @details Used for mocking purposes.
      *
      *  @param[in] cd - crypt device handle, can not be NULL.

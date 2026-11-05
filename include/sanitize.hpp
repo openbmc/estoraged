@@ -25,7 +25,7 @@ class IOCTLWrapperInterface
      *
      * @param[in] devPath - File name of block device
      * @param[in] request - Device-dependent request code
-     * @param[in] mmc_ioc_cmd - eMMC cmd
+     * @param[in] data    - eMMC cmd
      */
     virtual int doIoctl(std::string_view devPath, unsigned long request,
                         struct mmc_ioc_cmd& data) = 0;
@@ -35,7 +35,7 @@ class IOCTLWrapperInterface
      *
      * @param[in] devPath - File name of block device
      * @param[in] request - Device-dependent request code
-     * @param[in] mmc_io_mutli_cmd - many eMMC cmd
+     * @param[in] data    - many eMMC cmd
      */
     virtual int doIoctlMulti(std::string_view devPath, unsigned long request,
                              struct MmcIoMultiCmdErase& data) = 0;
@@ -49,7 +49,7 @@ class IOCTLWrapperInterface
     IOCTLWrapperInterface& operator=(IOCTLWrapperInterface&&) = delete;
 };
 
-// mockIOCTLWapper also inherits from IOCTLWrapperInterface
+// IOCTLWrapperMock also inherits from IOCTLWrapperInterface
 class IOCTLWrapperImpl : public IOCTLWrapperInterface
 {
   public:

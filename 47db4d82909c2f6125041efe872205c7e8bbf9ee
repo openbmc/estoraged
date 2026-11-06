@@ -38,6 +38,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "1787493b_c3066a97",
+        "filename": "include/sanitize.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1000397
+      },
+      "writtenOn": "2026-11-06T05:50:25Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "4beab50f_f38db5ac",
+      "revId": "47db4d82909c2f6125041efe872205c7e8bbf9ee",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "ef55ef2f_25e57c97",
         "filename": "include/verifyDriveGeometry.hpp",
         "patchSetId": 2
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "Unresolving this comment.",
       "parentUuid": "ef55ef2f_25e57c97",
+      "revId": "47db4d82909c2f6125041efe872205c7e8bbf9ee",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c9fa15d_2e45ff4f",
+        "filename": "include/verifyDriveGeometry.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000397
+      },
+      "writtenOn": "2026-11-06T05:50:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b1ee478e_f13845b7",
       "revId": "47db4d82909c2f6125041efe872205c7e8bbf9ee",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -108,6 +144,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "380550a0_c351f3d8",
+        "filename": "include/verifyDriveGeometry.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000397
+      },
+      "writtenOn": "2026-11-06T05:50:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b8bfa2c7_e4ab35f6",
+      "revId": "47db4d82909c2f6125041efe872205c7e8bbf9ee",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "cfed038f_e756ec80",
         "filename": "src/test/erase/crypto_test.cpp",
         "patchSetId": 2
@@ -137,6 +191,24 @@
       "side": 1,
       "message": "Unresolving this comment.",
       "parentUuid": "cfed038f_e756ec80",
+      "revId": "47db4d82909c2f6125041efe872205c7e8bbf9ee",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5abb5565_9fd704ed",
+        "filename": "src/test/erase/crypto_test.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1000397
+      },
+      "writtenOn": "2026-11-06T05:50:25Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "99eef3be_0246a76b",
       "revId": "47db4d82909c2f6125041efe872205c7e8bbf9ee",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

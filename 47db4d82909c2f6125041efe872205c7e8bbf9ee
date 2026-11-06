@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c6c131d_8a15d630",
+        "filename": "include/sanitize.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1003197
+      },
+      "writtenOn": "2026-11-06T02:38:35Z",
+      "side": 1,
+      "message": "Nit: there is no class called mockIOCTLWrapper. The mock class is called IOCTLWrapperMock (see src/test/erase/sanitize_test.cpp). Please use that name here.",
+      "revId": "47db4d82909c2f6125041efe872205c7e8bbf9ee",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef55ef2f_25e57c97",
+        "filename": "include/verifyDriveGeometry.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1003197
+      },
+      "writtenOn": "2026-11-06T02:38:35Z",
+      "side": 1,
+      "message": "Nit: please use the class name here: VerifyDriveGeometry (capital V).",
+      "revId": "47db4d82909c2f6125041efe872205c7e8bbf9ee",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c835d203_51a1599d",
+        "filename": "include/verifyDriveGeometry.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1003197
+      },
+      "writtenOn": "2026-11-06T02:38:35Z",
+      "side": 1,
+      "message": "Nit (not introduced by this patch): this overload does not have a \u0027bytes\u0027 parameter. Please consider moving this @param line to the three-argument overload.",
+      "revId": "47db4d82909c2f6125041efe872205c7e8bbf9ee",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cfed038f_e756ec80",
+        "filename": "src/test/erase/crypto_test.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1003197
+      },
+      "writtenOn": "2026-11-06T02:38:35Z",
+      "side": 1,
+      "message": "Nit: \u0027Cryp\u0027 is also a typo. How about EraseCryptDestroyFails?",
+      "revId": "47db4d82909c2f6125041efe872205c7e8bbf9ee",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

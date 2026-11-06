@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3da7a17_28cb9ae7",
+        "filename": "include/linux/mmc/mmc.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000397
+      },
+      "writtenOn": "2026-11-06T02:29:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "886b1a48_59666b75",
+      "range": {
+        "startLine": 53,
+        "startChar": 41,
+        "endLine": 53,
+        "endChar": 54
+      },
+      "revId": "68c62478a8a70b11d2cdd7f29a2d033cecb5c38b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "23959849_61722329",
@@ -37,6 +61,30 @@
       "writtenOn": "2026-11-05T15:52:12Z",
       "side": 1,
       "message": "The parameter name is `data`.",
+      "range": {
+        "startLine": 38,
+        "startChar": 18,
+        "endLine": 38,
+        "endChar": 34
+      },
+      "revId": "68c62478a8a70b11d2cdd7f29a2d033cecb5c38b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8f243e7_48499305",
+        "filename": "include/sanitize.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1000397
+      },
+      "writtenOn": "2026-11-06T02:29:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "23959849_61722329",
       "range": {
         "startLine": 38,
         "startChar": 18,
